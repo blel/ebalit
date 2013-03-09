@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Ebalit_WebFormsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="Ebalit_WebFormsModelStoreContainer">
+          <EntitySet Name="BlogCategory" EntityType="Ebalit_WebFormsModel.Store.BlogCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BlogEntry" EntityType="Ebalit_WebFormsModel.Store.BlogEntry" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BlogTopic" EntityType="Ebalit_WebFormsModel.Store.BlogTopic" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="Ebalit_WebFormsModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_BlogCategory_BlogTopic" Association="Ebalit_WebFormsModel.Store.FK_BlogCategory_BlogTopic">
+            <End Role="BlogTopic" EntitySet="BlogTopic" />
+            <End Role="BlogCategory" EntitySet="BlogCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogEntry_ToBlogCategory" Association="Ebalit_WebFormsModel.Store.FK_BlogEntry_ToBlogCategory">
+            <End Role="BlogCategory" EntitySet="BlogCategory" />
+            <End Role="BlogEntry" EntitySet="BlogEntry" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BlogCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="FK_Topic" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BlogEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Subject" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PublishedOn" Type="date" Nullable="false" />
+          <Property Name="Category" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BlogTopic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Topic" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_BlogCategory_BlogTopic">
+          <End Role="BlogTopic" Type="Ebalit_WebFormsModel.Store.BlogTopic" Multiplicity="1" />
+          <End Role="BlogCategory" Type="Ebalit_WebFormsModel.Store.BlogCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogTopic">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BlogCategory">
+              <PropertyRef Name="FK_Topic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogEntry_ToBlogCategory">
+          <End Role="BlogCategory" Type="Ebalit_WebFormsModel.Store.BlogCategory" Multiplicity="1" />
+          <End Role="BlogEntry" Type="Ebalit_WebFormsModel.Store.BlogEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BlogEntry">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Ebalit_WebFormsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Ebalit_WebFormsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="Ebalit_WebFormsModel.User" />
+          <EntitySet Name="BlogCategories" EntityType="Ebalit_WebFormsModel.BlogCategory" />
+          <EntitySet Name="BlogEntries" EntityType="Ebalit_WebFormsModel.BlogEntry" />
+          <EntitySet Name="BlogTopics" EntityType="Ebalit_WebFormsModel.BlogTopic" />
+          <AssociationSet Name="FK_BlogEntry_ToBlogCategory" Association="Ebalit_WebFormsModel.FK_BlogEntry_ToBlogCategory">
+            <End Role="BlogCategory" EntitySet="BlogCategories" />
+            <End Role="BlogEntry" EntitySet="BlogEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogCategory_BlogTopic" Association="Ebalit_WebFormsModel.FK_BlogCategory_BlogTopic">
+            <End Role="BlogTopic" EntitySet="BlogTopics" />
+            <End Role="BlogCategory" EntitySet="BlogCategories" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="BlogCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="BlogEntries" Relationship="Ebalit_WebFormsModel.FK_BlogEntry_ToBlogCategory" FromRole="BlogCategory" ToRole="BlogEntry" />
+          <Property Type="String" Name="Category" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="FK_Topic" Nullable="false" />
+          <NavigationProperty Name="BlogTopic" Relationship="Ebalit_WebFormsModel.FK_BlogCategory_BlogTopic" FromRole="BlogCategory" ToRole="BlogTopic" />
+        </EntityType>
+        <EntityType Name="BlogEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Subject" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Content" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="PublishedOn" Nullable="false" Precision="0" />
+          <Property Type="Int32" Name="Category" Nullable="false" />
+          <NavigationProperty Name="BlogCategory" Relationship="Ebalit_WebFormsModel.FK_BlogEntry_ToBlogCategory" FromRole="BlogEntry" ToRole="BlogCategory" />
+        </EntityType>
+        <EntityType Name="BlogTopic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Topic" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BlogCategories" Relationship="Ebalit_WebFormsModel.FK_BlogCategory_BlogTopic" FromRole="BlogTopic" ToRole="BlogCategory" />
+        </EntityType>
+        <Association Name="FK_BlogEntry_ToBlogCategory">
+          <End Type="Ebalit_WebFormsModel.BlogCategory" Role="BlogCategory" Multiplicity="1" />
+          <End Type="Ebalit_WebFormsModel.BlogEntry" Role="BlogEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BlogEntry">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogCategory_BlogTopic">
+          <End Type="Ebalit_WebFormsModel.BlogTopic" Role="BlogTopic" Multiplicity="1" />
+          <End Type="Ebalit_WebFormsModel.BlogCategory" Role="BlogCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogTopic">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BlogCategory">
+              <PropertyRef Name="FK_Topic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Ebalit_WebFormsModelStoreContainer" CdmEntityContainer="Ebalit_WebFormsEntities">
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Ebalit_WebFormsModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlogCategories">
+            <EntityTypeMapping TypeName="Ebalit_WebFormsModel.BlogCategory">
+              <MappingFragment StoreEntitySet="BlogCategory">
+                <ScalarProperty Name="FK_Topic" ColumnName="FK_Topic" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlogEntries">
+            <EntityTypeMapping TypeName="Ebalit_WebFormsModel.BlogEntry">
+              <MappingFragment StoreEntitySet="BlogEntry">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="PublishedOn" ColumnName="PublishedOn" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlogTopics">
+            <EntityTypeMapping TypeName="Ebalit_WebFormsModel.BlogTopic">
+              <MappingFragment StoreEntitySet="BlogTopic">
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
