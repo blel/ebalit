@@ -75,6 +75,7 @@
     <Content Include="ProtectedSites\CreateBlogEntry.aspx" />
     <Content Include="ProtectedSites\AdminIndex.aspx" />
     <Content Include="ProtectedSites\BlogEntries.aspx" />
+    <Content Include="ProtectedSites\ManageBlogCategories.aspx" />
     <Content Include="Styles\Styles.css" />
     <Content Include="testOnly.aspx" />
     <Content Include="Web.config">
@@ -92,6 +93,10 @@
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BlogCategoryDAL.cs" />
+    <Compile Include="BlogComment.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BlogCommentBLL.cs" />
     <Compile Include="BlogEntry.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
@@ -172,6 +177,13 @@
     </Compile>
     <Compile Include="ProtectedSites\BlogEntries.aspx.designer.cs">
       <DependentUpon>BlogEntries.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProtectedSites\ManageBlogCategories.aspx.cs">
+      <DependentUpon>ManageBlogCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProtectedSites\ManageBlogCategories.aspx.designer.cs">
+      <DependentUpon>ManageBlogCategories.aspx</DependentUpon>
     </Compile>
     <Compile Include="testOnly.aspx.cs">
       <DependentUpon>testOnly.aspx</DependentUpon>

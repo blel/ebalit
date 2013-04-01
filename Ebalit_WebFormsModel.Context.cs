@@ -29,5 +29,6 @@ namespace EbalitWebForms
         public DbSet<BlogCategory> BlogCategories { get; set; }
         public DbSet<BlogEntry> BlogEntries { get; set; }
         public DbSet<BlogTopic> BlogTopics { get; set; }
+        public DbSet<BlogComment> BlogComments { get; set; }
     }
 }

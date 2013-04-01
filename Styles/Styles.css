@@ -1,4 +1,80 @@
 ﻿
-body {
-    font-family:Calibri;
+body
+{
+    font-family: Calibri;
+    background-color: rgb(155, 168, 202);
 }
+
+menu
+{
+    position:relative;
+    left:200px;
+    text-indent : -40px;
+
+}
+
+
+menu li
+{ 
+    border-width: 1px;
+    border:solid;
+    border-radius:5px;
+    list-style-type: none;
+    display: inline;
+    width:80px;
+    padding: 20px;
+    background-color: #D5D926;
+}
+
+    menu li a
+    {
+        text-decoration: none;
+    }
+#Menu
+{
+    float: left;
+    width: 200px;
+}
+
+#MainContent
+{
+    background-color: #FFFFFF;
+    position:absolute;
+    width: 801px;
+    left: 200px;
+}
+
+#CommentArea
+{
+    position:absolute;
+    left: 200px;
+    top: 700px;
+}
+
+#RightMenu
+{
+    position:absolute;
+    left: 1020px;
+    top: 160px;
+    width: 400px;
+}
+
+#Popup
+{
+    background:rgb(155, 168, 202);
+     width: 600px; 
+     border:solid;
+      box-shadow: 10px 10px 5px #888888;
+}
+
+.Button
+{
+    border-width: 1px;
+    border:solid;
+    border-radius:5px;
+    width:80px;
+    padding: 20px;
+    background-color: #D5D926;
+    cursor:pointer;
+}
+

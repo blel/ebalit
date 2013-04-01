@@ -13,15 +13,22 @@ namespace EbalitWebForms
 
         public int CreateBlogCategory(BlogCategory blogCategory)
         {
-            return 0;
+            base.EbalitDBContext.BlogCategories.Add(blogCategory);
+            base.EbalitDBContext.SaveChanges();
+            return blogCategory.Id;
         }
 
-        public bool UpdateBlogCategory(int blogCategoryID)
+        public void UpdateBlogCategory(BlogCategory blogCategory)
         {
-            return true;
+            var originalRecord = base.EbalitDBContext.BlogCategories.Find(blogCategory.Id);
+            if (originalRecord != null)
+            {
+                base.EbalitDBContext.Entry(originalRecord).CurrentValues.SetValues(blogCategory);
+                base.EbalitDBContext.SaveChanges();
+            }
         }
 
-        public IQueryable<BlogCategory> ReadBlogCategory(int blogTopicID)
+        public IEnumerable<BlogCategory> ReadBlogCategory(int blogTopicID)
         {
             Ebalit_WebFormsEntities context = new Ebalit_WebFormsEntities();
             return from cc in context.BlogCategories
@@ -29,9 +36,31 @@ namespace EbalitWebForms
                    select cc;
         }
 
-        public bool DeleteBlogCategory(int blogCategoryID)
+        public List<BlogCategory> ReadBlogCategory()
         {
-            return true;
+            //Ebalit_WebFormsEntities context = new Ebalit_WebFormsEntities();
+            return (from cc in base.EbalitDBContext.BlogCategories.Include("BlogTopic")
+                   select cc).ToList();
+        }
+
+
+        public bool DeleteBlogCategory(BlogCategory  blogCategory)
+        {
+            bool result = true;
+            var originalRecord = base.EbalitDBContext.BlogCategories.Find(blogCategory.Id);
+            if (originalRecord != null)
+            {
+                try
+                {
+                    base.EbalitDBContext.BlogCategories.Remove(originalRecord);
+                    base.EbalitDBContext.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+                }
+            }
+            return result;
         }
     }
 }

@@ -5,12 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="bb473dfd97f1433a85b00623fad3fd99" Name="Diagram1">
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.User" Width="1.5" PointX="4.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.User" Width="1.5" PointX="3.625" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogCategory" Width="1.5" PointX="6.25" PointY="8.125" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogEntry" Width="1.5" PointX="1.0429241419969704" PointY="6.4562689841055629" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogTopic" Width="1.5" PointX="1.5" PointY="10" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_BlogEntry_ToBlogCategory" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_BlogCategory_BlogTopic" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogComment" Width="1.5" PointX="6.25" PointY="5" />
+        <AssociationConnector Association="Ebalit_WebFormsModel.FK_BlogComment_ToBlogEntry" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

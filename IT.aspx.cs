@@ -18,19 +18,22 @@ namespace EbalitWebForms
             BlogCategoryDAL categoryDAL = new BlogCategoryDAL();
             BlogTopicDAL topicDAL = new BlogTopicDAL();
             BlogEntryDAL entryDAL = new BlogEntryDAL();
+
+            //setup the accordion
             Accordion.Panes.Clear();
             foreach (BlogCategory category in categoryDAL.ReadBlogCategory(topicDAL.GetBlogTopicId("IT")))
             {
                 AjaxControlToolkit.AccordionPane pane = new AjaxControlToolkit.AccordionPane();
-                pane.ID = "pane" + category.Id;
-                pane.HeaderContainer.Controls.Add(new LiteralControl(category.Category));
+                pane.ID = "pane" + category.Id;             
+                pane.HeaderContainer.Controls.Add(new LiteralControl(string.Format("<b>{0}</b>",category.Category)));
                 foreach (BlogEntry entry in entryDAL.GetBlogEntries(category.Id))
                 {
                     LinkButton linkButton = new LinkButton();
                     linkButton.ID = "linkButton" + entry.Id;
-                    linkButton.Text = entry.Subject;
+                    linkButton.Text = entry.Subject;  
                     linkButton.CommandArgument = entry.Id.ToString();
                     linkButton.Command += new CommandEventHandler(linkButton_Command);
+                    linkButton.CausesValidation = false;
                     pane.ContentContainer.Controls.Add(linkButton);
                     pane.ContentContainer.Controls.Add(new LiteralControl("<br>"));
                 }
@@ -42,43 +45,63 @@ namespace EbalitWebForms
         {
             if (IsPostBack)
             {
-                if(!string.IsNullOrEmpty (hdfSelectedPane.Value))
+                if (!string.IsNullOrEmpty(hdfSelectedPane.Value))
                     Accordion.SelectedIndex = Convert.ToInt32(hdfSelectedPane.Value);
             }
-
+            this.dvwBlogComment.ChangeMode(DetailsViewMode.Insert);
 
         }
 
+        /// <summary>
+        /// Checks whether there is a CurrentEntryID in the view state.
+        /// If not, load default blog entry, otherwise load entry with the ID = CurrentEntryID.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void odsBlogEntry_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
-            
             if (ViewState["CurrentEntryID"] ==null)
             {
                 int BlogTopicId = new BlogTopicDAL().GetBlogTopicId("IT");
                 e.InputParameters["Id"] = new BlogEntryDAL().GetDefaultBlogEntryId(BlogTopicId);
+                ViewState.Add("CurrentEntryID", e.InputParameters["Id"]);
             }
             else
             {
                 e.InputParameters["Id"] = ViewState["CurrentEntryID"];
             }
-            
         }
 
+        /// <summary>
+        /// LinkButtons in the accordion. When pressed, the Id of the selected entry is saved in the view state
+        /// and databinding is executed --> see odsBlogEntry_Selecting
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void linkButton_Command(object sender, CommandEventArgs e)
         {
             ViewState.Add("CurrentEntryID",e.CommandArgument);
             dvwEntry.DataBind();
-            
-          
+            dtlComments.DataBind();
         }
 
-        protected void odsBlogEntry_Selected(object sender, ObjectDataSourceStatusEventArgs e)
+        protected void lnkSend_Command(object sender, CommandEventArgs e)
         {
-
+            
+            dvwBlogComment.InsertItem(true);
         }
 
+        protected void dvwBlogComment_ItemInserting(object sender, DetailsViewInsertEventArgs e)
+        {
+            e.Values["FK_BlogEntry"] = ViewState["CurrentEntryID"];
+            e.Values["PostedOn"] = DateTime.Now;
+        }
 
+        protected void odsBlogComments_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        {
+            e.InputParameters["blogEntryId"] = ViewState["CurrentEntryID"];
+        }
 
-
+ 
     }
 }

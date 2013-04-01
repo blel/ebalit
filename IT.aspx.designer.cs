@@ -31,15 +31,6 @@ namespace EbalitWebForms {
         protected global::System.Web.UI.WebControls.ObjectDataSource odsBlogEntry;
         
         /// <summary>
-        /// Accordion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.Accordion Accordion;
-        
-        /// <summary>
         /// hdfSelectedPane control.
         /// </summary>
         /// <remarks>
@@ -49,6 +40,15 @@ namespace EbalitWebForms {
         protected global::System.Web.UI.WebControls.HiddenField hdfSelectedPane;
         
         /// <summary>
+        /// Accordion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.Accordion Accordion;
+        
+        /// <summary>
         /// dvwEntry control.
         /// </summary>
         /// <remarks>
@@ -56,5 +56,68 @@ namespace EbalitWebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DetailsView dvwEntry;
+        
+        /// <summary>
+        /// odsBlogComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsBlogComment;
+        
+        /// <summary>
+        /// dvwBlogComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DetailsView dvwBlogComment;
+        
+        /// <summary>
+        /// lblShowPopup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblShowPopup;
+        
+        /// <summary>
+        /// PopupControlExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.PopupControlExtender PopupControlExtender1;
+        
+        /// <summary>
+        /// odsBlogComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsBlogComments;
+        
+        /// <summary>
+        /// Panel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel2;
+        
+        /// <summary>
+        /// dtlComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dtlComments;
     }
 }

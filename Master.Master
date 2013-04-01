@@ -4,8 +4,10 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link type="text/css" href="Styles/Styles.css" rel="stylesheet" />
     <title></title>
+    
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -19,6 +21,7 @@
         <li><a href="/Varia.aspx">Varia</a></li>
         <li><a href="ProtectedSites/AdminIndex.aspx">Admin</a></li>
     </menu>
+ 
     <form id="form1" runat="server">
         <div>
             <asp:ContentPlaceHolder ID="Content" runat="server">

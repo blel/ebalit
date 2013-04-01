@@ -38,5 +38,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="BlogComments">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.BlogComment">
+        <MappingFragment StoreEntitySet="BlogComment">
+          <ScalarProperty Name="PostedOn" ColumnName="PostedOn" />
+          <ScalarProperty Name="eMail" ColumnName="eMail" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="FK_BlogEntry" ColumnName="FK_BlogEntry" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

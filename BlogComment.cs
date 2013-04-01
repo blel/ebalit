@@ -12,20 +12,16 @@ namespace EbalitWebForms
     using System;
     using System.Collections.Generic;
     
-    public partial class BlogEntry
+    public partial class BlogComment
     {
-        public BlogEntry()
-        {
-            this.BlogComments = new HashSet<BlogComment>();
-        }
-    
         public int Id { get; set; }
+        public int FK_BlogEntry { get; set; }
         public string Subject { get; set; }
         public string Content { get; set; }
-        public System.DateTime PublishedOn { get; set; }
-        public int Category { get; set; }
+        public string UserName { get; set; }
+        public string eMail { get; set; }
+        public System.DateTime PostedOn { get; set; }
     
-        public virtual BlogCategory BlogCategory { get; set; }
-        public virtual ICollection<BlogComment> BlogComments { get; set; }
+        public virtual BlogEntry BlogEntry { get; set; }
     }
 }
