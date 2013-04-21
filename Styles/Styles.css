@@ -2,79 +2,133 @@
 body
 {
     font-family: Calibri;
-    background-color: rgb(155, 168, 202);
+    background-color: #E1D7D0;
 }
+
+#MainHeader
+{
+    font-family: 'Courier New';
+    font-size: 30px;
+    width: 200px;
+    width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+h1
+{
+}
+
 
 menu
 {
-    position:relative;
-    left:200px;
-    text-indent : -40px;
-
+    width: 1360px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(153, 153, 153);
+    margin-bottom: 0px;
+        background: rgb(243,226,199);
+    background: -moz-linear-gradient(top, rgb(243,226,199) 0%, rgb(193,158,103) 50%, rgb(182,141,76) 51%, rgb(233,212,179) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(243,226,199)), color-stop(50%,rgb(193,158,103)), color-stop(51%,rgb(182,141,76)), color-stop(100%,rgb(233,212,179)));
+    background: -webkit-linear-gradient(top, rgb(243,226,199) 0%,rgb(193,158,103) 50%,rgb(182,141,76) 51%,rgb(233,212,179) 100%);
+    background: -o-linear-gradient(top, rgb(243,226,199) 0%,rgb(193,158,103) 50%,rgb(182,141,76) 51%,rgb(233,212,179) 100%);
+    background: -ms-linear-gradient(top, rgb(243,226,199) 0%,rgb(193,158,103) 50%,rgb(182,141,76) 51%,rgb(233,212,179) 100%);
+    background: linear-gradient(to bottom, rgb(243,226,199) 0%,rgb(193,158,103) 50%,rgb(182,141,76) 51%,rgb(233,212,179) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3e2c7', endColorstr='#e9d4b3',GradientType=0 );
 }
 
 
-menu li
-{ 
-    border-width: 1px;
-    border:solid;
-    border-radius:5px;
-    list-style-type: none;
-    display: inline;
-    width:80px;
-    padding: 20px;
-    background-color: #D5D926;
-}
-
-    menu li a
+    menu li
     {
-        text-decoration: none;
+        border-width: 1px;
+        border: solid;
+        border-radius: 5px;
+        list-style-type: none;
+        display: inline-block;
+        width: 100px;
+        background-color: #CCCCCC;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
-#Menu
+
+        menu li a
+        {
+            text-decoration: none;
+        }
+
+
+#Title
+{
+    width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Courier New';
+    font-size: 50px;
+    background-color: rgb(196, 196, 196);
+    font-style: normal;
+    font-weight: bolder;
+}
+
+#Container
+{
+    width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(196, 196, 196);
+    min-height: 800px;
+    overflow: auto;
+    box-shadow: inset;
+}
+
+#LeftColumn
 {
     float: left;
-    width: 200px;
+    width: 300px;
 }
 
-#MainContent
+#MainColumn
 {
     background-color: #FFFFFF;
-    position:absolute;
-    width: 801px;
-    left: 200px;
+    float: left;
+    width: 800px;
+    border: 1px solid rgb(228, 228, 228);
+    min-height: 800px;
 }
 
-#CommentArea
+#RightColumn
 {
-    position:absolute;
-    left: 200px;
-    top: 700px;
-}
-
-#RightMenu
-{
-    position:absolute;
-    left: 1020px;
-    top: 160px;
-    width: 400px;
+    width: 300px;
+    float: left;
 }
 
 #Popup
 {
-    background:rgb(155, 168, 202);
-     width: 600px; 
-     border:solid;
-      box-shadow: 10px 10px 5px #888888;
+    background: rgb(155, 168, 202);
+    width: 600px;
+    border: solid;
+    box-shadow: 10px 10px 5px #888888;
 }
 
 .Button
 {
     border-width: 1px;
-    border:solid;
-    border-radius:5px;
-    width:80px;
+    border: solid;
+    border-radius: 5px;
+    width: 80px;
     padding: 20px;
     background-color: #D5D926;
-    cursor:pointer;
+    cursor: pointer;
 }
 
+.MenuButton
+{
+    text-decoration: none;
+    text-decoration-color: black;
+}
+
+.MenuHeader
+{
+    cursor: pointer;
+}

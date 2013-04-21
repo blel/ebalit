@@ -13,33 +13,6 @@ namespace EbalitWebForms {
     public partial class WebForm3 {
         
         /// <summary>
-        /// smgAccordion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager smgAccordion;
-        
-        /// <summary>
-        /// odsBlogEntry control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsBlogEntry;
-        
-        /// <summary>
-        /// hdfSelectedPane control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdfSelectedPane;
-        
-        /// <summary>
         /// Accordion control.
         /// </summary>
         /// <remarks>
@@ -56,24 +29,6 @@ namespace EbalitWebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DetailsView dvwEntry;
-        
-        /// <summary>
-        /// odsBlogComment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsBlogComment;
-        
-        /// <summary>
-        /// dvwBlogComment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView dvwBlogComment;
         
         /// <summary>
         /// lblShowPopup control.
@@ -94,24 +49,6 @@ namespace EbalitWebForms {
         protected global::AjaxControlToolkit.PopupControlExtender PopupControlExtender1;
         
         /// <summary>
-        /// odsBlogComments control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsBlogComments;
-        
-        /// <summary>
-        /// Panel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
-        
-        /// <summary>
         /// dtlComments control.
         /// </summary>
         /// <remarks>
@@ -119,5 +56,23 @@ namespace EbalitWebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList dtlComments;
+        
+        /// <summary>
+        /// B1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl B1;
+        
+        /// <summary>
+        /// dvwBlogComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DetailsView dvwBlogComment;
     }
 }

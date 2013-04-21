@@ -24,8 +24,11 @@ namespace EbalitWebForms
             foreach (BlogCategory category in categoryDAL.ReadBlogCategory(topicDAL.GetBlogTopicId("IT")))
             {
                 AjaxControlToolkit.AccordionPane pane = new AjaxControlToolkit.AccordionPane();
-                pane.ID = "pane" + category.Id;             
-                pane.HeaderContainer.Controls.Add(new LiteralControl(string.Format("<b>{0}</b>",category.Category)));
+                pane.ID = "pane" + category.Id;
+
+                LiteralControl header = new LiteralControl(string.Format("<div class = \"MenuHeader\"><b>{0}</b></div>", category.Category));
+                
+                pane.HeaderContainer.Controls.Add(header);
                 foreach (BlogEntry entry in entryDAL.GetBlogEntries(category.Id))
                 {
                     LinkButton linkButton = new LinkButton();
@@ -34,6 +37,7 @@ namespace EbalitWebForms
                     linkButton.CommandArgument = entry.Id.ToString();
                     linkButton.Command += new CommandEventHandler(linkButton_Command);
                     linkButton.CausesValidation = false;
+                    linkButton.CssClass = "MenuButton";
                     pane.ContentContainer.Controls.Add(linkButton);
                     pane.ContentContainer.Controls.Add(new LiteralControl("<br>"));
                 }
@@ -48,6 +52,17 @@ namespace EbalitWebForms
                 if (!string.IsNullOrEmpty(hdfSelectedPane.Value))
                     Accordion.SelectedIndex = Convert.ToInt32(hdfSelectedPane.Value);
             }
+            else
+            {
+                int BlogTopicId = new BlogTopicDAL().GetBlogTopicId("IT");
+                BlogEntryDAL blogEntryDAL = new BlogEntryDAL();
+                int BlogEntryId = blogEntryDAL.GetDefaultBlogEntryId(BlogTopicId);
+                BlogEntry blogEntry = blogEntryDAL.GetBlogEntry(BlogEntryId);
+                BlogCategoryDAL blogCategoryDAL = new BlogCategoryDAL();
+
+                Accordion.SelectedIndex = blogCategoryDAL.GetCategoryAccordionIndex(blogEntry.Category);
+            }
+
             this.dvwBlogComment.ChangeMode(DetailsViewMode.Insert);
 
         }
@@ -63,7 +78,11 @@ namespace EbalitWebForms
             if (ViewState["CurrentEntryID"] ==null)
             {
                 int BlogTopicId = new BlogTopicDAL().GetBlogTopicId("IT");
-                e.InputParameters["Id"] = new BlogEntryDAL().GetDefaultBlogEntryId(BlogTopicId);
+                BlogEntryDAL blogEntryDAL = new BlogEntryDAL();
+                int Id = blogEntryDAL.GetDefaultBlogEntryId(BlogTopicId);
+                e.InputParameters["Id"] = Id;
+                
+
                 ViewState.Add("CurrentEntryID", e.InputParameters["Id"]);
             }
             else
@@ -89,6 +108,10 @@ namespace EbalitWebForms
         {
             
             dvwBlogComment.InsertItem(true);
+            //refresh the Comments datalist and set the comment details view into edit state again
+            dtlComments.DataBind();
+            this.dvwBlogComment.ChangeMode(DetailsViewMode.Insert);
+
         }
 
         protected void dvwBlogComment_ItemInserting(object sender, DetailsViewInsertEventArgs e)

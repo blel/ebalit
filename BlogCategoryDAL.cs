@@ -43,6 +43,20 @@ namespace EbalitWebForms
                    select cc).ToList();
         }
 
+        public int GetCategoryAccordionIndex(int blogCategoryID)
+        {
+            int index = -1;
+            var elements = from cc in base.EbalitDBContext.BlogCategories select cc;
+            var enumerator = elements.GetEnumerator();
+
+            while (enumerator.MoveNext() && enumerator.Current.Id != blogCategoryID)
+            {
+                index += 1;
+            }
+            return index;
+                   
+        }
+
 
         public bool DeleteBlogCategory(BlogCategory  blogCategory)
         {
