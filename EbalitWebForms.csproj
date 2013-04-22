@@ -72,173 +72,166 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ProtectedSites\CreateBlogEntry.aspx" />
-    <Content Include="ProtectedSites\AdminIndex.aspx" />
-    <Content Include="ProtectedSites\BlogEntries.aspx" />
-    <Content Include="ProtectedSites\ManageBlogCategories.aspx" />
+    <Content Include="GUI\ProtectedSites\CreateBlogEntry.aspx" />
+    <Content Include="GUI\ProtectedSites\AdminIndex.aspx" />
+    <Content Include="GUI\ProtectedSites\BlogEntries.aspx" />
+    <Content Include="GUI\ProtectedSites\ManageBlogCategories.aspx" />
     <Content Include="Styles\Styles.css" />
-    <Content Include="testOnly.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Index.aspx" />
-    <Content Include="Music.aspx" />
-    <Content Include="IT.aspx" />
-    <Content Include="Tools.aspx" />
-    <Content Include="Varia.aspx" />
-    <Content Include="Admin.aspx" />
+    <Content Include="GUI\Index.aspx" />
+    <Content Include="GUI\Music.aspx" />
+    <Content Include="GUI\IT.aspx" />
+    <Content Include="GUI\Tools.aspx" />
+    <Content Include="GUI\Varia.aspx" />
+    <Content Include="GUI\Admin.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlogCategory.cs">
+    <Compile Include="DataLayer\BlogCategory.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BlogCategoryDAL.cs" />
-    <Compile Include="BlogComment.cs">
+    <Compile Include="BusinessLogicLayer\BlogCategoryDAL.cs" />
+    <Compile Include="DataLayer\BlogComment.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BlogCommentBLL.cs" />
-    <Compile Include="BlogEntry.cs">
+    <Compile Include="BusinessLogicLayer\BlogCommentBLL.cs" />
+    <Compile Include="DataLayer\BlogEntry.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BlogEntryDAL.cs" />
-    <Compile Include="BlogTopic.cs">
+    <Compile Include="BusinessLogicLayer\BlogEntryDAL.cs" />
+    <Compile Include="DataLayer\BlogTopic.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BlogTopicDAL.cs" />
-    <Compile Include="DataAccessLayer.cs" />
-    <Compile Include="Ebalit_WebFormsModel.Context.cs">
+    <Compile Include="BusinessLogicLayer\BlogTopicDAL.cs" />
+    <Compile Include="BusinessLogicLayer\DataAccessLayer.cs" />
+    <Compile Include="DataLayer\Ebalit_WebFormsModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Ebalit_WebFormsModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Ebalit_WebFormsModel.cs">
+    <Compile Include="DataLayer\Ebalit_WebFormsModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Ebalit_WebFormsModel.Designer.cs">
+    <Compile Include="DataLayer\Ebalit_WebFormsModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Ebalit_WebFormsModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Master.Master.cs">
+    <Compile Include="GUI\CategoryAccordionHelper.cs" />
+    <Compile Include="GUI\Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Master.Master.designer.cs">
+    <Compile Include="GUI\Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Index.aspx.cs">
+    <Compile Include="GUI\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Index.aspx.designer.cs">
+    <Compile Include="GUI\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Music.aspx.cs">
+    <Compile Include="GUI\Music.aspx.cs">
       <DependentUpon>Music.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Music.aspx.designer.cs">
+    <Compile Include="GUI\Music.aspx.designer.cs">
       <DependentUpon>Music.aspx</DependentUpon>
     </Compile>
-    <Compile Include="IT.aspx.cs">
+    <Compile Include="GUI\IT.aspx.cs">
       <DependentUpon>IT.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="IT.aspx.designer.cs">
+    <Compile Include="GUI\IT.aspx.designer.cs">
       <DependentUpon>IT.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ProtectedSites\AdminMaster.master.cs">
+    <Compile Include="GUI\ProtectedSites\AdminMaster.master.cs">
       <DependentUpon>AdminMaster.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ProtectedSites\AdminMaster.master.designer.cs">
+    <Compile Include="GUI\ProtectedSites\AdminMaster.master.designer.cs">
       <DependentUpon>AdminMaster.master</DependentUpon>
     </Compile>
-    <Compile Include="ProtectedSites\CreateBlogEntry.aspx.cs">
+    <Compile Include="GUI\ProtectedSites\CreateBlogEntry.aspx.cs">
       <DependentUpon>CreateBlogEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ProtectedSites\CreateBlogEntry.aspx.designer.cs">
+    <Compile Include="GUI\ProtectedSites\CreateBlogEntry.aspx.designer.cs">
       <DependentUpon>CreateBlogEntry.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ProtectedSites\AdminIndex.aspx.cs">
+    <Compile Include="GUI\ProtectedSites\AdminIndex.aspx.cs">
       <DependentUpon>AdminIndex.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ProtectedSites\AdminIndex.aspx.designer.cs">
+    <Compile Include="GUI\ProtectedSites\AdminIndex.aspx.designer.cs">
       <DependentUpon>AdminIndex.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ProtectedSites\BlogEntries.aspx.cs">
+    <Compile Include="GUI\ProtectedSites\BlogEntries.aspx.cs">
       <DependentUpon>BlogEntries.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ProtectedSites\BlogEntries.aspx.designer.cs">
+    <Compile Include="GUI\ProtectedSites\BlogEntries.aspx.designer.cs">
       <DependentUpon>BlogEntries.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ProtectedSites\ManageBlogCategories.aspx.cs">
+    <Compile Include="GUI\ProtectedSites\ManageBlogCategories.aspx.cs">
       <DependentUpon>ManageBlogCategories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ProtectedSites\ManageBlogCategories.aspx.designer.cs">
+    <Compile Include="GUI\ProtectedSites\ManageBlogCategories.aspx.designer.cs">
       <DependentUpon>ManageBlogCategories.aspx</DependentUpon>
     </Compile>
-    <Compile Include="testOnly.aspx.cs">
-      <DependentUpon>testOnly.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="testOnly.aspx.designer.cs">
-      <DependentUpon>testOnly.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Tools.aspx.cs">
+    <Compile Include="GUI\Tools.aspx.cs">
       <DependentUpon>Tools.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Tools.aspx.designer.cs">
+    <Compile Include="GUI\Tools.aspx.designer.cs">
       <DependentUpon>Tools.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User.cs">
+    <Compile Include="DataLayer\User.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Varia.aspx.cs">
+    <Compile Include="GUI\Varia.aspx.cs">
       <DependentUpon>Varia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Varia.aspx.designer.cs">
+    <Compile Include="GUI\Varia.aspx.designer.cs">
       <DependentUpon>Varia.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin.aspx.cs">
+    <Compile Include="GUI\Admin.aspx.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin.aspx.designer.cs">
+    <Compile Include="GUI\Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Master.Master" />
+    <Content Include="GUI\Master.Master" />
     <Content Include="packages.config" />
-    <EntityDeploy Include="Ebalit_WebFormsModel.edmx">
+    <EntityDeploy Include="DataLayer\Ebalit_WebFormsModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Ebalit_WebFormsModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Ebalit_WebFormsModel.Context.tt">
+    <Content Include="DataLayer\Ebalit_WebFormsModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Ebalit_WebFormsModel.edmx</DependentUpon>
       <LastGenOutput>Ebalit_WebFormsModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Ebalit_WebFormsModel.edmx.diagram">
+    <Content Include="DataLayer\Ebalit_WebFormsModel.edmx.diagram">
       <DependentUpon>Ebalit_WebFormsModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Ebalit_WebFormsModel.tt">
+    <Content Include="DataLayer\Ebalit_WebFormsModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Ebalit_WebFormsModel.edmx</DependentUpon>
       <LastGenOutput>Ebalit_WebFormsModel.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\Ebalit_WebForms.pubxml" />
-    <Content Include="ProtectedSites\AdminMaster.master" />
+    <Content Include="GUI\ProtectedSites\AdminMaster.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -248,6 +241,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SiteResources\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
