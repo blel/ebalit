@@ -86,6 +86,25 @@
         </div>
 
         <div id="RightColumn">
+            <div id="Search" class="partlet">
+                <asp:Table ID="tblSearch" runat="server">
+                    <asp:TableHeaderRow>
+                        <asp:TableHeaderCell ColumnSpan="2" HorizontalAlign ="Left">
+                            Search
+                        </asp:TableHeaderCell>
+                    </asp:TableHeaderRow>
+                   <asp:TableRow>
+                       <asp:TableCell>
+                           <asp:TextBox ID="txtSearch" Width="160px" runat="server"></asp:TextBox>
+                       </asp:TableCell>
+                       <asp:TableCell>
+                           <asp:Button ID="btnSearch" runat="server" Text="Search" CausesValidation="false" OnClick="btnSearch_Click"/>
+                       </asp:TableCell>
+                   </asp:TableRow>
+                    
+                </asp:Table>
+                
+            </div>
         </div>
     </div>
 

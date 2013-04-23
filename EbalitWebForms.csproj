@@ -76,6 +76,8 @@
     <Content Include="GUI\ProtectedSites\AdminIndex.aspx" />
     <Content Include="GUI\ProtectedSites\BlogEntries.aspx" />
     <Content Include="GUI\ProtectedSites\ManageBlogCategories.aspx" />
+    <Content Include="GUI\MusicSearchResult.aspx" />
+    <Content Include="GUI\ITSearchResult.aspx" />
     <Content Include="Styles\Styles.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -88,6 +90,7 @@
     <Content Include="GUI\Admin.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogicLayer\BlogEntrySearchResultDTO.cs" />
     <Compile Include="DataLayer\BlogCategory.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
@@ -127,6 +130,20 @@
     </Compile>
     <Compile Include="GUI\Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\MusicSearchResult.aspx.cs">
+      <DependentUpon>MusicSearchResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\MusicSearchResult.aspx.designer.cs">
+      <DependentUpon>MusicSearchResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ITSearchResult.aspx.cs">
+      <DependentUpon>ITSearchResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\ITSearchResult.aspx.designer.cs">
+      <DependentUpon>ITSearchResult.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GUI\Index.aspx.cs">

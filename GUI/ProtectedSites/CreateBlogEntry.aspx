@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="../ProtectedSites/AdminMaster.master" AutoEventWireup="true" CodeBehind="CreateBlogEntry.aspx.cs" Inherits="EbalitWebForms.GUI.ProtectedSites.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="AdminMaster.master" AutoEventWireup="true" CodeBehind="CreateBlogEntry.aspx.cs" Inherits="EbalitWebForms.GUI.ProtectedSites.WebForm1" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="AdminContent" ID="ThisContent">
 
@@ -16,7 +16,7 @@
         </UpdateParameters>
     </asp:ObjectDataSource>
     <div id="Container">
-        <asp:DetailsView ID="DetailsView1" runat="server" Height="50px" Width="800px" AutoGenerateRows="False" DataSourceID="ObjectDataSource1" GridLines="None" DataKeyNames="Id" OnItemInserting="DetailsView1_ItemInserting1" OnItemUpdating="DetailsView1_ItemUpdating">
+        <asp:DetailsView ID="DetailsView1" runat="server" Height="50px" Width="1395px" AutoGenerateRows="False" DataSourceID="ObjectDataSource1" GridLines="None" DataKeyNames="Id" OnItemInserting="DetailsView1_ItemInserting1" OnItemUpdating="DetailsView1_ItemUpdating">
             <EmptyDataTemplate>
                 No data found.
             <br />
@@ -46,15 +46,15 @@
                         <asp:DropDownList ID="ddlCategory" runat="server" DataTextField="Category" DataValueField="Id" SelectedValue='<%# Bind("Category") %>' Width="150px" OnDataBinding="ddlCategory_DataBinding"></asp:DropDownList>
                     </EditItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="Subject" HeaderText="Subject" SortExpression="Subject" ControlStyle-Width="250px">
-                    <ControlStyle Width="250px"></ControlStyle>
+                <asp:BoundField DataField="Subject" HeaderText="Subject" SortExpression="Subject" ControlStyle-Width="1000px">
+                    <ControlStyle Width="1000px"></ControlStyle>
                 </asp:BoundField>
                 <asp:TemplateField HeaderText="Content">
                     <InsertItemTemplate>
-                        <asp:TextBox ID="txtContent" runat="server" Text='<%#Bind("Content") %>' Width="500" Height="400" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="txtContent" runat="server" Text='<%#Bind("Content") %>' Width="1000" Height="400" TextMode="MultiLine"></asp:TextBox>
                     </InsertItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtContent" runat="server" Text='<%#Bind("Content") %>' Width="500" Height="400" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="txtContent" runat="server" Text='<%#Bind("Content") %>' Width="1000" Height="400" TextMode="MultiLine"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
                         <asp:Label ID="lblContent" runat="server" Text='<%#Bind("Content") %>'></asp:Label>

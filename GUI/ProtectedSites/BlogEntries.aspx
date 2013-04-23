@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="AdminMaster.master" AutoEventWireup="true" CodeBehind="BlogEntries.aspx.cs" Inherits="EbalitWebForms.GUI.ProtectedSites.WebForm3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminContent" runat="server">
-    <asp:ObjectDataSource ID="odsBlogEntries" runat="server" DataObjectTypeName="EbalitWebForms.BlogEntry" DeleteMethod="DeleteBlogEntry" InsertMethod="CreateBlogEntry" SelectMethod="GetBlogEntries" TypeName="EbalitWebForms.BusinessLogicLayer.BlogEntryDAL" UpdateMethod="UpdateBlogEntry" OnDeleting="odsBlogEntries_Deleting" OnSelected="odsBlogEntries_Selected">
+    <asp:ObjectDataSource ID="odsBlogEntries" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.BlogEntry" DeleteMethod="DeleteBlogEntry" InsertMethod="CreateBlogEntry" SelectMethod="GetBlogEntries" TypeName="EbalitWebForms.BusinessLogicLayer.BlogEntryDAL" UpdateMethod="UpdateBlogEntry" OnDeleting="odsBlogEntries_Deleting" OnSelected="odsBlogEntries_Selected">
         <DeleteParameters>
             <asp:Parameter Name="Id" Type="Int32" />
         </DeleteParameters>
@@ -9,7 +9,7 @@
             <asp:Parameter Name="ID" Type="Int32" />
         </UpdateParameters>
     </asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="odsTopics" runat="server" DataObjectTypeName="EbalitWebForms.BlogTopic" DeleteMethod="DeleteBlogTopic" InsertMethod="CreateBlogTopic" SelectMethod="ReadBlogTopic" TypeName="EbalitWebForms.BusinessLogicLayer.BlogTopicDAL" UpdateMethod="UpdateBlogTopic">
+    <asp:ObjectDataSource ID="odsTopics" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.BlogTopic" DeleteMethod="DeleteBlogTopic" InsertMethod="CreateBlogTopic" SelectMethod="ReadBlogTopic" TypeName="EbalitWebForms.BusinessLogicLayer.BlogTopicDAL" UpdateMethod="UpdateBlogTopic">
         <DeleteParameters>
             <asp:Parameter Name="BlogTopicID" Type="Int32" />
         </DeleteParameters>

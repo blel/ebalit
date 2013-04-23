@@ -26,13 +26,29 @@ namespace EbalitWebForms.GUI
                     Accordion.SelectedIndex = Convert.ToInt32(hdfSelectedPane.Value);
             }
             else
+            
             {
-                int BlogTopicId = new BlogTopicDAL().GetBlogTopicId("Music");
                 BlogEntryDAL blogEntryDAL = new BlogEntryDAL();
-                int BlogEntryId = blogEntryDAL.GetDefaultBlogEntryId(BlogTopicId);
-                BlogEntry blogEntry = blogEntryDAL.GetBlogEntry(BlogEntryId);
                 BlogCategoryDAL blogCategoryDAL = new BlogCategoryDAL();
+                BlogEntry blogEntry;
+                int BlogEntryId = Convert.ToInt32(Request.Params["BlogEntryID"]);
+                if (BlogEntryId != 0)
+                {
+                    blogEntry = blogEntryDAL.GetBlogEntry(BlogEntryId);
+                }
+                else
+                {
+                    int BlogTopicId = new BlogTopicDAL().GetBlogTopicId("Music");
+                    
+                    BlogEntryId = blogEntryDAL.GetDefaultBlogEntryId(BlogTopicId);
+                    blogEntry = blogEntryDAL.GetBlogEntry(BlogEntryId);
+                    
 
+
+                }
+                ViewState.Add("CurrentEntryID", BlogEntryId);
+                dvwEntry.DataBind();
+                dtlComments.DataBind();
                 Accordion.SelectedIndex = blogCategoryDAL.GetCategoryAccordionIndex(blogEntry.Category);
                 hdfSelectedPane.Value = Convert.ToString(blogCategoryDAL.GetCategoryAccordionIndex(blogEntry.Category));
             }
@@ -98,6 +114,9 @@ namespace EbalitWebForms.GUI
 
         }
 
-
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("/GUI/MusicSearchResult.aspx?blogTopic={0}&searchText={1}", "Music", this.txtSearch.Text));
+        }
     }
 }

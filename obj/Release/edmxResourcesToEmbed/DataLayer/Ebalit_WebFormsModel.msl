@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Ebalit_WebFormsModelStoreContainer" CdmEntityContainer="Ebalit_WebFormsEntities">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BlogCategories">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.BlogCategory">
+        <MappingFragment StoreEntitySet="BlogCategory">
+          <ScalarProperty Name="FK_Topic" ColumnName="FK_Topic" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BlogEntries">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.BlogEntry">
+        <MappingFragment StoreEntitySet="BlogEntry">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="PublishedOn" ColumnName="PublishedOn" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BlogTopics">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.BlogTopic">
+        <MappingFragment StoreEntitySet="BlogTopic">
+          <ScalarProperty Name="Topic" ColumnName="Topic" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BlogComments">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.BlogComment">
+        <MappingFragment StoreEntitySet="BlogComment">
+          <ScalarProperty Name="PostedOn" ColumnName="PostedOn" />
+          <ScalarProperty Name="eMail" ColumnName="eMail" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="FK_BlogEntry" ColumnName="FK_BlogEntry" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
