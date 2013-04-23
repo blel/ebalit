@@ -45,5 +45,33 @@ namespace EbalitWebForms.GUI
                 e.InputParameters["Id"] = ViewState["CurrentEntryID"];
             }
         }
+
+        protected void lnkButton_Command(object sender, CommandEventArgs e)
+        {
+            BlogEntryDAL blogEntryDAL = new BlogEntryDAL();
+            int Id = Convert.ToInt32(e.CommandArgument);
+            BlogEntry blogEntry = blogEntryDAL.GetBlogEntry(Id);
+            switch (blogEntry.BlogCategory.BlogTopic.Topic)
+            {
+                case "Music":
+                    Response.Redirect(string.Format("/GUI/Music.aspx?BlogEntryID={0}", blogEntry.Id));
+                    break;
+                case "IT":
+                    Response.Redirect(string.Format("/GUI/IT.aspx?BlogEntryID={0}", blogEntry.Id));
+                    break;
+                case "Home":
+                    Response.Redirect(string.Format("/GUI/Index.aspx?BlogEntryID={0}", blogEntry.Id));
+                    break;
+                case "Varia":
+                    Response.Redirect(string.Format("/GUI/Varia.aspx?BlogEntryID={0}", blogEntry.Id));
+                    break;
+
+                default:
+
+                    break;
+            }
+
+
+        }
     }
 }

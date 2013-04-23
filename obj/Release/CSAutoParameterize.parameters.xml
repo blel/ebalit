@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="Ebalit_WebFormsEntities-Web.config Connection String" description="Ebalit_WebFormsEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Ebalit_WebFormsModel.csdl|res://*/Ebalit_WebFormsModel.ssdl|res://*/Ebalit_WebFormsModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=ZENON5000\SQLEXPRESS;initial catalog=Ebalit_WebForms;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="D:\\Users\\Elias\\Documents\\Visual\ Studio\ 2012\\Projects\\EbalitWebForms\\EbalitWebForms\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Ebalit_WebFormsEntities']/@connectionString" />
-  </parameter>
-</parameters>

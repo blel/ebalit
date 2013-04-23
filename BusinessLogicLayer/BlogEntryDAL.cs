@@ -48,11 +48,25 @@ namespace EbalitWebForms.BusinessLogicLayer
 
         public int GetDefaultBlogEntryId(int BlogTopicId)
         {
-            return (from cc in base.EbalitDBContext.BlogEntries.Include("BlogCategory")
-                    where cc.BlogCategory.FK_Topic == BlogTopicId
-                    orderby cc.PublishedOn descending
-                    select cc).First().Id;
+            BlogEntry blogEntry = (from cc in base.EbalitDBContext.BlogEntries.Include("BlogCategory")
+                                   where cc.BlogCategory.FK_Topic == BlogTopicId
+                                   orderby cc.PublishedOn descending
+                                   select cc).FirstOrDefault();
+
+
+            if (blogEntry != null)
+                return blogEntry.Id;
+            else
+                return 0;
         }
+
+        public IList<BlogEntry> GetRecentBlogEntries(int count)
+        {
+            return (from cc in base.EbalitDBContext.BlogEntries.Include("BlogCategory").Include("BlogCategory.BlogTopic")
+                    orderby cc.PublishedOn descending
+                    select cc).Take(count).ToList();
+        }
+
 
         public BlogEntry GetDefaultBlogEntry(string blogTopic)
         {
