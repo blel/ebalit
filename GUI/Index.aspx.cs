@@ -37,8 +37,11 @@ namespace EbalitWebForms.GUI
 
                 BlogEntryDAL blogEntryDAL = new BlogEntryDAL();
                 BlogEntry blogEntry = blogEntryDAL.GetDefaultBlogEntry("Home");
-                e.InputParameters["Id"] = blogEntry.Id;
-                ViewState.Add("CurrentEntryID", blogEntry.Id);
+                if (blogEntry != null)
+                {
+                    e.InputParameters["Id"] = blogEntry.Id;
+                    ViewState.Add("CurrentEntryID", blogEntry.Id);
+                }
             }
             else
             {

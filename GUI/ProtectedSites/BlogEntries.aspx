@@ -2,12 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminContent" runat="server">
     <asp:ObjectDataSource ID="odsBlogEntries" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.BlogEntry" DeleteMethod="DeleteBlogEntry" InsertMethod="CreateBlogEntry" SelectMethod="GetBlogEntries" TypeName="EbalitWebForms.BusinessLogicLayer.BlogEntryDAL" UpdateMethod="UpdateBlogEntry" OnDeleting="odsBlogEntries_Deleting" OnSelected="odsBlogEntries_Selected">
-        <DeleteParameters>
-            <asp:Parameter Name="Id" Type="Int32" />
-        </DeleteParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="ID" Type="Int32" />
-        </UpdateParameters>
     </asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsTopics" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.BlogTopic" DeleteMethod="DeleteBlogTopic" InsertMethod="CreateBlogTopic" SelectMethod="ReadBlogTopic" TypeName="EbalitWebForms.BusinessLogicLayer.BlogTopicDAL" UpdateMethod="UpdateBlogTopic">
         <DeleteParameters>

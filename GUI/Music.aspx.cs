@@ -22,35 +22,36 @@ namespace EbalitWebForms.GUI
         {
             if (IsPostBack)
             {
+                //make sure the selected accordion pane is selected again on postback
                 if (!string.IsNullOrEmpty(hdfSelectedPane.Value))
                     Accordion.SelectedIndex = Convert.ToInt32(hdfSelectedPane.Value);
             }
             else
-            
             {
                 BlogEntryDAL blogEntryDAL = new BlogEntryDAL();
-                BlogCategoryDAL blogCategoryDAL = new BlogCategoryDAL();
                 BlogEntry blogEntry;
+                
                 int BlogEntryId = Convert.ToInt32(Request.Params["BlogEntryID"]);
+                
+                //if there is a request param, take it, otherwise get the default entry
                 if (BlogEntryId != 0)
                 {
                     blogEntry = blogEntryDAL.GetBlogEntry(BlogEntryId);
                 }
                 else
                 {
-                    int BlogTopicId = new BlogTopicDAL().GetBlogTopicId("Music");
-                    
-                    BlogEntryId = blogEntryDAL.GetDefaultBlogEntryId(BlogTopicId);
-                    blogEntry = blogEntryDAL.GetBlogEntry(BlogEntryId);
-                    
-
-
+                    blogEntry = blogEntryDAL.GetDefaultBlogEntry("Music");
                 }
-                ViewState.Add("CurrentEntryID", BlogEntryId);
-                dvwEntry.DataBind();
-                dtlComments.DataBind();
-                Accordion.SelectedIndex = blogCategoryDAL.GetCategoryAccordionIndex(blogEntry.Category);
-                hdfSelectedPane.Value = Convert.ToString(blogCategoryDAL.GetCategoryAccordionIndex(blogEntry.Category));
+
+                //save the id of the blogEntry (if it exists) to the view state, in order that it is selected in the ods selecting event
+                if (blogEntry != null)
+                {
+                    ViewState.Add("CurrentEntryID", blogEntry.Id);
+
+                    BlogCategoryDAL blogCategoryDAL = new BlogCategoryDAL();
+                    Accordion.SelectedIndex = blogCategoryDAL.GetCategoryAccordionIndex(blogEntry.Category);
+                    hdfSelectedPane.Value = Convert.ToString(blogCategoryDAL.GetCategoryAccordionIndex(blogEntry.Category));
+                }
             }
 
             this.dvwBlogComment.ChangeMode(DetailsViewMode.Insert);
@@ -106,10 +107,13 @@ namespace EbalitWebForms.GUI
 
         protected void lnkSend_Command(object sender, CommandEventArgs e)
         {
+            if (Convert.ToInt32(ViewState["CurrentEntryID"]) > 0)
+            {
 
-            dvwBlogComment.InsertItem(true);
-            //refresh the Comments datalist and set the comment details view into edit state again
-            dtlComments.DataBind();
+                dvwBlogComment.InsertItem(true);
+                //refresh the Comments datalist and set the comment details view into edit state again
+                dtlComments.DataBind();
+            }
             this.dvwBlogComment.ChangeMode(DetailsViewMode.Insert);
 
         }

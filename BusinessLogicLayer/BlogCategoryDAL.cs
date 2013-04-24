@@ -46,8 +46,10 @@ namespace EbalitWebForms.BusinessLogicLayer
 
         public int GetCategoryAccordionIndex(int blogCategoryID)
         {
-            int index = -1;
-            var elements = from cc in base.EbalitDBContext.BlogCategories select cc;
+            int index = 0;
+            int blogTopicID = base.EbalitDBContext.BlogCategories.Include("BlogTopic").Where(cc=>cc.Id == blogCategoryID).Select(cc=>cc.BlogTopic.Id).FirstOrDefault();
+            var elements = base.EbalitDBContext.BlogCategories.Include("BlogTopic").Where(cc=>cc.BlogTopic.Id==blogTopicID).Select(cc=>cc);
+ 
             var enumerator = elements.GetEnumerator();
 
             while (enumerator.MoveNext() && enumerator.Current.Id != blogCategoryID)
