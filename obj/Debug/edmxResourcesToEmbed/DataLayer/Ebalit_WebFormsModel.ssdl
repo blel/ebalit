@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Ebalit_WebFormsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+<Schema Namespace="Ebalit_WebFormsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="Ebalit_WebFormsModelStoreContainer">
     <EntitySet Name="BlogCategory" EntityType="Ebalit_WebFormsModel.Store.BlogCategory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BlogComment" EntityType="Ebalit_WebFormsModel.Store.BlogComment" store:Type="Tables" Schema="dbo" />
@@ -37,7 +37,7 @@
     <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="eMail" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="PostedOn" Type="date" Nullable="false" />
+    <Property Name="PostedOn" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="BlogEntry">
     <Key>
@@ -46,7 +46,7 @@
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Subject" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="PublishedOn" Type="date" Nullable="false" />
+    <Property Name="PublishedOn" Type="datetime" Nullable="false" />
     <Property Name="Category" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="BlogTopic">
