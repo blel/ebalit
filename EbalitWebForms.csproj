@@ -90,6 +90,7 @@
     <Content Include="GUI\MusicSearchResult.aspx" />
     <Content Include="GUI\ITSearchResult.aspx" />
     <Content Include="GUI\VariaSearchResult.aspx" />
+    <Content Include="GUI\WebUserControls\Archive.ascx" />
     <Content Include="Index.html" />
     <Content Include="Styles\Styles.css" />
     <Content Include="Web.config">
@@ -163,6 +164,13 @@
     </Compile>
     <Compile Include="GUI\VariaSearchResult.aspx.designer.cs">
       <DependentUpon>VariaSearchResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WebUserControls\Archive.ascx.cs">
+      <DependentUpon>Archive.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\WebUserControls\Archive.ascx.designer.cs">
+      <DependentUpon>Archive.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GUI\Index.aspx.cs">

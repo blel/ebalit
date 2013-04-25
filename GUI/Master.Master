@@ -6,7 +6,9 @@
 <head runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link type="text/css" href="~/Styles/Styles.css" rel="stylesheet" />
+    
     <title></title>
+    
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>

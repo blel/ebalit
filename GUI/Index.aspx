@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="Master.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="EbalitWebForms.GUI.WebForm1" %>
 
+<%@ Register Src="~/GUI/WebUserControls/Archive.ascx" TagPrefix="uc1" TagName="Archive" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
@@ -50,12 +53,17 @@
                     <asp:DataList ID="dtlRecentBlogEntries" runat="server" DataSourceID="odsRecentEntries">
                         <ItemTemplate>
                             <li>
-                                <asp:LinkButton ID="lnkButton" CommandArgument='<%#Eval("Id") %>' OnCommand="lnkButton_Command" runat="server"><%# Eval("Subject") %></asp:LinkButton>                               
+                                <asp:LinkButton ID="lnkButton" CommandArgument='<%#Eval("Id") %>' OnCommand="lnkButton_Command" runat="server"><%# Eval("Subject") %></asp:LinkButton>
                                 <i>(<asp:Label ID="ContentLabel" runat="server" Text='<%# Eval("BlogCategory.BlogTopic.Topic") %>' />)</i>
                             </li>
                         </ItemTemplate>
                     </asp:DataList>
                 </ul>
+            </div>
+            <div id="History" class="partlet">
+                
+                <uc1:Archive runat="server" id="Archive" ItemsBusinessLayerObject="EbalitWebForms.BusinessLogicLayer.BlogEntryDAL"
+                    ItemType="EbalitWebForms.DataLayer.BlogEntry" SelectMethod="GetBlogEntriesGroupedByMonths"  OnLinkButtonPressed="Archive_LinkButtonPressed"/>
             </div>
         </div>
     </div>

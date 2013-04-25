@@ -44,7 +44,7 @@
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="Subject" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="Content" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Type="DateTime" Name="PublishedOn" Nullable="false" Precision="0" />
+    <Property Type="DateTime" Name="PublishedOn" Nullable="false" Precision="3" />
     <Property Type="Int32" Name="Category" Nullable="false" />
     <NavigationProperty Name="BlogCategory" Relationship="Ebalit_WebFormsModel.FK_BlogEntry_ToBlogCategory" FromRole="BlogEntry" ToRole="BlogCategory" />
     <NavigationProperty Name="BlogComments" Relationship="Ebalit_WebFormsModel.FK_BlogComment_ToBlogEntry" FromRole="BlogEntry" ToRole="BlogComment" />
@@ -56,6 +56,7 @@
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="Topic" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="BlogCategories" Relationship="Ebalit_WebFormsModel.FK_BlogCategory_BlogTopic" FromRole="BlogTopic" ToRole="BlogCategory" />
+    <Property Type="String" Name="PageName" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_BlogEntry_ToBlogCategory">
     <End Type="Ebalit_WebFormsModel.BlogCategory" Role="BlogCategory" Multiplicity="1" />
@@ -91,7 +92,7 @@
     <Property Type="String" Name="Content" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="eMail" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="DateTime" Name="PostedOn" Nullable="false" Precision="0" />
+    <Property Type="DateTime" Name="PostedOn" Nullable="false" Precision="3" />
     <NavigationProperty Name="BlogEntry" Relationship="Ebalit_WebFormsModel.FK_BlogComment_ToBlogEntry" FromRole="BlogComment" ToRole="BlogEntry" />
   </EntityType>
   <Association Name="FK_BlogComment_ToBlogEntry">

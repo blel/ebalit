@@ -11,11 +11,16 @@ namespace EbalitWebForms.GUI
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            
+        }
+     
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-              
+                
             }
 
         }
@@ -54,27 +59,14 @@ namespace EbalitWebForms.GUI
             BlogEntryDAL blogEntryDAL = new BlogEntryDAL();
             int Id = Convert.ToInt32(e.CommandArgument);
             BlogEntry blogEntry = blogEntryDAL.GetBlogEntry(Id);
-            switch (blogEntry.BlogCategory.BlogTopic.Topic)
-            {
-                case "Music":
-                    Response.Redirect(string.Format("/GUI/Music.aspx?BlogEntryID={0}", blogEntry.Id));
-                    break;
-                case "IT":
-                    Response.Redirect(string.Format("/GUI/IT.aspx?BlogEntryID={0}", blogEntry.Id));
-                    break;
-                case "Home":
-                    Response.Redirect(string.Format("/GUI/Index.aspx?BlogEntryID={0}", blogEntry.Id));
-                    break;
-                case "Varia":
-                    Response.Redirect(string.Format("/GUI/Varia.aspx?BlogEntryID={0}", blogEntry.Id));
-                    break;
-
-                default:
-
-                    break;
-            }
-
-
+            Response.Redirect(string.Format("/GUI/{0}?BlogEntryID={1}", blogEntry.BlogCategory.BlogTopic.PageName, blogEntry.Id));
         }
+
+        protected void Archive_LinkButtonPressed(object sender, CommandEventArgs e)
+        {
+            Response.Redirect(string.Format("/GUI/{0}", e.CommandArgument));
+        }
+
+
     }
 }

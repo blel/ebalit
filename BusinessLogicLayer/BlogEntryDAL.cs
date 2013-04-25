@@ -27,6 +27,13 @@ namespace EbalitWebForms.BusinessLogicLayer
                    select cc).ToList<BlogEntry>();
         }
 
+        public IEnumerable<IGrouping<DateTime,BlogEntry>> GetBlogEntriesGroupedByMonths()
+        {
+            return base.EbalitDBContext.BlogEntries.Include("BlogCategory").Include("BlogCategory.BlogTopic").ToList().GroupBy(cc => new DateTime(cc.PublishedOn.Year,cc.PublishedOn.Month,1)).OrderByDescending(cc => cc.Key);
+            
+        }
+
+
         public IEnumerable<BlogEntry> GetBlogEntries(int categoryID)
         {
             return

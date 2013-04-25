@@ -21,6 +21,7 @@ namespace EbalitWebForms.DataLayer
     
         public int Id { get; set; }
         public string Topic { get; set; }
+        public string PageName { get; set; }
     
         public virtual ICollection<BlogCategory> BlogCategories { get; set; }
     }

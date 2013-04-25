@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Ebalit_WebFormsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="Ebalit_WebFormsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="Ebalit_WebFormsModelStoreContainer">
           <EntitySet Name="BlogCategory" EntityType="Ebalit_WebFormsModel.Store.BlogCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BlogComment" EntityType="Ebalit_WebFormsModel.Store.BlogComment" store:Type="Tables" Schema="dbo" />
@@ -18,10 +18,6 @@
           <AssociationSet Name="FK_BlogComment_ToBlogEntry" Association="Ebalit_WebFormsModel.Store.FK_BlogComment_ToBlogEntry">
             <End Role="BlogEntry" EntitySet="BlogEntry" />
             <End Role="BlogComment" EntitySet="BlogComment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BlogEntry_ToBlogCategory" Association="Ebalit_WebFormsModel.Store.FK_BlogEntry_ToBlogCategory">
-            <End Role="BlogCategory" EntitySet="BlogCategory" />
-            <End Role="BlogEntry" EntitySet="BlogEntry" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="BlogCategory">
@@ -60,6 +56,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Topic" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="PageName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -82,7 +79,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BlogComment_ToBlogEntry">
-          <End Role="BlogEntry" Type="Ebalit_WebFormsModel.Store.BlogEntry" Multiplicity="1" />
+          <End Role="BlogEntry" Type="Ebalit_WebFormsModel.Store.BlogEntry" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BlogComment" Type="Ebalit_WebFormsModel.Store.BlogComment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BlogEntry">
@@ -90,18 +89,6 @@
             </Principal>
             <Dependent Role="BlogComment">
               <PropertyRef Name="FK_BlogEntry" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BlogEntry_ToBlogCategory">
-          <End Role="BlogCategory" Type="Ebalit_WebFormsModel.Store.BlogCategory" Multiplicity="1" />
-          <End Role="BlogEntry" Type="Ebalit_WebFormsModel.Store.BlogEntry" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BlogCategory">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BlogEntry">
-              <PropertyRef Name="Category" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -153,7 +140,7 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Subject" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Content" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="PublishedOn" Nullable="false" Precision="0" />
+          <Property Type="DateTime" Name="PublishedOn" Nullable="false" Precision="3" />
           <Property Type="Int32" Name="Category" Nullable="false" />
           <NavigationProperty Name="BlogCategory" Relationship="Ebalit_WebFormsModel.FK_BlogEntry_ToBlogCategory" FromRole="BlogEntry" ToRole="BlogCategory" />
           <NavigationProperty Name="BlogComments" Relationship="Ebalit_WebFormsModel.FK_BlogComment_ToBlogEntry" FromRole="BlogEntry" ToRole="BlogComment" />
@@ -165,6 +152,7 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Topic" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BlogCategories" Relationship="Ebalit_WebFormsModel.FK_BlogCategory_BlogTopic" FromRole="BlogTopic" ToRole="BlogCategory" />
+          <Property Type="String" Name="PageName" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_BlogEntry_ToBlogCategory">
           <End Type="Ebalit_WebFormsModel.BlogCategory" Role="BlogCategory" Multiplicity="1" />
@@ -200,7 +188,7 @@
           <Property Type="String" Name="Content" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="eMail" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="PostedOn" Nullable="false" Precision="0" />
+          <Property Type="DateTime" Name="PostedOn" Nullable="false" Precision="3" />
           <NavigationProperty Name="BlogEntry" Relationship="Ebalit_WebFormsModel.FK_BlogComment_ToBlogEntry" FromRole="BlogComment" ToRole="BlogEntry" />
         </EntityType>
         <Association Name="FK_BlogComment_ToBlogEntry">
@@ -253,6 +241,7 @@
           <EntitySetMapping Name="BlogTopics">
             <EntityTypeMapping TypeName="Ebalit_WebFormsModel.BlogTopic">
               <MappingFragment StoreEntitySet="BlogTopic">
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
                 <ScalarProperty Name="Topic" ColumnName="Topic" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

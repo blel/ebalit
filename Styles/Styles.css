@@ -23,7 +23,6 @@ body
     background: -ms-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%);
     background: linear-gradient(to bottom, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 );
-
 }
 
 menu
@@ -34,11 +33,9 @@ menu
 
     menu li
     {
-
-        margin-right:10px;
-
-        padding-left:10px;
-        padding-right:10px;
+        margin-right: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
         padding-top: 10px;
         padding-bottom: 10px;
         margin-top: 18px;
@@ -148,8 +145,8 @@ menu
 #RightColumn
 {
     width: 280px;
-    float:left;
-    padding:10px;
+    float: left;
+    padding: 10px;
 }
 
 #Popup
@@ -179,7 +176,6 @@ menu
     margin: 10px;
     display: inline-block;
     text-align: center;
-    
     text-shadow: 2px 2px 2px white;
     width: 80px;
     border-radius: 5px;
@@ -259,3 +255,41 @@ menu
     border-color: rgb(228, 228, 228);
     border-width: 1px;
 }
+
+
+/*styles for the content*/
+
+.myTable
+{
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    
+}
+
+    .myTable tr
+    {
+    }
+
+    .myTable th
+    {
+        text-align: left;
+        color: white;
+        font-weight: bold;
+        background-color: slategray;
+        padding: 5px;
+        padding: 5px;
+        border-style: none solid none solid;
+        border-width: 1px;
+        border-color: black;
+    }
+
+    .myTable td
+    {
+        padding: 5px;
+        border-style: none solid none solid;
+        border-width: 1px;
+        border-color: black;
+        min-width:100px;
+        max-width:600px;
+    }
