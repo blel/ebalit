@@ -17,9 +17,10 @@
         }
     </script>
     <asp:HiddenField ID="hdfSelectedPane" runat="server" />
+    <div id="TitleContainer">
         <div id="Title">
         >>  Varia
-    </div>
+    </div></div>
     <div id="Container">
         <div id="LeftColumn">
             <h2>Categories</h2>

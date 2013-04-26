@@ -13,24 +13,6 @@ namespace EbalitWebForms.GUI {
     public partial class WebForm1 {
         
         /// <summary>
-        /// odsBlogEntry control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsBlogEntry;
-        
-        /// <summary>
-        /// dvwEntry control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView dvwEntry;
-        
-        /// <summary>
         /// odsRecentEntries control.
         /// </summary>
         /// <remarks>
@@ -47,6 +29,24 @@ namespace EbalitWebForms.GUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList dtlRecentBlogEntries;
+        
+        /// <summary>
+        /// odsBlogEntry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsBlogEntry;
+        
+        /// <summary>
+        /// dvwEntry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DetailsView dvwEntry;
         
         /// <summary>
         /// Archive control.

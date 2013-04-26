@@ -6,11 +6,32 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
-    <div id="Title">
-        >>  Home
+    <div id="TitleContainer">
+        <div id="Title">
+            >> Home
+        </div>
     </div>
     <div id="Container">
+        
         <div id="LeftColumn">
+            <div id="RecentBlogEntries" class="partlet">
+                <h3>Recent posts</h3>
+                <asp:ObjectDataSource ID="odsRecentEntries" runat="server" SelectMethod="GetRecentBlogEntries" TypeName="EbalitWebForms.BusinessLogicLayer.BlogEntryDAL">
+                    <SelectParameters>
+                        <asp:Parameter DefaultValue="10" Name="count" Type="Int32" />
+                    </SelectParameters>
+                </asp:ObjectDataSource>
+                <ul>
+                    <asp:DataList ID="dtlRecentBlogEntries" runat="server" DataSourceID="odsRecentEntries">
+                        <ItemTemplate>
+                            <li>
+                                <asp:LinkButton ID="lnkButton" CommandArgument='<%#Eval("Id") %>' OnCommand="lnkButton_Command" runat="server"><%# Eval("Subject") %></asp:LinkButton>
+                                <i>(<asp:Label ID="ContentLabel" runat="server" Text='<%# Eval("BlogCategory.BlogTopic.Topic") %>' />)</i>
+                            </li>
+                        </ItemTemplate>
+                    </asp:DataList>
+                </ul>
+            </div>
         </div>
         <div id="MainColumn">
             <div id="BlogContent">
@@ -42,24 +63,7 @@
             </div>
         </div>
         <div id="RightColumn">
-            <div id="RecentBlogEntries" class="partlet">
-                <h3>Recent posts</h3>
-                <asp:ObjectDataSource ID="odsRecentEntries" runat="server" SelectMethod="GetRecentBlogEntries" TypeName="EbalitWebForms.BusinessLogicLayer.BlogEntryDAL">
-                    <SelectParameters>
-                        <asp:Parameter DefaultValue="10" Name="count" Type="Int32" />
-                    </SelectParameters>
-                </asp:ObjectDataSource>
-                <ul>
-                    <asp:DataList ID="dtlRecentBlogEntries" runat="server" DataSourceID="odsRecentEntries">
-                        <ItemTemplate>
-                            <li>
-                                <asp:LinkButton ID="lnkButton" CommandArgument='<%#Eval("Id") %>' OnCommand="lnkButton_Command" runat="server"><%# Eval("Subject") %></asp:LinkButton>
-                                <i>(<asp:Label ID="ContentLabel" runat="server" Text='<%# Eval("BlogCategory.BlogTopic.Topic") %>' />)</i>
-                            </li>
-                        </ItemTemplate>
-                    </asp:DataList>
-                </ul>
-            </div>
+
             <div id="History" class="partlet">
                 
                 <uc1:Archive runat="server" id="Archive" ItemsBusinessLayerObject="EbalitWebForms.BusinessLogicLayer.BlogEntryDAL"

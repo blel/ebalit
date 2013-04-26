@@ -85,6 +85,7 @@ namespace EbalitWebForms.GUI.WebUserControls
         /// <summary>
         /// In the page load, the accordion is created. Content to display is retrieved by using reflection and dynamic programming
         /// from the properties that the user setup declaratively in the markup.
+        /// TODO: some selftest would be good (are the properties set correctly...)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

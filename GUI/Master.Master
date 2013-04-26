@@ -6,9 +6,9 @@
 <head runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link type="text/css" href="~/Styles/Styles.css" rel="stylesheet" />
-    
+
     <title></title>
-    
+
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -20,20 +20,30 @@
             filter: none;
         }
     </style>
+    <div id="HeaderContainer">
 
-    <div class="MainHeader">
-        
-        
-        <p style="float:left; margin-top:12px; margin-bottom:0px; margin-right:50px;">ebalit</p> 
-            <menu >
-                <!-- it's incredible but here li elements must be in a row, otherwise there are spaces inbetween...-->
-               <li ><div class="BlueGradient"> <a href="/GUI/Index.aspx">Home</a></div></li><li><a href="/GUI/Music.aspx">Music</a></li><li><a href="/GUI/IT.aspx">IT</a></li><li><a href="/GUI/Tools.aspx">Tools</a></li><li><a href="/GUI/Varia.aspx">Varia</a></li><li><a href="/GUI/ProtectedSites/AdminIndex.aspx">Admin</a></li>
+        <div id="MainHeader">
 
-            </menu>
-    
+            <div id="LeftHeader">
+                <p style="float: left; margin-top: 12px; margin-bottom: 0px; margin-right: 50px;">ebalit</p>
+            </div>
+            <div id="MidHeader">
+                <menu>
+                    <!-- it's incredible but here li elements must be in a row, otherwise there are spaces inbetween...-->
+                    <li><a href="/GUI/Index.aspx">Home</a></li>
+                    <li><a href="/GUI/Music.aspx">Music</a></li>
+                    <li><a href="/GUI/IT.aspx">IT</a></li>
+                    <li><a href="/GUI/Tools.aspx">Tools</a></li>
+                    <li><a href="/GUI/Varia.aspx">Varia</a></li>
+                    <li><a href="/GUI/ProtectedSites/AdminIndex.aspx">Admin</a></li>
+
+                </menu>
+            </div>
+
+            <div id="RightHeader">
+            </div>
+        </div>
     </div>
-
-
     <form id="form1" runat="server">
         <div>
             <asp:ContentPlaceHolder ID="Content" runat="server">

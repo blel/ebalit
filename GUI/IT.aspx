@@ -3,11 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
-
-    <div id="Title">
-        >>  IT
+    <div id="TitleContainer">
+        <div id="Title">
+            >>  IT
+        </div>
     </div>
-
     <div id="Container">
         <div id="LeftColumn">
             <h2>Categories</h2>
@@ -89,21 +89,21 @@
             <div id="Search" class="partlet">
                 <asp:Table ID="tblSearch" runat="server">
                     <asp:TableHeaderRow>
-                        <asp:TableHeaderCell ColumnSpan="2" HorizontalAlign ="Left">
+                        <asp:TableHeaderCell ColumnSpan="2" HorizontalAlign="Left">
                             Search
                         </asp:TableHeaderCell>
                     </asp:TableHeaderRow>
-                   <asp:TableRow>
-                       <asp:TableCell>
-                           <asp:TextBox ID="txtSearch" Width="160px" runat="server"></asp:TextBox>
-                       </asp:TableCell>
-                       <asp:TableCell>
-                           <asp:Button ID="btnSearch" runat="server" CssClass="Button" Text="Search" CausesValidation="false" OnClick="btnSearch_Click"/>
-                       </asp:TableCell>
-                   </asp:TableRow>
-                    
+                    <asp:TableRow>
+                        <asp:TableCell>
+                            <asp:TextBox ID="txtSearch" Width="160px" runat="server"></asp:TextBox>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:Button ID="btnSearch" runat="server" CssClass="Button" Text="Search" CausesValidation="false" OnClick="btnSearch_Click" />
+                        </asp:TableCell>
+                    </asp:TableRow>
+
                 </asp:Table>
-                
+
             </div>
         </div>
     </div>

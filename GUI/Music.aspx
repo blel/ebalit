@@ -19,9 +19,10 @@
         }
     </script>
     <asp:HiddenField ID="hdfSelectedPane" runat="server" />
+    <div id="TitleContainer">
     <div id="Title">
         >>  Music
-    </div>
+    </div></div>
     <div id="Container">
 
 
