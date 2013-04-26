@@ -1,36 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="Master.Master" AutoEventWireup="true" CodeBehind="Music.aspx.cs" Inherits="EbalitWebForms.GUI.WebForm2" %>
 
+<%@ Register Src="~/GUI/WebUserControls/CategoryBrowser.ascx" TagPrefix="uc1" TagName="CategoryBrowser" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
-
-    <asp:ScriptManager ID="smgAccordion" runat="server">
-    </asp:ScriptManager>
-    <script type="text/javascript">
-
-        function pageLoad() {
-            var accordion = $find("Content_Accordion_AccordionExtender");
-            accordion.add_selectedIndexChanged(selectedIndexChanged);
-        }
-
-        function selectedIndexChanged(sender, args) {
-            var hiddenField = document.getElementById("<%=hdfSelectedPane.ClientID%>");
-            hiddenField.value = args.get_selectedIndex();
-        }
-    </script>
-    <asp:HiddenField ID="hdfSelectedPane" runat="server" />
     <div id="TitleContainer">
-    <div id="Title">
-        >>  Music
-    </div></div>
+        <div id="Title" class="pageHeader">
+            >> Music
+        </div>
+    </div>
+
     <div id="Container">
-
-
-
         <div id="LeftColumn">
-            <h2>Categories</h2>
-            <ajaxToolkit:Accordion ID="Accordion" runat="server">
-            </ajaxToolkit:Accordion>
+            <uc1:CategoryBrowser runat="server" ID="CategoryBrowser" BlogTopic="Music" OnLinkButtonPressed="linkButton_Command" />
         </div>
         <div id="MainColumn">
             <div id="ButtonZone">
@@ -105,21 +89,21 @@
             <div id="Search" class="partlet">
                 <asp:Table ID="tblSearch" runat="server">
                     <asp:TableHeaderRow>
-                        <asp:TableHeaderCell ColumnSpan="2" HorizontalAlign ="Left">
+                        <asp:TableHeaderCell ColumnSpan="2" HorizontalAlign="Left">
                             Search
                         </asp:TableHeaderCell>
                     </asp:TableHeaderRow>
-                   <asp:TableRow>
-                       <asp:TableCell>
-                           <asp:TextBox ID="txtSearch" Width="160px" runat="server"></asp:TextBox>
-                       </asp:TableCell>
-                       <asp:TableCell>
-                           <asp:Button ID="btnSearch" CssClass="Button" runat="server" Text="Search" CausesValidation="false" OnClick="btnSearch_Click"/>
-                       </asp:TableCell>
-                   </asp:TableRow>
-                    
+                    <asp:TableRow>
+                        <asp:TableCell>
+                            <asp:TextBox ID="txtSearch" Width="160px" runat="server"></asp:TextBox>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:Button ID="btnSearch" CssClass="Button" runat="server" Text="Search" CausesValidation="false" OnClick="btnSearch_Click" />
+                        </asp:TableCell>
+                    </asp:TableRow>
+
                 </asp:Table>
-                
+
             </div>
         </div>
     </div>

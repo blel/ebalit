@@ -20,14 +20,14 @@
             filter: none;
         }
     </style>
-    <div id="HeaderContainer">
+    <div id="HeaderBackground">
 
-        <div id="MainHeader">
+        <div id="HeaderContainer">
 
-            <div id="LeftHeader">
+            <div id="LeftHeader" class="logo">
                 <p style="float: left; margin-top: 12px; margin-bottom: 0px; margin-right: 50px;">ebalit</p>
             </div>
-            <div id="MidHeader">
+            <div id="MidHeader" class="mainMenu">
                 <menu>
                     <!-- it's incredible but here li elements must be in a row, otherwise there are spaces inbetween...-->
                     <li><a href="/GUI/Index.aspx">Home</a></li>

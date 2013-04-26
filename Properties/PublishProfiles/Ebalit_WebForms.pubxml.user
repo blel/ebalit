@@ -24,7 +24,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2013 19:13:32</publishTime>
     </File>
     <File Include="bin/EbalitWebForms.dll">
-      <publishTime>04/24/2013 08:19:15</publishTime>
+      <publishTime>04/27/2013 01:42:27</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>02/23/2013 16:23:18</publishTime>
@@ -78,55 +78,61 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/23/2013 16:43:33</publishTime>
     </File>
     <File Include="DataLayer/Ebalit_WebFormsModel.edmx.diagram">
-      <publishTime>04/01/2013 12:27:39</publishTime>
+      <publishTime>04/26/2013 17:22:07</publishTime>
     </File>
     <File Include="DataLayer/Ebalit_WebFormsModel.tt">
       <publishTime>02/23/2013 16:43:33</publishTime>
     </File>
     <File Include="GUI/Admin.aspx">
-      <publishTime>04/22/2013 20:49:00</publishTime>
+      <publishTime>04/26/2013 19:55:18</publishTime>
     </File>
     <File Include="GUI/Index.aspx">
-      <publishTime>04/23/2013 16:45:44</publishTime>
+      <publishTime>04/27/2013 01:21:43</publishTime>
     </File>
     <File Include="GUI/IT.aspx">
-      <publishTime>04/23/2013 16:54:12</publishTime>
+      <publishTime>04/27/2013 01:36:45</publishTime>
     </File>
     <File Include="GUI/ITSearchResult.aspx">
-      <publishTime>04/23/2013 13:11:06</publishTime>
+      <publishTime>04/26/2013 18:36:18</publishTime>
     </File>
     <File Include="GUI/Master.Master">
-      <publishTime>04/23/2013 17:16:58</publishTime>
+      <publishTime>04/26/2013 18:40:35</publishTime>
     </File>
     <File Include="GUI/Music.aspx">
-      <publishTime>04/23/2013 20:34:58</publishTime>
+      <publishTime>04/27/2013 01:38:22</publishTime>
     </File>
     <File Include="GUI/MusicSearchResult.aspx">
-      <publishTime>04/23/2013 13:14:57</publishTime>
+      <publishTime>04/26/2013 18:36:18</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/AdminIndex.aspx">
       <publishTime>04/22/2013 21:40:44</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/AdminMaster.master">
-      <publishTime>04/22/2013 21:44:02</publishTime>
+      <publishTime>04/26/2013 18:31:32</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/BlogEntries.aspx">
       <publishTime>04/24/2013 08:31:38</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/CreateBlogEntry.aspx">
-      <publishTime>04/23/2013 12:06:59</publishTime>
+      <publishTime>04/26/2013 19:37:30</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/ManageBlogCategories.aspx">
       <publishTime>04/22/2013 21:43:08</publishTime>
     </File>
     <File Include="GUI/Tools.aspx">
-      <publishTime>04/22/2013 20:49:22</publishTime>
+      <publishTime>04/26/2013 18:36:18</publishTime>
     </File>
     <File Include="GUI/Varia.aspx">
-      <publishTime>04/23/2013 20:15:09</publishTime>
+      <publishTime>04/27/2013 01:40:32</publishTime>
     </File>
     <File Include="GUI/VariaSearchResult.aspx">
-      <publishTime>04/23/2013 21:28:27</publishTime>
+      <publishTime>04/26/2013 18:35:42</publishTime>
+    </File>
+    <File Include="GUI/WebUserControls/Archive.ascx">
+      <publishTime>04/26/2013 22:55:53</publishTime>
+    </File>
+    <File Include="GUI/WebUserControls/CategoryBrowser.ascx">
+      <publishTime>04/27/2013 01:32:23</publishTime>
     </File>
     <File Include="Index.html">
       <publishTime>04/23/2013 22:32:14</publishTime>
@@ -135,10 +141,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2013 19:13:34</publishTime>
     </File>
     <File Include="Styles/Styles.css">
-      <publishTime>04/24/2013 20:35:43</publishTime>
+      <publishTime>04/26/2013 23:00:23</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/24/2013 20:38:57</publishTime>
+      <publishTime>04/27/2013 01:42:35</publishTime>
     </File>
   </ItemGroup>
 </Project>

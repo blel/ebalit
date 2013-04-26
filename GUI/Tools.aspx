@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <div id="TitleContainer">
-        <div id="Title">
+        <div id="Title" class="pageHeader">
         >>  Tools
     </div></div>
     <div id="Container">
@@ -11,13 +11,13 @@
 
 
         <div id="LeftColumn">
-            a test 1
+            
         </div>
         <div id="MainColumn">
-            a test 2
+            under construction...
         </div>
         <div id="RightColumn">
-            a test 3
+       
         </div>
     </div>
 </asp:Content>

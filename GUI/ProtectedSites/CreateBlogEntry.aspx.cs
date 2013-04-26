@@ -62,7 +62,10 @@ namespace EbalitWebForms.GUI.ProtectedSites
         /// <param name="e"></param>
         protected void ObjectDataSource1_Inserted(object sender, ObjectDataSourceStatusEventArgs e)
         {
-            ViewState.Add("Id", e.ReturnValue.ToString());
+            if (e.ReturnValue != null)
+            {
+                ViewState.Add("Id", e.ReturnValue.ToString());
+            }
         }
 
         protected void DetailsView1_ItemInserting1(object sender, DetailsViewInsertEventArgs e)

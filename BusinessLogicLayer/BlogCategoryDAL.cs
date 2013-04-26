@@ -37,6 +37,11 @@ namespace EbalitWebForms.BusinessLogicLayer
                    select cc;
         }
 
+        public IEnumerable<BlogCategory> ReadBlogCategory(string blogTopic)
+        {
+            return base.EbalitDBContext.BlogCategories.Include("BlogTopic").Where(cc => cc.BlogTopic.Topic == blogTopic);
+        }
+
         public List<BlogCategory> ReadBlogCategory()
         {
             //Ebalit_WebFormsEntities context = new Ebalit_WebFormsEntities();

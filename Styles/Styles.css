@@ -11,7 +11,8 @@ body
     background-color: #EBEBEB;
 }
 
-#HeaderContainer
+/*Background of the header*/
+#HeaderBackground
 {
     padding: 0px;
     overflow: auto;
@@ -26,85 +27,112 @@ body
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#003528',GradientType=0 );
 }
 
-    #HeaderContainer #MainHeader
-    {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 1400px;
-    }
+/*Header container  - ensure all is centered*/
+#HeaderContainer
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1400px;
+}
 
-    #HeaderContainer #LeftHeader
-    {
-        font-family: 'Courier New';
-        font-size: 64px;
-        float: left;
-        width: 280px;
+#LeftHeader
+{
+    float: left;
+    width: 280px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#MidHeader
+{
+    float: left;
+    width: 774px;
+    margin-top: 18px;
+}
+
+#RightHeader
+{
+    width: 280px;
+    float: left;
+    padding: 10px;
+}
+
+.mainMenu
+{
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: bold;
+    font-size: 30px;
+    color: white;
+    font-family: 'Calibri';
+    background-color: rgba(204,204,204,1);
+    box-shadow: 2px 2px 5px black inset;
+}
+
+.subMenu
+{
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    font-family: 'Calibri';
+    background-color: rgba(204,204,204,1);
+    box-shadow: 2px 2px 5px black inset;
+}
+
+.logo
+{
+    font-family: 'Courier New';
+    font-size: 64px;
+    font-weight: bold;
+    color: white;
         padding-left: 10px;
-        padding-right: 10px;
-        font-weight: bold;
-        color: white;
-    }
+}
 
-    #HeaderContainer #MidHeader
+menu
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+    menu li
     {
-        border: 1px;
-        border-color: black;
-        border-style: solid;
-        float: left;
-        width: 774px;
-        border-radius: 10px;
-        padding-left: 10px;
-        padding-right: 10px;
-        font-weight: bold;
-        font-size: 30px;
-        margin-top: 18px;
-        color: white;
-        font-family: 'Calibri';
-        background-color: rgba(204,204,204,1);
-        box-shadow: 2px 2px 5px black inset;
+        display: inline-block;
+        min-width: 100px;
+        text-shadow: 2px 2px 2px lightyellow;
+        padding-left:5px;
+        padding-right:5px;
     }
 
-    #HeaderContainer #RightHeader
-    {
-        width: 280px;
-        float: left;
-        padding: 10px;
-    }
-
-    #HeaderContainer menu
-    {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        text-align: center;
-        list-style-type: none;
-        padding-left: 0;
-        margin-left: 0;
-    }
-
-        #HeaderContainer menu li
+        menu li a
         {
-            display: inline-block;
-            min-width: 100px;
-            text-shadow: 2px 2px 2px lightyellow;
+            text-decoration: none;
+            color: rgba(0,53,40,1);
         }
 
-            #HeaderContainer menu li a
+            menu li a:hover
             {
-                text-decoration: none;
-                color:rgba(0,53,40,1);
+                color: lightyellow;
+                text-shadow: 2px 2px 2px rgba(0,53,40,1);
             }
 
-                #HeaderContainer menu li a:hover
-                {
-                    color: lightyellow;
-                    text-shadow: 2px 2px 2px rgba(0,53,40,1);
-                }
-
-                #HeaderContainer menu li a:visited
-                {
-                    
-                }
+            menu li a:visited
+            {
+            }
 
 #TitleContainer
 {
@@ -117,12 +145,16 @@ body
     width: 1390px;
     margin-left: auto;
     margin-right: auto;
-    font-family: 'Courier New';
-    font-size: 26px;
     color: rgba(204,204,204,1);
+
+}
+
+.pageHeader
+{
     font-style: normal;
     font-weight: bolder;
-    padding-left: 10px;
+    font-family: 'Courier New';
+    font-size: 26px;
 }
 
 #Container
@@ -262,9 +294,12 @@ body
 .MenuButton
 {
     text-decoration: none;
-    text-decoration-color: black;
-    color: black;
 }
+    .MenuButton:hover
+    {
+        text-decoration:underline;
+    }
+
 
 .MenuHeader
 {

@@ -105,6 +105,7 @@ namespace EbalitWebForms.GUI.WebUserControls
             result = _selectMethod.Invoke(Activator.CreateInstance(_itemsBusinessLayerObject), null);
 
             int idCounter = 0;
+            
             Accordion.Panes.Clear();
             foreach (dynamic key in result)
             {
@@ -114,7 +115,7 @@ namespace EbalitWebForms.GUI.WebUserControls
                 idCounter += 1;
 
                 LiteralControl header = new LiteralControl(string.Format("<div class = \"MenuHeader\" id=\"{0}\"><b>{1:MMMM yyyy}</b></div>", "header" + idCounter,
-                    key.GetType().GetProperty("Key").GetValue(key)));
+                    key.GetType().GetProperty("Key").GetValue(key,null)));
 
                 pane.HeaderContainer.Controls.Add(header);
 
@@ -123,11 +124,11 @@ namespace EbalitWebForms.GUI.WebUserControls
                 {
                     LinkButton linkButton = new LinkButton();
                     linkButton.ID = "linkButton" + entry.Id;
-                    linkButton.Text = entry.GetType().GetProperty(DisplayField).GetValue(entry);
+                    linkButton.Text = entry.GetType().GetProperty(DisplayField).GetValue(entry,null);
                     linkButton.CommandArgument = entry.Id.ToString();
                     linkButton.Command += new CommandEventHandler(linkButton_Command);
                     linkButton.CausesValidation = false;
-                    //linkButton.CssClass = "MenuButton";
+                    linkButton.CssClass = "MenuButton";
                     pane.ContentContainer.Controls.Add(new LiteralControl("<li>"));
                     pane.ContentContainer.Controls.Add(linkButton);
                     pane.ContentContainer.Controls.Add(new LiteralControl("</li>"));

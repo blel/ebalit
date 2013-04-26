@@ -13,31 +13,13 @@ namespace EbalitWebForms.GUI {
     public partial class WebForm2 {
         
         /// <summary>
-        /// smgAccordion control.
+        /// CategoryBrowser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager smgAccordion;
-        
-        /// <summary>
-        /// hdfSelectedPane control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdfSelectedPane;
-        
-        /// <summary>
-        /// Accordion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.Accordion Accordion;
+        protected global::EbalitWebForms.GUI.WebUserControls.CategoryBrowser CategoryBrowser;
         
         /// <summary>
         /// lblShowPopup control.

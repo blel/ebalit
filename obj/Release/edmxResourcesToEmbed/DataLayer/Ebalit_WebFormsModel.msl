@@ -33,6 +33,7 @@
     <EntitySetMapping Name="BlogTopics">
       <EntityTypeMapping TypeName="Ebalit_WebFormsModel.BlogTopic">
         <MappingFragment StoreEntitySet="BlogTopic">
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
           <ScalarProperty Name="Topic" ColumnName="Topic" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>

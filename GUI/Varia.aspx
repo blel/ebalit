@@ -1,31 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="Master.Master" AutoEventWireup="true" CodeBehind="Varia.aspx.cs" Inherits="EbalitWebForms.GUI.WebForm5" %>
+
+<%@ Register Src="~/GUI/WebUserControls/CategoryBrowser.ascx" TagPrefix="uc1" TagName="CategoryBrowser" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
-        <asp:ScriptManager ID="smgAccordion" runat="server">
-    </asp:ScriptManager>
-    <script type="text/javascript">
 
-        function pageLoad() {
-            var accordion = $find("Content_Accordion_AccordionExtender");
-            accordion.add_selectedIndexChanged(selectedIndexChanged);
-        }
-
-        function selectedIndexChanged(sender, args) {
-            var hiddenField = document.getElementById("<%=hdfSelectedPane.ClientID%>");
-            hiddenField.value = args.get_selectedIndex();
-        }
-    </script>
-    <asp:HiddenField ID="hdfSelectedPane" runat="server" />
     <div id="TitleContainer">
-        <div id="Title">
+        <div id="Title" class="pageHeader">
         >>  Varia
     </div></div>
     <div id="Container">
         <div id="LeftColumn">
-            <h2>Categories</h2>
-            <ajaxToolkit:Accordion ID="Accordion" runat="server">
-            </ajaxToolkit:Accordion>
+            <uc1:CategoryBrowser runat="server" ID="CategoryBrowser" BlogTopic="Varia" OnLinkButtonPressed="linkButton_Command" />
         </div>
         <div id="MainColumn">
             <div id="ButtonZone">

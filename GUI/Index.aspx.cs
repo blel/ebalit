@@ -73,5 +73,10 @@ namespace EbalitWebForms.GUI
                 Response.Redirect(string.Format("/GUI/{0}?BlogEntryID={1}", pageName, Id));
             }
         }
+
+        protected void CategoryBrowser_LinkButtonPressed(object sender, CommandEventArgs e)
+        {
+
+        }
     }
 }

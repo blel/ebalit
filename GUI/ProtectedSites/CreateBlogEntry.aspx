@@ -32,7 +32,7 @@
                         <asp:Label ID="lblTopic" runat="server" Text='<%#Bind("BlogCategory.BlogTopic.Topic") %>'></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:DropDownList ID="ddlTopic" runat="server" DataSourceID="odsBlogTopic" DataTextField="Topic" DataValueField="Id" Width="150px" OnTextChanged="ddlTopic_TextChanged" AutoPostBack="True"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlTopic" runat="server"  DataSourceID="odsBlogTopic" SelectedValue='<%#Eval("BlogCategory.BlogTopic.Id") %>' DataTextField="Topic" DataValueField="Id" Width="150px" OnTextChanged="ddlTopic_TextChanged" AutoPostBack="True"></asp:DropDownList>
                     </EditItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Category">

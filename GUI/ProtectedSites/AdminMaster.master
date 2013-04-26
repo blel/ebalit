@@ -3,10 +3,17 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
-    <div id="Title">
-        <menu>
-            <li><a href="AdminIndex.aspx">Admin Home</a></li><li><a href="CreateBlogEntry.aspx">Create Blog Entry</a> </li><li><a href="BlogEntries.aspx">Manage Blog Entries</a></li><li><a href="ManageBlogCategories.aspx">Manage Blog Categories</a></li>
-        </menu>
+    <div id="TitleContainer">
+        <div id="Title">
+            <div class="subMenu">
+                <menu>
+                    <li><a href="AdminIndex.aspx">Admin Home</a></li>
+                    <li><a href="CreateBlogEntry.aspx">Create Blog Entry</a> </li>
+                    <li><a href="BlogEntries.aspx">Manage Blog Entries</a></li>
+                    <li><a href="ManageBlogCategories.aspx">Manage Blog Categories</a></li>
+                </menu>
+            </div>
+        </div>
     </div>
     <asp:ContentPlaceHolder runat="server" ID="AdminContent">
     </asp:ContentPlaceHolder>

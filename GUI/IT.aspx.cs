@@ -14,24 +14,11 @@ namespace EbalitWebForms.GUI
     public partial class WebForm3 : System.Web.UI.Page
     {
 
-
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            CategoryAccordionHelper categoryAccordionHelper = new CategoryAccordionHelper(Accordion);
-            categoryAccordionHelper.CreateAccordion("IT", linkButton_Command);
-
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack)
+            if (!IsPostBack)
             {
-                //make sure the selected accordion pane is selected again on postback
-                if (!string.IsNullOrEmpty(hdfSelectedPane.Value))
-                    Accordion.SelectedIndex = Convert.ToInt32(hdfSelectedPane.Value);
-            }
-            else
-            {
+
                 BlogEntryDAL blogEntryDAL = new BlogEntryDAL();
                 BlogEntry blogEntry;
 
@@ -53,8 +40,6 @@ namespace EbalitWebForms.GUI
                     ViewState.Add("CurrentEntryID", blogEntry.Id);
 
                     BlogCategoryDAL blogCategoryDAL = new BlogCategoryDAL();
-                    Accordion.SelectedIndex = blogCategoryDAL.GetCategoryAccordionIndex(blogEntry.Category);
-                    hdfSelectedPane.Value = Convert.ToString(blogCategoryDAL.GetCategoryAccordionIndex(blogEntry.Category));
                 }
             }
 

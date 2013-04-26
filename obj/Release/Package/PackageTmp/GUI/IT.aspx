@@ -1,18 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="Master.Master" AutoEventWireup="true" CodeBehind="IT.aspx.cs" Inherits="EbalitWebForms.GUI.WebForm3" %>
 
+<%@ Register Src="~/GUI/WebUserControls/CategoryBrowser.ascx" TagPrefix="uc1" TagName="CategoryBrowser" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
-
-    <div id="Title">
-        >>  IT
+    <div id="TitleContainer">
+        <div id="Title" class="pageHeader">
+            >>  IT
+        </div>
     </div>
-
     <div id="Container">
         <div id="LeftColumn">
-            <h2>Categories</h2>
-            <ajaxToolkit:Accordion ID="Accordion" runat="server">
-            </ajaxToolkit:Accordion>
+            <uc1:CategoryBrowser runat="server" ID="CategoryBrowser" BlogTopic="IT" OnLinkButtonPressed="linkButton_Command" />
         </div>
 
         <div id="MainColumn">
@@ -89,29 +90,26 @@
             <div id="Search" class="partlet">
                 <asp:Table ID="tblSearch" runat="server">
                     <asp:TableHeaderRow>
-                        <asp:TableHeaderCell ColumnSpan="2" HorizontalAlign ="Left">
+                        <asp:TableHeaderCell ColumnSpan="2" HorizontalAlign="Left">
                             Search
                         </asp:TableHeaderCell>
                     </asp:TableHeaderRow>
-                   <asp:TableRow>
-                       <asp:TableCell>
-                           <asp:TextBox ID="txtSearch" Width="160px" runat="server"></asp:TextBox>
-                       </asp:TableCell>
-                       <asp:TableCell>
-                           <asp:Button ID="btnSearch" runat="server" CssClass="Button" Text="Search" CausesValidation="false" OnClick="btnSearch_Click"/>
-                       </asp:TableCell>
-                   </asp:TableRow>
-                    
+                    <asp:TableRow>
+                        <asp:TableCell>
+                            <asp:TextBox ID="txtSearch" Width="160px" runat="server"></asp:TextBox>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:Button ID="btnSearch" runat="server" CssClass="Button" Text="Search" CausesValidation="false" OnClick="btnSearch_Click" />
+                        </asp:TableCell>
+                    </asp:TableRow>
+
                 </asp:Table>
-                
+
             </div>
         </div>
     </div>
 
-    <asp:ScriptManager ID="smgAccordion" runat="server">
-    </asp:ScriptManager>
 
-    <asp:HiddenField ID="hdfSelectedPane" runat="server" />
 
     <ajaxToolkit:PopupControlExtender ID="PopupControlExtender1" runat="server" TargetControlID="lblShowPopup" PopupControlID="Popup" OffsetX="-600" OffsetY="100"></ajaxToolkit:PopupControlExtender>
     <div id="Popup">
@@ -155,31 +153,4 @@
             </FooterTemplate>
         </asp:DetailsView>
     </div>
-
-
-
-    <!-- 
-    honestly, I don't like stuff like the script below.
-    what id does: it searches the Accordion,and adds a selected Index chaned event handler.
-     
-    When the selected index is changed, the new index is saved in a hidden field.
-    When a postback occurs, the value of the hidden field is retrieved and the correct
-    pane is activated again...       
-        -->
-    <script type="text/javascript">
-
-        function pageLoad() {
-            var accordion = $find("Content_Accordion_AccordionExtender");
-            accordion.add_selectedIndexChanged(selectedIndexChanged);
-        }
-
-        function selectedIndexChanged(sender, args) {
-            var hiddenField = document.getElementById("<%=hdfSelectedPane.ClientID%>");
-            hiddenField.value = args.get_selectedIndex();
-        }
-    </script>
-
-
-
-
 </asp:Content>

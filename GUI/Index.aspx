@@ -1,19 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="Master.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="EbalitWebForms.GUI.WebForm1" %>
 
 <%@ Register Src="~/GUI/WebUserControls/Archive.ascx" TagPrefix="uc1" TagName="Archive" %>
+<%@ Register Src="~/GUI/WebUserControls/CategoryBrowser.ascx" TagPrefix="uc1" TagName="CategoryBrowser" %>
+
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <div id="TitleContainer">
-        <div id="Title">
+        <div id="Title" class="pageHeader">
             >> Home
         </div>
     </div>
     <div id="Container">
         
         <div id="LeftColumn">
+            <img runat="server" src="/WebResources/cutHead.gif" />
+            
             <div id="RecentBlogEntries" class="partlet">
                 <h3>Recent posts</h3>
                 <asp:ObjectDataSource ID="odsRecentEntries" runat="server" SelectMethod="GetRecentBlogEntries" TypeName="EbalitWebForms.BusinessLogicLayer.BlogEntryDAL">
@@ -25,7 +29,7 @@
                     <asp:DataList ID="dtlRecentBlogEntries" runat="server" DataSourceID="odsRecentEntries">
                         <ItemTemplate>
                             <li>
-                                <asp:LinkButton ID="lnkButton" CommandArgument='<%#Eval("Id") %>' OnCommand="lnkButton_Command" runat="server"><%# Eval("Subject") %></asp:LinkButton>
+                                <asp:LinkButton CssClass="MenuButton" ID="lnkButton" CommandArgument='<%#Eval("Id") %>' OnCommand="lnkButton_Command" runat="server"><%# Eval("Subject") %></asp:LinkButton>
                                 <i>(<asp:Label ID="ContentLabel" runat="server" Text='<%# Eval("BlogCategory.BlogTopic.Topic") %>' />)</i>
                             </li>
                         </ItemTemplate>

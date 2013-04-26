@@ -10,8 +10,8 @@
         </SelectParameters>
     </asp:ObjectDataSource>
     <div id="TitleContainer">
-    <div id="Title">
-        >> IT Search Results
+    <div id="Title" class="pageHeader">
+        >> IT > Search Results
     </div></div>
     <div id="Container">
         <div id="LeftColumn"></div>

@@ -9,9 +9,10 @@
             <asp:QueryStringParameter Name="searchText" QueryStringField="searchText" Type="String" />
         </SelectParameters>
     </asp:ObjectDataSource>
-    <div id="Title">
-        >> Varia Search Results
-    </div>
+    <div id="TitleContainer">
+    <div id="Title" class="pageHeader">
+        >> Varia > Search Results
+    </div></div>
     <div id="Container">
         <div id="LeftColumn">
         </div>

@@ -3,18 +3,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
-    <div id="Title">
-        >>  Admin
+    <div id="TitleContainer">
+    <div id="Title" class="pageHeader">
+        >> Admin
     </div>
+        </div>
     <div id="Container">
 
 
 
         <div id="LeftColumn">
-            a test 1
+      
         </div>
 
-        <div id="MainColumn">
+        <div id="MainColumn" >
             <asp:Login ID="ctlLogin" runat="server" EnableTheming="False" BorderColor="#666666" BorderStyle="Solid" BorderWidth="1px" Height="160px" Width="400px" OnAuthenticate="ctlLogin_Authenticate" DestinationPageUrl="~/ProtectedSites/AdminIndex.aspx">
                 <CheckBoxStyle BorderColor="#666666" />
                 <LabelStyle HorizontalAlign="Left" />
@@ -24,7 +26,7 @@
             </asp:Login>
         </div>
         <div id="RightColumn">
-            a test 3
+         
         </div>
     </div>
 

@@ -13,20 +13,14 @@ namespace EbalitWebForms.GUI
     {
         protected void Page_Init(object sender, EventArgs e)
         {
-            CategoryAccordionHelper categoryAccordionHelper = new CategoryAccordionHelper(Accordion);
-            categoryAccordionHelper.CreateAccordion("Music", linkButton_Command);
+
 
         }
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack)
-            {
-                //make sure the selected accordion pane is selected again on postback
-                if (!string.IsNullOrEmpty(hdfSelectedPane.Value))
-                    Accordion.SelectedIndex = Convert.ToInt32(hdfSelectedPane.Value);
-            }
-            else
+            if (!IsPostBack)
+
             {
                 BlogEntryDAL blogEntryDAL = new BlogEntryDAL();
                 BlogEntry blogEntry;
@@ -47,10 +41,6 @@ namespace EbalitWebForms.GUI
                 if (blogEntry != null)
                 {
                     ViewState.Add("CurrentEntryID", blogEntry.Id);
-
-                    BlogCategoryDAL blogCategoryDAL = new BlogCategoryDAL();
-                    Accordion.SelectedIndex = blogCategoryDAL.GetCategoryAccordionIndex(blogEntry.Category);
-                    hdfSelectedPane.Value = Convert.ToString(blogCategoryDAL.GetCategoryAccordionIndex(blogEntry.Category));
                 }
             }
 
