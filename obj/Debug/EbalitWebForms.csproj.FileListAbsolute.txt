@@ -23,3 +23,4 @@ D:\Users\Elias\Documents\Visual Studio 2012\Projects\EbalitWebForms\EbalitWebFor
 D:\Users\Elias\Documents\Visual Studio 2012\Projects\EbalitWebForms\EbalitWebForms\bin\tr-TR\AjaxControlToolkit.resources.dll
 D:\Users\Elias\Documents\Visual Studio 2012\Projects\EbalitWebForms\EbalitWebForms\bin\zh-CHS\AjaxControlToolkit.resources.dll
 D:\Users\Elias\Documents\Visual Studio 2012\Projects\EbalitWebForms\EbalitWebForms\bin\zh-CHT\AjaxControlToolkit.resources.dll
+D:\Users\Elias\Documents\Visual Studio 2012\Projects\EbalitWebForms\EbalitWebForms\obj\Debug\EbalitWebForms.csprojResolveAssemblyReference.cache

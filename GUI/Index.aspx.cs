@@ -35,11 +35,6 @@ namespace EbalitWebForms.GUI
         {
             if (ViewState["CurrentEntryID"] == null)
             {
-                //int BlogTopicId = new BlogTopicDAL().GetBlogTopicId("Home");
-                //BlogEntryDAL blogEntryDAL = new BlogEntryDAL();
-                //int Id = blogEntryDAL.GetDefaultBlogEntryId(BlogTopicId);
-                //e.InputParameters["Id"] = Id;
-
                 BlogEntryDAL blogEntryDAL = new BlogEntryDAL();
                 BlogEntry blogEntry = blogEntryDAL.GetDefaultBlogEntry("Home");
                 if (blogEntry != null)
@@ -62,11 +57,21 @@ namespace EbalitWebForms.GUI
             Response.Redirect(string.Format("/GUI/{0}?BlogEntryID={1}", blogEntry.BlogCategory.BlogTopic.PageName, blogEntry.Id));
         }
 
+        /// <summary>
+        /// Occurs when user presses the links in the archive
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Archive_LinkButtonPressed(object sender, CommandEventArgs e)
         {
-            Response.Redirect(string.Format("/GUI/{0}", e.CommandArgument));
+            int Id = Convert.ToInt32(e.CommandArgument);
+            BlogEntryDAL blogEntryDAL = new BlogEntryDAL();
+            BlogEntry blogEntry = blogEntryDAL.GetBlogEntry(Id);
+            if (blogEntry != null)
+            {
+                string pageName = blogEntry.BlogCategory.BlogTopic.PageName;
+                Response.Redirect(string.Format("/GUI/{0}?BlogEntryID={1}", pageName, Id));
+            }
         }
-
-
     }
 }

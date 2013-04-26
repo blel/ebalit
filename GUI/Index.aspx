@@ -63,7 +63,7 @@
             <div id="History" class="partlet">
                 
                 <uc1:Archive runat="server" id="Archive" ItemsBusinessLayerObject="EbalitWebForms.BusinessLogicLayer.BlogEntryDAL"
-                    ItemType="EbalitWebForms.DataLayer.BlogEntry" SelectMethod="GetBlogEntriesGroupedByMonths"  OnLinkButtonPressed="Archive_LinkButtonPressed"/>
+                    ItemType="EbalitWebForms.DataLayer.BlogEntry" SelectMethod="GetBlogEntriesGroupedByMonths"  OnLinkButtonPressed="Archive_LinkButtonPressed" DisplayField="Subject"/>
             </div>
         </div>
     </div>
