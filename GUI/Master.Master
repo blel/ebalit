@@ -5,9 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="ebalit,computer sciences, .net, asp.net, IT, Music, Jazz, Piano, Philosophy" />
+    <meta name="description" content="ebalit: Blog about jazz piano music, computer sciences and philosophy" />
     <link type="text/css" href="~/Styles/Styles.css" rel="stylesheet" />
-
-    <title></title>
+    <script src="/Scripts/jquery-2.0.0.min.js"></script>
+    <title>ebalit - blog about jazz piano music, computer sciences and philosophy</title>
 
 
     <asp:ContentPlaceHolder ID="head" runat="server">

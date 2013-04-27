@@ -96,7 +96,7 @@ body
     font-size: 64px;
     font-weight: bold;
     color: white;
-        padding-left: 10px;
+    padding-left: 10px;
 }
 
 menu
@@ -114,8 +114,8 @@ menu
         display: inline-block;
         min-width: 100px;
         text-shadow: 2px 2px 2px lightyellow;
-        padding-left:5px;
-        padding-right:5px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
 
         menu li a
@@ -146,7 +146,6 @@ menu
     margin-left: auto;
     margin-right: auto;
     color: rgba(204,204,204,1);
-
 }
 
 .pageHeader
@@ -178,16 +177,18 @@ menu
 
     #Container #MainColumn
     {
-        border-width: 1px;
-        border-color: rgb(228, 228, 228);
-        padding: 10px;
-        background-color: #FFFFFF;
+        border-left: 1px solid rgb(228, 228, 228);
+    border-right: 1px solid rgb(228, 228, 228);
+    padding: 10px;
+    background-color: #FFFFFF;
         float: left;
-        width: 774px;
+        width: 763px;
         min-height: 800px;
-        border-right-style: solid;
-        border-left-style: solid;
-    }
+        border-top-color: rgb(228, 228, 228);
+    border-top-width: 1px;
+    border-bottom-color: rgb(228, 228, 228);
+    border-bottom-width: 1px;
+}
 
         #Container #MainColumn #BlogContent
         {
@@ -205,13 +206,13 @@ menu
 
 
 
-#ButtonZone
-{
-    text-align: right;
-    margin-bottom: -10px;
-    margin-top: 10px;
-}
 
+#BlogContent
+{
+    border-width: 1px;
+    border-color: rgb(228, 228, 228);
+    padding: 5px;
+}
 
 
 #Comments
@@ -219,7 +220,7 @@ menu
     margin-top: 10px;
 }
 
-#Popup
+.Popup
 {
     margin-left: auto;
     margin-right: auto;
@@ -265,10 +266,20 @@ menu
     color: black;
 }
 
+.ButtonZone
+{
+    text-align: right;
+     margin-top:8px;   
+}
+
 .CommentButton
 {
-    font-weight: bold;
-    padding: 10px;
+    font-weight:bold;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:5px;
+    padding-bottom:5px;
+
     text-align: center;
     min-width: 100px;
     text-shadow: 2px 2px 2px white;
@@ -295,9 +306,10 @@ menu
 {
     text-decoration: none;
 }
+
     .MenuButton:hover
     {
-        text-decoration:underline;
+        text-decoration: underline;
     }
 
 
@@ -315,14 +327,24 @@ menu
 }
 
 
+
+
 /*styles for "partlets"*/
 .partlet
 {
     border: solid;
     border-color: rgb(228, 228, 228);
     border-width: 1px;
+    padding: 5px;
+    margin-bottom:10px;
 }
 
+    .partlet h3
+    {
+        padding: 0px;
+        margin-top: 0px;
+        margin-bottom: 5px;
+    }
 
 /*styles for the content*/
 .myTable

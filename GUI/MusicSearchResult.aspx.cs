@@ -13,7 +13,7 @@ namespace EbalitWebForms.GUI
         {
             if (!IsPostBack)
             {
-                this.txtSearch.Text = Request.Params["searchText"];
+                this.SearchUserControl.SearchString = Request.Params["searchText"];
             }
         }
 
@@ -24,7 +24,7 @@ namespace EbalitWebForms.GUI
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            Response.Redirect(String.Format("/GUI/MusicSearchResult.aspx?blogTopic={0}&searchText={1}", "Music", this.txtSearch.Text));
+            Response.Redirect(String.Format("/GUI/MusicSearchResult.aspx?blogTopic={0}&searchText={1}", "Music", this.SearchUserControl.SearchString));
         }
     }
 }

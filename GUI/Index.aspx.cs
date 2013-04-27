@@ -25,29 +25,6 @@ namespace EbalitWebForms.GUI
 
         }
 
-        /// <summary>
-        /// Checks whether there is a CurrentEntryID in the view state.
-        /// If not, load default blog entry, otherwise load entry with the ID = CurrentEntryID.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void odsBlogEntry_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
-        {
-            if (ViewState["CurrentEntryID"] == null)
-            {
-                BlogEntryDAL blogEntryDAL = new BlogEntryDAL();
-                BlogEntry blogEntry = blogEntryDAL.GetDefaultBlogEntry("Home");
-                if (blogEntry != null)
-                {
-                    e.InputParameters["Id"] = blogEntry.Id;
-                    ViewState.Add("CurrentEntryID", blogEntry.Id);
-                }
-            }
-            else
-            {
-                e.InputParameters["Id"] = ViewState["CurrentEntryID"];
-            }
-        }
 
         protected void lnkButton_Command(object sender, CommandEventArgs e)
         {
@@ -77,6 +54,11 @@ namespace EbalitWebForms.GUI
         protected void CategoryBrowser_LinkButtonPressed(object sender, CommandEventArgs e)
         {
 
+        }
+
+        protected void SearchUserControl_SearchButtonClick(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("/GUI/AllSearchResult.aspx?searchText={0}",  this.SearchUserControl.SearchString));
         }
     }
 }

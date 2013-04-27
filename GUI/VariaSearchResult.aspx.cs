@@ -14,7 +14,7 @@ namespace EbalitWebForms.GUI
             if (!IsPostBack)
             {
                 //insert the search text in the search field
-                this.txtSearch.Text = Request.Params["searchText"];
+                this.SearchUserControl.SearchString = Request.Params["searchText"];
             }
         }
         protected void lnkSearchResult_Command(object sender, CommandEventArgs e)
@@ -24,7 +24,7 @@ namespace EbalitWebForms.GUI
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            Response.Redirect(String.Format("/GUI/VariaSearchResult.aspx?blogTopic={0}&searchText={1}", "Varia", this.txtSearch.Text));
+            Response.Redirect(String.Format("/GUI/VariaSearchResult.aspx?blogTopic={0}&searchText={1}", "Varia", this.SearchUserControl.SearchString));
         }
     }
 }

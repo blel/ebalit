@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Globalization;
 using EbalitWebForms.BusinessLogicLayer;
+using System.Text.RegularExpressions;
 
 namespace EbalitWebForms.GUI.ProtectedSites
 {
@@ -126,6 +127,12 @@ namespace EbalitWebForms.GUI.ProtectedSites
 
                 PopulateDdlCategory(Convert.ToInt32(BlogTopicID));
             }
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            string decoded =  HttpUtility.HtmlEncode(this.hdfTextSelection.Value);
+            
         }
 
 

@@ -31,22 +31,22 @@ namespace EbalitWebForms.GUI {
         protected global::System.Web.UI.WebControls.DataList dtlRecentBlogEntries;
         
         /// <summary>
-        /// odsBlogEntry control.
+        /// BlogContentUserControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsBlogEntry;
+        protected global::EbalitWebForms.GUI.WebUserControls.BlogContentUserControl BlogContentUserControl;
         
         /// <summary>
-        /// dvwEntry control.
+        /// SearchUserControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView dvwEntry;
+        protected global::EbalitWebForms.GUI.WebUserControls.SearchUserControl SearchUserControl;
         
         /// <summary>
         /// Archive control.

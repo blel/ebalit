@@ -50,7 +50,22 @@ namespace EbalitWebForms.BusinessLogicLayer
                 cc => (cc.BlogCategory.BlogTopic.Topic == blogTopic &&
                           (cc.Subject.Contains(searchText) ||
                           cc.Content.Contains(searchText)))).ToList().Select(cc => new BlogEntry() { Content = regex.Replace(cc.Content, ""), PublishedOn = cc.PublishedOn, Subject = cc.Subject, Id=cc.Id });
+        }
 
+        public IEnumerable<BlogEntry> FindBlogEntries(string searchText)
+        {
+            Regex regex = new Regex(@"<(.|\n)*?>");
+
+            return base.EbalitDBContext.BlogEntries.Include("BlogCategory").Include("BlogCategory.BlogTopic").Where(
+                cc => (cc.Subject.Contains(searchText) ||
+                          cc.Content.Contains(searchText))).ToList().Select(cc => new BlogEntry()
+                          {
+                              Content = regex.Replace(cc.Content, ""),
+                              PublishedOn = cc.PublishedOn,
+                              Subject = cc.Subject,
+                              Id = cc.Id,
+                              BlogCategory = new BlogCategory() { BlogTopic = new BlogTopic() { Topic = cc.BlogCategory.BlogTopic.Topic, PageName=cc.BlogCategory.BlogTopic.PageName } }
+                          });
         }
 
         public int GetDefaultBlogEntryId(int BlogTopicId)

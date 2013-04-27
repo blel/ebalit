@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/GUI/Master.Master" AutoEventWireup="true" CodeBehind="ITSearchResult.aspx.cs" Inherits="EbalitWebForms.GUI.WebForm8" %>
 
+<%@ Register Src="~/GUI/WebUserControls/SearchUserControl.ascx" TagPrefix="uc1" TagName="SearchUserControl" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
@@ -33,25 +36,7 @@
             </asp:DataList>
         </div>
         <div id="RightColumn">
-            <div id="Search" class="partlet">
-                <asp:Table ID="tblSearch" runat="server">
-                    <asp:TableHeaderRow>
-                        <asp:TableHeaderCell ColumnSpan="2" HorizontalAlign ="Left">
-                            Search
-                        </asp:TableHeaderCell>
-                    </asp:TableHeaderRow>
-                   <asp:TableRow>
-                       <asp:TableCell>
-                           <asp:TextBox ID="txtSearch" Width="160px"  runat="server"></asp:TextBox>
-                       </asp:TableCell>
-                       <asp:TableCell>
-                           <asp:Button ID="btnSearch" CssClass="Button" runat="server" Text="Search" CausesValidation="false" OnClick="btnSearch_Click"/>
-                       </asp:TableCell>
-                   </asp:TableRow>
-                    
-                </asp:Table>
-                
-            </div>
+            <uc1:SearchUserControl runat="server" ID="SearchUserControl" OnSearchButtonClick="btnSearch_Click" />
         </div>
     </div>
 </asp:Content>

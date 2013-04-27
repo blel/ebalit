@@ -2,6 +2,10 @@
 
 <%@ Register Src="~/GUI/WebUserControls/Archive.ascx" TagPrefix="uc1" TagName="Archive" %>
 <%@ Register Src="~/GUI/WebUserControls/CategoryBrowser.ascx" TagPrefix="uc1" TagName="CategoryBrowser" %>
+<%@ Register Src="~/GUI/WebUserControls/BlogContentUserControl.ascx" TagPrefix="uc1" TagName="BlogContentUserControl" %>
+<%@ Register Src="~/GUI/WebUserControls/SearchUserControl.ascx" TagPrefix="uc1" TagName="SearchUserControl" %>
+
+
 
 
 
@@ -14,10 +18,10 @@
         </div>
     </div>
     <div id="Container">
-        
+
         <div id="LeftColumn">
-            <img runat="server" src="/WebResources/cutHead.gif" />
-            
+            <img runat="server" src="/WebResources/cutHead.gif"  style="margin-left:auto;margin-right:auto; display:block;"/>
+
             <div id="RecentBlogEntries" class="partlet">
                 <h3>Recent posts</h3>
                 <asp:ObjectDataSource ID="odsRecentEntries" runat="server" SelectMethod="GetRecentBlogEntries" TypeName="EbalitWebForms.BusinessLogicLayer.BlogEntryDAL">
@@ -38,41 +42,12 @@
             </div>
         </div>
         <div id="MainColumn">
-            <div id="BlogContent">
-                <asp:ObjectDataSource ID="odsBlogEntry" runat="server" SelectMethod="GetBlogEntry" TypeName="EbalitWebForms.BusinessLogicLayer.BlogEntryDAL" OnSelecting="odsBlogEntry_Selecting">
-                    <SelectParameters>
-                        <asp:Parameter DefaultValue="0" Name="Id" Type="Int32" />
-                    </SelectParameters>
-                </asp:ObjectDataSource>
-                <asp:DetailsView ID="dvwEntry" runat="server" AutoGenerateRows="False" DataSourceID="odsBlogEntry" BorderStyle="None">
-                    <Fields>
-                        <asp:TemplateField SortExpression="Subject" ItemStyle-BorderStyle="None" ShowHeader="False">
-                            <ItemTemplate>
-                                <h2>
-                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("Subject") %>'></asp:Label>
-                                </h2>
-                            </ItemTemplate>
-                            <ItemStyle BorderStyle="None"></ItemStyle>
-                        </asp:TemplateField>
-
-                        <asp:TemplateField SortExpression="Content" ItemStyle-BorderStyle="None" ItemStyle-VerticalAlign="Top" ShowHeader="False">
-                            <ItemTemplate>
-                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("Content") %>'></asp:Label>
-                            </ItemTemplate>
-                            <ItemStyle BorderStyle="None"></ItemStyle>
-                        </asp:TemplateField>
-                    </Fields>
-                    <HeaderStyle BorderStyle="None" />
-                </asp:DetailsView>
-            </div>
+            <uc1:BlogContentUserControl runat="server" ID="BlogContentUserControl" BlogTopic="Home" />
         </div>
         <div id="RightColumn">
-
-            <div id="History" class="partlet">
-                
-                <uc1:Archive runat="server" id="Archive" ItemsBusinessLayerObject="EbalitWebForms.BusinessLogicLayer.BlogEntryDAL"
-                    ItemType="EbalitWebForms.DataLayer.BlogEntry" SelectMethod="GetBlogEntriesGroupedByMonths"  OnLinkButtonPressed="Archive_LinkButtonPressed" DisplayField="Subject"/>
-            </div>
+            <uc1:SearchUserControl runat="server" ID="SearchUserControl" OnSearchButtonClick="SearchUserControl_SearchButtonClick" />
+            <uc1:Archive runat="server" ID="Archive" ItemsBusinessLayerObject="EbalitWebForms.BusinessLogicLayer.BlogEntryDAL"
+                ItemType="EbalitWebForms.DataLayer.BlogEntry" SelectMethod="GetBlogEntriesGroupedByMonths" OnLinkButtonPressed="Archive_LinkButtonPressed" DisplayField="Subject" />
         </div>
     </div>
 </asp:Content>

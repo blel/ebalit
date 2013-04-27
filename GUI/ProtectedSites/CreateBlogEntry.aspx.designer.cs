@@ -7,8 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EbalitWebForms.GUI.ProtectedSites
-{
+namespace EbalitWebForms.GUI.ProtectedSites {
     
     
     public partial class WebForm1 {
@@ -30,6 +29,15 @@ namespace EbalitWebForms.GUI.ProtectedSites
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource odsBlogTopic;
+        
+        /// <summary>
+        /// hdfTextSelection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdfTextSelection;
         
         /// <summary>
         /// DetailsView1 control.
