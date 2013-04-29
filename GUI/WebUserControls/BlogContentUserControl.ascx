@@ -5,6 +5,7 @@
         <asp:Parameter DefaultValue="0" Name="Id" Type="Int32" />
     </SelectParameters>
 </asp:ObjectDataSource>
+<asp:LinkButton ID="btnEdit" runat="server" CssClass="CommentButton" OnClick="btnEdit_Click" CausesValidation="false">Edit</asp:LinkButton>
 
 <div id="BlogContent">
 

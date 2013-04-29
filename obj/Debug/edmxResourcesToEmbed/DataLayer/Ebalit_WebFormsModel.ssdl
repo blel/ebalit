@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Ebalit_WebFormsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+<Schema Namespace="Ebalit_WebFormsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="Ebalit_WebFormsModelStoreContainer">
     <EntitySet Name="BlogCategory" EntityType="Ebalit_WebFormsModel.Store.BlogCategory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BlogComment" EntityType="Ebalit_WebFormsModel.Store.BlogComment" store:Type="Tables" Schema="dbo" />
@@ -58,8 +58,25 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="LastActivityDate" Type="datetime" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="LastLoginDate" Type="datetime" />
+    <Property Name="LastPasswordChangedDate" Type="datetime" />
+    <Property Name="ApplicationName" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="255" />
+    <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="255" />
+    <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="255" />
+    <Property Name="IsApproved" Type="bit" />
+    <Property Name="IsOnLine" Type="bit" />
+    <Property Name="IsLockedOut" Type="bit" />
+    <Property Name="LastLockedOutDate" Type="datetime" />
+    <Property Name="FailedPasswordAttemptCount" Type="int" />
+    <Property Name="FailedPasswordAttemptWindowStart " Type="datetime" />
+    <Property Name="FailedPasswordAnswerAttemptCount " Type="int" />
+    <Property Name="FailedPasswordAnswerAttemptWindowStart " Type="datetime" />
   </EntityType>
   <Association Name="FK_BlogCategory_BlogTopic">
     <End Role="BlogTopic" Type="Ebalit_WebFormsModel.Store.BlogTopic" Multiplicity="1" />

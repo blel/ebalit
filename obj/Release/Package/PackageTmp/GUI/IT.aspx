@@ -22,8 +22,7 @@
 
         <div id="MainColumn">
 
-            <uc1:BlogContentUserControl runat="server" ID="BlogContentUserControl"  BlogTopic="IT" IsCommentsVisible="true"/>
-
+            <uc1:BlogContentUserControl runat="server" ID="BlogContentUserControl"  BlogTopic="IT" IsCommentsVisible="true" IsPublishedDateVisible="true"/>
         </div>
 
         <div id="RightColumn">

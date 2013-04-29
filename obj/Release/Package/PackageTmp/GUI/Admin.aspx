@@ -18,7 +18,7 @@
 
         <div id="MainColumn" >
            
-            <asp:Login ID="ctlLogin" runat="server" EnableTheming="False" BorderColor="#666666" BorderStyle="Solid" BorderWidth="1px" Height="160px" Width="400px" OnAuthenticate="ctlLogin_Authenticate" DestinationPageUrl="~/ProtectedSites/AdminIndex.aspx">
+            <asp:Login ID="ctlLogin" runat="server" EnableTheming="False" BorderColor="#666666" BorderStyle="Solid" BorderWidth="1px" Height="160px" Width="400px" OnAuthenticate="ctlLogin_Authenticate" DestinationPageUrl="/GUI/ProtectedSites/AdminIndex.aspx">
                 <CheckBoxStyle BorderColor="#666666" />
                 <LabelStyle HorizontalAlign="Left" />
                 <LoginButtonStyle BorderColor="#666666" BorderStyle="Solid" />

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using EbalitWebForms.BusinessLogicLayer;
 using EbalitWebForms.DataLayer;
+using System.Web.Security;
 
 namespace EbalitWebForms.GUI.WebUserControls
 {
@@ -27,6 +28,17 @@ namespace EbalitWebForms.GUI.WebUserControls
 
         protected void Page_Load(object sender, EventArgs e)
         {
+        
+            MembershipUser user = Membership.GetUser();
+            if (user != null && user.UserName == "Administrator" && user.IsOnline)
+            {
+                this.btnEdit.Visible = true;
+            }
+            else
+            {
+                this.btnEdit.Visible = false;
+            }
+            
             this.lblShowPopup.Visible = IsCommentsVisible;
             this.ModalPopupExtender1.Enabled = IsCommentsVisible;
             this.Popup.Visible = IsCommentsVisible;
@@ -35,24 +47,27 @@ namespace EbalitWebForms.GUI.WebUserControls
 
             BlogEntryDAL blogEntryDAL = new BlogEntryDAL();
             BlogEntry blogEntry;
-
-            int BlogEntryId = Convert.ToInt32(Request.Params["BlogEntryID"]);
-
-            //if there is a request param, take it, otherwise get the default entry
-            if (BlogEntryId != 0)
+            if (!IsPostBack)
             {
-                blogEntry = blogEntryDAL.GetBlogEntry(BlogEntryId);
-            }
-            else
-            {
-                blogEntry = blogEntryDAL.GetDefaultBlogEntry(BlogTopic);
+                int BlogEntryId = Convert.ToInt32(Request.Params["BlogEntryID"]);
+
+                //if there is a request param, take it, otherwise get the default entry
+                if (BlogEntryId != 0)
+                {
+                    blogEntry = blogEntryDAL.GetBlogEntry(BlogEntryId);
+                }
+                else
+                {
+                    blogEntry = blogEntryDAL.GetDefaultBlogEntry(BlogTopic);
+                }
+
+                //save the id of the blogEntry (if it exists) to the view state, in order that it is selected in the ods selecting event
+                if (blogEntry != null)
+                {
+                    CurrentEntryID = blogEntry.Id.ToString();
+                }
             }
 
-            //save the id of the blogEntry (if it exists) to the view state, in order that it is selected in the ods selecting event
-            if (blogEntry != null)
-            {
-                CurrentEntryID=  blogEntry.Id.ToString();
-            }
             this.dvwBlogComment.ChangeMode(DetailsViewMode.Insert);
         }
 
@@ -101,6 +116,13 @@ namespace EbalitWebForms.GUI.WebUserControls
             }
             this.dvwBlogComment.ChangeMode(DetailsViewMode.Insert);
 
+        }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            BlogTopicDAL blogTopicBLL = new BlogTopicDAL();
+            int blogTopicID = blogTopicBLL.GetBlogTopicId(BlogTopic);
+            Response.Redirect(string.Format("/GUI/ProtectedSites/CreateBlogEntry.aspx?Id={0}&BlogTopicID={1}", CurrentEntryID, blogTopicID));
         }
     }
 }

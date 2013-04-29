@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using EbalitWebForms.DataLayer;
 using EbalitWebForms.BusinessLogicLayer;
+using System.Web.Security;
 
 namespace EbalitWebForms.GUI
 {
@@ -16,7 +17,8 @@ namespace EbalitWebForms.GUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
+
         }
 
         /// <summary>

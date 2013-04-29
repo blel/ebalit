@@ -24,8 +24,25 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Username" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Type="DateTime" Name="LastActivityDate" Precision="3" />
+    <Property Type="DateTime" Name="CreationDate" Precision="3" />
+    <Property Type="DateTime" Name="LastLoginDate" Precision="3" />
+    <Property Type="DateTime" Name="LastPasswordChangedDate" Precision="3" />
+    <Property Type="String" Name="ApplicationName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Comment" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PasswordQuestion" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PasswordAnswer" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsApproved" />
+    <Property Type="Boolean" Name="IsOnLine" />
+    <Property Type="Boolean" Name="IsLockedOut" />
+    <Property Type="DateTime" Name="LastLockedOutDate" Precision="3" />
+    <Property Type="Int32" Name="FailedPasswordAttemptCount" />
+    <Property Type="DateTime" Name="FailedPasswordAttemptWindowStart_" Precision="3" />
+    <Property Type="Int32" Name="FailedPasswordAnswerAttemptCount_" />
+    <Property Type="DateTime" Name="FailedPasswordAnswerAttemptWindowStart_" Precision="3" />
   </EntityType>
   <EntityType Name="BlogCategory">
     <Key>

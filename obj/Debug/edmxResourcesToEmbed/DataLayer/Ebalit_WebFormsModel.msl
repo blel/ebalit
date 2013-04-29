@@ -4,6 +4,23 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="Ebalit_WebFormsModel.User">
         <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart_" ColumnName="FailedPasswordAnswerAttemptWindowStart " />
+          <ScalarProperty Name="FailedPasswordAnswerAttemptCount_" ColumnName="FailedPasswordAnswerAttemptCount " />
+          <ScalarProperty Name="FailedPasswordAttemptWindowStart_" ColumnName="FailedPasswordAttemptWindowStart " />
+          <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+          <ScalarProperty Name="LastLockedOutDate" ColumnName="LastLockedOutDate" />
+          <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+          <ScalarProperty Name="IsOnLine" ColumnName="IsOnLine" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+          <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+          <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />

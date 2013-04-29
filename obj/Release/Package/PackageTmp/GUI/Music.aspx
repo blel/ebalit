@@ -17,7 +17,7 @@
             <uc1:CategoryBrowser runat="server" ID="CategoryBrowser" BlogTopic="Music" OnLinkButtonPressed="linkButton_Command" />
         </div>
         <div id="MainColumn">
-            <uc1:BlogContentUserControl runat="server" ID="BlogContentUserControl" BlogTopic="Music" IsCommentsVisible="true" />
+            <uc1:BlogContentUserControl runat="server" ID="BlogContentUserControl" BlogTopic="Music" IsCommentsVisible="true" IsPublishedDateVisible="true"/>
         </div>
         <div id="RightColumn">
             <uc1:SearchUserControl runat="server" ID="SearchUserControl" OnSearchButtonClick="btnSearch_Click" />

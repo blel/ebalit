@@ -111,6 +111,8 @@
     <Content Include="GUI\Admin.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogicLayer\EbalitMembershipProvider.cs" />
+    <Compile Include="BusinessLogicLayer\UserBLL.cs" />
     <Compile Include="DataLayer\BlogCategory.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
