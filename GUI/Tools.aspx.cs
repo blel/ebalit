@@ -13,5 +13,20 @@ namespace EbalitWebForms.GUI
         {
 
         }
+
+        protected void lnkTaskCategories_Command(object sender, CommandEventArgs e)
+        {
+            Response.Redirect("~/GUI/TaskCategories.aspx");
+        }
+
+        protected void lnkCreateTask_Command(object sender, CommandEventArgs e)
+        {
+            Response.Redirect("~/GUI/TaskManager/TaskDetail.aspx");
+        }
+
+        protected void lnkTaskList_Command(object sender, CommandEventArgs e)
+        {
+            Response.Redirect("~/GUI/TaskManager/TaskList.aspx");
+        }
     }
 }

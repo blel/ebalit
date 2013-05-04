@@ -14,7 +14,9 @@
             
         </div>
         <div id="MainColumn">
-            under construction...
+            <asp:LinkButton ID="lnkTaskCategories" OnCommand="lnkTaskCategories_Command" CausesValidation="false" runat="server">Manage Task Categories</asp:LinkButton>  
+            <br />
+            <asp:LinkButton ID="lnkCreateTask" runat="server" OnCommand="lnkCreateTask_Command">Create Task</asp:LinkButton>
         </div>
         <div id="RightColumn">
        

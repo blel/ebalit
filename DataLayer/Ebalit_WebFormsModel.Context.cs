@@ -30,5 +30,8 @@ namespace EbalitWebForms.DataLayer
         public DbSet<BlogEntry> BlogEntries { get; set; }
         public DbSet<BlogTopic> BlogTopics { get; set; }
         public DbSet<BlogComment> BlogComments { get; set; }
+        public DbSet<Task> Tasks { get; set; }
+        public DbSet<TaskCategory> TaskCategories { get; set; }
+        public DbSet<TaskComment> TaskComments { get; set; }
     }
 }

@@ -7,36 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EbalitWebForms.GUI {
+namespace EbalitWebForms.GUI.TaskManager {
     
     
-    public partial class WebForm4 {
+    public partial class TaskList {
         
         /// <summary>
-        /// lnkTaskCategories control.
+        /// odsTasks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkTaskCategories;
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsTasks;
         
         /// <summary>
-        /// lnkCreateTask control.
+        /// lvwTasks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkCreateTask;
-        
-        /// <summary>
-        /// lnkTaskList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkTaskList;
+        protected global::System.Web.UI.WebControls.ListView lvwTasks;
     }
 }

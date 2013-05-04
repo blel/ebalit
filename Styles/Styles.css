@@ -178,17 +178,17 @@ menu
     #Container #MainColumn
     {
         border-left: 1px solid rgb(228, 228, 228);
-    border-right: 1px solid rgb(228, 228, 228);
-    padding: 10px;
-    background-color: #FFFFFF;
+        border-right: 1px solid rgb(228, 228, 228);
+        padding: 10px;
+        background-color: #FFFFFF;
         float: left;
         width: 763px;
         min-height: 800px;
         border-top-color: rgb(228, 228, 228);
-    border-top-width: 1px;
-    border-bottom-color: rgb(228, 228, 228);
-    border-bottom-width: 1px;
-}
+        border-top-width: 1px;
+        border-bottom-color: rgb(228, 228, 228);
+        border-bottom-width: 1px;
+    }
 
         #Container #MainColumn #BlogContent
         {
@@ -269,17 +269,16 @@ menu
 .ButtonZone
 {
     text-align: right;
-     margin-top:8px;   
+    margin-top: 8px;
 }
 
 .CommentButton
 {
-    font-weight:bold;
-    padding-left:10px;
-    padding-right:10px;
-    padding-top:5px;
-    padding-bottom:5px;
-
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     text-align: center;
     min-width: 100px;
     text-shadow: 2px 2px 2px white;
@@ -301,6 +300,34 @@ menu
     color: black;
 }
 
+.CommandButton
+{
+    font-weight: bold;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    display: inline-block;
+    text-align: center;
+    min-width: 50px;
+    text-shadow: 2px 2px 2px white;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px;
+    cursor: pointer;
+    background: rgb(238,238,238);
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VlZWVlZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjY2NjY2MiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1)));
+    background: -webkit-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%);
+    background: -o-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%);
+    background: -ms-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%);
+    background: linear-gradient(to bottom, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 );
+    text-decoration: none;
+    text-decoration-color: black;
+    color: black;
+}
 /*styles for accordion*/
 .MenuButton
 {
@@ -326,6 +353,61 @@ menu
     width: 200px;
 }
 
+.listview table
+{
+    border-collapse: collapse;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+.listview th
+{
+    text-align: left;
+    color: white;
+    font-weight: bold;
+    background-color: slategray;
+    padding: 5px;
+    padding: 5px;
+    border-collapse: collapse;
+    border-style: none solid none solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+.listview td
+{
+    padding: 5px;
+    min-width: 100px;
+    max-width: 600px;
+    border-collapse: collapse;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+.detailsview
+{
+    background: rgb(238,238,238);
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VlZWVlZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjY2NjY2MiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1)));
+    background: -webkit-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%);
+    background: -o-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%);
+    background: -ms-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%);
+    background: linear-gradient(to bottom, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 );
+}
+
+
+.detailsview, td
+{
+    border-style: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    vertical-align: top;
+}
+
 
 
 
@@ -336,7 +418,7 @@ menu
     border-color: rgb(228, 228, 228);
     border-width: 1px;
     padding: 5px;
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
     .partlet h3
@@ -347,16 +429,14 @@ menu
     }
 
 /*styles for the content*/
+
 .myTable
 {
+    border-collapse: collapse;
     border-style: solid;
     border-width: 1px;
     border-color: black;
 }
-
-    .myTable tr
-    {
-    }
 
     .myTable th
     {
@@ -374,9 +454,9 @@ menu
     .myTable td
     {
         padding: 5px;
+        min-width: 100px;
+        max-width: 600px;
         border-style: none solid none solid;
         border-width: 1px;
         border-color: black;
-        min-width: 100px;
-        max-width: 600px;
     }

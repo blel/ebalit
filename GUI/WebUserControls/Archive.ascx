@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Archive.ascx.cs" Inherits="EbalitWebForms.GUI.WebUserControls.Archive" %>
+﻿ <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Archive.ascx.cs" Inherits="EbalitWebForms.GUI.WebUserControls.Archive" %>
 <asp:ScriptManager ID="smgAccordion" runat="server">
 </asp:ScriptManager>
 

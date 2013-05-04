@@ -4,12 +4,14 @@
     <asp:ObjectDataSource ID="odsBlogCategories" runat="server" SelectMethod="ReadBlogCategory" TypeName="EbalitWebForms.BusinessLogicLayer.BlogCategoryDAL" DataObjectTypeName="EbalitWebForms.DataLayer.BlogCategory" DeleteMethod="DeleteBlogCategory" InsertMethod="CreateBlogCategory" UpdateMethod="UpdateBlogCategory"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsBlogTopics" runat="server" SelectMethod="ReadBlogTopic" TypeName="EbalitWebForms.BusinessLogicLayer.BlogTopicDAL"></asp:ObjectDataSource>
     <div id="Container">
+        <div id="LeftColumn"></div>
+        <div id="MainColumn">
         <asp:ListView ID="lsvBlogCategories" runat="server" DataSourceID="odsBlogCategories" InsertItemPosition="LastItem" DataKeyNames="Id">
             <AlternatingItemTemplate>
                 <tr style="">
                     <td>
-                        <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CausesValidation="False" />
-                        <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" CausesValidation="False" />
+                        <asp:LinkButton CssClass="CommandButton" ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CausesValidation="False" />
+                        <asp:LinkButton CssClass="CommandButton" ID="EditButton" runat="server" CommandName="Edit" Text="Edit" CausesValidation="False" />
                     </td>
 
                     <td>
@@ -25,8 +27,8 @@
             <EditItemTemplate>
                 <tr style="">
                     <td>
-                        <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="Update" ValidationGroup="UpdateValidation" />
-                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" CausesValidation="False" />
+                        <asp:LinkButton CssClass="CommandButton" ID="UpdateButton" runat="server" CommandName="Update" Text="Update" ValidationGroup="UpdateValidation" />
+                        <asp:LinkButton CssClass="CommandButton" ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" CausesValidation="False" />
                     </td>
 
                     <td>
@@ -50,8 +52,8 @@
             <InsertItemTemplate>
                 <tr style="">
                     <td>
-                        <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" ValidationGroup="InsertValidation" />
-                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Clear" CausesValidation="False" />
+                        <asp:LinkButton CssClass="CommandButton" ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" ValidationGroup="InsertValidation" />
+                        <asp:LinkButton CssClass="CommandButton" ID="CancelButton" runat="server" CommandName="Cancel" Text="Clear" CausesValidation="False" />
                     </td>
                     <td>
                         <asp:TextBox ID="CategoryTextBox" runat="server" Text='<%# Bind("Category") %>' CausesValidation="True" />
@@ -65,8 +67,8 @@
             <ItemTemplate>
                 <tr style="">
                     <td>
-                        <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CausesValidation="False" />
-                        <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" CausesValidation="False" />
+                        <asp:LinkButton CssClass="CommandButton" ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CausesValidation="False" />
+                        <asp:LinkButton CssClass="CommandButton" ID="EditButton" runat="server" CommandName="Edit" Text="Edit" CausesValidation="False" />
                     </td>
 
                     <td>
@@ -80,11 +82,11 @@
                 </tr>
             </ItemTemplate>
             <LayoutTemplate>
-                <table runat="server">
+                <table runat="server"  class="listview">
                     <tr runat="server">
                         <td runat="server">
                             <table id="itemPlaceholderContainer" runat="server" border="0" style="">
-                                <tr runat="server" style="">
+                                <tr runat="server" >
                                     <th runat="server"></th>
                                     <th runat="server">Category</th>
                                     <th runat="server">Topic</th>
@@ -100,10 +102,10 @@
                 </table>
             </LayoutTemplate>
             <SelectedItemTemplate>
-                <tr style="">
+                <tr >
                     <td>
-                        <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CausesValidation="False" />
-                        <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" CausesValidation="False" />
+                        <asp:LinkButton CssClass="CommandButton" ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CausesValidation="False" />
+                        <asp:LinkButton CssClass="CommandButton" ID="EditButton" runat="server" CommandName="Edit" Text="Edit" CausesValidation="False" />
                     </td>
 
                     <td>
@@ -117,6 +119,8 @@
             </SelectedItemTemplate>
 
         </asp:ListView>
+            </div>
+        <div id="RightColumn"></div>
         <div runat="server" id="StatusLine">
         </div>
     </div>

@@ -49,7 +49,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit">
+    <Reference Include="AjaxControlToolkit, Version=4.1.7.123, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AjaxControlToolkit.7.0123\lib\40\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
@@ -89,14 +90,18 @@
     <Content Include="GUI\ProtectedSites\ManageBlogCategories.aspx" />
     <Content Include="GUI\MusicSearchResult.aspx" />
     <Content Include="GUI\ITSearchResult.aspx" />
+    <Content Include="GUI\TaskManager\TaskDetail.aspx" />
+    <Content Include="GUI\TaskManager\TaskList.aspx" />
     <Content Include="GUI\VariaSearchResult.aspx" />
     <Content Include="GUI\AllSearchResult.aspx" />
+    <Content Include="GUI\TaskCategories.aspx" />
     <Content Include="GUI\WebUserControls\Archive.ascx" />
     <Content Include="GUI\WebUserControls\BlogContentUserControl.ascx" />
     <Content Include="GUI\WebUserControls\CategoryBrowser.ascx" />
     <Content Include="GUI\WebUserControls\SearchUserControl.ascx" />
     <Content Include="Index.html" />
     <None Include="Scripts\jquery-2.0.0.intellisense.js" />
+    <Content Include="Resources\MasterData.xml" />
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
     <Content Include="Styles\Styles.css" />
@@ -112,6 +117,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogicLayer\EbalitMembershipProvider.cs" />
+    <Compile Include="BusinessLogicLayer\TaskBLL.cs" />
+    <Compile Include="BusinessLogicLayer\TaskCategoryBLL.cs" />
     <Compile Include="BusinessLogicLayer\UserBLL.cs" />
     <Compile Include="DataLayer\BlogCategory.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
@@ -145,6 +152,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Ebalit_WebFormsModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataLayer\Task.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\TaskCategory.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\TaskComment.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -166,6 +182,20 @@
     <Compile Include="GUI\ITSearchResult.aspx.designer.cs">
       <DependentUpon>ITSearchResult.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GUI\TaskManager\TaskDetail.aspx.cs">
+      <DependentUpon>TaskDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\TaskManager\TaskDetail.aspx.designer.cs">
+      <DependentUpon>TaskDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TaskManager\TaskList.aspx.cs">
+      <DependentUpon>TaskList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\TaskManager\TaskList.aspx.designer.cs">
+      <DependentUpon>TaskList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GUI\VariaSearchResult.aspx.cs">
       <DependentUpon>VariaSearchResult.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -179,6 +209,13 @@
     </Compile>
     <Compile Include="GUI\AllSearchResult.aspx.designer.cs">
       <DependentUpon>AllSearchResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TaskCategories.aspx.cs">
+      <DependentUpon>TaskCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\TaskCategories.aspx.designer.cs">
+      <DependentUpon>TaskCategories.aspx</DependentUpon>
     </Compile>
     <Compile Include="GUI\WebUserControls\Archive.ascx.cs">
       <DependentUpon>Archive.ascx</DependentUpon>
@@ -289,6 +326,11 @@
     <Compile Include="GUI\Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="GUI\Master.Master" />
@@ -325,6 +367,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SiteResources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

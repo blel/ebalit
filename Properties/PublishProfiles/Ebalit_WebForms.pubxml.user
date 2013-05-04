@@ -24,7 +24,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2013 19:13:32</publishTime>
     </File>
     <File Include="bin/EbalitWebForms.dll">
-      <publishTime>04/29/2013 14:11:28</publishTime>
+      <publishTime>05/03/2013 06:31:21</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>02/23/2013 16:23:18</publishTime>
@@ -78,7 +78,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/23/2013 16:43:33</publishTime>
     </File>
     <File Include="DataLayer/Ebalit_WebFormsModel.edmx.diagram">
-      <publishTime>04/26/2013 17:22:07</publishTime>
+      <publishTime>05/04/2013 20:50:33</publishTime>
     </File>
     <File Include="DataLayer/Ebalit_WebFormsModel.tt">
       <publishTime>02/23/2013 16:43:33</publishTime>
@@ -120,10 +120,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2013 21:45:43</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/ManageBlogCategories.aspx">
-      <publishTime>04/22/2013 21:43:08</publishTime>
+      <publishTime>05/04/2013 16:53:52</publishTime>
+    </File>
+    <File Include="GUI/TaskCategories.aspx">
+      <publishTime>05/04/2013 16:55:12</publishTime>
+    </File>
+    <File Include="GUI/TaskManager/TaskDetail.aspx">
+      <publishTime>05/04/2013 21:44:26</publishTime>
     </File>
     <File Include="GUI/Tools.aspx">
-      <publishTime>04/26/2013 18:36:18</publishTime>
+      <publishTime>05/04/2013 20:56:54</publishTime>
     </File>
     <File Include="GUI/Varia.aspx">
       <publishTime>04/27/2013 22:46:07</publishTime>
@@ -132,7 +138,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2013 07:01:24</publishTime>
     </File>
     <File Include="GUI/WebUserControls/Archive.ascx">
-      <publishTime>04/27/2013 08:14:34</publishTime>
+      <publishTime>04/29/2013 18:03:05</publishTime>
     </File>
     <File Include="GUI/WebUserControls/BlogContentUserControl.ascx">
       <publishTime>04/29/2013 13:33:16</publishTime>
@@ -149,6 +155,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="packages.config">
       <publishTime>04/27/2013 21:32:05</publishTime>
     </File>
+    <File Include="Resources/MasterData.xml">
+      <publishTime>05/04/2013 21:05:00</publishTime>
+    </File>
     <File Include="Scripts/jquery-2.0.0.js">
       <publishTime>04/27/2013 21:32:05</publishTime>
     </File>
@@ -159,10 +168,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2013 21:32:05</publishTime>
     </File>
     <File Include="Styles/Styles.css">
-      <publishTime>04/27/2013 10:15:57</publishTime>
+      <publishTime>05/04/2013 21:18:51</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/29/2013 14:15:14</publishTime>
+      <publishTime>05/04/2013 21:56:44</publishTime>
     </File>
   </ItemGroup>
 </Project>

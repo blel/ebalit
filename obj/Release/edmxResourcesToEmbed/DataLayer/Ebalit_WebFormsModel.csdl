@@ -18,6 +18,17 @@
       <End Role="BlogEntry" EntitySet="BlogEntries" />
       <End Role="BlogComment" EntitySet="BlogComments" />
     </AssociationSet>
+    <EntitySet Name="Tasks" EntityType="Ebalit_WebFormsModel.Task" />
+    <EntitySet Name="TaskCategories" EntityType="Ebalit_WebFormsModel.TaskCategory" />
+    <AssociationSet Name="FK_Task_ToTaskCategory" Association="Ebalit_WebFormsModel.FK_Task_ToTaskCategory">
+      <End Role="TaskCategory" EntitySet="TaskCategories" />
+      <End Role="Task" EntitySet="Tasks" />
+    </AssociationSet>
+    <EntitySet Name="TaskComments" EntityType="Ebalit_WebFormsModel.TaskComment" />
+    <AssociationSet Name="FK_TaskComment_ToTask" Association="Ebalit_WebFormsModel.FK_TaskComment_ToTask">
+      <End Role="Task" EntitySet="Tasks" />
+      <End Role="TaskComment" EntitySet="TaskComments" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="User">
     <Key>
@@ -121,6 +132,71 @@
       </Principal>
       <Dependent Role="BlogComment">
         <PropertyRef Name="FK_BlogEntry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Subject" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DueDate" Precision="3" />
+    <Property Type="Int32" Name="FK_TaskCategory" />
+    <Property Type="String" Name="State" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Priority" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TaskCategory" Relationship="Ebalit_WebFormsModel.FK_Task_ToTaskCategory" FromRole="Task" ToRole="TaskCategory" />
+    <NavigationProperty Name="TaskComments" Relationship="Ebalit_WebFormsModel.FK_TaskComment_ToTask" FromRole="Task" ToRole="TaskComment" />
+    <Property Type="String" Name="ClosingType" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="ChangedOn" Precision="3" />
+    <Property Type="String" Name="ChangedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TaskCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="TaskCategory1" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Tasks" Relationship="Ebalit_WebFormsModel.FK_Task_ToTaskCategory" FromRole="TaskCategory" ToRole="Task" />
+  </EntityType>
+  <Association Name="FK_Task_ToTaskCategory">
+    <End Type="Ebalit_WebFormsModel.TaskCategory" Role="TaskCategory" Multiplicity="0..1" />
+    <End Type="Ebalit_WebFormsModel.Task" Role="Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="FK_TaskCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TaskComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="FK_Task" Nullable="false" />
+    <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="ChangedOn" Precision="3" />
+    <Property Type="String" Name="ChangedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Task" Relationship="Ebalit_WebFormsModel.FK_TaskComment_ToTask" FromRole="TaskComment" ToRole="Task" />
+  </EntityType>
+  <Association Name="FK_TaskComment_ToTask">
+    <End Type="Ebalit_WebFormsModel.Task" Role="Task" Multiplicity="1" />
+    <End Type="Ebalit_WebFormsModel.TaskComment" Role="TaskComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskComment">
+        <PropertyRef Name="FK_Task" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -10,33 +10,33 @@
 namespace EbalitWebForms.GUI {
     
     
-    public partial class WebForm4 {
+    public partial class WebForm11 {
         
         /// <summary>
-        /// lnkTaskCategories control.
+        /// odsTaskCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkTaskCategories;
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsTaskCategory;
         
         /// <summary>
-        /// lnkCreateTask control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkCreateTask;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// lnkTaskList control.
+        /// lvwTaskCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkTaskList;
+        protected global::System.Web.UI.WebControls.ListView lvwTaskCategory;
     }
 }

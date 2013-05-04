@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Ebalit_WebFormsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+<Schema Namespace="Ebalit_WebFormsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="Ebalit_WebFormsModelStoreContainer">
     <EntitySet Name="BlogCategory" EntityType="Ebalit_WebFormsModel.Store.BlogCategory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BlogComment" EntityType="Ebalit_WebFormsModel.Store.BlogComment" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BlogEntry" EntityType="Ebalit_WebFormsModel.Store.BlogEntry" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BlogTopic" EntityType="Ebalit_WebFormsModel.Store.BlogTopic" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Task" EntityType="Ebalit_WebFormsModel.Store.Task" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TaskCategory" EntityType="Ebalit_WebFormsModel.Store.TaskCategory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TaskComment" EntityType="Ebalit_WebFormsModel.Store.TaskComment" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="User" EntityType="Ebalit_WebFormsModel.Store.User" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_BlogCategory_BlogTopic" Association="Ebalit_WebFormsModel.Store.FK_BlogCategory_BlogTopic">
       <End Role="BlogTopic" EntitySet="BlogTopic" />
@@ -13,6 +16,14 @@
     <AssociationSet Name="FK_BlogComment_ToBlogEntry" Association="Ebalit_WebFormsModel.Store.FK_BlogComment_ToBlogEntry">
       <End Role="BlogEntry" EntitySet="BlogEntry" />
       <End Role="BlogComment" EntitySet="BlogComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_ToTaskCategory" Association="Ebalit_WebFormsModel.Store.FK_Task_ToTaskCategory">
+      <End Role="TaskCategory" EntitySet="TaskCategory" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskComment_ToTask" Association="Ebalit_WebFormsModel.Store.FK_TaskComment_ToTask">
+      <End Role="Task" EntitySet="Task" />
+      <End Role="TaskComment" EntitySet="TaskComment" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="BlogCategory">
@@ -52,6 +63,43 @@
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Topic" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="PageName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Subject" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="FK_TaskCategory" Type="int" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="Priority" Type="varchar" MaxLength="50" />
+    <Property Name="ClosingType" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="ChangedOn" Type="datetime" />
+    <Property Name="ChangedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TaskCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TaskCategory" Type="varchar" MaxLength="255" />
+    <Property Name="Description" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="TaskComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FK_Task" Type="int" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChangedOn" Type="datetime" />
+    <Property Name="ChangedBy" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -101,6 +149,30 @@
       </Principal>
       <Dependent Role="BlogComment">
         <PropertyRef Name="FK_BlogEntry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_ToTaskCategory">
+    <End Role="TaskCategory" Type="Ebalit_WebFormsModel.Store.TaskCategory" Multiplicity="0..1" />
+    <End Role="Task" Type="Ebalit_WebFormsModel.Store.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="FK_TaskCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskComment_ToTask">
+    <End Role="Task" Type="Ebalit_WebFormsModel.Store.Task" Multiplicity="1" />
+    <End Role="TaskComment" Type="Ebalit_WebFormsModel.Store.TaskComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskComment">
+        <PropertyRef Name="FK_Task" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
