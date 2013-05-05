@@ -21,6 +21,13 @@ namespace EbalitWebForms.BusinessLogicLayer
             return taskCategory.Id;
         }
 
+        public TaskCategory GetTaskCategoryById(int taskCategoryID)
+        {
+            return (from cc in base.EbalitDBContext.TaskCategories
+                    where cc.Id == taskCategoryID
+                    select cc).FirstOrDefault();
+        }
+
         public void Update(TaskCategory taskCategory)
         {
             var originalRecord = base.EbalitDBContext.TaskCategories.Find(taskCategory.Id);

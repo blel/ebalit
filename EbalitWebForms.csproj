@@ -119,6 +119,8 @@
     <Compile Include="BusinessLogicLayer\EbalitMembershipProvider.cs" />
     <Compile Include="BusinessLogicLayer\TaskBLL.cs" />
     <Compile Include="BusinessLogicLayer\TaskCategoryBLL.cs" />
+    <Compile Include="BusinessLogicLayer\TaskComments.cs" />
+    <Compile Include="BusinessLogicLayer\TaskSearchDTO.cs" />
     <Compile Include="BusinessLogicLayer\UserBLL.cs" />
     <Compile Include="DataLayer\BlogCategory.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
@@ -161,6 +163,7 @@
     <Compile Include="DataLayer\TaskComment.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GUI\GUIHelper.cs" />
     <Compile Include="GUI\Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

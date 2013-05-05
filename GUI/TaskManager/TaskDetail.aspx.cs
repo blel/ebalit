@@ -13,7 +13,15 @@ namespace EbalitWebForms.GUI.TaskManager
         {
             if (!IsPostBack)
             {
-                this.dtvTask.ChangeMode(DetailsViewMode.Insert);
+                if (Request.QueryString["Id"] != null)
+                {
+                    this.dtvTask.ChangeMode(DetailsViewMode.Edit);
+                }
+                else
+                {
+
+                    this.dtvTask.ChangeMode(DetailsViewMode.Insert);
+                }
                 this.dtvTask.FindControl("txtSubject").Focus();
                 InsertEmptyItem("ddlTaskCategory");
 
@@ -31,7 +39,7 @@ namespace EbalitWebForms.GUI.TaskManager
         {
 
 
-    
+
         }
 
 
@@ -45,7 +53,27 @@ namespace EbalitWebForms.GUI.TaskManager
             }
         }
 
+        protected void dtvTask_ItemInserting(object sender, DetailsViewInsertEventArgs e)
+        {
+            if (e.Values["DueDate"] != null)
+                e.Values["DueDate"] = GUIHelper.GetUSDate(e.Values["DueDate"].ToString());
+        }
+
+        protected void dtvTask_ItemUpdating(object sender, DetailsViewUpdateEventArgs e)
+        {
+            if (e.NewValues["DueDate"] != null)
+                e.NewValues["DueDate"] = GUIHelper.GetUSDate(e.NewValues["DueDate"].ToString());
+        }
+
+        protected void odsTasks_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        {
+            if (Request.QueryString["Id"] != null)
+            {
+                e.InputParameters["Id"] = Request.QueryString["Id"];
+            }
+        }
+
     }
 
-    
+
 }

@@ -3,7 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
-    <asp:ObjectDataSource ID="odsTasks" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.Task" DeleteMethod="DeleteTask" InsertMethod="CreateTask" SelectMethod="GetTasks" TypeName="EbalitWebForms.BusinessLogicLayer.TaskBLL" UpdateMethod="UpdateTask"></asp:ObjectDataSource>
+    <asp:ScriptManager ID="ScriptManager" runat="server" EnableScriptGlobalization="true" EnableScriptLocalization="true"></asp:ScriptManager>
+    <asp:ObjectDataSource ID="odsTasks" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.Task" DeleteMethod="DeleteTask" InsertMethod="CreateTask" SelectMethod="GetTaskById" TypeName="EbalitWebForms.BusinessLogicLayer.TaskBLL" UpdateMethod="UpdateTask" OnSelecting="odsTasks_Selecting">
+        <SelectParameters>
+            <asp:Parameter Name="id" Type="Int32" />
+        </SelectParameters>
+    </asp:ObjectDataSource>
     <asp:XmlDataSource ID="xdsTaskStatus" runat="server" DataFile="~/Resources/MasterData.xml" XPath="/MasterData/DataDictionary[@Name='TaskStatus']/DictionaryItem" OnDataBinding="xdsTaskStatus_DataBinding"></asp:XmlDataSource>
     <asp:XmlDataSource ID="xdsTaskPriority" runat="server" DataFile="~/Resources/MasterData.xml" XPath="/MasterData/DataDictionary[@Name='TaskPriority']/DictionaryItem"></asp:XmlDataSource>
     <asp:XmlDataSource ID="xdsTaskClosingType" runat="server" DataFile="~/Resources/MasterData.xml" XPath="/MasterData/DataDictionary[@Name='ClosingType']/DictionaryItem"></asp:XmlDataSource>
@@ -19,7 +24,7 @@
         </div>
         <div id="MainColumn">
 
-            <asp:DetailsView ID="dtvTask" runat="server" AutoGenerateRows="False" DataSourceID="odsTasks" Height="50px" Width="761px" CssClass="detailsview" DataKeyNames="Id">
+            <asp:DetailsView ID="dtvTask" runat="server" AutoGenerateRows="False" DataSourceID="odsTasks" Height="50px" Width="761px" CssClass="detailsview" DataKeyNames="Id" OnItemInserting="dtvTask_ItemInserting" OnItemUpdating="dtvTask_ItemUpdating">
                 <Fields>
                     <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" />
                     <asp:TemplateField HeaderText="Subject" SortExpression="Subject">
@@ -35,7 +40,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Content" SortExpression="Content">
                         <EditItemTemplate>
-                            <asp:TextBox ID="txtContent" Width="500" Height="300" runat="server" Text='<%# Bind("Content") %>'></asp:TextBox>
+                             <asp:TextBox ID="txtContent" TextMode="MultiLine" Width="500" Height="300" runat="server" Text='<%# Bind("Content") %>'></asp:TextBox>
                         </EditItemTemplate>
                         <InsertItemTemplate>
                             <asp:TextBox ID="txtContent" TextMode="MultiLine" Width="500" Height="300" runat="server" Text='<%# Bind("Content") %>'></asp:TextBox>
@@ -46,10 +51,12 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="DueDate" SortExpression="DueDate">
                         <EditItemTemplate>
-                            <asp:TextBox ID="txtDueDate" Width="200" runat="server" Text='<%# Bind("DueDate") %>'></asp:TextBox>
+                            <asp:TextBox ID="txtDueDate" Width="200" runat="server" Text='<%# Bind("DueDate", "{0:d}") %>'></asp:TextBox>
+                            <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDueDate"></ajaxToolkit:CalendarExtender>
                         </EditItemTemplate>
                         <InsertItemTemplate>
                             <asp:TextBox ID="txtDueDate" Width="200"  runat="server" Text='<%# Bind("DueDate") %>'></asp:TextBox>
+                             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtDueDate"></ajaxToolkit:CalendarExtender>
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="lblDueDate" runat="server" Text='<%# Bind("DueDate") %>'></asp:Label>

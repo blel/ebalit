@@ -14,10 +14,37 @@ namespace EbalitWebForms.BusinessLogicLayer
                     select cc).ToList();
         }
 
-        //public IList<Task> GetFilteredTasks(string filter)
-        //{
-        
-        //}
+        public IList<Task> GetFilteredTasks(TaskSearchDTO filter)
+        {
+            //Get items and apply date filter, since from and to date always contain valid values
+            var tasks = from cc in base.EbalitDBContext.Tasks.Include("TaskCategory")
+                            where cc.DueDate == null ||( cc.DueDate >= filter.DateFrom && cc.DueDate <= filter.DateTo)
+                            select cc;
+            //add Text filter
+            if (!string.IsNullOrWhiteSpace(filter.Text))
+                tasks = tasks.Where(cc => cc.Content.Contains(filter.Text) || cc.Subject.Contains( filter.Text));
+
+            //add Category filter
+            if (filter.TaskCategoryId > 0)
+                tasks = tasks.Where(cc => cc.FK_TaskCategory == filter.TaskCategoryId);
+
+            //add Task Status filter
+            if (!string.IsNullOrWhiteSpace(filter.TaskStatus))
+                tasks = tasks.Where(cc => cc.State == filter.TaskStatus);
+
+            //add Task Pirority filter
+            if (!string.IsNullOrWhiteSpace(filter.TaskPriority))
+                tasks = tasks.Where(cc => cc.Priority == filter.TaskPriority);
+
+            //add Task closing type filter
+            if (!string.IsNullOrWhiteSpace(filter.TaskClosingType))
+                tasks = tasks.Where(cc => cc.ClosingType == filter.TaskClosingType);
+
+            return tasks.ToList();
+
+
+
+        }
 
 
         public int CreateTask(Task task)
@@ -43,14 +70,14 @@ namespace EbalitWebForms.BusinessLogicLayer
             var taskToDelete = GetTaskById(task.Id);
             if (taskToDelete != null)
             {
-                base.EbalitDBContext.Tasks.Remove(task);
+                base.EbalitDBContext.Tasks.Remove(taskToDelete);
                 base.EbalitDBContext.SaveChanges();
             }
         }
 
         public Task GetTaskById(int id)
         {
-            return (from cc in base.EbalitDBContext.Tasks
+            return (from cc in base.EbalitDBContext.Tasks.Include("TaskCategory")
                     where cc.Id == id
                     select cc).FirstOrDefault();
         }

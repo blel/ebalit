@@ -71,22 +71,14 @@ namespace EbalitWebForms.GUI.ProtectedSites
 
         protected void DetailsView1_ItemInserting1(object sender, DetailsViewInsertEventArgs e)
         {
-            e.Values["PublishedOn"] = GetUSDate(e.Values["PublishedOn"].ToString());
+            e.Values["PublishedOn"] = GUIHelper.GetUSDate(e.Values["PublishedOn"].ToString());
         }
 
-        private string GetUSDate(string anyDate)
-        {
-            DateTime currentDate = DateTime.MinValue;
-            if (!string.IsNullOrEmpty(anyDate) && DateTime.TryParse(anyDate, out currentDate))
-            {
-                return currentDate.ToString(new CultureInfo("en-US"));
-            }
-            return string.Empty;
-        }
+
 
         protected void DetailsView1_ItemUpdating(object sender, DetailsViewUpdateEventArgs e)
         {
-            e.NewValues["PublishedOn"] = GetUSDate(e.NewValues["PublishedOn"].ToString());
+            e.NewValues["PublishedOn"] = GUIHelper.GetUSDate(e.NewValues["PublishedOn"].ToString());
         }
 
 
