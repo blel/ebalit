@@ -31,6 +31,7 @@ namespace EbalitWebForms.BusinessLogicLayer
             if (commentToRemove!= null)
             {
                 base.EbalitDBContext.TaskComments.Remove(commentToRemove);
+                base.EbalitDBContext.SaveChanges();
             }
         }
 

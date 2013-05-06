@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Diagnostics;
+using System.Web.Security;
 
 namespace EbalitWebForms.GUI.TaskManager
 {
@@ -101,24 +102,32 @@ namespace EbalitWebForms.GUI.TaskManager
         {
             Response.Redirect(string.Format("~/GUI/TaskManager/TaskDetail.aspx?Id={0}", e.CommandArgument));
         }
-        public void test()
-        {
-            this.lvwTaskComments.DataBind();
-        }
 
+        /// <summary>
+        /// Click on the Comments button updates the Comments datasource based on the id clicked and
+        /// saves the id in the hidden field.
+        /// The id is set as argument for the select method in the comments datasource.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnComments_Command(object sender, CommandEventArgs e)
         {
             this.hdfSelectedTaskId.Value = e.CommandArgument.ToString();
             this.lvwTaskComments.DataBind();
 
-
+            //FindControl somehow was not working, so the recursive find was implemented
             var mpe = RecursiveFindControl(this.lvwTasks, "ModalPopupExtender1");
             if (mpe!= null)
 
                 ((AjaxControlToolkit.ModalPopupExtender)mpe).Show();
-            
         }
 
+        /// <summary>
+        /// Searches for a control recursively
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="controlName"></param>
+        /// <returns></returns>
         private Control RecursiveFindControl(Control control, string controlName)
         {
             Debug.WriteLine(control.ID);
@@ -138,9 +147,23 @@ namespace EbalitWebForms.GUI.TaskManager
             
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void lvwTaskComments_ItemInserting(object sender, ListViewInsertEventArgs e)
         {
             e.Values["FK_Task"] = hdfSelectedTaskId.Value;
+            e.Values["CreatedOn"] = DateTime.Now;
+            e.Values["CreatedBy"] = Membership.GetUser()!=null?Membership.GetUser().ToString():"anonymous";
+        }
+
+        protected void lvwTaskComments_ItemUpdating(object sender, ListViewUpdateEventArgs e)
+        {
+            e.NewValues["FK_Task"] = hdfSelectedTaskId.Value;
+            e.NewValues["ChangedOn"] = DateTime.Now;
+            e.NewValues["ChangedBy"] = Membership.GetUser()!= null ? Membership.GetUser().ToString() : "anonymous";
         }
 
 
