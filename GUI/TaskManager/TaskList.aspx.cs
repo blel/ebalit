@@ -15,15 +15,12 @@ namespace EbalitWebForms.GUI.TaskManager
         {
             if (!IsPostBack)
             {
+                this.ddlTaskStatus.SelectedIndex = 1;
     
             }
         }
 
-        protected void ddlTaskCategory_DataBound(object sender, EventArgs e)
-        {
-            ddlTaskCategory.Items.Insert(0, new ListItem(string.Empty, string.Empty));
-            ddlTaskCategory.SelectedIndex = 0;
-        }
+
 
         protected void lnkFind_Command(object sender, CommandEventArgs e)
         {
@@ -59,40 +56,21 @@ namespace EbalitWebForms.GUI.TaskManager
             this.ddlTaskStatus.SelectedIndex = 0;
         }
 
-        protected void lvwTasks_DataBound(object sender, EventArgs e)
+        protected void lnkCreate_Command(object sender, CommandEventArgs e)
         {
-            if (this.lvwTasks.EditItem != null)
-            {
-                DropDownList taskCategory = (DropDownList)this.lvwTasks.EditItem.FindControl("ddlTaskCategory");
-                if (taskCategory != null)
-                {
-                    taskCategory.Items.Insert(0, new ListItem(string.Empty, string.Empty));
-                    int TaskId = lvwTasks.EditItem.DataItemIndex;
-                    BusinessLogicLayer.TaskBLL taskBLL = new BusinessLogicLayer.TaskBLL();
-                    
-                    DataLayer.Task task = taskBLL.GetTaskById(TaskId);
-                    if (task.FK_TaskCategory != null && task.FK_TaskCategory != 0)
-                        taskCategory.SelectedValue = Convert.ToString(task.FK_TaskCategory);
-                }
-            }
+            Response.Redirect("/GUI/TaskManager/TaskDetail.aspx");
         }
 
+        /// <summary>
+        /// To cope with the us date bug.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void lvwTasks_ItemUpdating(object sender, ListViewUpdateEventArgs e)
         {
-            //to cope with unbound ddlTaskCategory 
-            DropDownList ddlTaskCategory = (DropDownList)this.lvwTasks.EditItem.FindControl("ddlTaskCategory");
-            if (ddlTaskCategory != null)
-            {
-                if (!string.IsNullOrWhiteSpace(ddlTaskCategory.SelectedValue))
-                {
-                    e.NewValues["FK_TaskCategory"] = ddlTaskCategory.SelectedValue;
-                }
-            }
-            //to workaround us date bug
-            e.NewValues["DueDate"] = GUIHelper.GetUSDate(e.NewValues["DueDate"].ToString());
+            if (e.NewValues["DueDate"]!=null)
+                e.NewValues["DueDate"] = GUIHelper.GetUSDate(e.NewValues["DueDate"].ToString());
         }
-
-
 
         protected void btnDetails_Command(object sender, CommandEventArgs e)
         {

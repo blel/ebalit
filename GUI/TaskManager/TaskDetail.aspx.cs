@@ -66,5 +66,16 @@ namespace EbalitWebForms.GUI.TaskManager
 
         }
 
+        protected void dtvTask_ModeChanging(object sender, DetailsViewModeEventArgs e)
+        {
+            if (e.CancelingEdit)
+            {
+                e.Cancel = true;
+                Response.Redirect("/GUI/TaskManager/TaskList.aspx");
+            }
+        }
+
+  
+
     }
 }

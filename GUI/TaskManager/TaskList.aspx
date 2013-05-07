@@ -35,7 +35,7 @@
                         <asp:Label ID="Label1" runat="server" Text="Text"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell ColumnSpan="3">
-                        <asp:TextBox ID="txtFreeText" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtFreeText" Width="285" runat="server"></asp:TextBox>
                     </asp:TableCell>
 
                     <asp:TableCell>
@@ -61,14 +61,16 @@
                         <asp:Label ID="Label5" runat="server" Text="Task Category"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:DropDownList ID="ddlTaskCategory" runat="server" DataSourceID="odsTaskCategories" DataTextField="TaskCategory1" DataValueField="Id" OnDataBound="ddlTaskCategory_DataBound"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlTaskCategory" Width="100" runat="server" DataSourceID="odsTaskCategories" DataTextField="TaskCategory1" DataValueField="Id" AppendDataBoundItems="true">
+                            <asp:ListItem Text="" Value=""></asp:ListItem>
+                        </asp:DropDownList>
                     </asp:TableCell>
 
                     <asp:TableCell>
                         <asp:Label ID="Label6" runat="server" Text="Task Status"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:DropDownList ID="ddlTaskStatus" runat="server" DataSourceID="xdsTaskStatus" DataTextField="Value" DataValueField="Value"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlTaskStatus" Width="100" runat="server" DataSourceID="xdsTaskStatus" DataTextField="Value" DataValueField="Value"></asp:DropDownList>
                     </asp:TableCell>
 
                     <asp:TableCell>
@@ -88,17 +90,18 @@
                 <asp:TableFooterRow>
                     <asp:TableCell>
                         <asp:LinkButton ID="lnkFind" runat="server" CausesValidation="false" OnCommand="lnkFind_Command" CssClass="CommandButton">Find</asp:LinkButton>&nbsp;
-                        <asp:LinkButton ID="lnkClear" runat="server" CausesValidation="false" OnCommand="lnkClear_Command" CssClass="CommandButton">Clear</asp:LinkButton>
+                        <asp:LinkButton ID="lnkClear" runat="server" CausesValidation="false" OnCommand="lnkClear_Command" CssClass="CommandButton">Clear</asp:LinkButton>&nbsp;
+                        <asp:LinkButton ID="lnkCreate" runat="server" CausesValidation="false" OnCommand="lnkCreate_Command" CssClass="CommandButton">Create</asp:LinkButton>
                     </asp:TableCell>
                 </asp:TableFooterRow>
             </asp:Table>
         </div>
-        <asp:ListView ID="lvwTasks" runat="server" DataSourceID="odsTasks" OnDataBound="lvwTasks_DataBound" OnItemUpdating="lvwTasks_ItemUpdating" DataKeyNames="Id">
+        <asp:ListView ID="lvwTasks" runat="server" DataSourceID="odsTasks" OnItemUpdating="lvwTasks_ItemUpdating" DataKeyNames="Id">
             <AlternatingItemTemplate>
                 <tr style="background-color: #FFF8DC;">
                     <td>
-                        <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
-                        <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
+                        <asp:LinkButton ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CssClass="CommandButton" />
+                        <asp:LinkButton ID="EditButton" runat="server" CommandName="Edit" Text="Edit" CssClass="CommandButton" />
                         <asp:LinkButton ID="btnDetails" runat="server" OnCommand="btnDetails_Command" CommandArgument='<%# Eval("Id") %>' CssClass="CommandButton">Details</asp:LinkButton>
                         <asp:LinkButton ID="btnComments" runat="server" CssClass="CommandButton" CommandArgument='<%# Eval("Id") %>' OnCommand="btnComments_Command">Comments</asp:LinkButton>
                         <asp:Button ID="btnDummyBtn" runat="server" Text="Button" CssClass="hidden" />
@@ -130,8 +133,8 @@
             <EditItemTemplate>
                 <tr style="background-color: #008A8C; color: #FFFFFF;">
                     <td>
-                        <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="Update" />
-                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" />
+                        <asp:LinkButton ID="UpdateButton" runat="server" CommandName="Update" Text="Update" CssClass="CommandButton"/>
+                        <asp:LinkButton ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" CssClass="CommandButton"/>&nbsp;
 
                     </td>
 
@@ -144,7 +147,9 @@
                         <ajaxToolkit:CalendarExtender ID="CalendarExtender3" runat="server" TargetControlID="DueDateTextBox"></ajaxToolkit:CalendarExtender>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlTaskCategory" DataSourceID="odsTaskCategories" DataTextField="TaskCategory1" DataValueField="Id" runat="server"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlTaskCategory" DataSourceID="odsTaskCategories" DataTextField="TaskCategory1" DataValueField="Id" runat="server" AppendDataBoundItems="true" SelectedValue='<%# Bind("FK_TaskCategory") %>'>
+                            <asp:ListItem Text="" Value=""></asp:ListItem>
+                        </asp:DropDownList>
                     </td>
                     <td>
                         <asp:DropDownList ID="ddlTaskStatus" DataSourceID="xdsTaskStatus" DataTextField="Value" DataValueField="Value" runat="server" SelectedValue='<%# Bind("State") %>'></asp:DropDownList>
@@ -168,10 +173,10 @@
             <ItemTemplate>
                 <tr style="background-color: #DCDCDC; color: #000000;">
                     <td>
-                        <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
-                        <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
+                        <asp:LinkButton ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CssClass="CommandButton"/>
+                        <asp:LinkButton ID="EditButton" runat="server" CommandName="Edit" Text="Edit" CssClass="CommandButton" />
                         <asp:LinkButton ID="btnDetails" runat="server" OnCommand="btnDetails_Command" CssClass="CommandButton" CommandArgument='<%# Eval("Id") %>'>Details</asp:LinkButton>
-                        <asp:LinkButton ID="btnComments" runat="server" CssClass="CommandButton" CommandArgument='<%# Eval("Id") %>' OnCommand="btnComments_Command">Comments</asp:LinkButton>
+                        <asp:LinkButton ID="btnComments" runat="server" CssClass="CommandButton" CommandArgument='<%# Eval("Id") %>' OnCommand="btnComments_Command">Comments</asp:LinkButton>&nbsp;
                         <asp:Button ID="btnDummyBtn" runat="server" Text="Button" CssClass="hidden" />
                         <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="CommentsPopup" TargetControlID="btnDummyBtn"></ajaxToolkit:ModalPopupExtender>
 
@@ -202,15 +207,15 @@
                 <table id="Table2" runat="server">
                     <tr id="Tr1" runat="server">
                         <td id="Td1" runat="server">
-                            <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF; border-collapse: collapse; border-color: #999999; border-style: none; border-width: 1px; font-family: Verdana, Arial, Helvetica, sans-serif;">
-                                <tr id="Tr2" runat="server" style="background-color: #DCDCDC; color: #000000;">
+                            <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF; border-collapse: collapse; border-color: #999999; border-style: none; border-width: 1px; font-family: Arial; ">
+                                <tr id="Tr2" runat="server" style="background-color: #DCDCDC; color: #000000; ">
                                     <th id="Th1" runat="server"></th>
-                                    <th id="Th2" runat="server">Subject</th>
-                                    <th id="Th3" runat="server">DueDate</th>
-                                    <th id="Th4" runat="server">Task Category</th>
-                                    <th id="Th5" runat="server">State</th>
-                                    <th id="Th6" runat="server">Priority</th>
-                                    <th id="Th7" runat="server">ClosingType</th>
+                                    <th id="Th2" runat="server">&nbsp;Subject&nbsp;</th>
+                                    <th id="Th3" runat="server">&nbsp;DueDate&nbsp;</th>
+                                    <th id="Th4" runat="server">&nbsp;Task Category&nbsp;</th>
+                                    <th id="Th5" runat="server">&nbsp;State&nbsp;</th>
+                                    <th id="Th6" runat="server">&nbsp;Priority&nbsp;</th>
+                                    <th id="Th7" runat="server">&nbsp;ClosingType&nbsp;</th>
 
                                 </tr>
                                 <tr id="itemPlaceholder" runat="server">
@@ -235,7 +240,7 @@
                 <tr style="background-color: #008A8C; font-weight: bold; color: #FFFFFF;">
                     <td>
                         <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
-                        <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
+                        <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />&nbsp;
                     </td>
                     <td>
                         <asp:Label ID="SubjectLabel" runat="server" Text='<%# Eval("Subject") %>' />
@@ -264,14 +269,17 @@
     <div id="CommentsPopup" class="Popup">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:ListView ID="lvwTaskComments" runat="server" DataSourceID="odsTaskComments" InsertItemPosition="LastItem" DataKeyNames="Id" OnItemInserting="lvwTaskComments_ItemInserting" OnItemUpdating="lvwTaskComments_ItemUpdating">
+                <asp:ListView ID="lvwTaskComments" runat="server" DataSourceID="odsTaskComments"  InsertItemPosition="LastItem" DataKeyNames="Id" OnItemInserting="lvwTaskComments_ItemInserting" OnItemUpdating="lvwTaskComments_ItemUpdating" >
                     <AlternatingItemTemplate>
                         <span ><span class="description"> Comment by <%# Eval("CreatedBy") %> posted on <%# Eval("CreatedOn") %></span>
+                            <br>
                             </br>
-                <asp:Label ID="CommentLabel" Width="500" Height="100" runat="server" Text='<%# Eval("Comment") %>' />
+                            <asp:TextBox ID="txtComment" Width="500" Height="100" TextMode="MultiLine" runat="server" Enabled="false" Text='<%# Eval("Comment") %>'></asp:TextBox>
+           
+                            <br>
                             </br>
                             <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
+                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />&nbsp;
                             <br />
                             <br />
                         </span>
@@ -296,18 +304,19 @@
                             <asp:TextBox ID="CommentTextBox" Width="500" Height="100" TextMode="MultiLine" runat="server" Text='<%# Bind("Comment") %>' />
                             <br />
                             <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" />
-                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Clear" />
+                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Clear" />&nbsp;
                             <br />
                             <br />
                         </span>
                     </InsertItemTemplate>
                     <ItemTemplate>
                         <span ><span class="description"> Comment by <%# Eval("CreatedBy") %> posted on <%# Eval("CreatedOn") %></span>
+                            <br>
                             </br>
-                <asp:Label ID="CommentLabel"  Width="500" Height="100" runat="server" Text='<%# Eval("Comment") %>' />
+                <asp:TextBox ID="txtComment" Width="500" Height="100" TextMode="MultiLine" runat="server" Enabled="false" Text='<%# Eval("Comment") %>'></asp:TextBox>
                             <br />
                             <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
+                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />&nbsp;
                             <br />
                             <br />
                         </span>
@@ -317,7 +326,7 @@
                             <span runat="server" id="itemPlaceholder" />
                         </div>
                         <div style="">
-                            <asp:DataPager ID="DataPager1" runat="server">
+                            <asp:DataPager ID="DataPager1" runat="server" PageSize="2">
                                 <Fields>
                                     <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowLastPageButton="True" />
                                 </Fields>
@@ -328,7 +337,7 @@
                         <span style="">Comment:
                 <asp:Label ID="CommentLabel" runat="server" Text='<%# Eval("Comment") %>' />
                             <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
+                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />&nbsp;
                             <br />
                             <br />
                         </span>

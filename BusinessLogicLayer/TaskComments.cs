@@ -39,10 +39,11 @@ namespace EbalitWebForms.BusinessLogicLayer
         {
             var task = (from cc in base.EbalitDBContext.Tasks.Include("TaskComments")
                     where cc.Id == taskID
+                    
                     select cc).FirstOrDefault();
             if (task != null)
             {
-                return task.TaskComments.ToList();
+                return task.TaskComments.OrderByDescending(cc=>cc.CreatedOn).ToList();
             }
             else
             {

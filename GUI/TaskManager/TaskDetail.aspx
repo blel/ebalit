@@ -24,7 +24,7 @@
         </div>
         <div id="MainColumn">
 
-            <asp:DetailsView ID="dtvTask" runat="server" AutoGenerateRows="False" DataSourceID="odsTasks" Height="50px" Width="761px" CssClass="detailsview" DataKeyNames="Id" OnItemInserting="dtvTask_ItemInserting" OnItemUpdating="dtvTask_ItemUpdating" OnDataBinding="dtvTask_DataBinding" OnItemInserted="dtvTask_ItemInserted" OnItemUpdated="dtvTask_ItemUpdated">
+            <asp:DetailsView ID="dtvTask" runat="server" AutoGenerateRows="False" DataSourceID="odsTasks" Height="50px" Width="761px" CssClass="detailsview" DataKeyNames="Id" OnItemInserting="dtvTask_ItemInserting" OnItemUpdating="dtvTask_ItemUpdating" OnDataBinding="dtvTask_DataBinding" OnItemInserted="dtvTask_ItemInserted" OnItemUpdated="dtvTask_ItemUpdated" OnModeChanging="dtvTask_ModeChanging">
                 <Fields>
                     <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" />
                     <asp:TemplateField HeaderText="Subject" SortExpression="Subject">
@@ -119,7 +119,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:CommandField ShowInsertButton="True" ShowDeleteButton="True" ShowEditButton="True" />
+                    <asp:CommandField ShowInsertButton="True" ShowDeleteButton="True" ShowEditButton="True" ControlStyle-CssClass="CommandButton" />
 
                 </Fields>
             </asp:DetailsView>
