@@ -16,7 +16,9 @@
         <div id="MainColumn">
             <asp:LinkButton ID="lnkTaskCategories" OnCommand="lnkTaskCategories_Command" CausesValidation="false" runat="server">Manage Task Categories</asp:LinkButton>  
             <br />
-            <asp:LinkButton ID="lnkCreateTask" runat="server" OnCommand="lnkCreateTask_Command">Create Task</asp:LinkButton>
+            <asp:LinkButton ID="lnkCreateTask" CausesValidation="false" runat="server" OnCommand="lnkCreateTask_Command">Create Task</asp:LinkButton>
+            <br />
+            <asp:LinkButton ID="lnkTaskList" CausesValidation="false" runat="server" OnCommand="lnkTaskList_Command">Task List</asp:LinkButton>
         </div>
         <div id="RightColumn">
        

@@ -9,10 +9,10 @@
             <asp:Parameter Name="id" Type="Int32" />
         </SelectParameters>
     </asp:ObjectDataSource>
-    <asp:XmlDataSource ID="xdsTaskStatus" runat="server" DataFile="~/Resources/MasterData.xml" XPath="/MasterData/DataDictionary[@Name='TaskStatus']/DictionaryItem" OnDataBinding="xdsTaskStatus_DataBinding"></asp:XmlDataSource>
+    <asp:XmlDataSource ID="xdsTaskStatus" runat="server" DataFile="~/Resources/MasterData.xml" XPath="/MasterData/DataDictionary[@Name='TaskStatus']/DictionaryItem"></asp:XmlDataSource>
     <asp:XmlDataSource ID="xdsTaskPriority" runat="server" DataFile="~/Resources/MasterData.xml" XPath="/MasterData/DataDictionary[@Name='TaskPriority']/DictionaryItem"></asp:XmlDataSource>
     <asp:XmlDataSource ID="xdsTaskClosingType" runat="server" DataFile="~/Resources/MasterData.xml" XPath="/MasterData/DataDictionary[@Name='ClosingType']/DictionaryItem"></asp:XmlDataSource>
-    <asp:ObjectDataSource ID="odsTaskCategories" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.TaskCategory" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetTaskCategories" TypeName="EbalitWebForms.BusinessLogicLayer.TaskCategoryBLL" UpdateMethod="Update" OnSelected="odsTaskCategories_Selected"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsTaskCategories" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.TaskCategory" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetTaskCategories" TypeName="EbalitWebForms.BusinessLogicLayer.TaskCategoryBLL" UpdateMethod="Update"></asp:ObjectDataSource>
     <div id="TitleContainer">
         <div id="Title">
             >> Task Details
@@ -24,7 +24,7 @@
         </div>
         <div id="MainColumn">
 
-            <asp:DetailsView ID="dtvTask" runat="server" AutoGenerateRows="False" DataSourceID="odsTasks" Height="50px" Width="761px" CssClass="detailsview" DataKeyNames="Id" OnItemInserting="dtvTask_ItemInserting" OnItemUpdating="dtvTask_ItemUpdating">
+            <asp:DetailsView ID="dtvTask" runat="server" AutoGenerateRows="False" DataSourceID="odsTasks" Height="50px" Width="761px" CssClass="detailsview" DataKeyNames="Id" OnItemInserting="dtvTask_ItemInserting" OnItemUpdating="dtvTask_ItemUpdating" OnDataBinding="dtvTask_DataBinding" OnItemInserted="dtvTask_ItemInserted" OnItemUpdated="dtvTask_ItemUpdated">
                 <Fields>
                     <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" />
                     <asp:TemplateField HeaderText="Subject" SortExpression="Subject">
@@ -64,11 +64,13 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Task Category" SortExpression="FK_TaskCategory">
                         <EditItemTemplate>
-                            <asp:DropDownList ID="ddlTaskCategory" Width="200"  runat="server" DataSourceID="odsTaskCategories" DataTextField="TaskCategory1" DataValueField="Id" SelectedValue='<%#Bind("FK_TaskCategory") %>'>
+                            <asp:DropDownList ID="ddlTaskCategory" Width="200"  runat="server" DataSourceID="odsTaskCategories" DataTextField="TaskCategory1" DataValueField="Id" SelectedValue='<%#Bind("FK_TaskCategory") %>' AppendDataBoundItems="true">
+                                <asp:ListItem Text="--select an item--" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:DropDownList ID="ddlTaskCategory" Width="200"  runat="server" DataSourceID="odsTaskCategories" DataTextField="TaskCategory1" DataValueField="Id" SelectedValue='<%#Bind("FK_TaskCategory") %>'>
+                            <asp:DropDownList ID="ddlTaskCategory" Width="200"  runat="server" DataSourceID="odsTaskCategories" DataTextField="TaskCategory1" DataValueField="Id" SelectedValue='<%#Bind("FK_TaskCategory") %>' AppendDataBoundItems="true">
+                                <asp:ListItem Text="--select an item--" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </InsertItemTemplate>
                         <ItemTemplate>

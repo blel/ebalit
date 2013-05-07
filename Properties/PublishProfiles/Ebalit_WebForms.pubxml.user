@@ -24,7 +24,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2013 19:13:32</publishTime>
     </File>
     <File Include="bin/EbalitWebForms.dll">
-      <publishTime>05/03/2013 06:31:21</publishTime>
+      <publishTime>05/06/2013 07:07:55</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>02/23/2013 16:23:18</publishTime>
@@ -126,10 +126,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/04/2013 16:55:12</publishTime>
     </File>
     <File Include="GUI/TaskManager/TaskDetail.aspx">
-      <publishTime>05/04/2013 21:44:26</publishTime>
+      <publishTime>05/05/2013 16:43:00</publishTime>
+    </File>
+    <File Include="GUI/TaskManager/TaskList.aspx">
+      <publishTime>05/06/2013 07:07:55</publishTime>
     </File>
     <File Include="GUI/Tools.aspx">
-      <publishTime>05/04/2013 20:56:54</publishTime>
+      <publishTime>05/04/2013 22:28:41</publishTime>
     </File>
     <File Include="GUI/Varia.aspx">
       <publishTime>04/27/2013 22:46:07</publishTime>
@@ -168,7 +171,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2013 21:32:05</publishTime>
     </File>
     <File Include="Styles/Styles.css">
-      <publishTime>05/04/2013 21:18:51</publishTime>
+      <publishTime>05/06/2013 07:05:09</publishTime>
     </File>
     <File Include="Web.config">
       <publishTime>05/04/2013 21:56:44</publishTime>

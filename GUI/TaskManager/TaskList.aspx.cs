@@ -27,10 +27,7 @@ namespace EbalitWebForms.GUI.TaskManager
 
         protected void lnkFind_Command(object sender, CommandEventArgs e)
         {
-
-
-            this.lvwTasks.DataBind();
-            
+            this.lvwTasks.DataBind();            
         }
 
         protected void odsTasks_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
@@ -78,7 +75,6 @@ namespace EbalitWebForms.GUI.TaskManager
                         taskCategory.SelectedValue = Convert.ToString(task.FK_TaskCategory);
                 }
             }
-
         }
 
         protected void lvwTasks_ItemUpdating(object sender, ListViewUpdateEventArgs e)
@@ -165,8 +161,5 @@ namespace EbalitWebForms.GUI.TaskManager
             e.NewValues["ChangedOn"] = DateTime.Now;
             e.NewValues["ChangedBy"] = Membership.GetUser()!= null ? Membership.GetUser().ToString() : "anonymous";
         }
-
-
-    
   }
 }

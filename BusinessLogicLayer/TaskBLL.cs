@@ -80,6 +80,8 @@ namespace EbalitWebForms.BusinessLogicLayer
             return (from cc in base.EbalitDBContext.Tasks.Include("TaskCategory")
                     where cc.Id == id
                     select cc).FirstOrDefault();
+
+      
         }
 
     }

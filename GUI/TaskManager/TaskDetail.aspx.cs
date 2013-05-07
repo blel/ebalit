@@ -11,45 +11,23 @@ namespace EbalitWebForms.GUI.TaskManager
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
+                
                 if (Request.QueryString["Id"] != null)
                 {
                     this.dtvTask.ChangeMode(DetailsViewMode.Edit);
+
+
                 }
                 else
                 {
-
                     this.dtvTask.ChangeMode(DetailsViewMode.Insert);
                 }
+                
                 this.dtvTask.FindControl("txtSubject").Focus();
-                InsertEmptyItem("ddlTaskCategory");
-
-            }
-
-
-        }
-
-        protected void xdsTaskStatus_DataBinding(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void odsTaskCategories_Selected(object sender, ObjectDataSourceStatusEventArgs e)
-        {
-
-
-
-        }
-
-
-        private void InsertEmptyItem(string ddlName)
-        {
-            DropDownList ddlTaskCategory = (DropDownList)dtvTask.FindControl(ddlName);
-            if (ddlTaskCategory != null)
-            {
-                ddlTaskCategory.Items.Insert(0, new ListItem(string.Empty, string.Empty));
-                ddlTaskCategory.SelectedIndex = 0;
+                
             }
         }
 
@@ -73,7 +51,20 @@ namespace EbalitWebForms.GUI.TaskManager
             }
         }
 
+        protected void dtvTask_ItemInserted(object sender, DetailsViewInsertedEventArgs e)
+        {
+            Response.Redirect("~/GUI/TaskManager/TaskList.aspx");
+        }
+
+        protected void dtvTask_ItemUpdated(object sender, DetailsViewUpdatedEventArgs e)
+        {
+            Response.Redirect("~/GUI/TaskManager/TaskList.aspx");
+        }
+
+        protected void dtvTask_DataBinding(object sender, EventArgs e)
+        {
+
+        }
+
     }
-
-
 }

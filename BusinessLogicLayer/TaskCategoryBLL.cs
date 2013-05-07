@@ -10,8 +10,10 @@ namespace EbalitWebForms.BusinessLogicLayer
     {
         public IList<TaskCategory> GetTaskCategories()
         {
-            return (from cc in base.EbalitDBContext.TaskCategories
+            IList<TaskCategory> returnList = (from cc in base.EbalitDBContext.TaskCategories
                     select cc).ToList();
+
+            return returnList;
         }
 
         public int Create(TaskCategory taskCategory)
