@@ -1,15 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/GUI/Master.Master" AutoEventWireup="true" CodeBehind="TaskCategories.aspx.cs" Inherits="EbalitWebForms.GUI.WebForm11" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/GUI/ProtectedSites/ToolsMaster.Master" AutoEventWireup="true" CodeBehind="TaskCategories.aspx.cs" Inherits="EbalitWebForms.GUI.WebForm11" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ToolsContent" runat="server">
     <asp:ObjectDataSource ID="odsTaskCategory" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.TaskCategory" DeleteMethod="Delete" InsertMethod="Create" SelectMethod="GetTaskCategories" TypeName="EbalitWebForms.BusinessLogicLayer.TaskCategoryBLL" UpdateMethod="Update"></asp:ObjectDataSource>
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-        <div id="TitleContainer">
-        <div id="Title" class="pageHeader">
-            >>  Tools > Task Categories
-        </div>
-    </div>
+
     <div id="Container">
         <div id="LeftColumn">
         </div>

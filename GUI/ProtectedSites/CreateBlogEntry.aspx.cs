@@ -34,6 +34,7 @@ namespace EbalitWebForms.GUI.ProtectedSites
                 {
                     //go into insert mode
                     this.DetailsView1.ChangeMode(DetailsViewMode.Insert);
+                    ((TextBox)this.DetailsView1.FindControl("txtPublishedOn")).Text = DateTime.Now.ToShortDateString();
                 }
             }
             //if it is a postback, accept the standard behaviour of the details view control (just display the record)

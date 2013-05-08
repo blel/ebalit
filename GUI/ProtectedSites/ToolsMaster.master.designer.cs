@@ -7,36 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EbalitWebForms.GUI {
+namespace EbalitWebForms.GUI.ProtectedSites {
     
     
-    public partial class WebForm4 {
+    public partial class ToolsMaster {
         
         /// <summary>
-        /// lnkTaskCategories control.
+        /// Menu1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkTaskCategories;
+        protected global::System.Web.UI.WebControls.Menu Menu1;
         
         /// <summary>
-        /// lnkCreateTask control.
+        /// ToolsContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkCreateTask;
-        
-        /// <summary>
-        /// lnkTaskList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkTaskList;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ToolsContent;
     }
 }

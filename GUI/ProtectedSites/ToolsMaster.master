@@ -1,0 +1,34 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/GUI/Master.Master" AutoEventWireup="true" CodeBehind="ToolsMaster.master.cs" Inherits="EbalitWebForms.GUI.ProtectedSites.ToolsMaster" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
+    <div id="TitleContainer">
+        <div id="Title">
+            <div class="subMenu">
+                <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" StaticEnableDefaultPopOutImage="False" ForeColor="#003528">
+                    <DynamicHoverStyle BackColor="#CCCCCC" ForeColor="LightYellow" />
+                    <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                    <DynamicMenuStyle BackColor="#CCCCCC" />
+                    <DynamicSelectedStyle BackColor="#507CD1" />
+                    <StaticHoverStyle BackColor="#003528" ForeColor="LightYellow" />
+                    <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+
+                    <Items>
+                        <asp:MenuItem Text="TaskManager">
+                            <asp:MenuItem Text="Create Task" NavigateUrl="/GUI/TaskManager/TaskDetail.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Manage Tasks" NavigateUrl="/GUI/TaskManager/TaskList.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Task Categories" NavigateUrl="/GUI/TaskManager/TaskCategories.aspx"></asp:MenuItem>
+                        </asp:MenuItem>
+                    </Items>
+
+
+
+
+                </asp:Menu>
+            </div>
+        </div>
+    </div>
+    <asp:ContentPlaceHolder ID="ToolsContent" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>

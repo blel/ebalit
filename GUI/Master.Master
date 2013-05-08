@@ -35,7 +35,7 @@
                     <li><a href="/GUI/Index.aspx">Home</a></li>
                     <li><a href="/GUI/Music.aspx">Music</a></li>
                     <li><a href="/GUI/IT.aspx">IT</a></li>
-                    <li><a href="/GUI/Tools.aspx">Tools</a></li>
+                    <li><a href="/GUI/ProtectedSites/Tools.aspx">Tools</a></li>
                     <li><a href="/GUI/Varia.aspx">Varia</a></li>
                     <li><a href="/GUI/ProtectedSites/AdminIndex.aspx">Admin</a></li>
 

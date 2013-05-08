@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="AdminMaster.master" AutoEventWireup="true" CodeBehind="CreateBlogEntry.aspx.cs" Inherits="EbalitWebForms.GUI.ProtectedSites.WebForm1" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="AdminContent" ID="ThisContent">
-
+    <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="true" EnableScriptLocalization="true"></asp:ScriptManager>
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.BlogEntry" DeleteMethod="DeleteBlogEntry" InsertMethod="CreateBlogEntry" SelectMethod="GetBlogEntry" TypeName="EbalitWebForms.BusinessLogicLayer.BlogEntryDAL" UpdateMethod="UpdateBlogEntry" OnInserted="ObjectDataSource1_Inserted" OnSelecting="ObjectDataSource1_Selecting">
         <SelectParameters>
             <asp:Parameter DefaultValue="0" Name="Id" Type="Int32" />
@@ -68,11 +68,14 @@
 
                 <asp:TemplateField HeaderText="PublishedOn" SortExpression="PublishedOn">
                     <EditItemTemplate>
-                        
-                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("PublishedOn", "{0:dd.MM.yyyy}") %>'></asp:TextBox>
+
+                        <asp:TextBox ID="txtPublishedOn" runat="server" Text='<%# Bind("PublishedOn", "{0:dd.MM.yyyy}") %>'></asp:TextBox>
+                        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtPublishedOn"></ajaxToolkit:CalendarExtender>
                     </EditItemTemplate>
                     <InsertItemTemplate>
-                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("PublishedOn", "{0:dd.MM.yyyy}") %>'></asp:TextBox>
+                        <asp:TextBox ID="txtPublishedOn" runat="server" Text='<%# Bind("PublishedOn", "{0:dd.MM.yyyy}") %>'></asp:TextBox>
+                        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtPublishedOn"></ajaxToolkit:CalendarExtender>
+
                     </InsertItemTemplate>
                     <ItemTemplate>
                         <asp:Label ID="Label1" runat="server" Text='<%# Bind("PublishedOn", "{0:dd.MM.yyyy}") %>'></asp:Label>
@@ -81,7 +84,6 @@
                 <asp:CommandField ShowInsertButton="True" ShowDeleteButton="True" ShowEditButton="True" />
             </Fields>
             <HeaderTemplate>
-                
             </HeaderTemplate>
         </asp:DetailsView>
     </div>

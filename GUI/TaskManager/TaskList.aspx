@@ -1,8 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/GUI/Master.Master" AutoEventWireup="true" CodeBehind="TaskList.aspx.cs" Inherits="EbalitWebForms.GUI.TaskManager.TaskList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/GUI/ProtectedSites/ToolsMaster.Master" AutoEventWireup="true" CodeBehind="TaskList.aspx.cs" Inherits="EbalitWebForms.GUI.TaskManager.TaskList" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ToolsContent" runat="server">
     <asp:ScriptManager ID="ScriptManager" runat="server" EnableScriptGlobalization="true" EnableScriptLocalization="true"></asp:ScriptManager>
     <asp:ObjectDataSource ID="odsTasks" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.Task" DeleteMethod="DeleteTask" InsertMethod="CreateTask" SelectMethod="GetFilteredTasks" TypeName="EbalitWebForms.BusinessLogicLayer.TaskBLL" UpdateMethod="UpdateTask" OnSelecting="odsTasks_Selecting">
         <SelectParameters>
@@ -18,17 +17,11 @@
             <asp:ControlParameter ControlID="hdfSelectedTaskId" Name="taskID" PropertyName="Value" Type="Int32" />
         </SelectParameters>
     </asp:ObjectDataSource>
-
-
-
     <asp:HiddenField ID="hdfSelectedTaskId" runat="server" />
-    <div id="TitleContainer">
-        <div id="Title">
-            >> Task > Task List
-        </div>
-    </div>
+
     <div id="Container">
-        <div id="Filter">
+        
+        <div id="Filter" >
             <asp:Table ID="Table1" runat="server">
                 <asp:TableRow>
                     <asp:TableCell>
@@ -96,7 +89,7 @@
                 </asp:TableFooterRow>
             </asp:Table>
         </div>
-        <asp:ListView ID="lvwTasks" runat="server" DataSourceID="odsTasks" OnItemUpdating="lvwTasks_ItemUpdating" DataKeyNames="Id">
+        <asp:ListView ID="lvwTasks" runat="server" DataSourceID="odsTasks" OnItemUpdating="lvwTasks_ItemUpdating" DataKeyNames="Id" >
             <AlternatingItemTemplate>
                 <tr style="background-color: #FFF8DC;">
                     <td>
@@ -131,7 +124,7 @@
                 </tr>
             </AlternatingItemTemplate>
             <EditItemTemplate>
-                <tr style="background-color: #008A8C; color: #FFFFFF;">
+                <tr style="background-color: #003528; color: #FFFFFF;">
                     <td>
                         <asp:LinkButton ID="UpdateButton" runat="server" CommandName="Update" Text="Update" CssClass="CommandButton"/>
                         <asp:LinkButton ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" CssClass="CommandButton"/>&nbsp;
@@ -139,7 +132,7 @@
                     </td>
 
                     <td>
-                        <asp:TextBox ID="SubjectTextBox" runat="server" Text='<%# Bind("Subject") %>' />
+                        <asp:TextBox Width="400px" ID="SubjectTextBox" runat="server" Text='<%# Bind("Subject") %>' />
                     </td>
 
                     <td>
@@ -204,13 +197,13 @@
                 </tr>
             </ItemTemplate>
             <LayoutTemplate>
-                <table id="Table2" runat="server">
+                <table id="Table2" runat="server" style="width:100%;" >
                     <tr id="Tr1" runat="server">
                         <td id="Td1" runat="server">
-                            <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF; border-collapse: collapse; border-color: #999999; border-style: none; border-width: 1px; font-family: Arial; ">
+                            <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF; border-collapse: collapse; border-color: #999999; border-style: none; border-width: 1px; font-family: Arial;width:100%; ">
                                 <tr id="Tr2" runat="server" style="background-color: #DCDCDC; color: #000000; ">
                                     <th id="Th1" runat="server"></th>
-                                    <th id="Th2" runat="server">&nbsp;Subject&nbsp;</th>
+                                    <th id="Th2" runat="server" style="width:400px">&nbsp;Subject&nbsp;</th>
                                     <th id="Th3" runat="server">&nbsp;DueDate&nbsp;</th>
                                     <th id="Th4" runat="server">&nbsp;Task Category&nbsp;</th>
                                     <th id="Th5" runat="server">&nbsp;State&nbsp;</th>

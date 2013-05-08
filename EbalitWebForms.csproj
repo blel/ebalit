@@ -94,12 +94,13 @@
     <Content Include="GUI\TaskManager\TaskList.aspx" />
     <Content Include="GUI\VariaSearchResult.aspx" />
     <Content Include="GUI\AllSearchResult.aspx" />
-    <Content Include="GUI\TaskCategories.aspx" />
+    <Content Include="GUI\TaskManager\TaskCategories.aspx" />
     <Content Include="GUI\WebUserControls\Archive.ascx" />
     <Content Include="GUI\WebUserControls\BlogContentUserControl.ascx" />
     <Content Include="GUI\WebUserControls\CategoryBrowser.ascx" />
     <Content Include="GUI\WebUserControls\SearchUserControl.ascx" />
     <Content Include="Index.html" />
+    <Content Include="GUI\ProtectedSites\ToolsMaster.master" />
     <None Include="Scripts\jquery-2.0.0.intellisense.js" />
     <Content Include="Resources\MasterData.xml" />
     <Content Include="Scripts\jquery-2.0.0.js" />
@@ -111,7 +112,7 @@
     <Content Include="GUI\Index.aspx" />
     <Content Include="GUI\Music.aspx" />
     <Content Include="GUI\IT.aspx" />
-    <Content Include="GUI\Tools.aspx" />
+    <Content Include="GUI\ProtectedSites\Tools.aspx" />
     <Content Include="GUI\Varia.aspx" />
     <Content Include="GUI\Admin.aspx" />
   </ItemGroup>
@@ -185,6 +186,13 @@
     <Compile Include="GUI\ITSearchResult.aspx.designer.cs">
       <DependentUpon>ITSearchResult.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GUI\ProtectedSites\ToolsMaster.master.cs">
+      <DependentUpon>ToolsMaster.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\ProtectedSites\ToolsMaster.master.designer.cs">
+      <DependentUpon>ToolsMaster.master</DependentUpon>
+    </Compile>
     <Compile Include="GUI\TaskManager\TaskDetail.aspx.cs">
       <DependentUpon>TaskDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -213,11 +221,11 @@
     <Compile Include="GUI\AllSearchResult.aspx.designer.cs">
       <DependentUpon>AllSearchResult.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GUI\TaskCategories.aspx.cs">
+    <Compile Include="GUI\TaskManager\TaskCategories.aspx.cs">
       <DependentUpon>TaskCategories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="GUI\TaskCategories.aspx.designer.cs">
+    <Compile Include="GUI\TaskManager\TaskCategories.aspx.designer.cs">
       <DependentUpon>TaskCategories.aspx</DependentUpon>
     </Compile>
     <Compile Include="GUI\WebUserControls\Archive.ascx.cs">
@@ -305,11 +313,11 @@
     <Compile Include="GUI\ProtectedSites\ManageBlogCategories.aspx.designer.cs">
       <DependentUpon>ManageBlogCategories.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Tools.aspx.cs">
+    <Compile Include="GUI\ProtectedSites\Tools.aspx.cs">
       <DependentUpon>Tools.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="GUI\Tools.aspx.designer.cs">
+    <Compile Include="GUI\ProtectedSites\Tools.aspx.designer.cs">
       <DependentUpon>Tools.aspx</DependentUpon>
     </Compile>
     <Compile Include="DataLayer\User.cs">

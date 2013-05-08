@@ -24,7 +24,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2013 19:13:32</publishTime>
     </File>
     <File Include="bin/EbalitWebForms.dll">
-      <publishTime>05/07/2013 07:00:33</publishTime>
+      <publishTime>05/07/2013 21:28:34</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>02/23/2013 16:23:18</publishTime>
@@ -117,7 +117,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/24/2013 08:31:38</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/CreateBlogEntry.aspx">
-      <publishTime>04/27/2013 21:45:43</publishTime>
+      <publishTime>05/07/2013 21:27:58</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/ManageBlogCategories.aspx">
       <publishTime>05/04/2013 16:53:52</publishTime>
@@ -126,10 +126,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/04/2013 16:55:12</publishTime>
     </File>
     <File Include="GUI/TaskManager/TaskDetail.aspx">
-      <publishTime>05/07/2013 06:52:24</publishTime>
+      <publishTime>05/07/2013 21:20:49</publishTime>
     </File>
     <File Include="GUI/TaskManager/TaskList.aspx">
-      <publishTime>05/06/2013 07:07:55</publishTime>
+      <publishTime>05/07/2013 21:18:47</publishTime>
     </File>
     <File Include="GUI/Tools.aspx">
       <publishTime>05/04/2013 22:28:41</publishTime>
@@ -159,7 +159,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2013 21:32:05</publishTime>
     </File>
     <File Include="Resources/MasterData.xml">
-      <publishTime>05/04/2013 21:05:00</publishTime>
+      <publishTime>05/07/2013 20:05:32</publishTime>
     </File>
     <File Include="Scripts/jquery-2.0.0.js">
       <publishTime>04/27/2013 21:32:05</publishTime>
@@ -171,7 +171,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2013 21:32:05</publishTime>
     </File>
     <File Include="Styles/Styles.css">
-      <publishTime>05/06/2013 07:05:09</publishTime>
+      <publishTime>05/07/2013 20:57:19</publishTime>
     </File>
     <File Include="Web.config">
       <publishTime>05/04/2013 21:56:44</publishTime>
