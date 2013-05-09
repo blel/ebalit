@@ -49,16 +49,56 @@
                         <asp:DropDownList ID="ddlCategory" runat="server" DataTextField="Category" DataValueField="Id" SelectedValue='<%# Bind("Category") %>' Width="150px" OnDataBinding="ddlCategory_DataBinding"></asp:DropDownList>
                     </EditItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="Subject" HeaderText="Subject" SortExpression="Subject" ControlStyle-Width="1000px">
-                    <ControlStyle Width="1000px"></ControlStyle>
-                </asp:BoundField>
+                <asp:TemplateField HeaderText="Subject" SortExpression="Subject">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txtSubject" runat="server" Text='<%# Bind("Subject") %>' BackColor="LightYellow"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Subject is mandatory" ForeColor="Red" ControlToValidate="txtSubject"></asp:RequiredFieldValidator>
+                    </EditItemTemplate>
+                    <InsertItemTemplate>
+                        <asp:TextBox ID="txtSubject" runat="server" Text='<%# Bind("Subject") %>' BackColor="LightYellow"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Subject is mandatory" ForeColor="Red" ControlToValidate="txtSubject"></asp:RequiredFieldValidator>
+
+                    </InsertItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("Subject") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ControlStyle Width="1000px" />
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Content">
                     <InsertItemTemplate>
-                        <input id="btnHtmlEncode" type="button" value="Html Encode" onclick="AssignSelectedTextToHiddenField()" /><br />
+                        <input id="btnHtmlEncode" type="button" value="Html Encode" onclick="AssignSelectedTextToHiddenField()" />
+                        <input id="btnList" type="button" value="Bullet" onclick="CreateSimpleList()" />
+                        <input id="btnLink" type="button" value="Link" onclick="CreateSimpleLink()" />
+                        <select id="ddlStyle" onchange="javascript:CreateSimpleStyle(this)">
+                            <option></option>
+                            <option>h1</option>
+                            <option>h2</option>
+                            <option>h3</option>
+                            <option>h4</option>
+                            <option>code</option>
+                            <option>pre</option>
+                            <option>p</option>
+                        </select>
+                        <input id="btnTable" type="button" value="Table" onclick="CreateSimpleTable()" />
+                        <br />
                         <asp:TextBox ID="txtContent" runat="server" Text='<%#Bind("Content") %>' Width="1000" Height="400" TextMode="MultiLine"></asp:TextBox>
                     </InsertItemTemplate>
                     <EditItemTemplate>
-                        <input id="btnHtmlEncode" type="button" value="Html Encode" onclick="AssignSelectedTextToHiddenField()" /><br />
+                        <input id="btnHtmlEncode" type="button" value="Html Encode" onclick="AssignSelectedTextToHiddenField()" />
+                        <input id="btnList" type="button" value="Bullet" onclick="CreateSimpleList()" />
+                        <input id="btnLink" type="button" value="Link" onclick="CreateSimpleLink()" />
+                        <select id="ddlStyle" onchange="javascript:CreateSimpleStyle(this)">
+                            <option></option>
+                            <option>h1</option>
+                            <option>h2</option>
+                            <option>h3</option>
+                            <option>h4</option>
+                            <option>code</option>
+                            <option>pre</option>
+                            <option>p</option>
+                        </select>
+                        <input id="btnTable" type="button" value="Table" onclick="CreateSimpleTable()" />
+                        <br />
                         <asp:TextBox ID="txtContent" runat="server" Text='<%#Bind("Content") %>' Width="1000" Height="400" TextMode="MultiLine"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
@@ -87,9 +127,105 @@
             </HeaderTemplate>
         </asp:DetailsView>
     </div>
-    <script type="text/javascript">
-        /*copied from http://stackoverflow.com/questions/7186586/how-to-get-the-selected-text-in-textarea-using-jquery-in-internet-explorer-7*/
 
+    <script type="text/javascript">
+
+
+        //Html encodes the selected text - this is should be replaced with the functions below
+        function AssignSelectedTextToHiddenField() {
+            var controlAndTextSplit = GetContentSelectedText();
+            theText = htmlEncode(controlAndTextSplit.textSplit.selection);
+            controlAndTextSplit.control.value = controlAndTextSplit.textSplit.textBefore + theText + controlAndTextSplit.textSplit.textAfter;
+        }
+
+        //Creates a html bullet list
+        function CreateSimpleList() {
+            var resultText;
+            var controlAndTextSplit = GetContentSelectedText();
+            if (controlAndTextSplit.textSplit.selection == "") {
+                resultText = "\r\n<ul>\r\n<li>\r\n</li>\r\n</ul>\r\n";
+            }
+            else {
+                resultText = "<ul>\r\n";
+                var lines = controlAndTextSplit.textSplit.selection.split("\n");
+                for (var i = 0; i < lines.length; i++) {
+                    resultText += "<li>" + lines[i] + "</li>\r\n";
+                }
+                resultText += "</ul>\r\n";
+
+            }
+            controlAndTextSplit.control.value = controlAndTextSplit.textSplit.textBefore + resultText + controlAndTextSplit.textSplit.textAfter;
+        }
+
+        //creates a link
+        function CreateSimpleLink() {
+            var resultText;
+            var controlAndTextSplit = GetContentSelectedText();
+            var linkAddress = prompt("Link Address: ", controlAndTextSplit.textSplit.selection);
+            var linkText = prompt("Link Text: ", linkAddress);
+            if (linkText == "") {
+                linkText = linkAddress;
+            }
+            controlAndTextSplit.control.value = controlAndTextSplit.textSplit.textBefore + "<a href=\"" + linkAddress + "\">" + linkText + "</a>" + controlAndTextSplit.textSplit.textAfter;
+        }
+
+        //applies selected style
+        function CreateSimpleStyle(ddl) {
+            var style = ddl.value;
+
+            var contentSelection = GetContentSelectedText();
+            if (style != "") {
+                contentSelection.control.value = contentSelection.textSplit.textBefore + "<" + style + ">" + contentSelection.textSplit.selection + "</" + style + ">";
+            }
+        }
+
+        //creates a simple table
+        function CreateSimpleTable() {
+            var cols = prompt("Enter number of columns: ", "");
+            var rows = prompt("Enter number of rows: ", "");
+            var htmlTable = "<table class='myTable'>\n";
+            if (cols > 0 && rows > 0) {
+                for (var j = 0; j < cols; j++) {
+                    htmlTable += "<th> </th>\n";
+                }
+                for (var i = 1; i < rows; i++) {
+                    htmlTable += "<tr>\n";
+
+
+                    for (var j = 0; j < cols; j++) {
+                        htmlTable += "<td> </td>\n";
+                    }
+                    htmlTable += "</tr>\n";
+                }
+            }
+            htmlTable += "</table>\n";
+            var content = GetContentSelectedText();
+            content.control.value = content.textSplit.textBefore + htmlTable + content.textSplit.textAfter;
+        }
+
+
+        //Returns the selected text as well as the text before and after the selection
+        function GetSelectedText(control) {
+            var selectedText = getInputSelection(control);
+            return {
+                textBefore: control.value.substring(0, selectedText.start),
+                selection: control.value.substring(selectedText.start, selectedText.end),
+                textAfter: control.value.substring(selectedText.end, control.value.length)
+            };
+        }
+
+        //Returns the selected text in the txtContent control on this page
+        function GetContentSelectedText() {
+            var txtContent = document.getElementById("<%= DetailsView1.FindControl("txtContent")!=null?DetailsView1.FindControl("txtContent").ClientID:null%>");
+            return {
+                control: txtContent,
+                textSplit: GetSelectedText(txtContent)
+            };
+        }
+
+
+        //Gets start and end of the input selection
+        /*copied from http://stackoverflow.com/questions/7186586/how-to-get-the-selected-text-in-textarea-using-jquery-in-internet-explorer-7 */
         function getInputSelection(el) {
             var start = 0, end = 0, normalizedValue, range,
                 textInputRange, len, endRange;
@@ -137,17 +273,7 @@
 
         }
 
-        //Html encodes the selected text
-        function AssignSelectedTextToHiddenField() {
-            var txtContent = document.getElementById("<%= DetailsView1.FindControl("txtContent")!=null?DetailsView1.FindControl("txtContent").ClientID:null%>");
-            var selectedText = getInputSelection(txtContent);
-
-            var theText = txtContent.value.substring(selectedText.start, selectedText.end);
-
-            theText = htmlEncode(theText);
-            txtContent.value = txtContent.value.substring(0, selectedText.start) + theText + txtContent.value.substring(selectedText.end, txtContent.value.length);
-        }
-
+        //htmlEncode
         /*http://stackoverflow.com/questions/1219860/javascript-jquery-html-encoding*/
         function htmlEncode(value) {
             //create a in-memory div, set it's inner text(which jQuery automatically encodes)
@@ -155,6 +281,7 @@
             return $('<div/>').text(value).html();
         }
 
+        //HtmlDecode
         function htmlDecode(value) {
             return $('<div/>').html(value).text();
         }
