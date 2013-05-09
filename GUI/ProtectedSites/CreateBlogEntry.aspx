@@ -80,6 +80,7 @@
                             <option>p</option>
                         </select>
                         <input id="btnTable" type="button" value="Table" onclick="CreateSimpleTable()" />
+                        <input id="btnImage" type="button" value="Image" onclick="CreateSimpleImage()" />
                         <br />
                         <asp:TextBox ID="txtContent" runat="server" Text='<%#Bind("Content") %>' Width="1000" Height="400" TextMode="MultiLine"></asp:TextBox>
                     </InsertItemTemplate>
@@ -98,6 +99,7 @@
                             <option>p</option>
                         </select>
                         <input id="btnTable" type="button" value="Table" onclick="CreateSimpleTable()" />
+                        <input id="btnImage" type="button" value="Image" onclick="CreateSimpleImage()" />
                         <br />
                         <asp:TextBox ID="txtContent" runat="server" Text='<%#Bind("Content") %>' Width="1000" Height="400" TextMode="MultiLine"></asp:TextBox>
                     </EditItemTemplate>
@@ -201,6 +203,15 @@
             htmlTable += "</table>\n";
             var content = GetContentSelectedText();
             content.control.value = content.textSplit.textBefore + htmlTable + content.textSplit.textAfter;
+        }
+
+        //creates a simple image link
+        function CreateSimpleImage() {
+            var image = prompt("Enter image link: ", "");
+            var htmlImage = "<img src=\"" + image + "\"/>";
+            var content = GetContentSelectedText();
+            content.control.value = content.textSplit.textBefore + htmlImage + content.textSplit.textAfter;
+
         }
 
 
