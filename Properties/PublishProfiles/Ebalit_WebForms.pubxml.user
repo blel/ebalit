@@ -24,7 +24,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2013 19:13:32</publishTime>
     </File>
     <File Include="bin/EbalitWebForms.dll">
-      <publishTime>05/07/2013 21:28:34</publishTime>
+      <publishTime>05/08/2013 23:44:05</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>02/23/2013 16:23:18</publishTime>
@@ -99,7 +99,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2013 06:47:06</publishTime>
     </File>
     <File Include="GUI/Master.Master">
-      <publishTime>04/27/2013 22:43:02</publishTime>
+      <publishTime>05/08/2013 23:23:16</publishTime>
     </File>
     <File Include="GUI/Music.aspx">
       <publishTime>04/27/2013 22:46:10</publishTime>
@@ -108,10 +108,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2013 06:59:19</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/AdminIndex.aspx">
-      <publishTime>04/29/2013 14:04:39</publishTime>
+      <publishTime>05/08/2013 07:01:25</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/AdminMaster.master">
-      <publishTime>04/26/2013 18:31:32</publishTime>
+      <publishTime>05/08/2013 20:08:20</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/BlogEntries.aspx">
       <publishTime>04/24/2013 08:31:38</publishTime>
@@ -122,14 +122,23 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="GUI/ProtectedSites/ManageBlogCategories.aspx">
       <publishTime>05/04/2013 16:53:52</publishTime>
     </File>
+    <File Include="GUI/ProtectedSites/Tools.aspx">
+      <publishTime>05/08/2013 20:02:38</publishTime>
+    </File>
+    <File Include="GUI/ProtectedSites/ToolsMaster.master">
+      <publishTime>05/08/2013 20:56:52</publishTime>
+    </File>
     <File Include="GUI/TaskCategories.aspx">
       <publishTime>05/04/2013 16:55:12</publishTime>
     </File>
+    <File Include="GUI/TaskManager/TaskCategories.aspx">
+      <publishTime>05/08/2013 20:40:20</publishTime>
+    </File>
     <File Include="GUI/TaskManager/TaskDetail.aspx">
-      <publishTime>05/07/2013 21:20:49</publishTime>
+      <publishTime>05/08/2013 22:38:55</publishTime>
     </File>
     <File Include="GUI/TaskManager/TaskList.aspx">
-      <publishTime>05/07/2013 21:18:47</publishTime>
+      <publishTime>05/08/2013 23:36:45</publishTime>
     </File>
     <File Include="GUI/Tools.aspx">
       <publishTime>05/04/2013 22:28:41</publishTime>
@@ -171,10 +180,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2013 21:32:05</publishTime>
     </File>
     <File Include="Styles/Styles.css">
-      <publishTime>05/07/2013 20:57:19</publishTime>
+      <publishTime>05/08/2013 20:28:10</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/04/2013 21:56:44</publishTime>
+      <publishTime>05/08/2013 21:41:43</publishTime>
     </File>
   </ItemGroup>
 </Project>

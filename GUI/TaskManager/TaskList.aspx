@@ -3,7 +3,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ToolsContent" runat="server">
     <asp:ScriptManager ID="ScriptManager" runat="server" EnableScriptGlobalization="true" EnableScriptLocalization="true"></asp:ScriptManager>
-    <asp:ObjectDataSource ID="odsTasks" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.Task" DeleteMethod="DeleteTask" InsertMethod="CreateTask" SelectMethod="GetFilteredTasks" TypeName="EbalitWebForms.BusinessLogicLayer.TaskBLL" UpdateMethod="UpdateTask" OnSelecting="odsTasks_Selecting">
+    <asp:ObjectDataSource ID="odsTasks" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.Task" DeleteMethod="DeleteTask" InsertMethod="CreateTask" SelectMethod="GetFilteredTasks" TypeName="EbalitWebForms.BusinessLogicLayer.TaskBLL" UpdateMethod="UpdateTask" OnSelecting="odsTasks_Selecting" OnDeleted="odsTasks_Deleted1">
         <SelectParameters>
             <asp:Parameter Name="filter" Type="Object" />
         </SelectParameters>
@@ -12,7 +12,7 @@
     <asp:XmlDataSource ID="xdsTaskStatus" runat="server" DataFile="~/Resources/MasterData.xml" XPath="/MasterData/DataDictionary[@Name='TaskStatus']/DictionaryItem"></asp:XmlDataSource>
     <asp:XmlDataSource ID="xdsTaskPriority" runat="server" DataFile="~/Resources/MasterData.xml" XPath="/MasterData/DataDictionary[@Name='TaskPriority']/DictionaryItem"></asp:XmlDataSource>
     <asp:XmlDataSource ID="xdsTaskClosingType" runat="server" DataFile="~/Resources/MasterData.xml" XPath="/MasterData/DataDictionary[@Name='ClosingType']/DictionaryItem"></asp:XmlDataSource>
-    <asp:ObjectDataSource ID="odsTaskComments" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.TaskComment" DeleteMethod="DeleteTaskComment" InsertMethod="CreateTaskComment" SelectMethod="GetTaskComments" TypeName="EbalitWebForms.BusinessLogicLayer.TaskComments" UpdateMethod="UpdateTaskComment" OnInserting="odsTaskComments_Inserting">
+    <asp:ObjectDataSource ID="odsTaskComments" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.TaskComment" DeleteMethod="DeleteTaskComment" InsertMethod="CreateTaskComment" SelectMethod="GetTaskComments" TypeName="EbalitWebForms.BusinessLogicLayer.TaskComments" UpdateMethod="UpdateTaskComment" OnInserting="odsTaskComments_Inserting" >
         <SelectParameters>
             <asp:ControlParameter ControlID="hdfSelectedTaskId" Name="taskID" PropertyName="Value" Type="Int32" />
         </SelectParameters>
@@ -257,7 +257,7 @@
                 </tr>
             </SelectedItemTemplate>
         </asp:ListView>
-
+        <asp:Label ID="lblStatus" runat="server" Text="" ForeColor="Red"></asp:Label>
     </div>
     <div id="CommentsPopup" class="Popup">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -353,5 +353,5 @@
         }
 
     </script>
-
+    
 </asp:Content>

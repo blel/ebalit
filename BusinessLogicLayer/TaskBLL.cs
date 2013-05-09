@@ -6,7 +6,7 @@ using EbalitWebForms.DataLayer;
 
 namespace EbalitWebForms.BusinessLogicLayer
 {
-    public class TaskBLL: DataAccessLayer
+    public class TaskBLL : DataAccessLayer
     {
         public IList<Task> GetTasks()
         {
@@ -18,11 +18,11 @@ namespace EbalitWebForms.BusinessLogicLayer
         {
             //Get items and apply date filter, since from and to date always contain valid values
             var tasks = from cc in base.EbalitDBContext.Tasks.Include("TaskCategory")
-                            where cc.DueDate == null ||( cc.DueDate >= filter.DateFrom && cc.DueDate <= filter.DateTo)
-                            select cc;
+                        where cc.DueDate == null || (cc.DueDate >= filter.DateFrom && cc.DueDate <= filter.DateTo)
+                        select cc;
             //add Text filter
             if (!string.IsNullOrWhiteSpace(filter.Text))
-                tasks = tasks.Where(cc => cc.Content.Contains(filter.Text) || cc.Subject.Contains( filter.Text));
+                tasks = tasks.Where(cc => cc.Content.Contains(filter.Text) || cc.Subject.Contains(filter.Text));
 
             //add Category filter
             if (filter.TaskCategoryId > 0)
@@ -81,7 +81,7 @@ namespace EbalitWebForms.BusinessLogicLayer
                     where cc.Id == id
                     select cc).FirstOrDefault();
 
-      
+
         }
 
     }

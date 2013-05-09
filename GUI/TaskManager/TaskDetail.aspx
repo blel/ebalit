@@ -24,10 +24,13 @@
                     <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" />
                     <asp:TemplateField HeaderText="Subject" SortExpression="Subject">
                         <EditItemTemplate>
-                            <asp:TextBox ID="txtSubject" Width="500" runat="server" Text='<%# Bind("Subject") %>'></asp:TextBox>
+                            <asp:TextBox ID="txtSubject" Width="500" runat="server" Text='<%# Bind("Subject") %>' BackColor="LightYellow"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="required" ControlToValidate="txtSubject" ForeColor="Red"></asp:RequiredFieldValidator>
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:TextBox ID="txtSubject" Width="500" runat="server" Text='<%# Bind("Subject") %>'></asp:TextBox>
+                            <asp:TextBox ID="txtSubject" Width="500" runat="server" Text='<%# Bind("Subject") %>' BackColor="LightYellow"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="required" ControlToValidate="txtSubject" ForeColor="Red"></asp:RequiredFieldValidator>
+
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="lblSubject" runat="server" Text='<%# Bind("Subject") %>'></asp:Label>
@@ -114,7 +117,55 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:CommandField ShowInsertButton="True" ShowDeleteButton="True" ShowEditButton="True" ControlStyle-CssClass="CommandButton" />
+                    <asp:TemplateField HeaderText="CreatedOn" SortExpression="CreatedOn" >
+                        <EditItemTemplate>
+                            <asp:Label ID="Label1" Width="200" runat="server" Text='<%# Bind("CreatedOn") %>'></asp:Label>
+                        </EditItemTemplate>
+                        <InsertItemTemplate>
+                            <asp:Label ID="Label1" Width="200" runat="server" Text='<%# Bind("CreatedOn") %>'></asp:Label>
+                        </InsertItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label1" Width="200" runat="server" Text='<%# Bind("CreatedOn") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="CreatedBy" SortExpression="CreatedBy">
+                        <EditItemTemplate>
+                            <asp:Label ID="Label2" Width="200" runat="server" Text='<%# Bind("CreatedBy") %>'></asp:Label>
+                        </EditItemTemplate>
+                        <InsertItemTemplate>
+                            <asp:Label ID="Label2" Width="200" runat="server" Text='<%# Bind("CreatedBy") %>'></asp:Label>
+                        </InsertItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label2" Width="200" runat="server" Text='<%# Bind("CreatedBy") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="ChangedOn" SortExpression="ChangedOn">
+                        <EditItemTemplate>
+                            <asp:Label ID="Label3" Width="200" runat="server" Text='<%# Bind("ChangedOn") %>'></asp:Label>
+                        </EditItemTemplate>
+                        <InsertItemTemplate>
+                            <asp:Label ID="Label3" Width="200" runat="server" Text='<%# Bind("ChangedOn") %>'></asp:Label>
+                        </InsertItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label3" Width="200" runat="server" Text='<%# Bind("ChangedOn") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="ChangedBy" SortExpression="ChangedBy">
+                        <EditItemTemplate>
+                            <asp:Label ID="Label4" Width="200" runat="server" Text='<%# Bind("ChangedBy") %>'></asp:Label>
+                        </EditItemTemplate>
+                        <InsertItemTemplate>
+                            <asp:Label ID="Label4" Width="200" runat="server" Text='<%# Bind("ChangedBy") %>'></asp:Label>
+                        </InsertItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label4" Width="200" runat="server" Text='<%# Bind("ChangedBy") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:CommandField ShowInsertButton="True" ShowDeleteButton="True" ShowEditButton="True" ControlStyle-CssClass="CommandButton" >
+
+<ControlStyle CssClass="CommandButton"></ControlStyle>
+                    </asp:CommandField>
 
                 </Fields>
             </asp:DetailsView>

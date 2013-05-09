@@ -16,26 +16,24 @@ namespace EbalitWebForms.GUI.TaskManager
             if (!IsPostBack)
             {
                 this.ddlTaskStatus.SelectedIndex = 1;
-    
             }
+            this.lblStatus.Text = string.Empty;
         }
-
-
 
         protected void lnkFind_Command(object sender, CommandEventArgs e)
         {
-            this.lvwTasks.DataBind();            
+            this.lvwTasks.DataBind();
         }
 
         protected void odsTasks_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
-            e.InputParameters["filter"]=GetTaskSearchDTO();
+            e.InputParameters["filter"] = GetTaskSearchDTO();
         }
 
         private BusinessLogicLayer.TaskSearchDTO GetTaskSearchDTO()
         {
             BusinessLogicLayer.TaskSearchDTO taskSearchDTO = new BusinessLogicLayer.TaskSearchDTO();
-            taskSearchDTO.DateFrom = string.IsNullOrWhiteSpace(txtDateFrom.Text) ? new DateTime(1900,1,1) : Convert.ToDateTime(this.txtDateFrom.Text);
+            taskSearchDTO.DateFrom = string.IsNullOrWhiteSpace(txtDateFrom.Text) ? new DateTime(1900, 1, 1) : Convert.ToDateTime(this.txtDateFrom.Text);
             taskSearchDTO.DateTo = string.IsNullOrWhiteSpace(txtDateTo.Text) ? new DateTime(2999, 12, 31) : Convert.ToDateTime(this.txtDateTo.Text);
             taskSearchDTO.TaskCategoryId = string.IsNullOrWhiteSpace(ddlTaskCategory.Text) ? 0 : Convert.ToInt32(this.ddlTaskCategory.SelectedValue);
             taskSearchDTO.TaskClosingType = Convert.ToString(this.ddlClosingType.SelectedItem);
@@ -68,7 +66,7 @@ namespace EbalitWebForms.GUI.TaskManager
         /// <param name="e"></param>
         protected void lvwTasks_ItemUpdating(object sender, ListViewUpdateEventArgs e)
         {
-            if (e.NewValues["DueDate"]!=null)
+            if (e.NewValues["DueDate"] != null)
                 e.NewValues["DueDate"] = GUIHelper.GetUSDate(e.NewValues["DueDate"].ToString());
         }
 
@@ -90,35 +88,17 @@ namespace EbalitWebForms.GUI.TaskManager
             this.lvwTaskComments.DataBind();
 
             //FindControl somehow was not working, so the recursive find was implemented
-            var mpe = RecursiveFindControl(this.lvwTasks, "ModalPopupExtender1");
-            if (mpe!= null)
+            var mpe = GUIHelper.RecursiveFindControl(this.lvwTasks, "ModalPopupExtender1");
+            if (mpe != null)
 
                 ((AjaxControlToolkit.ModalPopupExtender)mpe).Show();
         }
 
-        /// <summary>
-        /// Searches for a control recursively
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="controlName"></param>
-        /// <returns></returns>
-        private Control RecursiveFindControl(Control control, string controlName)
-        {
-            Debug.WriteLine(control.ID);
-            if (control.ID == controlName)
-                return control;
 
-            foreach (Control childControl in control.Controls)
-            {
-                Control t = RecursiveFindControl(childControl, controlName);
-                if (t != null) return t;
-            }
-            return null;
-        }
 
         protected void odsTaskComments_Inserting(object sender, ObjectDataSourceMethodEventArgs e)
         {
-            
+
         }
 
         /// <summary>
@@ -130,14 +110,25 @@ namespace EbalitWebForms.GUI.TaskManager
         {
             e.Values["FK_Task"] = hdfSelectedTaskId.Value;
             e.Values["CreatedOn"] = DateTime.Now;
-            e.Values["CreatedBy"] = Membership.GetUser()!=null?Membership.GetUser().ToString():"anonymous";
+            e.Values["CreatedBy"] = Membership.GetUser() != null ? Membership.GetUser().ToString() : "anonymous";
         }
 
         protected void lvwTaskComments_ItemUpdating(object sender, ListViewUpdateEventArgs e)
         {
             e.NewValues["FK_Task"] = hdfSelectedTaskId.Value;
             e.NewValues["ChangedOn"] = DateTime.Now;
-            e.NewValues["ChangedBy"] = Membership.GetUser()!= null ? Membership.GetUser().ToString() : "anonymous";
+            e.NewValues["ChangedBy"] = Membership.GetUser() != null ? Membership.GetUser().ToString() : "anonymous";
         }
-  }
+
+        protected void odsTasks_Deleted1(object sender, ObjectDataSourceStatusEventArgs e)
+        {
+            if (e.Exception != null)
+            {
+                this.lblStatus.Text = "Deletion not possible. Make sure there are no task comments and try again.";
+                e.ExceptionHandled = true;
+
+            }
+
+        }
+    }
 }

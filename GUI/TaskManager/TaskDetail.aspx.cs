@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace EbalitWebForms.GUI.TaskManager
 {
@@ -24,6 +25,7 @@ namespace EbalitWebForms.GUI.TaskManager
                 else
                 {
                     this.dtvTask.ChangeMode(DetailsViewMode.Insert);
+                    ((DropDownList)this.dtvTask.FindControl("ddlState")).SelectedIndex = 1;
                 }
                 
                 this.dtvTask.FindControl("txtSubject").Focus();
@@ -35,12 +37,17 @@ namespace EbalitWebForms.GUI.TaskManager
         {
             if (e.Values["DueDate"] != null)
                 e.Values["DueDate"] = GUIHelper.GetUSDate(e.Values["DueDate"].ToString());
+            e.Values["CreatedOn"] = DateTime.Now;
+            e.Values["CreatedBy"] = Membership.GetUser().UserName;
+
         }
 
         protected void dtvTask_ItemUpdating(object sender, DetailsViewUpdateEventArgs e)
         {
             if (e.NewValues["DueDate"] != null)
                 e.NewValues["DueDate"] = GUIHelper.GetUSDate(e.NewValues["DueDate"].ToString());
+            e.NewValues["ChangedOn"] = DateTime.Now;
+            e.NewValues["ChangedBy"] = Membership.GetUser().UserName;
         }
 
         protected void odsTasks_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
@@ -74,6 +81,8 @@ namespace EbalitWebForms.GUI.TaskManager
                 Response.Redirect("/GUI/TaskManager/TaskList.aspx");
             }
         }
+
+
 
   
 
