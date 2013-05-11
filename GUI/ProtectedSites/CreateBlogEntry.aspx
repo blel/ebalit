@@ -177,7 +177,7 @@
 
             var contentSelection = GetContentSelectedText();
             if (style != "") {
-                contentSelection.control.value = contentSelection.textSplit.textBefore + "<" + style + ">" + contentSelection.textSplit.selection + "</" + style + ">";
+                contentSelection.control.value = contentSelection.textSplit.textBefore + "<" + style + ">" + contentSelection.textSplit.selection + "</" + style + ">" + contentSelection.textSplit.textAfter;
             }
         }
 

@@ -12,13 +12,16 @@
                     <DynamicMenuStyle BackColor="#CCCCCC" />
                     <DynamicSelectedStyle BackColor="#507CD1" />
                     <StaticHoverStyle BackColor="#003528" ForeColor="LightYellow" />
-                    <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                    <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px"  />
 
                     <Items>
                         <asp:MenuItem Text="TaskManager">
                             <asp:MenuItem Text="Create Task" NavigateUrl="/GUI/TaskManager/TaskDetail.aspx"></asp:MenuItem>
                             <asp:MenuItem Text="Manage Tasks" NavigateUrl="/GUI/TaskManager/TaskList.aspx"></asp:MenuItem>
                             <asp:MenuItem Text="Task Categories" NavigateUrl="/GUI/TaskManager/TaskCategories.aspx"></asp:MenuItem>
+                        </asp:MenuItem>
+                        <asp:MenuItem Text="Vocabulary Trainer">
+                            <asp:MenuItem Text="Create Entry"></asp:MenuItem>
                         </asp:MenuItem>
                     </Items>
 
