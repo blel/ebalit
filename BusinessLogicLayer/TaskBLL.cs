@@ -41,10 +41,32 @@ namespace EbalitWebForms.BusinessLogicLayer
                 tasks = tasks.Where(cc => cc.ClosingType == filter.TaskClosingType);
 
             return tasks.ToList();
-
-
-
         }
+
+
+        public IList<TaskToCsvDTO> GetFilteredTasksForCsv(TaskSearchDTO filter)
+        {
+            IList<Task> filteredTasks = GetFilteredTasks(filter);
+
+            return filteredTasks.Select(cc => new TaskToCsvDTO()
+            {
+                ChangedBy = cc.ChangedBy,
+                ChangedOn = Convert.ToString(cc.ChangedOn),
+                ClosingType = cc.ClosingType,
+                Comments = (from ccc in new TaskComments().GetTaskComments(cc.Id)
+                            select ccc.Comment).Aggregate("", (a, b) => (a + "\r\n" + b)),
+                Content = cc.Content,
+                CreatedBy = cc.CreatedBy,
+                CreatedOn = Convert.ToString(cc.CreatedOn),
+                DueDate = Convert.ToString(cc.DueDate),
+                Priority = cc.Priority,
+                State = cc.State,
+                Subject = cc.Subject,
+                TaskCategory = cc.TaskCategory!=null?cc.TaskCategory.TaskCategory1:""
+            }).ToList();
+                
+        }
+
 
 
         public int CreateTask(Task task)

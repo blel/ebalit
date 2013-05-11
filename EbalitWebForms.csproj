@@ -117,11 +117,13 @@
     <Content Include="GUI\Admin.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogicLayer\CSVBuilder.cs" />
     <Compile Include="BusinessLogicLayer\EbalitMembershipProvider.cs" />
     <Compile Include="BusinessLogicLayer\TaskBLL.cs" />
     <Compile Include="BusinessLogicLayer\TaskCategoryBLL.cs" />
     <Compile Include="BusinessLogicLayer\TaskComments.cs" />
     <Compile Include="BusinessLogicLayer\TaskSearchDTO.cs" />
+    <Compile Include="BusinessLogicLayer\TaskToCsvDTO.cs" />
     <Compile Include="BusinessLogicLayer\UserBLL.cs" />
     <Compile Include="DataLayer\BlogCategory.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>

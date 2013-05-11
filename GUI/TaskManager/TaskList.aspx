@@ -84,14 +84,15 @@
                     <asp:TableCell>
                         <asp:LinkButton ID="lnkFind" runat="server" CausesValidation="false" OnCommand="lnkFind_Command" CssClass="CommandButton">Find</asp:LinkButton>&nbsp;
                         <asp:LinkButton ID="lnkClear" runat="server" CausesValidation="false" OnCommand="lnkClear_Command" CssClass="CommandButton">Clear</asp:LinkButton>&nbsp;
-                        <asp:LinkButton ID="lnkCreate" runat="server" CausesValidation="false" OnCommand="lnkCreate_Command" CssClass="CommandButton">Create</asp:LinkButton>
+                        <asp:LinkButton ID="lnkCreate" runat="server" CausesValidation="false" OnCommand="lnkCreate_Command" CssClass="CommandButton">Create</asp:LinkButton>&nbsp;
+                        <asp:LinkButton ID="lnkExport" runat="server" CausesValidation="false" OnCommand="lnkExport_Command" CssClass="CommandButton">Export</asp:LinkButton>
                     </asp:TableCell>
                 </asp:TableFooterRow>
             </asp:Table>
         </div>
-        <asp:ListView ID="lvwTasks" runat="server" DataSourceID="odsTasks" OnItemUpdating="lvwTasks_ItemUpdating" DataKeyNames="Id" >
+        <asp:ListView ID="lvwTasks" runat="server" DataSourceID="odsTasks" OnItemUpdating="lvwTasks_ItemUpdating" DataKeyNames="Id" OnItemDataBound="lvwTasks_ItemDataBound" >
             <AlternatingItemTemplate>
-                <tr style="background-color: #FFF8DC;">
+                <tr style="background-color: #FFF8DC;" id="TaskListRow" runat="server">
                     <td>
                         <asp:LinkButton ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CssClass="CommandButton" />
                         <asp:LinkButton ID="EditButton" runat="server" CommandName="Edit" Text="Edit" CssClass="CommandButton" />
@@ -164,7 +165,7 @@
                 </table>
             </EmptyDataTemplate>
             <ItemTemplate>
-                <tr style="background-color: #DCDCDC; color: #000000;">
+                <tr style="background-color: #DCDCDC;" id="TaskListRow" runat="server">
                     <td>
                         <asp:LinkButton ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CssClass="CommandButton"/>
                         <asp:LinkButton ID="EditButton" runat="server" CommandName="Edit" Text="Edit" CssClass="CommandButton" />
