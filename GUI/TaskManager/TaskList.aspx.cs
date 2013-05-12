@@ -8,6 +8,7 @@ using System.Web.UI.HtmlControls;
 using System.Diagnostics;
 using System.Web.Security;
 using EbalitWebForms.BusinessLogicLayer;
+using System.IO;
 
 
 namespace EbalitWebForms.GUI.TaskManager
@@ -147,7 +148,7 @@ namespace EbalitWebForms.GUI.TaskManager
             {
                 ListViewDataItem item = (ListViewDataItem)e.Item;
                 DataLayer.Task task = (DataLayer.Task)e.Item.DataItem;
-                if (task.DueDate != null && task.DueDate <= DateTime.Now)
+                if (task.DueDate != null && task.DueDate <= DateTime.Now && task.State != "Closed" )
                 {
                     HtmlTableRow row = (HtmlTableRow)e.Item.FindControl("TaskListRow");
                     if (row != null)
@@ -177,13 +178,15 @@ namespace EbalitWebForms.GUI.TaskManager
             IList<TaskToCsvDTO> csvObjs = taskBLL.GetFilteredTasksForCsv(searchDTO);
             string csvlist = CSVBuilder<TaskToCsvDTO>.ToCsv(";", csvObjs);
             SendFileToClient(csvlist);
+         
+            
             
         }
 
         private void SendFileToClient(string data)
         {
             
-                         
+                 
             Response.Clear();
             Response.ClearContent();
             Response.ClearHeaders();
@@ -197,15 +200,14 @@ namespace EbalitWebForms.GUI.TaskManager
             Response.AppendHeader("Pragma", "cache");
             Response.AppendHeader("Expires", "60");
             Response.AppendHeader("Content-Disposition",
-            "attachment; " +
-            "filename=\"ExcelReport.xlsx\"; " +
-            "size=" + data.Length.ToString() + "; " +
-            "creation-date=" + DateTime.Now.ToString("R") + "; " +
-            "modification-date=" + DateTime.Now.ToString("R") + "; " +
-            "read-date=" + DateTime.Now.ToString("R"));
-            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            "attachment; " +  "filename=\"CsvTaskReport.csv\"; " );
+            //"size=" + data.Length.ToString() + "; " +
+            //"creation-date=" + DateTime.Now.ToString("R") + "; " +
+            //"modification-date=" + DateTime.Now.ToString("R") + "; " +
+            //"read-date=" + DateTime.Now.ToString("R"));
+            Response.ContentType = "text/plain";
             //Write it back to the client    
-            Response.WriteFile(data);
+            Response.Write(data);
             Response.End();
         }
 

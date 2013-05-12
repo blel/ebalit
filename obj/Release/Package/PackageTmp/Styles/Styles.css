@@ -403,6 +403,12 @@ menu
     border-color: black;
 }
 
+.listviewHighlighted
+{
+    color:red;
+}
+
+
 .detailsview
 {
     background: rgb(238,238,238);
