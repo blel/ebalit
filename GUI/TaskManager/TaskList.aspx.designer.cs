@@ -181,7 +181,7 @@ namespace EbalitWebForms.GUI.TaskManager {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTaskCategory;
+        protected global::System.Web.UI.WebControls.ListBox ddlTaskCategory;
         
         /// <summary>
         /// Label6 control.
@@ -199,7 +199,7 @@ namespace EbalitWebForms.GUI.TaskManager {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTaskStatus;
+        protected global::System.Web.UI.WebControls.ListBox ddlTaskStatus;
         
         /// <summary>
         /// Label7 control.
@@ -217,7 +217,7 @@ namespace EbalitWebForms.GUI.TaskManager {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPriority;
+        protected global::System.Web.UI.WebControls.ListBox ddlPriority;
         
         /// <summary>
         /// Label3 control.
@@ -235,7 +235,7 @@ namespace EbalitWebForms.GUI.TaskManager {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlClosingType;
+        protected global::System.Web.UI.WebControls.ListBox ddlClosingType;
         
         /// <summary>
         /// lnkFind control.

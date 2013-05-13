@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MasterData>
 	<DataDictionary Name="TaskPriority">
-		<DictionaryItem Key="" Value="" ></DictionaryItem>
+		
 		<DictionaryItem Key="1" Value="High"/>
 		<DictionaryItem Key="2" Value="Medium"/>
 		<DictionaryItem Key="3" Value="Low"/>
 	</DataDictionary>
 	<DataDictionary Name="TaskStatus" >
-		<DictionaryItem Key="" Value=""></DictionaryItem>
+		
 		<DictionaryItem Key="1" Value="Open"/>
 		<DictionaryItem Key="2" Value="Worked On"/>
 		<DictionaryItem Key="3" Value="On Hold"/>
 		<DictionaryItem Key="4" Value="Closed"/>
 	</DataDictionary>
 	<DataDictionary Name="ClosingType" DefaultIndex="0">
-		<DictionaryItem Key="" Value=""></DictionaryItem>
+		
 		<DictionaryItem Key="1" Value="Finished"/>
 		<DictionaryItem Key="2" Value="Cancelled"/>
 		<DictionaryItem Key="3" Value="Postponed"/>

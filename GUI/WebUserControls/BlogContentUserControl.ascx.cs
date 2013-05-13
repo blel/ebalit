@@ -30,7 +30,7 @@ namespace EbalitWebForms.GUI.WebUserControls
         {
         
             MembershipUser user = Membership.GetUser();
-            if (user != null && user.UserName == "Administrator" && user.IsOnline)
+            if (user != null && user.UserName.ToLower() == "administrator" && user.IsOnline)
             {
                 this.btnEdit.Visible = true;
             }

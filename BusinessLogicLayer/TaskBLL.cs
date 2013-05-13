@@ -25,20 +25,20 @@ namespace EbalitWebForms.BusinessLogicLayer
                 tasks = tasks.Where(cc => cc.Content.Contains(filter.Text) || cc.Subject.Contains(filter.Text));
 
             //add Category filter
-            if (filter.TaskCategoryId > 0)
-                tasks = tasks.Where(cc => cc.FK_TaskCategory == filter.TaskCategoryId);
+            if (filter.TaskCategoryId.Count > 0)
+                tasks = tasks.Where(cc=> filter.TaskCategoryId.Any(ccc => cc.FK_TaskCategory == ccc));
 
             //add Task Status filter
-            if (!string.IsNullOrWhiteSpace(filter.TaskStatus))
-                tasks = tasks.Where(cc => cc.State == filter.TaskStatus);
+            if (filter.TaskStatus.Count>0)
+                tasks = tasks.Where(cc => filter.TaskStatus.Any(ccc=>cc.State==ccc));
 
             //add Task Pirority filter
-            if (!string.IsNullOrWhiteSpace(filter.TaskPriority))
-                tasks = tasks.Where(cc => cc.Priority == filter.TaskPriority);
+            if (filter.TaskPriority.Count>0)
+                tasks = tasks.Where(cc => filter.TaskPriority.Any(ccc=>cc.Priority==ccc));
 
             //add Task closing type filter
-            if (!string.IsNullOrWhiteSpace(filter.TaskClosingType))
-                tasks = tasks.Where(cc => cc.ClosingType == filter.TaskClosingType);
+            if (filter.TaskClosingType.Count>0)
+                tasks = tasks.Where(cc => filter.TaskClosingType.Any(ccc=>cc.ClosingType == ccc));
 
             return tasks.ToList();
         }

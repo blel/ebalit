@@ -22,6 +22,17 @@ namespace EbalitWebForms.GUI
         }
 
         /// <summary>
+        /// Get select items of a list box
+        /// found here: http://stackoverflow.com/questions/1829935/get-all-selected-items-from-asp-net-listbox
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        public static IEnumerable<ListItem> GetSelectedItems(this ListItemCollection items)
+        {
+            return items.OfType<ListItem>().Where(item => item.Selected);
+        }
+
+        /// <summary>
         /// Searches for a control recursively
         /// </summary>
         /// <param name="control"></param>

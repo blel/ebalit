@@ -19,7 +19,7 @@ namespace EbalitWebForms.GUI.TaskManager
         {
             if (!IsPostBack)
             {
-                this.ddlTaskStatus.SelectedIndex = 1;
+                this.ddlTaskStatus.SelectedIndex = 0;
             }
             this.lblStatus.Text = string.Empty;
         }
@@ -34,30 +34,46 @@ namespace EbalitWebForms.GUI.TaskManager
             e.InputParameters["filter"] = GetTaskSearchDTO();
         }
 
+        /// <summary>
+        /// creates the search dto based on the user entry
+        /// </summary>
+        /// <returns></returns>
         private BusinessLogicLayer.TaskSearchDTO GetTaskSearchDTO()
         {
             BusinessLogicLayer.TaskSearchDTO taskSearchDTO = new BusinessLogicLayer.TaskSearchDTO();
             taskSearchDTO.DateFrom = string.IsNullOrWhiteSpace(txtDateFrom.Text) ? new DateTime(1900, 1, 1) : Convert.ToDateTime(this.txtDateFrom.Text);
             taskSearchDTO.DateTo = string.IsNullOrWhiteSpace(txtDateTo.Text) ? new DateTime(2999, 12, 31) : Convert.ToDateTime(this.txtDateTo.Text);
-            taskSearchDTO.TaskCategoryId = string.IsNullOrWhiteSpace(ddlTaskCategory.Text) ? 0 : Convert.ToInt32(this.ddlTaskCategory.SelectedValue);
-            taskSearchDTO.TaskClosingType = Convert.ToString(this.ddlClosingType.SelectedItem);
-            taskSearchDTO.TaskPriority = Convert.ToString(this.ddlPriority.SelectedItem);
-            taskSearchDTO.TaskStatus = Convert.ToString(this.ddlTaskStatus.SelectedItem);
+            taskSearchDTO.TaskCategoryId = ddlTaskCategory.Items.GetSelectedItems().Select(cc => string.IsNullOrWhiteSpace(cc.Value)?-1:Convert.ToInt32(cc.Value)).ToList();
+            taskSearchDTO.TaskClosingType = this.ddlClosingType.Items.GetSelectedItems().Select(cc=>cc.Text).ToList();
+            taskSearchDTO.TaskPriority = this.ddlPriority.Items.GetSelectedItems().Select(cc=>cc.Text).ToList();
+            taskSearchDTO.TaskStatus = this.ddlTaskStatus.Items.GetSelectedItems().Select(cc => cc.Text).ToList();
             taskSearchDTO.Text = this.txtFreeText.Text;
             return taskSearchDTO;
         }
 
+        
+
+        /// <summary>
+        /// resets all search fields
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void lnkClear_Command(object sender, CommandEventArgs e)
         {
             this.txtFreeText.Text = string.Empty;
             this.txtDateFrom.Text = string.Empty;
             this.txtDateTo.Text = string.Empty;
-            this.ddlTaskCategory.SelectedIndex = 0;
-            this.ddlClosingType.SelectedIndex = 0;
-            this.ddlPriority.SelectedIndex = 0;
+            this.ddlTaskCategory.SelectedIndex = -1;
+            this.ddlClosingType.SelectedIndex = -1;
+            this.ddlPriority.SelectedIndex = -1;
             this.ddlTaskStatus.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// redirect to the details in insert mode
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void lnkCreate_Command(object sender, CommandEventArgs e)
         {
             Response.Redirect("/GUI/TaskManager/TaskDetail.aspx");
@@ -74,6 +90,11 @@ namespace EbalitWebForms.GUI.TaskManager
                 e.NewValues["DueDate"] = GUIHelper.GetUSDate(e.NewValues["DueDate"].ToString());
         }
 
+        /// <summary>
+        /// redirects to the details of the selected entry
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnDetails_Command(object sender, CommandEventArgs e)
         {
             Response.Redirect(string.Format("~/GUI/TaskManager/TaskDetail.aspx?Id={0}", e.CommandArgument));
@@ -106,7 +127,7 @@ namespace EbalitWebForms.GUI.TaskManager
         }
 
         /// <summary>
-        /// 
+        /// make sure calculated fields are set on insert
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -117,6 +138,11 @@ namespace EbalitWebForms.GUI.TaskManager
             e.Values["CreatedBy"] = Membership.GetUser() != null ? Membership.GetUser().ToString() : "anonymous";
         }
 
+        /// <summary>
+        /// make sure calculated fields are set on update
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void lvwTaskComments_ItemUpdating(object sender, ListViewUpdateEventArgs e)
         {
             e.NewValues["FK_Task"] = hdfSelectedTaskId.Value;
@@ -124,21 +150,23 @@ namespace EbalitWebForms.GUI.TaskManager
             e.NewValues["ChangedBy"] = Membership.GetUser() != null ? Membership.GetUser().ToString() : "anonymous";
         }
 
+        /// <summary>
+        /// Callback checks whether deletion of data was successful, otherwise error is shown to user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void odsTasks_Deleted1(object sender, ObjectDataSourceStatusEventArgs e)
         {
             if (e.Exception != null)
             {
                 this.lblStatus.Text = "Deletion not possible. Make sure there are no task comments and try again.";
                 e.ExceptionHandled = true;
-
             }
-
         }
 
         /// <summary>
         /// To highlight tasks which are due
         /// Based on code found here: http://forums.asp.net/t/1323404.aspx
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -148,7 +176,7 @@ namespace EbalitWebForms.GUI.TaskManager
             {
                 ListViewDataItem item = (ListViewDataItem)e.Item;
                 DataLayer.Task task = (DataLayer.Task)e.Item.DataItem;
-                if (task.DueDate != null && task.DueDate <= DateTime.Now && task.State != "Closed" )
+                if (task.DueDate != null && task.DueDate <= DateTime.Now && task.State != "Closed")
                 {
                     HtmlTableRow row = (HtmlTableRow)e.Item.FindControl("TaskListRow");
                     if (row != null)
@@ -156,37 +184,30 @@ namespace EbalitWebForms.GUI.TaskManager
                         row.Attributes.Add("class", "listviewHighlighted");
                     }
                 }
-
-             
             }
-
         }
 
+        /// <summary>
+        /// Create csv file from list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void lnkExport_Command(object sender, CommandEventArgs e)
         {
             TaskBLL taskBLL = new TaskBLL();
             //Create the searchDTO according to the current field entries
-            TaskSearchDTO searchDTO = new TaskSearchDTO();
-            searchDTO.DateFrom = string.IsNullOrWhiteSpace(this.txtDateFrom.Text)?new DateTime(1900,01,01):Convert.ToDateTime(this.txtDateFrom.Text);
-            searchDTO.DateTo = string.IsNullOrWhiteSpace(this.txtDateTo.Text) ? new DateTime(2100, 12, 31) : Convert.ToDateTime(this.txtDateTo.Text);
-            searchDTO.TaskCategoryId = string.IsNullOrWhiteSpace(this.ddlTaskCategory.Text) ?0:Convert.ToInt32(this.ddlTaskCategory.Text);
-            searchDTO.TaskClosingType = this.ddlClosingType.Text;
-            searchDTO.TaskPriority = this.ddlPriority.Text;
-            searchDTO.TaskStatus = this.ddlTaskStatus.Text;
-            searchDTO.Text = this.txtFreeText.Text;
-
+            TaskSearchDTO searchDTO = GetTaskSearchDTO();
             IList<TaskToCsvDTO> csvObjs = taskBLL.GetFilteredTasksForCsv(searchDTO);
             string csvlist = CSVBuilder<TaskToCsvDTO>.ToCsv(";", csvObjs);
             SendFileToClient(csvlist);
-         
-            
-            
         }
 
+        /// <summary>
+        /// Send csv -file to client
+        /// </summary>
+        /// <param name="data"></param>
         private void SendFileToClient(string data)
-        {
-            
-                 
+        { 
             Response.Clear();
             Response.ClearContent();
             Response.ClearHeaders();

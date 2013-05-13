@@ -54,30 +54,34 @@
                         <asp:Label ID="Label5" runat="server" Text="Task Category"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:DropDownList ID="ddlTaskCategory" Width="100" runat="server" DataSourceID="odsTaskCategories" DataTextField="TaskCategory1" DataValueField="Id" AppendDataBoundItems="true">
-                            <asp:ListItem Text="" Value=""></asp:ListItem>
-                        </asp:DropDownList>
+                        <asp:ListBox ID="ddlTaskCategory" SelectionMode="Multiple" Width="100" runat="server"  DataSourceID="odsTaskCategories" DataTextField="TaskCategory1" DataValueField="Id" AppendDataBoundItems="true">
+                            
+                        </asp:ListBox>
+     
                     </asp:TableCell>
 
                     <asp:TableCell>
                         <asp:Label ID="Label6" runat="server" Text="Task Status"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:DropDownList ID="ddlTaskStatus" Width="100" runat="server" DataSourceID="xdsTaskStatus" DataTextField="Value" DataValueField="Value"></asp:DropDownList>
+                        <asp:ListBox ID="ddlTaskStatus"  SelectionMode="Multiple" Width="100" runat="server" DataSourceID="xdsTaskStatus" DataTextField="Value" DataValueField="Value"></asp:ListBox>
+                      
                     </asp:TableCell>
 
                     <asp:TableCell>
                         <asp:Label ID="Label7" runat="server" Text="Task Priority"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:DropDownList ID="ddlPriority" runat="server" DataSourceID="xdsTaskPriority" DataTextField="Value" DataValueField="Value"></asp:DropDownList>
+                        <asp:ListBox ID="ddlPriority" SelectionMode="Multiple" runat="server" DataSourceID="xdsTaskPriority" DataTextField="Value" DataValueField="Value"></asp:ListBox>
+                        
                     </asp:TableCell>
 
                     <asp:TableCell>
                         <asp:Label ID="Label3" runat="server" Text="Closing Type"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:DropDownList ID="ddlClosingType" runat="server" DataSourceID="xdsTaskClosingType" DataTextField="Value" DataValueField="Value"></asp:DropDownList>
+                        <asp:ListBox ID="ddlClosingType" SelectionMode="Multiple" runat="server" DataSourceID="xdsTaskClosingType" DataTextField="Value" DataValueField="Value"></asp:ListBox>
+                       
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableFooterRow>
@@ -160,7 +164,10 @@
             <EmptyDataTemplate>
                 <table runat="server" style="background-color: #FFFFFF; border-collapse: collapse; border-color: #999999; border-style: none; border-width: 1px;">
                     <tr>
-                        <td>No data was returned.</td>
+                        <td>No data was returned.
+                                                    <asp:Button ID="btnDummyBtn" runat="server" Text="Button" CssClass="hidden" />
+                        <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="CommentsPopup" TargetControlID="btnDummyBtn"></ajaxToolkit:ModalPopupExtender>
+                        </td>
                     </tr>
                 </table>
             </EmptyDataTemplate>
