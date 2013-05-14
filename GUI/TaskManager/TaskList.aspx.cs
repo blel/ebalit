@@ -88,7 +88,9 @@ namespace EbalitWebForms.GUI.TaskManager
         {
             if (e.NewValues["DueDate"] != null)
                 e.NewValues["DueDate"] = GUIHelper.GetUSDate(e.NewValues["DueDate"].ToString());
-            e.NewValues["CreatedOn"] = GUIHelper.GetUSDate(e.NewValues["CreatedOn"].ToString());
+            //if actually not required but due to a bug where created on was deleted I need to check this here
+            if (e.NewValues["CreatedOn"] != null)
+                e.NewValues["CreatedOn"] = GUIHelper.GetUSDate(e.NewValues["CreatedOn"].ToString());
             e.NewValues["ChangedOn"] = DateTime.Now;
             e.NewValues["ChangedBy"] = Membership.GetUser().UserName;
 
