@@ -88,6 +88,10 @@ namespace EbalitWebForms.GUI.TaskManager
         {
             if (e.NewValues["DueDate"] != null)
                 e.NewValues["DueDate"] = GUIHelper.GetUSDate(e.NewValues["DueDate"].ToString());
+            e.NewValues["CreatedOn"] = GUIHelper.GetUSDate(e.NewValues["CreatedOn"].ToString());
+            e.NewValues["ChangedOn"] = DateTime.Now;
+            e.NewValues["ChangedBy"] = Membership.GetUser().UserName;
+
         }
 
         /// <summary>
@@ -117,13 +121,6 @@ namespace EbalitWebForms.GUI.TaskManager
             if (mpe != null)
 
                 ((AjaxControlToolkit.ModalPopupExtender)mpe).Show();
-        }
-
-
-
-        protected void odsTaskComments_Inserting(object sender, ObjectDataSourceMethodEventArgs e)
-        {
-
         }
 
         /// <summary>

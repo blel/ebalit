@@ -77,11 +77,13 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="State" SortExpression="State">
                         <EditItemTemplate>
-                            <asp:DropDownList ID="ddlState" Width="200px"  runat="server" DataSourceID="xdsTaskStatus" DataTextField="Value" DataValueField="Value" SelectedValue='<%# Bind("State") %>'>
+                            <asp:DropDownList ID="ddlState" AppendDataBoundItems="true" Width="200px"  runat="server" DataSourceID="xdsTaskStatus" DataTextField="Value" DataValueField="Value" SelectedValue='<%# Bind("State") %>'>
+                             <asp:ListItem Text="--select an item--" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:DropDownList ID="ddlState" Width="200px"  runat="server" DataSourceID="xdsTaskStatus" DataTextField="Value" DataValueField="Value" SelectedValue='<%# Bind("State") %>'>
+                            <asp:DropDownList ID="ddlState" AppendDataBoundItems="true" Width="200px"  runat="server" DataSourceID="xdsTaskStatus" DataTextField="Value" DataValueField="Value" SelectedValue='<%# Bind("State") %>'>
+                             <asp:ListItem Text="--select an item--" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </InsertItemTemplate>
                         <ItemTemplate>
@@ -90,11 +92,13 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Priority" SortExpression="Priority">
                         <EditItemTemplate>
-                            <asp:DropDownList ID="ddlPriority" Width="200px"  runat="server" DataSourceID="xdsTaskPriority" DataTextField="Value" DataValueField="Value" SelectedValue='<%# Bind("Priority") %>'>
-                            </asp:DropDownList>
+                            <asp:DropDownList ID="ddlPriority" AppendDataBoundItems="true" Width="200px"  runat="server" DataSourceID="xdsTaskPriority" DataTextField="Value" DataValueField="Value" SelectedValue='<%# Bind("Priority") %>'>
+                            <asp:ListItem Text="--select an item--" Value=""></asp:ListItem>
+                                 </asp:DropDownList>
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:DropDownList ID="ddlPriority" Width="200px"  runat="server" DataSourceID="xdsTaskPriority" DataTextField="Value" DataValueField="Value" SelectedValue='<%# Bind("Priority") %>' >
+                            <asp:DropDownList ID="ddlPriority" AppendDataBoundItems="true" Width="200px"  runat="server" DataSourceID="xdsTaskPriority" DataTextField="Value" DataValueField="Value" SelectedValue='<%# Bind("Priority") %>' >
+                             <asp:ListItem Text="--select an item--" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </InsertItemTemplate>
                         <ItemTemplate>
@@ -103,13 +107,15 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Closing Type" SortExpression="ClosingType">
                         <EditItemTemplate>
-                            <asp:DropDownList ID="ddlClosingType" Width="200"  runat="server" SelectedValue='<%# Bind("ClosingType") %>'
-                                 DataSourceID="xdsTaskClosingType" DataTextField="Value" DataValueField="Value">
+                            <asp:DropDownList ID="ddlClosingType" Width="200"  runat="server" SelectedValue='<%# Bind("ClosingType") %>' AppendDataBoundItems="true"
+                                 DataSourceID="xdsTaskClosingType" DataTextField="Value" DataValueField="Value"> 
+                                <asp:ListItem Text="--select an item--" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:DropDownList ID="ddlClosingType" Width="200px"  runat="server" 
+                            <asp:DropDownList ID="ddlClosingType" Width="200px"  runat="server" AppendDataBoundItems="true"
                                 DataSourceID="xdsTaskClosingType" DataTextField="Value" DataValueField="Value" SelectedValue='<%# Bind("ClosingType") %>'>
+                             <asp:ListItem Text="--select an item--" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </InsertItemTemplate>
                         <ItemTemplate>

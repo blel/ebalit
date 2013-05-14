@@ -12,7 +12,7 @@
     <asp:XmlDataSource ID="xdsTaskStatus" runat="server" DataFile="~/Resources/MasterData.xml" XPath="/MasterData/DataDictionary[@Name='TaskStatus']/DictionaryItem"></asp:XmlDataSource>
     <asp:XmlDataSource ID="xdsTaskPriority" runat="server" DataFile="~/Resources/MasterData.xml" XPath="/MasterData/DataDictionary[@Name='TaskPriority']/DictionaryItem"></asp:XmlDataSource>
     <asp:XmlDataSource ID="xdsTaskClosingType" runat="server" DataFile="~/Resources/MasterData.xml" XPath="/MasterData/DataDictionary[@Name='ClosingType']/DictionaryItem"></asp:XmlDataSource>
-    <asp:ObjectDataSource ID="odsTaskComments" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.TaskComment" DeleteMethod="DeleteTaskComment" InsertMethod="CreateTaskComment" SelectMethod="GetTaskComments" TypeName="EbalitWebForms.BusinessLogicLayer.TaskComments" UpdateMethod="UpdateTaskComment" OnInserting="odsTaskComments_Inserting" >
+    <asp:ObjectDataSource ID="odsTaskComments" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.TaskComment" DeleteMethod="DeleteTaskComment" InsertMethod="CreateTaskComment" SelectMethod="GetTaskComments" TypeName="EbalitWebForms.BusinessLogicLayer.TaskComments" UpdateMethod="UpdateTaskComment" >
         <SelectParameters>
             <asp:ControlParameter ControlID="hdfSelectedTaskId" Name="taskID" PropertyName="Value" Type="Int32" />
         </SelectParameters>
@@ -150,13 +150,22 @@
                         </asp:DropDownList>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlTaskStatus" DataSourceID="xdsTaskStatus" DataTextField="Value" DataValueField="Value" runat="server" SelectedValue='<%# Bind("State") %>'></asp:DropDownList>
+                        <asp:DropDownList ID="ddlTaskStatus" DataSourceID="xdsTaskStatus" DataTextField="Value" DataValueField="Value" runat="server" AppendDataBoundItems="true" SelectedValue='<%# Bind("State") %>'>
+                            <asp:ListItem Text="" Value=""></asp:ListItem>
+                        </asp:DropDownList>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlPriority" DataSourceID="xdsTaskPriority" DataTextField="Value" DataValueField="Value" runat="server" SelectedValue='<%# Bind("Priority") %>'></asp:DropDownList>
+                        <asp:DropDownList ID="ddlPriority" DataSourceID="xdsTaskPriority" DataTextField="Value" DataValueField="Value" runat="server" AppendDataBoundItems="true" SelectedValue='<%# Bind("Priority") %>'>
+                            <asp:ListItem Text="" Value=""></asp:ListItem>
+                        </asp:DropDownList>
                     </td>
                     <td>
-                        <asp:DropDownList ID="DropDownList1" DataSourceID="xdsTaskClosingType" DataTextField="Value" DataValueField="Value" runat="server" SelectedValue='<%# Bind("ClosingType") %>'></asp:DropDownList>
+                        <asp:DropDownList ID="DropDownList1" DataSourceID="xdsTaskClosingType" DataTextField="Value" DataValueField="Value" runat="server" AppendDataBoundItems="true" SelectedValue='<%# Bind("ClosingType") %>'>
+                            <asp:ListItem Text="" Value=""></asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:TextBox ID="txtContent" Visible="false" Text='<%# Bind("Content") %>' runat="server" />
+                        <asp:TextBox ID="txtCreatedOn" Visible="false" Text='<%# Bind("CreatedOn") %>' runat="server" />
+                        <asp:TextBox ID="txtCreatedBy" Visible="false" Text='<%# Bind("CreatedBy") %>' runat="server" />
                     </td>
 
                 </tr>

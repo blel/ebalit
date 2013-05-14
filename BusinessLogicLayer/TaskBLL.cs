@@ -67,8 +67,6 @@ namespace EbalitWebForms.BusinessLogicLayer
                 
         }
 
-
-
         public int CreateTask(Task task)
         {
             base.EbalitDBContext.Tasks.Add(task);
