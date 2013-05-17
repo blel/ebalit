@@ -54,8 +54,7 @@
                         <asp:Label ID="Label5" runat="server" Text="Task Category"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:ListBox ID="ddlTaskCategory" SelectionMode="Multiple" Width="100" runat="server"  DataSourceID="odsTaskCategories" DataTextField="TaskCategory1" DataValueField="Id" AppendDataBoundItems="true">
-                            
+                        <asp:ListBox ID="ddlTaskCategory" SelectionMode="Multiple" Width="100" runat="server"  DataSourceID="odsTaskCategories" DataTextField="TaskCategory1" DataValueField="Id" AppendDataBoundItems="true" OnDataBound="ddlTaskCategory_DataBound">             
                         </asp:ListBox>
      
                     </asp:TableCell>

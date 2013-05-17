@@ -168,8 +168,8 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:CommandField ShowInsertButton="True" ShowDeleteButton="True" ShowEditButton="True" ControlStyle-CssClass="CommandButton" >
-
+                    <asp:CommandField ShowEditButton="true" ShowInsertButton="true" ControlStyle-CssClass="CommandButton" >
+                        
 <ControlStyle CssClass="CommandButton"></ControlStyle>
                     </asp:CommandField>
 

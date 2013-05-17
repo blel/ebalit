@@ -32,6 +32,24 @@ namespace EbalitWebForms.GUI
             return items.OfType<ListItem>().Where(item => item.Selected);
         }
 
+        public static void SetSelectedItems(this ListItemCollection items, IList<int> selectedItems)
+        {
+            foreach (ListItem item in items)
+            {
+                if (selectedItems.Any(cc => cc == Convert.ToInt32(item.Value)))
+                {
+                    item.Selected = true;
+                }
+            }
+
+        }
+
+        public static void SetSelectedItems(this ListItemCollection items, IList<string> selectedItems)
+        {
+
+
+        }
+
         /// <summary>
         /// Searches for a control recursively
         /// </summary>
@@ -50,5 +68,9 @@ namespace EbalitWebForms.GUI
             }
             return null;
         }
+
+            
     }
+   
+
 }

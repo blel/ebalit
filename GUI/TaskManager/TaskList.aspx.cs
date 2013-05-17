@@ -19,9 +19,24 @@ namespace EbalitWebForms.GUI.TaskManager
         {
             if (!IsPostBack)
             {
+                
                 this.ddlTaskStatus.SelectedIndex = 0;
             }
             this.lblStatus.Text = string.Empty;
+        }
+
+        private void SetFilterParams(TaskSearchDTO taskSearchDTO)
+        {
+            this.txtDateFrom.Text = taskSearchDTO.DateFrom.ToShortDateString();
+            this.txtDateTo.Text = taskSearchDTO.DateTo.ToShortDateString();
+            this.ddlTaskCategory.Items.SetSelectedItems(taskSearchDTO.TaskCategoryId);
+            //taskSearchDTO.DateFrom = string.IsNullOrWhiteSpace(txtDateFrom.Text) ? new DateTime(1900, 1, 1) : Convert.ToDateTime(this.txtDateFrom.Text);
+            //taskSearchDTO.DateTo = string.IsNullOrWhiteSpace(txtDateTo.Text) ? new DateTime(2999, 12, 31) : Convert.ToDateTime(this.txtDateTo.Text);
+            //taskSearchDTO.TaskCategoryId = ddlTaskCategory.Items.GetSelectedItems().Select(cc => string.IsNullOrWhiteSpace(cc.Value) ? -1 : Convert.ToInt32(cc.Value)).ToList();
+            //taskSearchDTO.TaskClosingType = this.ddlClosingType.Items.GetSelectedItems().Select(cc => cc.Text).ToList();
+            //taskSearchDTO.TaskPriority = this.ddlPriority.Items.GetSelectedItems().Select(cc => cc.Text).ToList();
+            //taskSearchDTO.TaskStatus = this.ddlTaskStatus.Items.GetSelectedItems().Select(cc => cc.Text).ToList();
+            //taskSearchDTO.Text = this.txtFreeText.Text;
         }
 
         protected void lnkFind_Command(object sender, CommandEventArgs e)
@@ -103,6 +118,7 @@ namespace EbalitWebForms.GUI.TaskManager
         /// <param name="e"></param>
         protected void btnDetails_Command(object sender, CommandEventArgs e)
         {
+            Session.Add("FilterParams", GetTaskSearchDTO());
             Response.Redirect(string.Format("~/GUI/TaskManager/TaskDetail.aspx?Id={0}", e.CommandArgument));
         }
 
@@ -229,6 +245,16 @@ namespace EbalitWebForms.GUI.TaskManager
             //Write it back to the client    
             Response.Write(data);
             Response.End();
+        }
+
+        protected void ddlTaskCategory_DataBound(object sender, EventArgs e)
+        {
+            if (Session["FilterParams"] != null)
+            {
+                var taskSearchDTO = (TaskSearchDTO)Session["FilterParams"];
+                this.ddlTaskCategory.Items.SetSelectedItems(taskSearchDTO.TaskCategoryId);
+                
+            }
         }
 
     }

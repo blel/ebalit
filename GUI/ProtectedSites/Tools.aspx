@@ -7,7 +7,7 @@
         <div id="LeftColumn">
         </div>
         <div id="MainColumn">
-
+            <a href="http://178.199.56.122:8081" class="CommandButton">Go Home</a>
         </div>
         <div id="RightColumn">
         </div>
