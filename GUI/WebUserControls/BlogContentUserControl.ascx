@@ -41,7 +41,7 @@
     </asp:DetailsView>
 </div>
 <div id="ButtonZone" runat="server" class="ButtonZone">
-    <asp:Label ID="lblShowPopup" runat="server" Text="Comment" CssClass="CommentButton" ></asp:Label>
+    <asp:Label ID="lblShowPopup" runat="server" Text="Comment" CssClass="CommentButton"  ></asp:Label>
 </div>
 <!-- comments -->
 <div id="Comments">
@@ -71,7 +71,7 @@
         <SelectedItemStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
     </asp:DataList>
 </div>
-<ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="lblShowPopup" PopupControlID="Popup"></ajaxToolkit:ModalPopupExtender>
+<ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="lblShowPopup" PopupControlID="Popup" ></ajaxToolkit:ModalPopupExtender>
 
 <div id="Popup" runat="server" class="Popup">
     <asp:ObjectDataSource ID="odsBlogComment" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.BlogComment" InsertMethod="CreateBlogComment" SelectMethod="GetBlogComment" TypeName="EbalitWebForms.BusinessLogicLayer.BlogCommentBLL" OnInserted="odsBlogComment_Inserted">

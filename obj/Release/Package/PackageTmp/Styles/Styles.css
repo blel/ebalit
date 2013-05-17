@@ -11,6 +11,12 @@ body
     background-color: #EBEBEB;
 }
 
+h2
+{
+    padding-bottom:0px;
+    margin-bottom:0px;
+}
+
 /*Background of the header*/
 #HeaderBackground
 {
@@ -431,6 +437,13 @@ menu
     vertical-align: top;
 }
 
+.attenuated
+{
+    color: grey;
+    font-style: italic;
+    font-weight: normal;
+    font-size: small;
+}
 
 
 

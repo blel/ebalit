@@ -22,9 +22,11 @@
             <asp:TemplateField SortExpression="PublishedOn" ItemStyle-Height="20px" ItemStyle-BorderStyle="None" ShowHeader="False">
                 <ItemTemplate>
                     <b>
-                        <asp:Label ID="header" runat="server" Text="Published On: "></asp:Label>
-                        <asp:Label ID="Label3" runat="server" Text='<%# Bind("PublishedOn","{0:d}") %>'></asp:Label>
-                    </b>
+                        <asp:Label ID="header" CssClass="attenuated" runat="server" Text="Published on "></asp:Label>
+                        <asp:Label ID="Label3" CssClass="attenuated" runat="server" Text='<%# Bind("PublishedOn","{0:d}") %>'></asp:Label>
+                        <asp:Label  runat ="server" CssClass="attenuated" Text =" in category "></asp:Label>
+                        <asp:Label ID ="lblCategory" CssClass="attenuated" runat="server" Text ='<%# Eval("BlogCategory.Category") %>'></asp:Label>
+                                                </b>
                 </ItemTemplate>
                 <ItemStyle BorderStyle="None" Height="20px"></ItemStyle>
             </asp:TemplateField>
@@ -72,7 +74,7 @@
 <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="lblShowPopup" PopupControlID="Popup"></ajaxToolkit:ModalPopupExtender>
 
 <div id="Popup" runat="server" class="Popup">
-    <asp:ObjectDataSource ID="odsBlogComment" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.BlogComment" InsertMethod="CreateBlogComment" SelectMethod="GetBlogComment" TypeName="EbalitWebForms.BusinessLogicLayer.BlogCommentBLL">
+    <asp:ObjectDataSource ID="odsBlogComment" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.BlogComment" InsertMethod="CreateBlogComment" SelectMethod="GetBlogComment" TypeName="EbalitWebForms.BusinessLogicLayer.BlogCommentBLL" OnInserted="odsBlogComment_Inserted">
         <SelectParameters>
             <asp:Parameter DefaultValue="0" Name="blogCommentId" Type="Int32" />
         </SelectParameters>
