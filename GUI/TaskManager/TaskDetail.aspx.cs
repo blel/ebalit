@@ -15,7 +15,11 @@ namespace EbalitWebForms.GUI.TaskManager
 
             if (!IsPostBack)
             {
-                
+                //deletes the filter if not coming from the tasklist.
+                //don't like this globalish implementation
+                if (Request.UrlReferrer.PathAndQuery != "/GUI/TaskManager/TaskList.aspx")
+                    Session["FilterParams"] = null;
+                          
                 if (Request.QueryString["Id"] != null)
                 {
                     this.dtvTask.ChangeMode(DetailsViewMode.Edit);

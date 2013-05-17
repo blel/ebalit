@@ -47,7 +47,13 @@ namespace EbalitWebForms.GUI
         public static void SetSelectedItems(this ListItemCollection items, IList<string> selectedItems)
         {
 
-
+            foreach (ListItem item in items)
+            {
+                if (selectedItems.Any(cc => cc == item.Text))
+                {
+                    item.Selected = true;
+                }
+            }
         }
 
         /// <summary>

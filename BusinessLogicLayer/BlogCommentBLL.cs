@@ -13,11 +13,12 @@ namespace EbalitWebForms.BusinessLogicLayer
         /// </summary>
         /// <param name="blogComment"></param>
         /// <returns></returns>
-        public int CreateBlogComment(BlogComment blogComment)
+        public BlogComment CreateBlogComment(BlogComment blogComment)
         {
             base.EbalitDBContext.BlogComments.Add(blogComment);
             base.EbalitDBContext.SaveChanges();
-            return blogComment.Id;
+            blogComment.BlogEntry = new BlogEntryDAL().GetBlogEntry(blogComment.FK_BlogEntry);
+            return blogComment;
         }
 
         /// <summary>

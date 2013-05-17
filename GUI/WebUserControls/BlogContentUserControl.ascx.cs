@@ -106,6 +106,7 @@ namespace EbalitWebForms.GUI.WebUserControls
             e.InputParameters["blogEntryId"] = CurrentEntryID;
         }
 
+
         protected void lnkSend_Command(object sender, CommandEventArgs e)
         {
             if (Convert.ToInt32(CurrentEntryID) > 0)
@@ -118,11 +119,33 @@ namespace EbalitWebForms.GUI.WebUserControls
 
         }
 
+        /// <summary>
+        /// Editing is done on the details screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             BlogTopicDAL blogTopicBLL = new BlogTopicDAL();
             int blogTopicID = blogTopicBLL.GetBlogTopicId(BlogTopic);
             Response.Redirect(string.Format("/GUI/ProtectedSites/CreateBlogEntry.aspx?Id={0}&BlogTopicID={1}", CurrentEntryID, blogTopicID));
         }
+
+
+        /// <summary>
+        /// Send the inserted comment to the predefined mail recepient using the singleton mailmanager
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void odsBlogComment_Inserted(object sender, ObjectDataSourceStatusEventArgs e)
+        {
+            BlogComment insertedComment = (BlogComment)e.ReturnValue;
+            if (insertedComment != null)
+            {
+                MailManager.GetMailManager().SendCommentMessage(insertedComment);
+            }
+        }
+
+
     }
 }

@@ -54,7 +54,7 @@
                         <asp:Label ID="Label5" runat="server" Text="Task Category"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:ListBox ID="ddlTaskCategory" SelectionMode="Multiple" Width="100" runat="server"  DataSourceID="odsTaskCategories" DataTextField="TaskCategory1" DataValueField="Id" AppendDataBoundItems="true" OnDataBound="ddlTaskCategory_DataBound">             
+                        <asp:ListBox ID="ddlTaskCategory" SelectionMode="Multiple" Width="100" runat="server"  DataSourceID="odsTaskCategories" DataTextField="TaskCategory1" DataValueField="Id" AppendDataBoundItems="true" OnDataBound="Filter_DataBound">             
                         </asp:ListBox>
      
                     </asp:TableCell>
@@ -63,7 +63,7 @@
                         <asp:Label ID="Label6" runat="server" Text="Task Status"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:ListBox ID="ddlTaskStatus"  SelectionMode="Multiple" Width="100" runat="server" DataSourceID="xdsTaskStatus" DataTextField="Value" DataValueField="Value"></asp:ListBox>
+                        <asp:ListBox ID="ddlTaskStatus"  SelectionMode="Multiple" Width="100" runat="server" DataSourceID="xdsTaskStatus" DataTextField="Value" DataValueField="Value" OnDataBound="Filter_DataBound"></asp:ListBox>
                       
                     </asp:TableCell>
 
@@ -71,7 +71,7 @@
                         <asp:Label ID="Label7" runat="server" Text="Task Priority"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:ListBox ID="ddlPriority" SelectionMode="Multiple" runat="server" DataSourceID="xdsTaskPriority" DataTextField="Value" DataValueField="Value"></asp:ListBox>
+                        <asp:ListBox ID="ddlPriority" SelectionMode="Multiple" runat="server" DataSourceID="xdsTaskPriority" DataTextField="Value" DataValueField="Value" OnDataBound="Filter_DataBound"></asp:ListBox>
                         
                     </asp:TableCell>
 
@@ -79,7 +79,7 @@
                         <asp:Label ID="Label3" runat="server" Text="Closing Type"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:ListBox ID="ddlClosingType" SelectionMode="Multiple" runat="server" DataSourceID="xdsTaskClosingType" DataTextField="Value" DataValueField="Value"></asp:ListBox>
+                        <asp:ListBox ID="ddlClosingType" SelectionMode="Multiple" runat="server" DataSourceID="xdsTaskClosingType" DataTextField="Value" DataValueField="Value" OnDataBound="Filter_DataBound"></asp:ListBox>
                        
                     </asp:TableCell>
                 </asp:TableRow>

@@ -19,24 +19,16 @@ namespace EbalitWebForms.GUI.TaskManager
         {
             if (!IsPostBack)
             {
-                
+                if (Session["FilterParams"] != null)
+                {
+                    var taskSearchDTO = (TaskSearchDTO)Session["FilterParams"];
+                    this.txtDateFrom.Text = taskSearchDTO.DateFrom == new DateTime(1900, 1, 1) ? "" : taskSearchDTO.DateFrom.ToShortDateString();
+                    this.txtDateTo.Text = taskSearchDTO.DateTo == new DateTime(2999, 12, 31) ? "" : taskSearchDTO.DateTo.ToShortDateString();
+                    this.txtFreeText.Text = taskSearchDTO.Text;
+                }
                 this.ddlTaskStatus.SelectedIndex = 0;
             }
             this.lblStatus.Text = string.Empty;
-        }
-
-        private void SetFilterParams(TaskSearchDTO taskSearchDTO)
-        {
-            this.txtDateFrom.Text = taskSearchDTO.DateFrom.ToShortDateString();
-            this.txtDateTo.Text = taskSearchDTO.DateTo.ToShortDateString();
-            this.ddlTaskCategory.Items.SetSelectedItems(taskSearchDTO.TaskCategoryId);
-            //taskSearchDTO.DateFrom = string.IsNullOrWhiteSpace(txtDateFrom.Text) ? new DateTime(1900, 1, 1) : Convert.ToDateTime(this.txtDateFrom.Text);
-            //taskSearchDTO.DateTo = string.IsNullOrWhiteSpace(txtDateTo.Text) ? new DateTime(2999, 12, 31) : Convert.ToDateTime(this.txtDateTo.Text);
-            //taskSearchDTO.TaskCategoryId = ddlTaskCategory.Items.GetSelectedItems().Select(cc => string.IsNullOrWhiteSpace(cc.Value) ? -1 : Convert.ToInt32(cc.Value)).ToList();
-            //taskSearchDTO.TaskClosingType = this.ddlClosingType.Items.GetSelectedItems().Select(cc => cc.Text).ToList();
-            //taskSearchDTO.TaskPriority = this.ddlPriority.Items.GetSelectedItems().Select(cc => cc.Text).ToList();
-            //taskSearchDTO.TaskStatus = this.ddlTaskStatus.Items.GetSelectedItems().Select(cc => cc.Text).ToList();
-            //taskSearchDTO.Text = this.txtFreeText.Text;
         }
 
         protected void lnkFind_Command(object sender, CommandEventArgs e)
@@ -75,6 +67,7 @@ namespace EbalitWebForms.GUI.TaskManager
         /// <param name="e"></param>
         protected void lnkClear_Command(object sender, CommandEventArgs e)
         {
+            Session["FilterParams"] = null;
             this.txtFreeText.Text = string.Empty;
             this.txtDateFrom.Text = string.Empty;
             this.txtDateTo.Text = string.Empty;
@@ -247,14 +240,36 @@ namespace EbalitWebForms.GUI.TaskManager
             Response.End();
         }
 
-        protected void ddlTaskCategory_DataBound(object sender, EventArgs e)
+        protected void Filter_DataBound(object sender, EventArgs e)
         {
             if (Session["FilterParams"] != null)
             {
                 var taskSearchDTO = (TaskSearchDTO)Session["FilterParams"];
-                this.ddlTaskCategory.Items.SetSelectedItems(taskSearchDTO.TaskCategoryId);
-                
+                ListBox senderDdl = (ListBox)sender;
+                if (senderDdl != null)
+                {
+                    switch (senderDdl.ID)
+                    {
+                        case "ddlTaskCategory":
+                            senderDdl.Items.SetSelectedItems(taskSearchDTO.TaskCategoryId);
+                            break;
+                        case "ddlClosingType":
+                            senderDdl.Items.SetSelectedItems(taskSearchDTO.TaskClosingType);
+                            break;
+                        case "ddlPriority":
+                            senderDdl.Items.SetSelectedItems(taskSearchDTO.TaskPriority);
+                            break;
+                        case "ddlTaskStatus":
+                            senderDdl.Items.SetSelectedItems(taskSearchDTO.TaskStatus);
+                            break;
+                        default:
+                            //error - should not occur
+                            break;
+                    }
+                }
+
             }
+
         }
 
     }
