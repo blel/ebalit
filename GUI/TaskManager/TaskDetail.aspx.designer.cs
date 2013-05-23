@@ -67,6 +67,15 @@ namespace EbalitWebForms.GUI.TaskManager {
         protected global::System.Web.UI.WebControls.ObjectDataSource odsTaskCategories;
         
         /// <summary>
+        /// odsTaskComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsTaskComments;
+        
+        /// <summary>
         /// dtvTask control.
         /// </summary>
         /// <remarks>
@@ -74,5 +83,14 @@ namespace EbalitWebForms.GUI.TaskManager {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DetailsView dtvTask;
+        
+        /// <summary>
+        /// ddlTaskComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList ddlTaskComments;
     }
 }
