@@ -6,12 +6,27 @@
     <div id="TitleContainer">
         <div id="Title">
             <div class="subMenu">
-                <menu>
-                    <li><a href="AdminIndex.aspx">Admin Home</a></li>
-                    <li><a href="CreateBlogEntry.aspx">Create Blog Entry</a> </li>
-                    <li><a href="BlogEntries.aspx">Manage Blog Entries</a></li>
-                    <li><a href="ManageBlogCategories.aspx">Manage Blog Categories</a></li>
-                </menu>
+                <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" StaticEnableDefaultPopOutImage="False" ForeColor="#003528">
+                    <DynamicHoverStyle BackColor="#CCCCCC" ForeColor="LightYellow" />
+                    <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                    <DynamicMenuStyle BackColor="#CCCCCC" />
+                    <DynamicSelectedStyle BackColor="#507CD1" />
+                    <StaticHoverStyle BackColor="#003528" ForeColor="LightYellow" />
+                    <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+
+                    <Items>
+                        <asp:MenuItem Text="Blogs">
+                            <asp:MenuItem Text="Create Blog Entry" NavigateUrl="CreateBlogEntry.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Manage Blog Entries" NavigateUrl="BlogEntries.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Manage Blog Categories" NavigateUrl="ManageBlogCategories.aspx"></asp:MenuItem>
+                        </asp:MenuItem>
+
+                        <asp:MenuItem Text="Administration">
+                            <asp:MenuItem Text="Logout" NavigateUrl="AdminIndex.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Create User" NavigateUrl="CreateUser.aspx"></asp:MenuItem>
+                        </asp:MenuItem>
+                    </Items>
+                </asp:Menu>
             </div>
         </div>
     </div>

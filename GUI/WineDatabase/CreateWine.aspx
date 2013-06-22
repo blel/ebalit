@@ -97,10 +97,10 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Wine Attributes">
                         <InsertItemTemplate>
-                            <asp:CheckBoxList ID="cblAttributes" DataSourceID="odsWineAttributes" DataTextField="Attribute" DataValueField="Id" runat="server"></asp:CheckBoxList>
+                            <asp:CheckBoxList ID="cblAttributes" RepeatColumns="3" RepeatDirection="Horizontal" DataSourceID="odsWineAttributes" DataTextField="Attribute" DataValueField="Id" runat="server"></asp:CheckBoxList>
                         </InsertItemTemplate>
                         <EditItemTemplate>
-                            <asp:CheckBoxList ID="cblAttributes" DataSourceID="odsWineAttributes" DataTextField="Attribute" DataValueField="Id" runat="server"></asp:CheckBoxList>
+                            <asp:CheckBoxList ID="cblAttributes" RepeatColumns="3" RepeatDirection="Horizontal" DataSourceID="odsWineAttributes" DataTextField="Attribute" DataValueField="Id" runat="server"></asp:CheckBoxList>
 
                         </EditItemTemplate>
                     </asp:TemplateField>

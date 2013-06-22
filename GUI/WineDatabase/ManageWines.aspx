@@ -15,7 +15,7 @@
                             <td id="Td1" runat="server">
                                 <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF; border-collapse: collapse; border-color: #999999; border-style: none; border-width: 1px; font-family: Arial; width: 100%;">
                                     <tr id="Tr2" runat="server" style="background-color: #DCDCDC; color: #000000;">
-                                        <th id="Th1" runat="server"></th>
+                                        <th id="Th1" runat="server" style="width:120px;"></th>
                                         <th id="Th2" runat="server">&nbsp;Label&nbsp;</th>
                                         <th id="Th3" runat="server">&nbsp;Year&nbsp;</th>
                                         <th id="Th4" runat="server">&nbsp;Grape&nbsp;</th>

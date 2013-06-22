@@ -87,6 +87,7 @@
     <Content Include="GUI\ProtectedSites\CreateBlogEntry.aspx" />
     <Content Include="GUI\ProtectedSites\AdminIndex.aspx" />
     <Content Include="GUI\ProtectedSites\BlogEntries.aspx" />
+    <Content Include="GUI\ProtectedSites\CreateUser.aspx" />
     <Content Include="GUI\ProtectedSites\ManageBlogCategories.aspx" />
     <Content Include="GUI\MusicSearchResult.aspx" />
     <Content Include="GUI\ITSearchResult.aspx" />
@@ -215,6 +216,13 @@
     </Compile>
     <Compile Include="GUI\ITSearchResult.aspx.designer.cs">
       <DependentUpon>ITSearchResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ProtectedSites\CreateUser.aspx.cs">
+      <DependentUpon>CreateUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\ProtectedSites\CreateUser.aspx.designer.cs">
+      <DependentUpon>CreateUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="GUI\ProtectedSites\ToolsMaster.master.cs">
       <DependentUpon>ToolsMaster.master</DependentUpon>

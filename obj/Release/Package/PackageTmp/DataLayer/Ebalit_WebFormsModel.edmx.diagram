@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="bb473dfd97f1433a85b00623fad3fd99" Name="Diagram1" ZoomLevel="88">
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.User" Width="1.5" PointX="3.625" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.User" PointX="3.625" PointY="5.625" Width="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogCategory" Width="1.5" PointX="6.25" PointY="8.125" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogEntry" Width="1.5" PointX="1.0429241419969704" PointY="6.4562689841055629" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogTopic" Width="1.5" PointX="1.5" PointY="10" />
@@ -13,11 +13,19 @@
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_BlogCategory_BlogTopic" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogComment" Width="1.5" PointX="6.25" PointY="5" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_BlogComment_ToBlogEntry" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.Task" Width="1.5" PointX="6.75" PointY="12.625" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.TaskCategory" Width="1.5" PointX="9.75" PointY="10.375" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.Task" Width="1.5" PointX="3.125" PointY="12.75" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.TaskCategory" Width="1.5" PointX="5.75" PointY="12.875" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_Task_ToTaskCategory" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.TaskComment" Width="1.5" PointX="4.25" PointY="12.75" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.TaskComment" Width="1.5" PointX="0.75" PointY="12.5" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_TaskComment_ToTask" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.aspnet_Users" Width="1.5" PointX="0.5" PointY="16.875" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.Wine" Width="1.5" PointX="3.5" PointY="18.375" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.WineAttribute" Width="1.5" PointX="5.5" PointY="22.25" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.WineToWineAttribute" Width="1.5" PointX="5.75" PointY="19.625" />
+        <AssociationConnector Association="Ebalit_WebFormsModel.FK_WineToWineAttribute_ToWine" />
+        <AssociationConnector Association="Ebalit_WebFormsModel.FK_WineToWineAttribute_ToWineAttribute" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.WineConsumation" Width="1.5" PointX="0.625" PointY="19.75" />
+        <AssociationConnector Association="Ebalit_WebFormsModel.FK_WineConsumation_ToWine" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

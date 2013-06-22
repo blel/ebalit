@@ -11,7 +11,7 @@ namespace EbalitWebForms.BusinessLogicLayer
     /// NOt sure if this approach is good, but it works.
     /// 
     /// </summary>
-    public class WineBLL:DataAccessLayer
+    public class WineBLL : DataAccessLayer
     {
         /// <summary>
         /// Get a wine by primary key
@@ -39,11 +39,17 @@ namespace EbalitWebForms.BusinessLogicLayer
         /// Returns wines as concatenated strings
         /// </summary>
         /// <returns></returns>
-        public IDictionary<string,string> GetWineAsString()
+        public IDictionary<string, string> GetWineAsString()
         {
 
             return (from wine in base.EbalitDBContext.Wines
-                    select wine).ToDictionary(cc => cc.Id.ToString(), cc => cc.Label + ", " + cc.Year + ", " + cc.Grape + "," + cc.Origin);
+                    select wine).ToDictionary(cc => cc.Id.ToString(), cc =>
+                        string.Format("Label: {0}, Year: {1}, Grape(s): {2}, Origin: {3}",
+                         cc.Label,
+                         cc.Year.ToString(),
+                         string.IsNullOrWhiteSpace(cc.Grape) ? "n/a" : cc.Grape,
+                         string.IsNullOrWhiteSpace(cc.Origin) ? "n/a" : cc.Origin));
+
         }
 
 
