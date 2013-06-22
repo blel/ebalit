@@ -33,5 +33,10 @@ namespace EbalitWebForms.DataLayer
         public DbSet<Task> Tasks { get; set; }
         public DbSet<TaskCategory> TaskCategories { get; set; }
         public DbSet<TaskComment> TaskComments { get; set; }
+        public DbSet<aspnet_Users> aspnet_Users { get; set; }
+        public DbSet<Wine> Wines { get; set; }
+        public DbSet<WineAttribute> WineAttributes { get; set; }
+        public DbSet<WineToWineAttribute> WineToWineAttributes { get; set; }
+        public DbSet<WineConsumation> WineConsumations { get; set; }
     }
 }

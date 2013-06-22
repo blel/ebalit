@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Ebalit_WebFormsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+<Schema Namespace="Ebalit_WebFormsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="Ebalit_WebFormsModelStoreContainer">
+    <EntitySet Name="aspnet_Users" EntityType="Ebalit_WebFormsModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BlogCategory" EntityType="Ebalit_WebFormsModel.Store.BlogCategory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BlogComment" EntityType="Ebalit_WebFormsModel.Store.BlogComment" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BlogEntry" EntityType="Ebalit_WebFormsModel.Store.BlogEntry" store:Type="Tables" Schema="dbo" />
@@ -9,6 +10,10 @@
     <EntitySet Name="TaskCategory" EntityType="Ebalit_WebFormsModel.Store.TaskCategory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TaskComment" EntityType="Ebalit_WebFormsModel.Store.TaskComment" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="User" EntityType="Ebalit_WebFormsModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Wine" EntityType="Ebalit_WebFormsModel.Store.Wine" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WineAttribute" EntityType="Ebalit_WebFormsModel.Store.WineAttribute" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WineConsumation" EntityType="Ebalit_WebFormsModel.Store.WineConsumation" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WineToWineAttribute" EntityType="Ebalit_WebFormsModel.Store.WineToWineAttribute" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_BlogCategory_BlogTopic" Association="Ebalit_WebFormsModel.Store.FK_BlogCategory_BlogTopic">
       <End Role="BlogTopic" EntitySet="BlogTopic" />
       <End Role="BlogCategory" EntitySet="BlogCategory" />
@@ -25,7 +30,31 @@
       <End Role="Task" EntitySet="Task" />
       <End Role="TaskComment" EntitySet="TaskComment" />
     </AssociationSet>
+    <AssociationSet Name="FK_WineConsumation_ToWine" Association="Ebalit_WebFormsModel.Store.FK_WineConsumation_ToWine">
+      <End Role="Wine" EntitySet="Wine" />
+      <End Role="WineConsumation" EntitySet="WineConsumation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WineToWineAttribute_ToWine" Association="Ebalit_WebFormsModel.Store.FK_WineToWineAttribute_ToWine">
+      <End Role="Wine" EntitySet="Wine" />
+      <End Role="WineToWineAttribute" EntitySet="WineToWineAttribute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WineToWineAttribute_ToWineAttribute" Association="Ebalit_WebFormsModel.Store.FK_WineToWineAttribute_ToWineAttribute">
+      <End Role="WineAttribute" EntitySet="WineAttribute" />
+      <End Role="WineToWineAttribute" EntitySet="WineToWineAttribute" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="aspnet_Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="LoweredUserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
+    <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+    <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="BlogCategory">
     <Key>
       <PropertyRef Name="Id" />
@@ -126,6 +155,56 @@
     <Property Name="FailedPasswordAnswerAttemptCount " Type="int" />
     <Property Name="FailedPasswordAnswerAttemptWindowStart " Type="datetime" />
   </EntityType>
+  <EntityType Name="Wine">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Label" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="BoughtOn" Type="datetime" />
+    <Property Name="Magazine" Type="nvarchar" MaxLength="255" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ChangedOn" Type="datetime" />
+    <Property Name="ChangedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remarks" Type="nvarchar(max)" />
+    <Property Name="Grape" Type="nvarchar" MaxLength="255" />
+    <Property Name="Origin" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="WineAttribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Attribute" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Remarks" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="WineConsumation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Taster" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="TastedOn" Type="datetime" />
+    <Property Name="WeatherConditions" Type="nvarchar(max)" />
+    <Property Name="FK_Wine" Type="int" Nullable="false" />
+    <Property Name="Meal" Type="nvarchar(max)" />
+    <Property Name="Rating" Type="int" />
+    <Property Name="Remarks" Type="nvarchar(max)" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChangedOn" Type="datetime" />
+    <Property Name="ChangedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="WineToWineAttribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FK_Wine" Type="int" Nullable="false" />
+    <Property Name="FK_WineAttribute" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="FK_BlogCategory_BlogTopic">
     <End Role="BlogTopic" Type="Ebalit_WebFormsModel.Store.BlogTopic" Multiplicity="1" />
     <End Role="BlogCategory" Type="Ebalit_WebFormsModel.Store.BlogCategory" Multiplicity="*" />
@@ -173,6 +252,42 @@
       </Principal>
       <Dependent Role="TaskComment">
         <PropertyRef Name="FK_Task" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WineConsumation_ToWine">
+    <End Role="Wine" Type="Ebalit_WebFormsModel.Store.Wine" Multiplicity="1" />
+    <End Role="WineConsumation" Type="Ebalit_WebFormsModel.Store.WineConsumation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Wine">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WineConsumation">
+        <PropertyRef Name="FK_Wine" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WineToWineAttribute_ToWine">
+    <End Role="Wine" Type="Ebalit_WebFormsModel.Store.Wine" Multiplicity="1" />
+    <End Role="WineToWineAttribute" Type="Ebalit_WebFormsModel.Store.WineToWineAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Wine">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WineToWineAttribute">
+        <PropertyRef Name="FK_Wine" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WineToWineAttribute_ToWineAttribute">
+    <End Role="WineAttribute" Type="Ebalit_WebFormsModel.Store.WineAttribute" Multiplicity="1" />
+    <End Role="WineToWineAttribute" Type="Ebalit_WebFormsModel.Store.WineToWineAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WineAttribute">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WineToWineAttribute">
+        <PropertyRef Name="FK_WineAttribute" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -12,7 +12,7 @@
                     <DynamicMenuStyle BackColor="#CCCCCC" />
                     <DynamicSelectedStyle BackColor="#507CD1" />
                     <StaticHoverStyle BackColor="#003528" ForeColor="LightYellow" />
-                    <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px"  />
+                    <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
 
                     <Items>
                         <asp:MenuItem Text="TaskManager">
@@ -22,6 +22,14 @@
                         </asp:MenuItem>
                         <asp:MenuItem Text="Vocabulary Trainer">
                             <asp:MenuItem Text="Create Entry"></asp:MenuItem>
+                        </asp:MenuItem>
+                        <asp:MenuItem Text="Wine Database">
+                            <asp:MenuItem Text="Create Wine" NavigateUrl="/GUI/WineDatabase/CreateWine.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Manage Wines" NavigateUrl="/GUI/WineDatabase/ManageWines.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Create Consumation" NavigateUrl="/GUI/WineDatabase/CreateConsumation.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Manage Consumations" NavigateUrl="/GUI/WineDatabase/ManageConsumations.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Wine Attributes" NavigateUrl="/GUI/WineDatabase/ManageWineAttribute.aspx"></asp:MenuItem>
+
                         </asp:MenuItem>
                     </Items>
 

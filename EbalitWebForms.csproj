@@ -99,6 +99,11 @@
     <Content Include="GUI\WebUserControls\BlogContentUserControl.ascx" />
     <Content Include="GUI\WebUserControls\CategoryBrowser.ascx" />
     <Content Include="GUI\WebUserControls\SearchUserControl.ascx" />
+    <Content Include="GUI\WineDatabase\CreateConsumation.aspx" />
+    <Content Include="GUI\WineDatabase\CreateWine.aspx" />
+    <Content Include="GUI\WineDatabase\ManageConsumations.aspx" />
+    <Content Include="GUI\WineDatabase\ManageWineAttribute.aspx" />
+    <Content Include="GUI\WineDatabase\ManageWines.aspx" />
     <Content Include="Index.html" />
     <Content Include="GUI\ProtectedSites\ToolsMaster.master" />
     <None Include="Scripts\jquery-2.0.0.intellisense.js" />
@@ -119,13 +124,20 @@
   <ItemGroup>
     <Compile Include="BusinessLogicLayer\CSVBuilder.cs" />
     <Compile Include="BusinessLogicLayer\EbalitMembershipProvider.cs" />
+    <Compile Include="BusinessLogicLayer\IRepository.cs" />
     <Compile Include="BusinessLogicLayer\MailManager.cs" />
+    <Compile Include="BusinessLogicLayer\Repository.cs" />
     <Compile Include="BusinessLogicLayer\TaskBLL.cs" />
     <Compile Include="BusinessLogicLayer\TaskCategoryBLL.cs" />
     <Compile Include="BusinessLogicLayer\TaskComments.cs" />
     <Compile Include="BusinessLogicLayer\TaskSearchDTO.cs" />
     <Compile Include="BusinessLogicLayer\TaskToCsvDTO.cs" />
+    <Compile Include="BusinessLogicLayer\Tests.cs" />
     <Compile Include="BusinessLogicLayer\UserBLL.cs" />
+    <Compile Include="BusinessLogicLayer\WineBLL.cs" />
+    <Compile Include="DataLayer\aspnet_Users.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataLayer\BlogCategory.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
@@ -165,6 +177,21 @@
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataLayer\TaskComment.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\User.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\Wine.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\WineAttribute.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\WineConsumation.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\WineToWineAttribute.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="GUI\GUIHelper.cs" />
@@ -259,6 +286,41 @@
     <Compile Include="GUI\WebUserControls\SearchUserControl.ascx.designer.cs">
       <DependentUpon>SearchUserControl.ascx</DependentUpon>
     </Compile>
+    <Compile Include="GUI\WineDatabase\CreateConsumation.aspx.cs">
+      <DependentUpon>CreateConsumation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\WineDatabase\CreateConsumation.aspx.designer.cs">
+      <DependentUpon>CreateConsumation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WineDatabase\CreateWine.aspx.cs">
+      <DependentUpon>CreateWine.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\WineDatabase\CreateWine.aspx.designer.cs">
+      <DependentUpon>CreateWine.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WineDatabase\ManageConsumations.aspx.cs">
+      <DependentUpon>ManageConsumations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\WineDatabase\ManageConsumations.aspx.designer.cs">
+      <DependentUpon>ManageConsumations.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WineDatabase\ManageWineAttribute.aspx.cs">
+      <DependentUpon>ManageWineAttribute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\WineDatabase\ManageWineAttribute.aspx.designer.cs">
+      <DependentUpon>ManageWineAttribute.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WineDatabase\ManageWines.aspx.cs">
+      <DependentUpon>ManageWines.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\WineDatabase\ManageWines.aspx.designer.cs">
+      <DependentUpon>ManageWines.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GUI\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -322,9 +384,6 @@
     </Compile>
     <Compile Include="GUI\ProtectedSites\Tools.aspx.designer.cs">
       <DependentUpon>Tools.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DataLayer\User.cs">
-      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="GUI\Varia.aspx.cs">
       <DependentUpon>Varia.aspx</DependentUpon>

@@ -20,4 +20,11 @@
 		<DictionaryItem Key="3" Value="Postponed"/>
 
 	</DataDictionary>
+	<DataDictionary Name ="WineRating">
+		<DictionaryItem Key="1" Value="disgusting"/>
+		<DictionaryItem Key="2" Value="bad"/>
+		<DictionaryItem Key="3" Value="potable"/>
+		<DictionaryItem Key="4" Value="good"/>
+		<DictionaryItem Key="5" Value="excellent"/>
+	</DataDictionary>
 </MasterData>

@@ -109,5 +109,72 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_Users">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.aspnet_Users">
+        <MappingFragment StoreEntitySet="aspnet_Users">
+          <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+          <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+          <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
+          <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Wines">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.Wine">
+        <MappingFragment StoreEntitySet="Wine">
+          <ScalarProperty Name="Origin" ColumnName="Origin" />
+          <ScalarProperty Name="Grape" ColumnName="Grape" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+          <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Magazine" ColumnName="Magazine" />
+          <ScalarProperty Name="BoughtOn" ColumnName="BoughtOn" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Label" ColumnName="Label" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WineAttributes">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.WineAttribute">
+        <MappingFragment StoreEntitySet="WineAttribute">
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Attribute" ColumnName="Attribute" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WineToWineAttributes">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.WineToWineAttribute">
+        <MappingFragment StoreEntitySet="WineToWineAttribute">
+          <ScalarProperty Name="FK_WineAttribute" ColumnName="FK_WineAttribute" />
+          <ScalarProperty Name="FK_Wine" ColumnName="FK_Wine" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WineConsumations">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.WineConsumation">
+        <MappingFragment StoreEntitySet="WineConsumation">
+          <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+          <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="Meal" ColumnName="Meal" />
+          <ScalarProperty Name="FK_Wine" ColumnName="FK_Wine" />
+          <ScalarProperty Name="WeatherConditions" ColumnName="WeatherConditions" />
+          <ScalarProperty Name="TastedOn" ColumnName="TastedOn" />
+          <ScalarProperty Name="Taster" ColumnName="Taster" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
