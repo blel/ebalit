@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EbalitWebForms.BusinessLogicLayer.Controlling.Project">
+    <Position X="4" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAgAAQAAAAAAAgAAAAAAAAgAAA=</HashCode>
+      <FileName>BusinessLogicLayer\Controlling\Project.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ProjectState" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EbalitWebForms.BusinessLogicLayer.Controlling.PSPElement">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAgAAQAAAAAAAAAAAAAAACgAAA=</HashCode>
+      <FileName>BusinessLogicLayer\Controlling\PSPElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EbalitWebForms.BusinessLogicLayer.Controlling.ControllingElement">
+    <Position X="2.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIQAAAAAAgAAAIAAAAgBQQUAAAAQAAAAQAAQAQAAAA=</HashCode>
+      <FileName>BusinessLogicLayer\Controlling\ControllingElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EbalitWebForms.BusinessLogicLayer.Controlling.ProjectStateClosing">
+    <Position X="6.5" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogicLayer\Controlling\ProjectStateClosing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EbalitWebForms.BusinessLogicLayer.Controlling.ProjectStateExecuting" Collapsed="true">
+    <Position X="8.5" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogicLayer\Controlling\ProjectStateExecuting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EbalitWebForms.BusinessLogicLayer.Controlling.ProjectStateStopped" Collapsed="true">
+    <Position X="10.75" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogicLayer\Controlling\ProjectStateStopped.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EbalitWebForms.BusinessLogicLayer.Controlling.ProjectStatePipelined" Collapsed="true">
+    <Position X="8.5" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogicLayer\Controlling\ProjectStatePipelined.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EbalitWebForms.BusinessLogicLayer.Controlling.ProjectStatePlanning" Collapsed="true">
+    <Position X="11" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogicLayer\Controlling\ProjectStatePlanning.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EbalitWebForms.BusinessLogicLayer.Controlling.ProjectStateFinished" Collapsed="true">
+    <Position X="6" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogicLayer\Controlling\ProjectStateFinished.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EbalitWebForms.BusinessLogicLayer.Controlling.ProjectStatePaused" Collapsed="true">
+    <Position X="8.5" Y="6" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogicLayer\Controlling\ProjectStatePaused.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EbalitWebForms.BusinessLogicLayer.Controlling.ProjectState" Collapsed="true">
+    <Position X="7.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogicLayer\Controlling\ProjectState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
