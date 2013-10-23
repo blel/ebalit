@@ -219,12 +219,12 @@
                             <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF; border-collapse: collapse; border-color: #999999; border-style: none; border-width: 1px; font-family: Arial;width:100%; ">
                                 <tr id="Tr2" runat="server" style="background-color: #DCDCDC; color: #000000; ">
                                     <th id="Th1" runat="server"></th>
-                                    <th id="Th2" runat="server" style="width:400px">&nbsp;Subject&nbsp;</th>
-                                    <th id="Th3" runat="server">&nbsp;DueDate&nbsp;</th>
-                                    <th id="Th4" runat="server">&nbsp;Task Category&nbsp;</th>
-                                    <th id="Th5" runat="server">&nbsp;State&nbsp;</th>
-                                    <th id="Th6" runat="server">&nbsp;Priority&nbsp;</th>
-                                    <th id="Th7" runat="server">&nbsp;ClosingType&nbsp;</th>
+                                    <th id="Th2" runat="server" style="width:400px"><asp:LinkButton ID="lnkOrderBySubject" CssClass="listViewButtonHeader" runat="server"  OnCommand="lnkOrderBy_Command" CommandArgument="Subject">&nbsp;Subject&nbsp; </asp:LinkButton></th>
+                                    <th id="Th3" runat="server"><asp:LinkButton ID="LinkButton1" runat="server" CssClass="listViewButtonHeader"  OnCommand="lnkOrderBy_Command" CommandArgument="DueDate">&nbsp;DueDate&nbsp;</asp:LinkButton></th>
+                                    <th id="Th4" runat="server"><asp:LinkButton ID="LinkButton2" runat="server" CssClass="listViewButtonHeader"  OnCommand="lnkOrderBy_Command" CommandArgument="TaskCategory">&nbsp;Task Category&nbsp;</asp:LinkButton></th>
+                                    <th id="Th5" runat="server"><asp:LinkButton ID="LinkButton3" runat="server" CssClass="listViewButtonHeader"  OnCommand="lnkOrderBy_Command" CommandArgument="State">&nbsp;State&nbsp;</asp:LinkButton></th>
+                                    <th id="Th6" runat="server"><asp:LinkButton ID="LinkButton4" runat="server" CssClass="listViewButtonHeader"  OnCommand="lnkOrderBy_Command" CommandArgument="Priority">&nbsp;Priority&nbsp;</asp:LinkButton></th>
+                                    <th id="Th7" runat="server"><asp:LinkButton ID="LinkButton5" runat="server" CssClass="listViewButtonHeader" OnCommand="lnkOrderBy_Command" CommandArgument="ClosingType">&nbsp;ClosingType&nbsp;</asp:LinkButton></th>
 
                                 </tr>
                                 <tr id="itemPlaceholder" runat="server">

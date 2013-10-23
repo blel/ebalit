@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using EbalitWebForms.DataLayer;
+using EbalitWebForms.Common;
 
 namespace EbalitWebForms.BusinessLogicLayer
 {
@@ -14,7 +15,13 @@ namespace EbalitWebForms.BusinessLogicLayer
                     select cc).ToList();
         }
 
-        public IList<Task> GetFilteredTasks(TaskSearchDTO filter)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="orderByString"></param>
+        /// <returns></returns>
+        public IList<Task> GetFilteredTasks(TaskSearchDTO filter, string orderByString="", bool sortDescending = false)
         {
             //Get items and apply date filter, since from and to date always contain valid values
             var tasks = from cc in base.EbalitDBContext.Tasks.Include("TaskCategory")
@@ -40,8 +47,18 @@ namespace EbalitWebForms.BusinessLogicLayer
             if (filter.TaskClosingType.Count>0)
                 tasks = tasks.Where(cc => filter.TaskClosingType.Any(ccc=>cc.ClosingType == ccc));
 
-            return tasks.ToList();
+            if (!string.IsNullOrWhiteSpace(orderByString))
+            {
+                return tasks.OrderByStringSelector(orderByString,sortDescending).ToList();
+            }
+            else
+            {
+                return tasks.ToList();
+            }
+
         }
+
+
 
 
         public IList<TaskToCsvDTO> GetFilteredTasksForCsv(TaskSearchDTO filter)

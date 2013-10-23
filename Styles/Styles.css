@@ -376,12 +376,21 @@ menu
     width: 200px;
 }
 
+
+
+
 .listview table
 {
     border-collapse: collapse;
     border-style: solid;
     border-width: 1px;
     border-color: black;
+}
+
+.listViewButtonHeader
+{
+    text-decoration:none;
+    color:black;
 }
 
 .listview th
@@ -396,6 +405,7 @@ menu
     border-style: none solid none solid;
     border-width: 1px;
     border-color: black;
+
 }
 
 .listview td
@@ -408,6 +418,8 @@ menu
     border-width: 1px;
     border-color: black;
 }
+
+
 
 .listviewHighlighted
 {

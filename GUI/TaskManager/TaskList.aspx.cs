@@ -13,12 +13,22 @@ using System.IO;
 
 namespace EbalitWebForms.GUI.TaskManager
 {
+    /// <summary>
+    /// Code behind of TaskList.aspx
+    /// </summary>
     public partial class TaskList : System.Web.UI.Page
     {
+        /// <summary>
+        /// Page Load event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            //if page is really requested (not postback)
             if (!IsPostBack)
             {
+                //get filter parameters if the session parameter is available
                 if (Session["FilterParams"] != null)
                 {
                     var taskSearchDTO = (TaskSearchDTO)Session["FilterParams"];
@@ -26,19 +36,35 @@ namespace EbalitWebForms.GUI.TaskManager
                     this.txtDateTo.Text = taskSearchDTO.DateTo == new DateTime(2999, 12, 31) ? "" : taskSearchDTO.DateTo.ToShortDateString();
                     this.txtFreeText.Text = taskSearchDTO.Text;
                 }
+
+                //TODO: potentially remove... or rewrite
                 this.ddlTaskStatus.SelectedIndex = 0;
             }
             this.lblStatus.Text = string.Empty;
         }
 
+        /// <summary>
+        /// Occurs when the Find link is clicked on
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void lnkFind_Command(object sender, CommandEventArgs e)
         {
+            //data binding requeries the datasource and therefore
+            //fires the OnSelecting event (see below)
             this.lvwTasks.DataBind();
         }
 
+        /// <summary>
+        /// Executes before the Task ObjectDataSource calls the underlying get function
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void odsTasks_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
             e.InputParameters["filter"] = GetTaskSearchDTO();
+            e.InputParameters["orderByString"] = ViewState["orderByString"];
+            e.InputParameters["sortDescending"] = ViewState["sortDescending"];
         }
 
         /// <summary>
@@ -270,6 +296,27 @@ namespace EbalitWebForms.GUI.TaskManager
 
             }
 
+        }
+
+
+        /// <summary>
+        /// Called by any orderby lnk Button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void lnkOrderBy_Command(object sender, CommandEventArgs e)
+        {
+            if (ViewState["orderByString"]!= null && ViewState["orderByString"].ToString() == e.CommandArgument.ToString())
+            {
+                ViewState["sortDescending"] = !(bool)ViewState["sortDescending"];
+            }
+            else
+            {
+                ViewState["sortDescending"] = false;
+            }
+
+            ViewState["orderByString"] = e.CommandArgument;
+            this.lvwTasks.DataBind();
         }
 
     }

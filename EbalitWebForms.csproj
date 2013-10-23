@@ -131,11 +131,12 @@
     <Compile Include="BusinessLogicLayer\TaskBLL.cs" />
     <Compile Include="BusinessLogicLayer\TaskCategoryBLL.cs" />
     <Compile Include="BusinessLogicLayer\TaskComments.cs" />
-    <Compile Include="BusinessLogicLayer\TaskSearchDTO.cs" />
-    <Compile Include="BusinessLogicLayer\TaskToCsvDTO.cs" />
+    <Compile Include="BusinessLogicLayer\DTO\TaskSearchDTO.cs" />
+    <Compile Include="BusinessLogicLayer\DTO\TaskToCsvDTO.cs" />
     <Compile Include="BusinessLogicLayer\Tests.cs" />
     <Compile Include="BusinessLogicLayer\UserBLL.cs" />
     <Compile Include="BusinessLogicLayer\WineBLL.cs" />
+    <Compile Include="Common\Extensions.cs" />
     <Compile Include="DataLayer\aspnet_Users.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
