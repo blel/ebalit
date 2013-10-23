@@ -391,6 +391,7 @@ menu
 {
     text-decoration:none;
     color:black;
+    display:inline;
 }
 
 .listview th

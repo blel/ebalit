@@ -221,7 +221,7 @@
                                     <th id="Th1" runat="server"></th>
                                     <th id="Th2" runat="server" style="width:400px"><asp:LinkButton ID="lnkOrderBySubject" CssClass="listViewButtonHeader" runat="server"  OnCommand="lnkOrderBy_Command" CommandArgument="Subject">&nbsp;Subject&nbsp; </asp:LinkButton></th>
                                     <th id="Th3" runat="server"><asp:LinkButton ID="LinkButton1" runat="server" CssClass="listViewButtonHeader"  OnCommand="lnkOrderBy_Command" CommandArgument="DueDate">&nbsp;DueDate&nbsp;</asp:LinkButton></th>
-                                    <th id="Th4" runat="server"><asp:LinkButton ID="LinkButton2" runat="server" CssClass="listViewButtonHeader"  OnCommand="lnkOrderBy_Command" CommandArgument="TaskCategory">&nbsp;Task Category&nbsp;</asp:LinkButton></th>
+                                    <th id="Th4" runat="server">&nbsp;Task Category&nbsp;</th>
                                     <th id="Th5" runat="server"><asp:LinkButton ID="LinkButton3" runat="server" CssClass="listViewButtonHeader"  OnCommand="lnkOrderBy_Command" CommandArgument="State">&nbsp;State&nbsp;</asp:LinkButton></th>
                                     <th id="Th6" runat="server"><asp:LinkButton ID="LinkButton4" runat="server" CssClass="listViewButtonHeader"  OnCommand="lnkOrderBy_Command" CommandArgument="Priority">&nbsp;Priority&nbsp;</asp:LinkButton></th>
                                     <th id="Th7" runat="server"><asp:LinkButton ID="LinkButton5" runat="server" CssClass="listViewButtonHeader" OnCommand="lnkOrderBy_Command" CommandArgument="ClosingType">&nbsp;ClosingType&nbsp;</asp:LinkButton></th>

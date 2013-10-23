@@ -12,124 +12,124 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AjaxControlToolkit.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/ar/AjaxControlToolkit.resources.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/cs/AjaxControlToolkit.resources.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/de/AjaxControlToolkit.resources.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/EbalitWebForms.dll">
-      <publishTime>06/22/2013 22:37:05</publishTime>
+      <publishTime>10/23/2013 21:49:31</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>02/23/2013 16:23:18</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/es/AjaxControlToolkit.resources.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/fr/AjaxControlToolkit.resources.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/he/AjaxControlToolkit.resources.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/hi/AjaxControlToolkit.resources.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/HtmlAgilityPack.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/it/AjaxControlToolkit.resources.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/ja/AjaxControlToolkit.resources.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/ko/AjaxControlToolkit.resources.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/nl/AjaxControlToolkit.resources.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/pt/AjaxControlToolkit.resources.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/ru/AjaxControlToolkit.resources.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/SanitizerProviders.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/tr-TR/AjaxControlToolkit.resources.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/zh-CHS/AjaxControlToolkit.resources.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="bin/zh-CHT/AjaxControlToolkit.resources.dll">
-      <publishTime>03/02/2013 19:13:32</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="DataLayer/Ebalit_WebFormsModel.Context.tt">
       <publishTime>02/23/2013 16:43:33</publishTime>
     </File>
     <File Include="DataLayer/Ebalit_WebFormsModel.edmx.diagram">
-      <publishTime>06/22/2013 13:47:44</publishTime>
+      <publishTime>10/21/2013 06:38:50</publishTime>
     </File>
     <File Include="DataLayer/Ebalit_WebFormsModel.tt">
       <publishTime>02/23/2013 16:43:33</publishTime>
     </File>
     <File Include="GUI/Admin.aspx">
-      <publishTime>06/22/2013 23:11:42</publishTime>
+      <publishTime>10/19/2013 11:47:19</publishTime>
     </File>
     <File Include="GUI/AllSearchResult.aspx">
-      <publishTime>04/27/2013 17:17:39</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="GUI/Index.aspx">
-      <publishTime>04/27/2013 09:48:33</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="GUI/IT.aspx">
-      <publishTime>04/29/2013 13:28:59</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="GUI/ITSearchResult.aspx">
-      <publishTime>04/27/2013 06:47:06</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="GUI/Master.Master">
-      <publishTime>05/08/2013 23:23:16</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="GUI/Music.aspx">
-      <publishTime>04/27/2013 22:46:10</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="GUI/MusicSearchResult.aspx">
-      <publishTime>04/27/2013 06:59:19</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/AdminIndex.aspx">
-      <publishTime>06/22/2013 22:40:50</publishTime>
+      <publishTime>10/19/2013 11:47:19</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/AdminMaster.master">
-      <publishTime>06/22/2013 22:38:46</publishTime>
+      <publishTime>10/19/2013 11:47:19</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/BlogEntries.aspx">
-      <publishTime>04/24/2013 08:31:38</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/CreateBlogEntry.aspx">
-      <publishTime>05/09/2013 21:54:16</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/CreateUser.aspx">
-      <publishTime>06/22/2013 22:40:45</publishTime>
+      <publishTime>10/19/2013 11:47:19</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/ManageBlogCategories.aspx">
-      <publishTime>05/04/2013 16:53:52</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/Tools.aspx">
-      <publishTime>05/17/2013 21:50:17</publishTime>
+      <publishTime>10/19/2013 11:47:19</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/ToolsMaster.master">
-      <publishTime>06/22/2013 11:12:12</publishTime>
+      <publishTime>10/19/2013 11:47:19</publishTime>
     </File>
     <File Include="GUI/TaskCategories.aspx">
       <publishTime>05/04/2013 16:55:12</publishTime>
@@ -138,55 +138,55 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/08/2013 20:40:20</publishTime>
     </File>
     <File Include="GUI/TaskManager/TaskDetail.aspx">
-      <publishTime>05/23/2013 20:35:12</publishTime>
+      <publishTime>10/19/2013 11:47:19</publishTime>
     </File>
     <File Include="GUI/TaskManager/TaskList.aspx">
-      <publishTime>05/17/2013 18:18:21</publishTime>
+      <publishTime>10/23/2013 21:33:36</publishTime>
     </File>
     <File Include="GUI/Tools.aspx">
       <publishTime>05/04/2013 22:28:41</publishTime>
     </File>
     <File Include="GUI/Varia.aspx">
-      <publishTime>04/27/2013 22:46:07</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="GUI/VariaSearchResult.aspx">
-      <publishTime>04/27/2013 07:01:24</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="GUI/WebUserControls/Archive.ascx">
-      <publishTime>04/29/2013 18:03:05</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="GUI/WebUserControls/BlogContentUserControl.ascx">
-      <publishTime>05/17/2013 21:46:50</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="GUI/WebUserControls/CategoryBrowser.ascx">
-      <publishTime>04/27/2013 01:32:23</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="GUI/WebUserControls/SearchUserControl.ascx">
-      <publishTime>04/27/2013 09:41:25</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="GUI/WineDatabase/CreateConsumation.aspx">
-      <publishTime>06/22/2013 17:01:38</publishTime>
+      <publishTime>10/19/2013 11:47:19</publishTime>
     </File>
     <File Include="GUI/WineDatabase/CreateWine.aspx">
-      <publishTime>06/22/2013 22:17:31</publishTime>
+      <publishTime>10/19/2013 11:47:19</publishTime>
     </File>
     <File Include="GUI/WineDatabase/ManageConsumations.aspx">
-      <publishTime>06/22/2013 19:22:30</publishTime>
+      <publishTime>10/19/2013 11:47:19</publishTime>
     </File>
     <File Include="GUI/WineDatabase/ManageWineAttribute.aspx">
-      <publishTime>06/22/2013 19:33:26</publishTime>
+      <publishTime>10/19/2013 11:47:19</publishTime>
     </File>
     <File Include="GUI/WineDatabase/ManageWines.aspx">
-      <publishTime>06/22/2013 21:50:00</publishTime>
+      <publishTime>10/19/2013 11:47:19</publishTime>
     </File>
     <File Include="Index.html">
-      <publishTime>04/23/2013 22:32:14</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>04/27/2013 21:32:05</publishTime>
+      <publishTime>10/19/2013 11:39:47</publishTime>
     </File>
     <File Include="Resources/MasterData.xml">
-      <publishTime>06/22/2013 13:28:31</publishTime>
+      <publishTime>10/19/2013 11:47:19</publishTime>
     </File>
     <File Include="Scripts/jquery-2.0.0.js">
       <publishTime>04/27/2013 21:32:05</publishTime>
@@ -195,13 +195,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2013 21:32:05</publishTime>
     </File>
     <File Include="Scripts/jquery-2.0.0.min.map">
-      <publishTime>04/27/2013 21:32:05</publishTime>
+      <publishTime>10/19/2013 11:39:46</publishTime>
     </File>
     <File Include="Styles/Styles.css">
-      <publishTime>05/17/2013 20:05:23</publishTime>
+      <publishTime>10/23/2013 21:32:48</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/22/2013 22:52:17</publishTime>
+      <publishTime>10/19/2013 11:52:32</publishTime>
     </File>
   </ItemGroup>
 </Project>
