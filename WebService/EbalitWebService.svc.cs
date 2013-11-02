@@ -29,7 +29,18 @@ namespace EbalitWebForms.WebService
 
         public IList<TaskDto> GetActualWork(ProjectDto project)
         {
-            throw new NotImplementedException();
+            var taskDtos = new List<TaskDto>();
+
+            using (var context = new Ebalit_WebFormsEntities())
+            {
+                taskDtos.AddRange(context.ProjectProjects.Single(cc => cc.Guid == project.UniqueIdentifier).ProjectTasks.Select(taskEntity => new TaskDto
+                {
+                    ActualWork = taskEntity.ActualWork != null ? (double) taskEntity.ActualWork : 0.0,
+                    Guid = taskEntity.Guid
+                }));
+            }
+
+            return taskDtos;
         }
 
         /// <summary>

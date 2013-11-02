@@ -133,7 +133,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Guid" Type="uniqueidentifier" />
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="ProjectResources">
           <Key>
@@ -142,7 +142,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ProjectId" Type="int" />
-          <Property Name="Guid" Type="uniqueidentifier" />
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="ProjectResourceTaskAssignment">
           <Key>
@@ -157,7 +157,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Guid" Type="uniqueidentifier" />
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Parent" Type="uniqueidentifier" />
           <Property Name="ProjectId" Type="int" />
@@ -806,7 +806,7 @@
           <NavigationProperty Name="ProjectProject" Relationship="Ebalit_WebFormsModel.FK_ProjectResources_ProjectProject" FromRole="ProjectResource" ToRole="ProjectProject" />
           <NavigationProperty Name="ProjectResourceTaskAssignments" Relationship="Ebalit_WebFormsModel.FK_ProjectResourceTaskAssignment_ProjectResources" FromRole="ProjectResource" ToRole="ProjectResourceTaskAssignment" />
           <NavigationProperty Name="ProjectUserAssignments" Relationship="Ebalit_WebFormsModel.FK_ProjectUserAssignment_ProjectResources" FromRole="ProjectResource" ToRole="ProjectUserAssignment" />
-          <Property Type="Guid" Name="Guid" />
+          <Property Type="Guid" Name="Guid" Nullable="false" />
         </EntityType>
         <EntityType Name="ProjectProject">
           <Key>
@@ -814,7 +814,7 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Guid" Name="Guid" />
+          <Property Type="Guid" Name="Guid" Nullable="false" />
           <NavigationProperty Name="ProjectResources" Relationship="Ebalit_WebFormsModel.FK_ProjectResources_ProjectProject" FromRole="ProjectProject" ToRole="ProjectResource" />
           <NavigationProperty Name="ProjectTasks" Relationship="Ebalit_WebFormsModel.FK_ProjectTask_ProjectProject" FromRole="ProjectProject" ToRole="ProjectTask" />
         </EntityType>
@@ -833,7 +833,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Guid" Name="Guid" />
+          <Property Type="Guid" Name="Guid" Nullable="false" />
           <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Guid" Name="Parent" />
           <Property Type="Int32" Name="ProjectId" />

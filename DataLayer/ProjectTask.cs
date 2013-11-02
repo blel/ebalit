@@ -20,7 +20,7 @@ namespace EbalitWebForms.DataLayer
         }
     
         public int Id { get; set; }
-        public Nullable<System.Guid> Guid { get; set; }
+        public System.Guid Guid { get; set; }
         public string Name { get; set; }
         public Nullable<System.Guid> Parent { get; set; }
         public Nullable<int> ProjectId { get; set; }

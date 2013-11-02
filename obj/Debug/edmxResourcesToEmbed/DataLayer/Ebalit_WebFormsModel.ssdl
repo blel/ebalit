@@ -128,7 +128,7 @@
     </Key>
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="Guid" Type="uniqueidentifier" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="ProjectResources">
     <Key>
@@ -137,7 +137,7 @@
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ProjectId" Type="int" />
-    <Property Name="Guid" Type="uniqueidentifier" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="ProjectResourceTaskAssignment">
     <Key>
@@ -152,7 +152,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Guid" Type="uniqueidentifier" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Parent" Type="uniqueidentifier" />
     <Property Name="ProjectId" Type="int" />
