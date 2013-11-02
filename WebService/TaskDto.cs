@@ -10,6 +10,7 @@ namespace EbalitWebForms.WebService
     [DataContract]
     public class TaskDto
     {
+
         /// <summary>
         /// The task name
         /// </summary>
@@ -31,7 +32,14 @@ namespace EbalitWebForms.WebService
         /// <summary>
         /// the work resources of the task.
         /// </summary>
+        [DataMember]
         public IList<ResourceDto> Resources { get; set; } 
+
+        /// <summary>
+        /// The actual work of the task
+        /// </summary>
+        [DataMember]
+        public double ActualWork { get; set; }
 
     }
 }

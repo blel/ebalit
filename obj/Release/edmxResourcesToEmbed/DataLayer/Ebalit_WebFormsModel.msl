@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Ebalit_WebFormsModelStoreContainer" CdmEntityContainer="Ebalit_WebFormsEntities">
+  <EntityContainerMapping CdmEntityContainer="Ebalit_WebFormsEntities" StorageEntityContainer="Ebalit_WebFormsModelStoreContainer">
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="Ebalit_WebFormsModel.User">
         <MappingFragment StoreEntitySet="User">
@@ -172,6 +172,54 @@
           <ScalarProperty Name="WeatherConditions" ColumnName="WeatherConditions" />
           <ScalarProperty Name="TastedOn" ColumnName="TastedOn" />
           <ScalarProperty Name="Taster" ColumnName="Taster" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectResources">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ProjectResource">
+        <MappingFragment StoreEntitySet="ProjectResources">
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="Surename" ColumnName="Surename" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectProjects">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ProjectProject">
+        <MappingFragment StoreEntitySet="ProjectProject">
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectResourceTaskAssignments">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ProjectResourceTaskAssignment">
+        <MappingFragment StoreEntitySet="ProjectResourceTaskAssignment">
+          <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectTasks">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ProjectTask">
+        <MappingFragment StoreEntitySet="ProjectTask">
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="Parent" ColumnName="Parent" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectUserAssignments">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ProjectUserAssignment">
+        <MappingFragment StoreEntitySet="ProjectUserAssignment">
+          <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

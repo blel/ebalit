@@ -97,7 +97,7 @@
             <asp:TemplateField HeaderText="Your Name" SortExpression="UserName" ItemStyle-BorderStyle="None" ControlStyle-BorderStyle="NotSet" FooterStyle-BorderStyle="None" HeaderStyle-BorderStyle="None">
                 <InsertItemTemplate>
                     <asp:TextBox ID="txtUser" runat="server" Text='<%# Bind("UserName") %>' Width="300"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtUser" ErrorMessage="Please insert your user name."></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtUser" ErrorMessage="Please insert your resource name."></asp:RequiredFieldValidator>
                 </InsertItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Your E-Mail" SortExpression="eMail" ItemStyle-BorderStyle="None" HeaderStyle-BorderStyle="None" FooterStyle-BorderStyle="None" ControlStyle-BorderStyle="NotSet">

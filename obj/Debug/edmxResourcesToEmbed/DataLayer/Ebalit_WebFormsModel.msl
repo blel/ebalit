@@ -179,8 +179,8 @@
     <EntitySetMapping Name="ProjectResources">
       <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ProjectResource">
         <MappingFragment StoreEntitySet="ProjectResources">
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
           <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-          <ScalarProperty Name="Surename" ColumnName="Surename" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
@@ -207,6 +207,7 @@
     <EntitySetMapping Name="ProjectTasks">
       <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ProjectTask">
         <MappingFragment StoreEntitySet="ProjectTask">
+          <ScalarProperty Name="ActualWork" ColumnName="ActualWork" />
           <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
           <ScalarProperty Name="Parent" ColumnName="Parent" />
           <ScalarProperty Name="Name" ColumnName="Name" />

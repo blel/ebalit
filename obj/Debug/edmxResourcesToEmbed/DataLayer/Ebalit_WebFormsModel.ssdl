@@ -136,8 +136,8 @@
     </Key>
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Surename" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ProjectId" Type="int" />
+    <Property Name="Guid" Type="uniqueidentifier" />
   </EntityType>
   <EntityType Name="ProjectResourceTaskAssignment">
     <Key>
@@ -156,6 +156,7 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Parent" Type="uniqueidentifier" />
     <Property Name="ProjectId" Type="int" />
+    <Property Name="ActualWork" Type="float" />
   </EntityType>
   <EntityType Name="ProjectUserAssignment">
     <Key>

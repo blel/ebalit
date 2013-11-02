@@ -14,11 +14,13 @@ namespace EbalitWebForms.WebService
     public interface IEbalitWebService
     {
         /// <summary>
-        /// returns a list of all projects and depending items.
+        /// returns a list of all tasks with the actual work assigned.
+        /// TaskDto will contain only Guid and actual work.
+        /// Parameter project: only guid is mandatory.
         /// </summary>
         /// <returns></returns>
         [OperationContract]
-        IList<ProjectDto> GetProjects();
+        IList<TaskDto> GetActualWork(ProjectDto project);
 
         /// <summary>
         /// Updates the project on the server with info from dto.
