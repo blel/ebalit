@@ -7,19 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EbalitWebForms.GUI.WorkingHours {
+namespace EbalitWebForms.GUI.WorkingReport {
     
     
     public partial class CreateWorkingReport {
         
         /// <summary>
-        /// odsWorkingHours control.
+        /// odsProject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsWorkingHours;
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsProject;
         
         /// <summary>
         /// odsTasks control.
@@ -31,21 +31,21 @@ namespace EbalitWebForms.GUI.WorkingHours {
         protected global::System.Web.UI.WebControls.ObjectDataSource odsTasks;
         
         /// <summary>
-        /// odsProjects control.
+        /// odsWorkingReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsProjects;
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsWorkingReport;
         
         /// <summary>
-        /// dtvWorkingReport control.
+        /// dtvCreateWorkingReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView dtvWorkingReport;
+        protected global::System.Web.UI.WebControls.DetailsView dtvCreateWorkingReport;
     }
 }

@@ -31,6 +31,10 @@
                             <asp:MenuItem Text="Wine Attributes" NavigateUrl="/GUI/WineDatabase/ManageWineAttribute.aspx"></asp:MenuItem>
 
                         </asp:MenuItem>
+                        <asp:MenuItem Text="Working Report">
+                            <asp:MenuItem Text="Create Working Report" NavigateUrl="/GUI/WorkingReport/CreateWorkingReport.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Manage Working Reports" NavigateUrl="/GUI/WineDatabase/ManageWines.aspx"></asp:MenuItem>
+                        </asp:MenuItem>
                     </Items>
 
 

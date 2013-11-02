@@ -18,6 +18,7 @@ namespace EbalitWebForms.DataLayer
         {
             this.ProjectResourceTaskAssignments = new HashSet<ProjectResourceTaskAssignment>();
             this.ProjectUserAssignments = new HashSet<ProjectUserAssignment>();
+            this.ProjectWorkingReports = new HashSet<ProjectWorkingReport>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,6 @@ namespace EbalitWebForms.DataLayer
         public virtual ProjectProject ProjectProject { get; set; }
         public virtual ICollection<ProjectResourceTaskAssignment> ProjectResourceTaskAssignments { get; set; }
         public virtual ICollection<ProjectUserAssignment> ProjectUserAssignments { get; set; }
+        public virtual ICollection<ProjectWorkingReport> ProjectWorkingReports { get; set; }
     }
 }

@@ -12,23 +12,18 @@ namespace EbalitWebForms.DataLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class ProjectTask
+    public partial class ProjectWorkingReport
     {
-        public ProjectTask()
-        {
-            this.ProjectResourceTaskAssignments = new HashSet<ProjectResourceTaskAssignment>();
-            this.ProjectWorkingReports = new HashSet<ProjectWorkingReport>();
-        }
-    
         public int Id { get; set; }
-        public System.Guid Guid { get; set; }
-        public string Name { get; set; }
-        public Nullable<System.Guid> Parent { get; set; }
         public Nullable<int> ProjectId { get; set; }
-        public Nullable<double> ActualWork { get; set; }
+        public Nullable<int> ResourceId { get; set; }
+        public Nullable<int> TaskId { get; set; }
+        public Nullable<System.DateTime> From { get; set; }
+        public Nullable<System.DateTime> To { get; set; }
+        public string Notes { get; set; }
     
         public virtual ProjectProject ProjectProject { get; set; }
-        public virtual ICollection<ProjectResourceTaskAssignment> ProjectResourceTaskAssignments { get; set; }
-        public virtual ICollection<ProjectWorkingReport> ProjectWorkingReports { get; set; }
+        public virtual ProjectResource ProjectResource { get; set; }
+        public virtual ProjectTask ProjectTask { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace EbalitWebForms.BusinessLogicLayer
 {
     public class DataAccessLayer:IDisposable
     {
-        private Ebalit_WebFormsEntities _ebalitDBContext;
+        private readonly Ebalit_WebFormsEntities _ebalitDBContext;
         public Ebalit_WebFormsEntities EbalitDBContext { get { return _ebalitDBContext; } }
 
         public DataAccessLayer()

@@ -225,5 +225,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ProjectWorkingReports">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ProjectWorkingReport">
+        <MappingFragment StoreEntitySet="ProjectWorkingReport">
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="To" ColumnName="To" />
+          <ScalarProperty Name="From" ColumnName="From" />
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+          <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

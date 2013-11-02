@@ -43,5 +43,6 @@ namespace EbalitWebForms.DataLayer
         public DbSet<ProjectResourceTaskAssignment> ProjectResourceTaskAssignments { get; set; }
         public DbSet<ProjectTask> ProjectTasks { get; set; }
         public DbSet<ProjectUserAssignment> ProjectUserAssignments { get; set; }
+        public DbSet<ProjectWorkingReport> ProjectWorkingReports { get; set; }
     }
 }

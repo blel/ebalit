@@ -118,7 +118,7 @@ namespace EbalitWebForms.GUI.WineDatabase
         /// <param name="e"></param>
         protected void dvwWine_ItemUpdated(object sender, DetailsViewUpdatedEventArgs e)
         {
-            CheckBoxList cblAttributes = (CheckBoxList)dvwWine.FindControl("cblAttributes");
+            var cblAttributes = (CheckBoxList)dvwWine.FindControl("cblAttributes");
             if (cblAttributes != null)
             {
                 ClearAttributeAssignments(Convert.ToInt32(e.Keys[0]));
@@ -137,12 +137,10 @@ namespace EbalitWebForms.GUI.WineDatabase
         /// <param name="e"></param>
         protected void odsWines_Inserted(object sender, ObjectDataSourceStatusEventArgs e)
         {
-            CheckBoxList cblAttributes = (CheckBoxList)dvwWine.FindControl("cblAttributes");
-            if (cblAttributes != null)
-            {
-                ClearAttributeAssignments(Convert.ToInt32(e.ReturnValue));
-                SetAttributeAssignments(cblAttributes, Convert.ToInt32(e.ReturnValue));
-            }
+            var cblAttributes = (CheckBoxList)dvwWine.FindControl("cblAttributes");
+            if (cblAttributes == null) return;
+            ClearAttributeAssignments(Convert.ToInt32(e.ReturnValue));
+            SetAttributeAssignments(cblAttributes, Convert.ToInt32(e.ReturnValue));
         }
 
         /// <summary>
@@ -153,21 +151,18 @@ namespace EbalitWebForms.GUI.WineDatabase
         /// <param name="e"></param>
         protected void dvwWine_DataBound(object sender, EventArgs e)
         {
-            CheckBoxList cblAttributes = (CheckBoxList)dvwWine.FindControl("cblAttributes");
-            if (cblAttributes != null && dvwWine.DataItem != null)
-            {
-                //get current Id
-                int currentId = ((DataLayer.Wine)dvwWine.DataItem).Id;
-                //Create the WineToWineAttribute repository
-                BusinessLogicLayer.Repository<DataLayer.WineToWineAttribute> attributeAssignmentRepository =
-                    new BusinessLogicLayer.Repository<DataLayer.WineToWineAttribute>();
-                //retrieve all attribute assignments
-                IEnumerable<DataLayer.WineToWineAttribute> attributeAssignments =
-                    attributeAssignmentRepository.GetItems().Where(cc => cc.FK_Wine == currentId);
-                //set the checkboxes
-                cblAttributes.Items.SetSelectedItems(attributeAssignments.Select(cc => cc.FK_WineAttribute).ToList());
-
-            }
+            var cblAttributes = (CheckBoxList)dvwWine.FindControl("cblAttributes");
+            if (cblAttributes == null || dvwWine.DataItem == null) return;
+            //get current Id
+            var currentId = ((DataLayer.Wine)dvwWine.DataItem).Id;
+            //Create the WineToWineAttribute repository
+            var attributeAssignmentRepository =
+                new BusinessLogicLayer.Repository<DataLayer.WineToWineAttribute>();
+            //retrieve all attribute assignments
+            var attributeAssignments =
+                attributeAssignmentRepository.GetItems().Where(cc => cc.FK_Wine == currentId);
+            //set the checkboxes
+            cblAttributes.Items.SetSelectedItems(attributeAssignments.Select(cc => cc.FK_WineAttribute).ToList());
         }
 
         #endregion
@@ -179,9 +174,9 @@ namespace EbalitWebForms.GUI.WineDatabase
         /// <param name="wineId"></param>
         private void ClearAttributeAssignments(int wineId)
         {
-            BusinessLogicLayer.Repository<DataLayer.WineToWineAttribute> attributeAssignmentRepository = new BusinessLogicLayer.Repository<DataLayer.WineToWineAttribute>();
+            var attributeAssignmentRepository = new BusinessLogicLayer.Repository<DataLayer.WineToWineAttribute>();
 
-            IEnumerable<DataLayer.WineToWineAttribute> currentAttributes =
+            var currentAttributes =
                 new BusinessLogicLayer.Repository<DataLayer.WineToWineAttribute>().GetItems().Where(cc => cc.FK_Wine == wineId);
 
             foreach (var currentAttribute in currentAttributes)
@@ -197,11 +192,11 @@ namespace EbalitWebForms.GUI.WineDatabase
         /// <param name="wineId"></param>
         private void SetAttributeAssignments(CheckBoxList cblAttributes, int wineId)
         {
-            BusinessLogicLayer.Repository<DataLayer.WineToWineAttribute> attributeAssignmentRepository = new BusinessLogicLayer.Repository<DataLayer.WineToWineAttribute>();
+            var attributeAssignmentRepository = new BusinessLogicLayer.Repository<DataLayer.WineToWineAttribute>();
 
             foreach (var selectedAttribute in cblAttributes.Items.GetSelectedItems())
             {
-                DataLayer.WineToWineAttribute newAttribute = new DataLayer.WineToWineAttribute();
+                var newAttribute = new DataLayer.WineToWineAttribute();
                 newAttribute.FK_Wine = wineId;// Convert.ToInt32(e.Keys[0]);
                 newAttribute.FK_WineAttribute = Convert.ToInt32(selectedAttribute.Value);
                 attributeAssignmentRepository.CreateItem(newAttribute);

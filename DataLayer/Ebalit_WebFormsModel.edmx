@@ -16,6 +16,7 @@
           <EntitySet Name="ProjectResourceTaskAssignment" EntityType="Ebalit_WebFormsModel.Store.ProjectResourceTaskAssignment" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProjectTask" EntityType="Ebalit_WebFormsModel.Store.ProjectTask" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProjectUserAssignment" EntityType="Ebalit_WebFormsModel.Store.ProjectUserAssignment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProjectWorkingReport" EntityType="Ebalit_WebFormsModel.Store.ProjectWorkingReport" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Task" EntityType="Ebalit_WebFormsModel.Store.Task" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TaskCategory" EntityType="Ebalit_WebFormsModel.Store.TaskCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TaskComment" EntityType="Ebalit_WebFormsModel.Store.TaskComment" store:Type="Tables" Schema="dbo" />
@@ -55,6 +56,18 @@
           <AssociationSet Name="FK_ProjectUserAssignment_ProjectResources" Association="Ebalit_WebFormsModel.Store.FK_ProjectUserAssignment_ProjectResources">
             <End Role="ProjectResources" EntitySet="ProjectResources" />
             <End Role="ProjectUserAssignment" EntitySet="ProjectUserAssignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectWorkingReport_ProjectProject" Association="Ebalit_WebFormsModel.Store.FK_ProjectWorkingReport_ProjectProject">
+            <End Role="ProjectProject" EntitySet="ProjectProject" />
+            <End Role="ProjectWorkingReport" EntitySet="ProjectWorkingReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectWorkingReport_ProjectResources" Association="Ebalit_WebFormsModel.Store.FK_ProjectWorkingReport_ProjectResources">
+            <End Role="ProjectResources" EntitySet="ProjectResources" />
+            <End Role="ProjectWorkingReport" EntitySet="ProjectWorkingReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectWorkingReport_ProjectTask" Association="Ebalit_WebFormsModel.Store.FK_ProjectWorkingReport_ProjectTask">
+            <End Role="ProjectTask" EntitySet="ProjectTask" />
+            <End Role="ProjectWorkingReport" EntitySet="ProjectWorkingReport" />
           </AssociationSet>
           <AssociationSet Name="FK_Task_ToTaskCategory" Association="Ebalit_WebFormsModel.Store.FK_Task_ToTaskCategory">
             <End Role="TaskCategory" EntitySet="TaskCategory" />
@@ -170,6 +183,18 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="uniqueidentifier" />
           <Property Name="ResourceId" Type="int" />
+        </EntityType>
+        <EntityType Name="ProjectWorkingReport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="ResourceId" Type="int" />
+          <Property Name="TaskId" Type="int" />
+          <Property Name="From" Type="datetime" />
+          <Property Name="To" Type="datetime" />
+          <Property Name="Notes" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
@@ -381,6 +406,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProjectWorkingReport_ProjectProject">
+          <End Role="ProjectProject" Type="Ebalit_WebFormsModel.Store.ProjectProject" Multiplicity="0..1" />
+          <End Role="ProjectWorkingReport" Type="Ebalit_WebFormsModel.Store.ProjectWorkingReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectWorkingReport">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectWorkingReport_ProjectResources">
+          <End Role="ProjectResources" Type="Ebalit_WebFormsModel.Store.ProjectResources" Multiplicity="0..1" />
+          <End Role="ProjectWorkingReport" Type="Ebalit_WebFormsModel.Store.ProjectWorkingReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectResources">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectWorkingReport">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectWorkingReport_ProjectTask">
+          <End Role="ProjectTask" Type="Ebalit_WebFormsModel.Store.ProjectTask" Multiplicity="0..1" />
+          <End Role="ProjectWorkingReport" Type="Ebalit_WebFormsModel.Store.ProjectWorkingReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectTask">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectWorkingReport">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Task_ToTaskCategory">
           <End Role="TaskCategory" Type="Ebalit_WebFormsModel.Store.TaskCategory" Multiplicity="0..1" />
           <End Role="Task" Type="Ebalit_WebFormsModel.Store.Task" Multiplicity="*" />
@@ -519,6 +580,19 @@
           <AssociationSet Name="FK_ProjectResourceTaskAssignment_ProjectTask" Association="Ebalit_WebFormsModel.FK_ProjectResourceTaskAssignment_ProjectTask">
             <End Role="ProjectTask" EntitySet="ProjectTasks" />
             <End Role="ProjectResourceTaskAssignment" EntitySet="ProjectResourceTaskAssignments" />
+          </AssociationSet>
+          <EntitySet Name="ProjectWorkingReports" EntityType="Ebalit_WebFormsModel.ProjectWorkingReport" />
+          <AssociationSet Name="FK_ProjectWorkingReport_ProjectProject" Association="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectProject">
+            <End Role="ProjectProject" EntitySet="ProjectProjects" />
+            <End Role="ProjectWorkingReport" EntitySet="ProjectWorkingReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectWorkingReport_ProjectResources" Association="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectResources">
+            <End Role="ProjectResource" EntitySet="ProjectResources" />
+            <End Role="ProjectWorkingReport" EntitySet="ProjectWorkingReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectWorkingReport_ProjectTask" Association="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectTask">
+            <End Role="ProjectTask" EntitySet="ProjectTasks" />
+            <End Role="ProjectWorkingReport" EntitySet="ProjectWorkingReports" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
@@ -807,6 +881,7 @@
           <NavigationProperty Name="ProjectResourceTaskAssignments" Relationship="Ebalit_WebFormsModel.FK_ProjectResourceTaskAssignment_ProjectResources" FromRole="ProjectResource" ToRole="ProjectResourceTaskAssignment" />
           <NavigationProperty Name="ProjectUserAssignments" Relationship="Ebalit_WebFormsModel.FK_ProjectUserAssignment_ProjectResources" FromRole="ProjectResource" ToRole="ProjectUserAssignment" />
           <Property Type="Guid" Name="Guid" Nullable="false" />
+          <NavigationProperty Name="ProjectWorkingReports" Relationship="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectResources" FromRole="ProjectResource" ToRole="ProjectWorkingReport" />
         </EntityType>
         <EntityType Name="ProjectProject">
           <Key>
@@ -817,6 +892,7 @@
           <Property Type="Guid" Name="Guid" Nullable="false" />
           <NavigationProperty Name="ProjectResources" Relationship="Ebalit_WebFormsModel.FK_ProjectResources_ProjectProject" FromRole="ProjectProject" ToRole="ProjectResource" />
           <NavigationProperty Name="ProjectTasks" Relationship="Ebalit_WebFormsModel.FK_ProjectTask_ProjectProject" FromRole="ProjectProject" ToRole="ProjectTask" />
+          <NavigationProperty Name="ProjectWorkingReports" Relationship="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectProject" FromRole="ProjectProject" ToRole="ProjectWorkingReport" />
         </EntityType>
         <EntityType Name="ProjectResourceTaskAssignment">
           <Key>
@@ -840,6 +916,7 @@
           <NavigationProperty Name="ProjectProject" Relationship="Ebalit_WebFormsModel.FK_ProjectTask_ProjectProject" FromRole="ProjectTask" ToRole="ProjectProject" />
           <NavigationProperty Name="ProjectResourceTaskAssignments" Relationship="Ebalit_WebFormsModel.FK_ProjectResourceTaskAssignment_ProjectTask" FromRole="ProjectTask" ToRole="ProjectResourceTaskAssignment" />
           <Property Type="Double" Name="ActualWork" />
+          <NavigationProperty Name="ProjectWorkingReports" Relationship="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectTask" FromRole="ProjectTask" ToRole="ProjectWorkingReport" />
         </EntityType>
         <EntityType Name="ProjectUserAssignment">
           <Key>
@@ -919,6 +996,57 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ProjectResourceTaskAssignment">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProjectWorkingReport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ProjectId" />
+          <Property Type="Int32" Name="ResourceId" />
+          <Property Type="Int32" Name="TaskId" />
+          <Property Type="DateTime" Name="From" Precision="3" />
+          <Property Type="DateTime" Name="To" Precision="3" />
+          <Property Type="String" Name="Notes" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProjectProject" Relationship="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectProject" FromRole="ProjectWorkingReport" ToRole="ProjectProject" />
+          <NavigationProperty Name="ProjectResource" Relationship="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectResources" FromRole="ProjectWorkingReport" ToRole="ProjectResource" />
+          <NavigationProperty Name="ProjectTask" Relationship="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectTask" FromRole="ProjectWorkingReport" ToRole="ProjectTask" />
+        </EntityType>
+        <Association Name="FK_ProjectWorkingReport_ProjectProject">
+          <End Type="Ebalit_WebFormsModel.ProjectProject" Role="ProjectProject" Multiplicity="0..1" />
+          <End Type="Ebalit_WebFormsModel.ProjectWorkingReport" Role="ProjectWorkingReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectWorkingReport">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectWorkingReport_ProjectResources">
+          <End Type="Ebalit_WebFormsModel.ProjectResource" Role="ProjectResource" Multiplicity="0..1" />
+          <End Type="Ebalit_WebFormsModel.ProjectWorkingReport" Role="ProjectWorkingReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectResource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectWorkingReport">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectWorkingReport_ProjectTask">
+          <End Type="Ebalit_WebFormsModel.ProjectTask" Role="ProjectTask" Multiplicity="0..1" />
+          <End Type="Ebalit_WebFormsModel.ProjectWorkingReport" Role="ProjectWorkingReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectTask">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectWorkingReport">
               <PropertyRef Name="TaskId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1149,6 +1277,19 @@
               <MappingFragment StoreEntitySet="ProjectUserAssignment">
                 <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectWorkingReports">
+            <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ProjectWorkingReport">
+              <MappingFragment StoreEntitySet="ProjectWorkingReport">
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
