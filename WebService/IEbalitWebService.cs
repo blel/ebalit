@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.Text;
+using EbalitWebForms.DataLayer;
 
 namespace EbalitWebForms.WebService
 {
@@ -11,7 +13,20 @@ namespace EbalitWebForms.WebService
     [ServiceContract]
     public interface IEbalitWebService
     {
+        /// <summary>
+        /// returns a list of all projects and depending items.
+        /// </summary>
+        /// <returns></returns>
         [OperationContract]
-        string TestService(string argument);
+        IList<ProjectDto> GetProjects();
+
+        /// <summary>
+        /// Updates the project on the server with info from dto.
+        /// </summary>
+        /// <param name="project"></param>
+        [OperationContract]
+        void UpdateProject(ProjectDto project);
+
+
     }
 }

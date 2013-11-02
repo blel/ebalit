@@ -4,6 +4,10 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Transactions;
+using System.Web.Security;
+using EbalitWebForms.BusinessLogicLayer;
+using EbalitWebForms.DataLayer;
 
 namespace EbalitWebForms.WebService
 {
@@ -11,10 +15,15 @@ namespace EbalitWebForms.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select EbalitWebService.svc or EbalitWebService.svc.cs at the Solution Explorer and start debugging.
     public class EbalitWebService : IEbalitWebService
     {
-
-        public string TestService(string argument)
+        public IList<ProjectDto> GetProjects()
         {
-            return string.Format("You entered: {0}", argument);
+            throw new NotImplementedException();
+        }
+
+        public void UpdateProject(ProjectDto project)
+        {
+            throw new NotImplementedException();
         }
     }
 }
+

@@ -12,21 +12,21 @@ namespace EbalitWebForms.DataLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class aspnet_Users
+    public partial class ProjectResource
     {
-        public aspnet_Users()
+        public ProjectResource()
         {
+            this.ProjectResourceTaskAssignments = new HashSet<ProjectResourceTaskAssignment>();
             this.ProjectUserAssignments = new HashSet<ProjectUserAssignment>();
         }
     
-        public System.Guid ApplicationId { get; set; }
-        public System.Guid UserId { get; set; }
-        public string UserName { get; set; }
-        public string LoweredUserName { get; set; }
-        public string MobileAlias { get; set; }
-        public bool IsAnonymous { get; set; }
-        public System.DateTime LastActivityDate { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Surename { get; set; }
+        public Nullable<int> ProjectId { get; set; }
     
+        public virtual ProjectProject ProjectProject { get; set; }
+        public virtual ICollection<ProjectResourceTaskAssignment> ProjectResourceTaskAssignments { get; set; }
         public virtual ICollection<ProjectUserAssignment> ProjectUserAssignments { get; set; }
     }
 }

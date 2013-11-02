@@ -68,6 +68,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -174,6 +175,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Ebalit_WebFormsModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\ProjectProject.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\ProjectResource.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\ProjectResourceTaskAssignment.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\ProjectTask.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\ProjectUserAssignment.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataLayer\Task.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
@@ -420,6 +436,9 @@
       <DependentUpon>EbalitWebService.svc</DependentUpon>
     </Compile>
     <Compile Include="WebService\IEbalitWebService.cs" />
+    <Compile Include="WebService\ProjectDto.cs" />
+    <Compile Include="WebService\ResourceDto.cs" />
+    <Compile Include="WebService\TaskDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="GUI\Master.Master" />
@@ -476,7 +495,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>54061</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:64487/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
