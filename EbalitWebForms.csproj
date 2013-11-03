@@ -109,6 +109,7 @@
     <Content Include="GUI\WineDatabase\ManageWineAttribute.aspx" />
     <Content Include="GUI\WineDatabase\ManageWines.aspx" />
     <Content Include="GUI\WorkingReport\CreateWorkingReport.aspx" />
+    <Content Include="GUI\WorkingReport\ManageWorkingReports.aspx" />
     <Content Include="Index.html" />
     <Content Include="GUI\ProtectedSites\ToolsMaster.master" />
     <Content Include="WebService\EbalitWebService.svc" />
@@ -360,6 +361,13 @@
     </Compile>
     <Compile Include="GUI\WorkingReport\CreateWorkingReport.aspx.designer.cs">
       <DependentUpon>CreateWorkingReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WorkingReport\ManageWorkingReports.aspx.cs">
+      <DependentUpon>ManageWorkingReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\WorkingReport\ManageWorkingReports.aspx.designer.cs">
+      <DependentUpon>ManageWorkingReports.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GUI\Index.aspx.cs">

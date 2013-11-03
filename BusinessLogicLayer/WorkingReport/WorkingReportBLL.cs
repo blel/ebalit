@@ -11,6 +11,17 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
     public class WorkingReportBll:DataAccessLayer
     {
         /// <summary>
+        /// returns a list of all resources assigned to the project wiht id = projectId
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        public IList<ProjectResource> GetResources(int projectId)
+        {
+            return EbalitDBContext.ProjectResources.Where(cc => cc.ProjectId == projectId).ToList();
+        }
+
+
+        /// <summary>
         /// Returns a list of all projects
         /// </summary>
         /// <returns></returns>
@@ -60,7 +71,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public IList<ProjectWorkingReport> GetWorkingReports()
         {
-            return EbalitDBContext.ProjectWorkingReports.ToList();
+            return EbalitDBContext.ProjectWorkingReports.Include("ProjectProject").Include("ProjectTask").ToList();
         }
 
         /// <summary>
