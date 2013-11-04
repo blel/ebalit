@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/GUI/ProtectedSites/ToolsMaster.master" AutoEventWireup="true" CodeBehind="ManageWorkingReports.aspx.cs" Inherits="EbalitWebForms.GUI.WorkingReport.ManageWorkingReports" %>
 
+<%@ Register Assembly="EbalitWebForms" Namespace="EbalitWebForms.Common" TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ToolsContent" runat="server">
     <asp:ObjectDataSource ID="odsWorkingReports" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.ProjectWorkingReport" DeleteMethod="DeleteWorkingReport" InsertMethod="CreateWorkingReport" SelectMethod="GetWorkingReports" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" UpdateMethod="UpdateWorkingReport"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsProjects" runat="server" SelectMethod="GetProjects" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll"></asp:ObjectDataSource>
@@ -9,12 +11,22 @@
             <asp:Parameter Name="projectId" Type="Int32" />
         </SelectParameters>
     </asp:ObjectDataSource>
+  <cc1:HierarchicalTaskDataSource ID="htsTasks" runat="server" ProjectId="1"></cc1:HierarchicalTaskDataSource>
     <asp:ScriptManager ID="scmAjaxToolkit" runat="server"></asp:ScriptManager>
     <div id="Container">
         <div id="LeftColumn">
         </div>
+
         <div id="MainColumn">
             <div id="Filter">
+                
+                <asp:TextBox runat="server" ID="txtTaskDropDown" />
+                <asp:TreeView ID="trvTask" runat="server" DataSourceID="htsTasks"  OnSelectedNodeChanged="trvTask_OnSelectedNodeChanged">
+                    <DataBindings>
+                        <asp:TreeNodeBinding DataMember="Task" TextField="Name"  />
+                    </DataBindings>
+                </asp:TreeView>
+                <ajaxToolkit:DropDownExtender runat="server" TargetControlID="txtTaskDropDown" DropDownControlID="trvTask"></ajaxToolkit:DropDownExtender>
                 <asp:Table ID="tblFilter" runat="server" Width="769px">
                     <asp:TableRow runat="server">
                         <asp:TableCell runat="server">
@@ -27,7 +39,9 @@
                             <asp:Label ID="Label2" runat="server" Text="Task"></asp:Label>
                         </asp:TableCell>
                         <asp:TableCell ID="TableCell3" runat="server">
-                            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                            
+                            
+
                         </asp:TableCell>
                         <asp:TableCell ID="TableCell4" runat="server">
                             <asp:Label ID="Label3" runat="server" Text="Resource"></asp:Label>

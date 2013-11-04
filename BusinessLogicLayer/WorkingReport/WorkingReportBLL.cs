@@ -50,8 +50,12 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// </summary>
         /// <param name="project"></param>
         /// <returns></returns>
-        public IList<ProjectTask> GetTasks(ProjectProject project)
+        public IList<ProjectTask> GetTasks(ProjectProject project=null)
         {
+            if (project == null)
+            {
+                return EbalitDBContext.ProjectTasks.ToList();
+            }
             return EbalitDBContext.ProjectTasks.Where(cc => cc.ProjectProject.Id == project.Id).ToList();
         }
 

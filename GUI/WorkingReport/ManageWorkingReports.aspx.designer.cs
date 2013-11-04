@@ -49,6 +49,15 @@ namespace EbalitWebForms.GUI.WorkingReport {
         protected global::System.Web.UI.WebControls.ObjectDataSource odsResources;
         
         /// <summary>
+        /// HierarchicalTaskDataSource1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::EbalitWebForms.Common.HierarchicalTaskDataSource HierarchicalTaskDataSource1;
+        
+        /// <summary>
         /// scmAjaxToolkit control.
         /// </summary>
         /// <remarks>
@@ -121,13 +130,22 @@ namespace EbalitWebForms.GUI.WorkingReport {
         protected global::System.Web.UI.WebControls.TableCell TableCell3;
         
         /// <summary>
-        /// TextBox2 control.
+        /// trvTask control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TreeView trvTask;
+        
+        /// <summary>
+        /// DropDownExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.DropDownExtender DropDownExtender1;
         
         /// <summary>
         /// TableCell4 control.
@@ -326,5 +344,7 @@ namespace EbalitWebForms.GUI.WorkingReport {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lvwWorkingReports;
+
+        protected global::System.Web.UI.WebControls.TextBox txtTaskDropDown;
     }
 }

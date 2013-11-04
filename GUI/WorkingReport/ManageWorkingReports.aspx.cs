@@ -20,5 +20,16 @@ namespace EbalitWebForms.GUI.WorkingReport
         }
 
 
+        /// <summary>
+        /// TODO: continue here. Collapse does not work currently.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void trvTask_OnSelectedNodeChanged(object sender, EventArgs e)
+        {
+            this.txtTaskDropDown.Text = this.trvTask.SelectedNode.Text;
+        }
+
+
     }
 }

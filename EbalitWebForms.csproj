@@ -144,6 +144,10 @@
     <Compile Include="BusinessLogicLayer\WineBLL.cs" />
     <Compile Include="BusinessLogicLayer\WorkingReport\WorkingReportBLL.cs" />
     <Compile Include="Common\Extensions.cs" />
+    <Compile Include="Common\HierarchicalTaskDataSource.cs" />
+    <Compile Include="Common\HierarchicalTaskDataSourceView.cs" />
+    <Compile Include="Common\HierarchicalTaskEnumerable.cs" />
+    <Compile Include="Common\HierarchyTaskData.cs" />
     <Compile Include="DataLayer\aspnet_Users.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
