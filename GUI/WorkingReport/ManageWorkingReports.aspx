@@ -11,7 +11,7 @@
             <asp:Parameter Name="projectId" Type="Int32" />
         </SelectParameters>
     </asp:ObjectDataSource>
-  <cc1:HierarchicalTaskDataSource ID="htsTasks" runat="server" ProjectId="1"></cc1:HierarchicalTaskDataSource>
+    <cc1:HierarchicalTaskDataSource ID="htsTasks" runat="server" ProjectId="1"></cc1:HierarchicalTaskDataSource>
     <asp:ScriptManager ID="scmAjaxToolkit" runat="server"></asp:ScriptManager>
     <div id="Container">
         <div id="LeftColumn">
@@ -19,14 +19,8 @@
 
         <div id="MainColumn">
             <div id="Filter">
-                
-                <asp:TextBox runat="server" ID="txtTaskDropDown" />
-                <asp:TreeView ID="trvTask" runat="server" DataSourceID="htsTasks"  OnSelectedNodeChanged="trvTask_OnSelectedNodeChanged">
-                    <DataBindings>
-                        <asp:TreeNodeBinding DataMember="Task" TextField="Name"  />
-                    </DataBindings>
-                </asp:TreeView>
-                <ajaxToolkit:DropDownExtender runat="server" TargetControlID="txtTaskDropDown" DropDownControlID="trvTask"></ajaxToolkit:DropDownExtender>
+
+
                 <asp:Table ID="tblFilter" runat="server" Width="769px">
                     <asp:TableRow runat="server">
                         <asp:TableCell runat="server">
@@ -39,9 +33,8 @@
                             <asp:Label ID="Label2" runat="server" Text="Task"></asp:Label>
                         </asp:TableCell>
                         <asp:TableCell ID="TableCell3" runat="server">
-                            
-                            
-
+                            <asp:TextBox runat="server" ID="txtTaskDropDown" />
+                            <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="CommentsPopup" TargetControlID="txtTaskDropDown"></ajaxToolkit:ModalPopupExtender>
                         </asp:TableCell>
                         <asp:TableCell ID="TableCell4" runat="server">
                             <asp:Label ID="Label3" runat="server" Text="Resource"></asp:Label>
@@ -273,6 +266,22 @@
                     </tr>
                 </SelectedItemTemplate>
             </asp:ListView>
+            <div id="CommentsPopup" class="Popup">
+                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+
+                    <ContentTemplate>
+                        <asp:TreeView ID="trvTask" runat="server" DataSourceID="htsTasks" OnSelectedNodeChanged="trvTask_OnSelectedNodeChanged">
+                            <DataBindings>
+                                <asp:TreeNodeBinding DataMember="Task" TextField="Name" />
+                            </DataBindings>
+                        </asp:TreeView>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                <div id="Buttons">
+                    <asp:LinkButton ID="lnkClose" runat="server" CssClass="CommandButton" CausesValidation="false">Close</asp:LinkButton>
+                </div>
+            </div>
+
         </div>
         <div id="RightColumn">
         </div>

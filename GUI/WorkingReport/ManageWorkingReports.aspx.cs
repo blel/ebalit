@@ -11,7 +11,8 @@ namespace EbalitWebForms.GUI.WorkingReport
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //TODO: This seems to work, but need to checkout why exactly...
+            scmAjaxToolkit.RegisterPostBackControl(trvTask);
         }
 
         protected void odsResources_OnSelecting(object sender, ObjectDataSourceSelectingEventArgs e)
@@ -21,13 +22,13 @@ namespace EbalitWebForms.GUI.WorkingReport
 
 
         /// <summary>
-        /// TODO: continue here. Collapse does not work currently.
+        /// Assign selected text to the text box.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void trvTask_OnSelectedNodeChanged(object sender, EventArgs e)
         {
-            this.txtTaskDropDown.Text = this.trvTask.SelectedNode.Text;
+            txtTaskDropDown.Text = trvTask.SelectedNode.Text;
         }
 
 
