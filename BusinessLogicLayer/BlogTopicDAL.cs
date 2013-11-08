@@ -37,7 +37,12 @@ namespace EbalitWebForms.BusinessLogicLayer
 
         public int GetBlogTopicId(string blogTopic)
         {
-            return base.EbalitDBContext.BlogTopics.Where(cc => cc.Topic == blogTopic).First().Id;
+            var blogTopicEntity = base.EbalitDBContext.BlogTopics.Where(cc => cc.Topic == blogTopic).FirstOrDefault();
+            if (blogTopicEntity != null)
+            {
+                return blogTopicEntity.Id;
+            }
+            return 0;
         }
 
 
