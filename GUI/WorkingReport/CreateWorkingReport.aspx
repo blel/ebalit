@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/GUI/ProtectedSites/ToolsMaster.master" AutoEventWireup="true" CodeBehind="CreateWorkingReport.aspx.cs" Inherits="EbalitWebForms.GUI.WorkingReport.CreateWorkingReport" %>
 
+<%@ Register Assembly="EbalitWebForms" Namespace="EbalitWebForms.Common" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ToolsContent" runat="server">
     <asp:ObjectDataSource ID="odsProject" runat="server" SelectMethod="GetProjects" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsTasks" runat="server" SelectMethod="GetTasks" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" OnSelecting="odsTasks_OnSelecting">
@@ -12,6 +13,8 @@
             <asp:Parameter Name="id" Type="Int32" />
         </SelectParameters>
     </asp:ObjectDataSource>
+    <cc1:HierarchicalTaskDataSource ID="htsTasks" runat="server" ProjectId="1"></cc1:HierarchicalTaskDataSource>
+    <asp:ScriptManager ID="scmAjaxToolkit" runat="server"></asp:ScriptManager>
     <div id="Container">
         <div id="LeftColumn">
         </div>
@@ -35,7 +38,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Project" SortExpression="ProjectId">
                         <EditItemTemplate>
-                            <asp:DropDownList ID="ddlPRoject" runat="server" DataSourceID="odsProject" DataTextField="Name" DataValueField="Id" SelectedValue='<%# Bind("ProjectId") %>' ></asp:DropDownList>
+                            <asp:DropDownList ID="ddlPRoject" runat="server" DataSourceID="odsProject" DataTextField="Name" DataValueField="Id" SelectedValue='<%# Bind("ProjectId") %>'></asp:DropDownList>
 
                         </EditItemTemplate>
                         <InsertItemTemplate>
@@ -59,10 +62,12 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="TaskId" SortExpression="TaskId">
                         <EditItemTemplate>
-                            <asp:DropDownList ID="ddlTask" runat="server" DataSourceID="odsTasks" DataTextField="Name" DataValueField="Id" SelectedValue='<%# Bind("TaskId") %>'></asp:DropDownList>
+                            <asp:TextBox ID="txtTask" runat="server" Text='<%# Bind("TaskId") %>'></asp:TextBox>
+                            <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="CommentsPopup" TargetControlID="txtTask"></ajaxToolkit:ModalPopupExtender>
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:DropDownList ID="ddlTask" runat="server" DataSourceID="odsTasks" DataTextField="Name" DataValueField="Id" SelectedValue='<%# Bind("TaskId") %>'></asp:DropDownList>
+                            <asp:TextBox ID="txtTask" runat="server" Text='<%# Bind("TaskId") %>'></asp:TextBox>
+                            <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="CommentsPopup" TargetControlID="txtTask"></ajaxToolkit:ModalPopupExtender>
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label4" runat="server" Text='<%# Bind("TaskId") %>'></asp:Label>
@@ -104,6 +109,21 @@
                     <asp:CommandField ShowEditButton="True" ShowInsertButton="True" />
                 </Fields>
             </asp:DetailsView>
+            <div id="CommentsPopup" class="Popup">
+                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+
+                    <ContentTemplate>
+                        <asp:TreeView ID="trvTask" runat="server" DataSourceID="htsTasks" OnSelectedNodeChanged="trvTask_OnSelectedNodeChanged">
+                            <DataBindings>
+                                <asp:TreeNodeBinding DataMember="Task" TextField="Name" />
+                            </DataBindings>
+                        </asp:TreeView>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                <div id="Buttons">
+                    <asp:LinkButton ID="lnkClose" runat="server" CssClass="CommandButton" CausesValidation="false">Close</asp:LinkButton>
+                </div>
+            </div>
         </div>
         <div id="RightColumn">
         </div>

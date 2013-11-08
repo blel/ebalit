@@ -12,9 +12,11 @@ namespace EbalitWebForms.GUI.WorkingReport
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.scmAjaxToolkit.RegisterPostBackControl(trvTask);
             //if site is really loaded and no postback
             if (!IsPostBack)
             {
+                
                 //if there is a "Id" parameter in the url change to edit mode
                 if (Request.QueryString["Id"] != null)
                 {
@@ -41,5 +43,13 @@ namespace EbalitWebForms.GUI.WorkingReport
         }
 
 
+        protected void trvTask_OnSelectedNodeChanged(object sender, EventArgs e)
+        {
+            var taskTextBox = (TextBox)GUIHelper.RecursiveFindControl(this,"txtTask");
+            if (taskTextBox != null)
+            {
+                taskTextBox.Text = trvTask.SelectedValue;
+            }
+        }
     }
 }

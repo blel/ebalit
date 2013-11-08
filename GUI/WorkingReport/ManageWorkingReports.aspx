@@ -16,11 +16,8 @@
     <div id="Container">
         <div id="LeftColumn">
         </div>
-
         <div id="MainColumn">
             <div id="Filter">
-
-
                 <asp:Table ID="tblFilter" runat="server" Width="769px">
                     <asp:TableRow runat="server">
                         <asp:TableCell runat="server">
