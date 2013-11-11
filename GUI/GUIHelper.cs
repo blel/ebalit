@@ -11,9 +11,15 @@ namespace EbalitWebForms.GUI
 {
     public static class GUIHelper
     {
+        /// <summary>
+        /// Returns the given date string as us date
+        /// </summary>
+        /// <param name="anyDate"></param>
+        /// <returns></returns>
         public static string GetUSDate(string anyDate)
         {
             DateTime currentDate = DateTime.MinValue;
+            
             if (!string.IsNullOrEmpty(anyDate) && DateTime.TryParse(anyDate, out currentDate))
             {
                 return currentDate.ToString(new CultureInfo("en-US"));

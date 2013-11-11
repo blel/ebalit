@@ -55,7 +55,7 @@ namespace EbalitWebForms.GUI.WorkingReport {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager scmAjaxToolkit;
+        protected global::AjaxControlToolkit.ToolkitScriptManager scmAjaxToolkit;
         
         /// <summary>
         /// dtvCreateWorkingReport control.

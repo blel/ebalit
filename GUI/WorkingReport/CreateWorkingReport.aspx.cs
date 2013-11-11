@@ -51,5 +51,31 @@ namespace EbalitWebForms.GUI.WorkingReport
                 taskTextBox.Text = trvTask.SelectedValue;
             }
         }
+
+        /// <summary>
+        /// Before inserting a new working report,
+        /// make sure all parameters are setup correctly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void dtvCreateWorkingReport_ItemInserting(object sender, DetailsViewInsertEventArgs e)
+        {
+            //need to get the id of the selected task
+            e.Values["TaskId"] = new WorkingReportBll().GetTaskIdByName(e.Values["TaskId"].ToString());
+
+            var fromTime = ((EbalitWebForms.GUI.WebUserControls.TimeControl)
+                this.dtvCreateWorkingReport.FindControl("FromTime")).DisplayTime;
+            
+            var toTime = ((EbalitWebForms.GUI.WebUserControls.TimeControl)
+                this.dtvCreateWorkingReport.FindControl("ToTime")).DisplayTime;
+
+            DateTime date = DateTime.Parse(GUIHelper.GetUSDate(e.Values["From"].ToString()));
+
+            if (date != null)
+            {
+                e.Values["From"] = new DateTime(date.Year, date.Month, date.Day, fromTime.Hour, fromTime.Minute, 0);
+                e.Values["To"] = new DateTime(date.Year, date.Month, date.Day, toTime.Hour, toTime.Minute, 0);
+            }
+        }
     }
 }

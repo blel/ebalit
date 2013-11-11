@@ -60,6 +60,21 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         }
 
         /// <summary>
+        /// Returns the id of the task with given task name
+        /// </summary>
+        /// <param name="taskName"></param>
+        /// <returns></returns>
+        public int GetTaskIdByName(string taskName)
+        {
+            if (!string.IsNullOrWhiteSpace(taskName))
+            {
+                return EbalitDBContext.ProjectTasks.Single(cc => cc.Name == taskName).Id;
+            }
+
+            return 0;
+        }
+
+        /// <summary>
         /// Returns the working report with given id
         /// </summary>
         /// <param name="id"></param>

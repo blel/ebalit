@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/GUI/ProtectedSites/ToolsMaster.master" AutoEventWireup="true" CodeBehind="CreateWorkingReport.aspx.cs" Inherits="EbalitWebForms.GUI.WorkingReport.CreateWorkingReport" %>
 
 <%@ Register Assembly="EbalitWebForms" Namespace="EbalitWebForms.Common" TagPrefix="cc1" %>
+<%@ Register Src="~/GUI/WebUserControls/TimeControl.ascx" TagPrefix="uc1" TagName="TimeControl" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ToolsContent" runat="server">
     <asp:ObjectDataSource ID="odsProject" runat="server" SelectMethod="GetProjects" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsTasks" runat="server" SelectMethod="GetTasks" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" OnSelecting="odsTasks_OnSelecting">
@@ -14,71 +16,75 @@
         </SelectParameters>
     </asp:ObjectDataSource>
     <cc1:HierarchicalTaskDataSource ID="htsTasks" runat="server" ProjectId="1"></cc1:HierarchicalTaskDataSource>
-    <asp:ScriptManager ID="scmAjaxToolkit" runat="server"></asp:ScriptManager>
+    <ajaxToolkit:ToolkitScriptManager ID="scmAjaxToolkit" runat="server"></ajaxToolkit:ToolkitScriptManager>
     <div id="Container">
         <div id="LeftColumn">
         </div>
         <div id="MainColumn">
             <h2>Working Report Details</h2>
-            <asp:DetailsView ID="dtvCreateWorkingReport" runat="server" Height="50px" Width="767px" AutoGenerateRows="False" DataSourceID="odsWorkingReport" DataKeyNames="Id">
+            <asp:DetailsView ID="dtvCreateWorkingReport" runat="server" CssClass="detailsview" Height="50px" Width="767px" AutoGenerateRows="False" DataSourceID="odsWorkingReport" DataKeyNames="Id" OnItemInserting="dtvCreateWorkingReport_ItemInserting">
                 <EmptyDataTemplate>
                     No data.
                 </EmptyDataTemplate>
                 <Fields>
-                    <asp:TemplateField HeaderText="Id" SortExpression="Id">
-                        <EditItemTemplate>
-                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Id") %>'></asp:TextBox>
-                        </EditItemTemplate>
-                        <InsertItemTemplate>
-                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Id") %>'></asp:TextBox>
-                        </InsertItemTemplate>
-                        <ItemTemplate>
-                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("Id") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
+
                     <asp:TemplateField HeaderText="Project" SortExpression="ProjectId">
                         <EditItemTemplate>
-                            <asp:DropDownList ID="ddlPRoject" runat="server" DataSourceID="odsProject" DataTextField="Name" DataValueField="Id" SelectedValue='<%# Bind("ProjectId") %>'></asp:DropDownList>
+                            <asp:DropDownList ID="ddlPRoject" Width="200" runat="server" DataSourceID="odsProject" DataTextField="Name" DataValueField="Id" SelectedValue='<%# Bind("ProjectId") %>'></asp:DropDownList>
 
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:DropDownList ID="ddlPRoject" runat="server" DataSourceID="odsProject" DataTextField="Name" DataValueField="Id" SelectedValue='<%# Bind("ProjectId") %>'></asp:DropDownList>
+                            <asp:DropDownList ID="ddlPRoject" Width="200" runat="server" DataSourceID="odsProject" DataTextField="Name" DataValueField="Id" SelectedValue='<%# Bind("ProjectId") %>'></asp:DropDownList>
 
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label2" runat="server" Text='<%# Bind("ProjectId") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="ResourceId" SortExpression="ResourceId">
+                    <asp:TemplateField HeaderText="Resource" SortExpression="ResourceId">
                         <EditItemTemplate>
-                            <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("ResourceId") %>'></asp:TextBox>
+                            <asp:TextBox ID="TextBox3" Width="200" runat="server" Text='<%# Bind("ResourceId") %>'></asp:TextBox>
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("ResourceId") %>'></asp:TextBox>
+                            <asp:TextBox ID="TextBox3" Width="200" runat="server" Text='<%# Bind("ResourceId") %>'></asp:TextBox>
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label3" runat="server" Text='<%# Bind("ResourceId") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="TaskId" SortExpression="TaskId">
+
+                    <asp:TemplateField HeaderText="Task" SortExpression="TaskId">
                         <EditItemTemplate>
-                            <asp:TextBox ID="txtTask" runat="server" Text='<%# Bind("TaskId") %>'></asp:TextBox>
+                            <asp:TextBox ID="txtTask" Width="200" runat="server" Text='<%# Bind("TaskId") %>'></asp:TextBox>
                             <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="CommentsPopup" TargetControlID="txtTask"></ajaxToolkit:ModalPopupExtender>
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:TextBox ID="txtTask" runat="server" Text='<%# Bind("TaskId") %>'></asp:TextBox>
+                            <asp:TextBox ID="txtTask" Width="200" runat="server" Text='<%# Bind("TaskId") %>'></asp:TextBox>
                             <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="CommentsPopup" TargetControlID="txtTask"></ajaxToolkit:ModalPopupExtender>
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label4" runat="server" Text='<%# Bind("TaskId") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="From" SortExpression="From">
+                    <asp:TemplateField HeaderText="Date" SortExpression="Date">
                         <EditItemTemplate>
-                            <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("From") %>'></asp:TextBox>
+                            <asp:TextBox ID="txtDate" runat="server" Text='<%# Bind("From", "{0:d}") %>'></asp:TextBox>
+                            <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDate"></ajaxToolkit:CalendarExtender>
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("From") %>'></asp:TextBox>
+                            <asp:TextBox ID="txtDate" runat="server" Text='<%# Bind("From") %>'></asp:TextBox>
+                            <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtDate"></ajaxToolkit:CalendarExtender>
+                        </InsertItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("From", "{0:d}") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="From" SortExpression="From">
+                        <EditItemTemplate>
+                            <uc1:TimeControl runat="server" ID="FromTime" DisplayTime='<%# Bind("From") %>'/>
+                        </EditItemTemplate>
+                        <InsertItemTemplate>
+                            <uc1:TimeControl runat="server" ID="FromTime" />
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label5" runat="server" Text='<%# Bind("From") %>'></asp:Label>
@@ -86,10 +92,10 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="To" SortExpression="To">
                         <EditItemTemplate>
-                            <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("To") %>'></asp:TextBox>
+                            <uc1:TimeControl runat="server" ID="ToTime" DisplayTime='<%# Bind("To") %>' />
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("To") %>'></asp:TextBox>
+                            <uc1:TimeControl runat="server" ID="ToTime"  />
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label6" runat="server" Text='<%# Bind("To") %>'></asp:Label>
@@ -97,16 +103,16 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Notes" SortExpression="Notes">
                         <EditItemTemplate>
-                            <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("Notes") %>'></asp:TextBox>
+                            <asp:TextBox ID="TextBox7" Width="200" runat="server" TextMode="MultiLine" Text='<%# Bind("Notes") %>'></asp:TextBox>
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("Notes") %>'></asp:TextBox>
+                            <asp:TextBox ID="TextBox7" Width="200" Height="60" runat="server" TextMode="MultiLine" Text='<%# Bind("Notes") %>'></asp:TextBox>
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label7" runat="server" Text='<%# Bind("Notes") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:CommandField ShowEditButton="True" ShowInsertButton="True" />
+                    <asp:CommandField ShowEditButton="True" ShowInsertButton="True" ControlStyle-CssClass="CommandButton" />
                 </Fields>
             </asp:DetailsView>
             <div id="CommentsPopup" class="Popup">

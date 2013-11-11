@@ -12,11 +12,21 @@
         </SelectParameters>
     </asp:ObjectDataSource>
     <cc1:HierarchicalTaskDataSource ID="htsTasks" runat="server" ProjectId="1"></cc1:HierarchicalTaskDataSource>
-    <asp:ScriptManager ID="scmAjaxToolkit" runat="server"></asp:ScriptManager>
+    <ajaxToolkit:ToolkitScriptManager ID="scmAjaxToolkit" runat="server"></ajaxToolkit:ToolkitScriptManager>
     <div id="Container">
         <div id="LeftColumn">
         </div>
         <div id="MainColumn">
+            <div id="CommentsPopup" class="Popup">
+                <asp:TreeView ID="trvTask" runat="server" DataSourceID="htsTasks" OnSelectedNodeChanged="trvTask_OnSelectedNodeChanged">
+                    <DataBindings>
+                        <asp:TreeNodeBinding DataMember="Task" TextField="Name" />
+                    </DataBindings>
+                </asp:TreeView>
+                <div id="Buttons">
+                    <asp:LinkButton ID="lnkClose" runat="server" CssClass="CommandButton" CausesValidation="false">Close</asp:LinkButton>
+                </div>
+            </div>
             <div id="Filter">
                 <asp:Table ID="tblFilter" runat="server" Width="769px">
                     <asp:TableRow runat="server">
@@ -32,33 +42,27 @@
                         <asp:TableCell ID="TableCell3" runat="server">
                             <asp:TextBox runat="server" ID="txtTaskDropDown" />
                             <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="CommentsPopup" TargetControlID="txtTaskDropDown"></ajaxToolkit:ModalPopupExtender>
-                        </asp:TableCell>
-                        <asp:TableCell ID="TableCell4" runat="server">
+                        
+                        </asp:TableCell><asp:TableCell ID="TableCell4" runat="server">
                             <asp:Label ID="Label3" runat="server" Text="Resource"></asp:Label>
-                        </asp:TableCell>
-                        <asp:TableCell ID="TableCell5" runat="server">
+                        </asp:TableCell><asp:TableCell ID="TableCell5" runat="server">
                             <asp:DropDownList ID="ddlResource" runat="server" DataSourceID="odsResources" DataTextField="Name" DataValueField="Id"></asp:DropDownList>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow ID="TableRow1" runat="server">
                         <asp:TableCell ID="TableCell6" runat="server">
                             <asp:Label ID="Label4" runat="server" Text="Date From"></asp:Label>
-                        </asp:TableCell>
-                        <asp:TableCell ID="TableCell7" runat="server">
+                        </asp:TableCell><asp:TableCell ID="TableCell7" runat="server">
                             <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
                             <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDate"></ajaxToolkit:CalendarExtender>
-                        </asp:TableCell>
-                        <asp:TableCell ID="TableCell8" runat="server">
+                        </asp:TableCell><asp:TableCell ID="TableCell8" runat="server">
                             <asp:Label ID="Label5" runat="server" Text="Date To"></asp:Label>
-                        </asp:TableCell>
-                        <asp:TableCell ID="TableCell9" runat="server">
+                        </asp:TableCell><asp:TableCell ID="TableCell9" runat="server">
                             <asp:TextBox ID="txtDateTo" runat="server"></asp:TextBox>
                             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtDateTo"></ajaxToolkit:CalendarExtender>
-                        </asp:TableCell>
-                        <asp:TableCell ID="TableCell10" runat="server">
+                        </asp:TableCell><asp:TableCell ID="TableCell10" runat="server">
                             
-                        </asp:TableCell>
-                        <asp:TableCell ID="TableCell11" runat="server">
+                        </asp:TableCell><asp:TableCell ID="TableCell11" runat="server">
                             
                         </asp:TableCell>
                     </asp:TableRow>
@@ -66,7 +70,7 @@
                         <asp:TableCell ColumnSpan="2">
                             <asp:LinkButton ID="lnkFind" runat="server" CausesValidation="false" CssClass="CommandButton">Find</asp:LinkButton>&nbsp;
                         <asp:LinkButton ID="lnkClear" runat="server" CausesValidation="false" CssClass="CommandButton">Clear</asp:LinkButton>&nbsp;
-                        <asp:LinkButton ID="lnkCreate" runat="server" CausesValidation="false" CssClass="CommandButton">Create</asp:LinkButton>&nbsp;
+                        <asp:LinkButton ID="lnkCreate" runat="server" CausesValidation="false" CssClass="CommandButton" OnCommand="lnkCreate_Command">Create</asp:LinkButton>&nbsp;
                         <asp:LinkButton ID="lnkExport" runat="server" CausesValidation="false" CssClass="CommandButton">Export</asp:LinkButton>
                         </asp:TableCell>
                     </asp:TableFooterRow>
@@ -78,8 +82,7 @@
                         <td>
                             <asp:LinkButton ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CssClass="CommandButton" />
                             <asp:LinkButton ID="EditButton" runat="server" CommandName="Edit" Text="Edit" CssClass="CommandButton" />
-                            <asp:LinkButton ID="btnDetails" runat="server" CommandArgument='<%# Eval("Id") %>' CssClass="CommandButton">Details</asp:LinkButton>
-                        </td>
+                            <asp:LinkButton ID="btnDetails" runat="server" CommandArgument='<%# Eval("Id") %>' CssClass="CommandButton">Details</asp:LinkButton></td>
                         <td>
                             <asp:Label ID="ProjectIdLabel" runat="server" Text='<%# Eval("ProjectProject.Name") %>' />
                         </td>
@@ -108,8 +111,7 @@
                     <tr style="background-color: #008A8C; color: #FFFFFF;">
                         <td>
                             <asp:LinkButton ID="UpdateButton" runat="server" CommandName="Update" Text="Update" CssClass="CommandButton" />
-                            <asp:LinkButton ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" CssClass="CommandButton" />&nbsp;
-                        </td>
+                            <asp:LinkButton ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" CssClass="CommandButton" />&nbsp; </td>
                         <td>
                             <asp:TextBox ID="IdTextBox" runat="server" Text='<%# Bind("Id") %>' />
                         </td>
@@ -176,9 +178,7 @@
                         <td>
                             <asp:LinkButton ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CssClass="CommandButton" />
                             <asp:LinkButton ID="EditButton" runat="server" CommandName="Edit" Text="Edit" CssClass="CommandButton" />
-                            <asp:LinkButton ID="btnDetails" runat="server" CommandArgument='<%# Eval("Id") %>' CssClass="CommandButton">Details</asp:LinkButton>
-
-                        </td>
+                            <asp:LinkButton ID="btnDetails" runat="server" CommandArgument='<%# Eval("Id") %>' CssClass="CommandButton">Details</asp:LinkButton></td>
                         <td>
                             <asp:Label ID="ProjectIdLabel" runat="server" Text='<%# Eval("ProjectProject.Name") %>' />
                         </td>
@@ -239,8 +239,7 @@
                     <tr style="background-color: #008A8C; font-weight: bold; color: #FFFFFF;">
                         <td>
                             <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />&nbsp;
-                        </td>
+                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />&nbsp; </td>
                         <td>
                             <asp:Label ID="ProjectIdLabel" runat="server" Text='<%# Eval("ProjectId") %>' />
                         </td>
@@ -263,22 +262,7 @@
                     </tr>
                 </SelectedItemTemplate>
             </asp:ListView>
-            <div id="CommentsPopup" class="Popup">
-                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-
-                    <ContentTemplate>
-                        <asp:TreeView ID="trvTask" runat="server" DataSourceID="htsTasks" OnSelectedNodeChanged="trvTask_OnSelectedNodeChanged">
-                            <DataBindings>
-                                <asp:TreeNodeBinding DataMember="Task" TextField="Name" />
-                            </DataBindings>
-                        </asp:TreeView>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-                <div id="Buttons">
-                    <asp:LinkButton ID="lnkClose" runat="server" CssClass="CommandButton" CausesValidation="false">Close</asp:LinkButton>
-                </div>
-            </div>
-
+            
         </div>
         <div id="RightColumn">
         </div>
