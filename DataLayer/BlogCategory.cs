@@ -23,7 +23,7 @@ namespace EbalitWebForms.DataLayer
         public string Category { get; set; }
         public int FK_Topic { get; set; }
     
-        public virtual BlogTopic BlogTopic { get; set; }
         public virtual ICollection<BlogEntry> BlogEntries { get; set; }
+        public virtual BlogTopic BlogTopic { get; set; }
     }
 }

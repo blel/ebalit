@@ -153,6 +153,9 @@
     <Compile Include="Common\HierarchicalTaskDataSourceView.cs" />
     <Compile Include="Common\HierarchicalTaskEnumerable.cs" />
     <Compile Include="Common\HierarchyTaskData.cs" />
+    <Compile Include="DataLayer\aspnet_Users.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataLayer\BlogCategory.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>

@@ -52,27 +52,19 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public IList<ProjectTask> GetTasks(ProjectProject project=null)
         {
-            if (project == null)
-            {
-                return EbalitDBContext.ProjectTasks.ToList();
-            }
-            return EbalitDBContext.ProjectTasks.Where(cc => cc.ProjectProject.Id == project.Id).ToList();
+            return project == null ? EbalitDBContext.ProjectTasks.ToList() : EbalitDBContext.ProjectTasks.Where(cc => cc.ProjectProject.Id == project.Id).ToList();
         }
 
         /// <summary>
-        /// Returns the id of the task with given task name
+        /// Returns the id of the task with given guid
         /// </summary>
-        /// <param name="taskName"></param>
+        /// <param name="guid"></param>
         /// <returns></returns>
-        public int GetTaskIdByName(string taskName)
+        public int GetTaskIdByGuid(Guid guid)
         {
-            if (!string.IsNullOrWhiteSpace(taskName))
-            {
-                return EbalitDBContext.ProjectTasks.Single(cc => cc.Name == taskName).Id;
-            }
-
-            return 0;
+            return EbalitDBContext.ProjectTasks.Single(cc => cc.Guid == guid).Id;
         }
+
 
         /// <summary>
         /// Returns the working report with given id

@@ -15,6 +15,11 @@
             <asp:Parameter Name="id" Type="Int32" />
         </SelectParameters>
     </asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsResource" runat="server" SelectMethod="GetResources" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" OnSelecting="odsResource_OnSelecting">
+        <SelectParameters>
+            <asp:Parameter Name="projectId" Type="Int32"></asp:Parameter>
+        </SelectParameters>
+    </asp:ObjectDataSource>
     <cc1:HierarchicalTaskDataSource ID="htsTasks" runat="server" ProjectId="1"></cc1:HierarchicalTaskDataSource>
     <ajaxToolkit:ToolkitScriptManager ID="scmAjaxToolkit" runat="server"></ajaxToolkit:ToolkitScriptManager>
     <div id="Container">
@@ -30,11 +35,11 @@
 
                     <asp:TemplateField HeaderText="Project" SortExpression="ProjectId">
                         <EditItemTemplate>
-                            <asp:DropDownList ID="ddlPRoject" Width="200" runat="server" DataSourceID="odsProject" DataTextField="Name" DataValueField="Id" SelectedValue='<%# Bind("ProjectId") %>'></asp:DropDownList>
+                            <asp:DropDownList ID="ddlPRoject" Width="200" runat="server" DataSourceID="odsProject" DataTextField="Name" DataValueField="Id" SelectedValue='<%# Bind("ProjectId") %>' OnSelectedIndexChanged="ddlPRoject_OnSelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
 
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:DropDownList ID="ddlPRoject" Width="200" runat="server" DataSourceID="odsProject" DataTextField="Name" DataValueField="Id" SelectedValue='<%# Bind("ProjectId") %>'></asp:DropDownList>
+                            <asp:DropDownList ID="ddlPRoject" Width="200" runat="server" DataSourceID="odsProject" DataTextField="Name" DataValueField="Id" SelectedValue='<%# Bind("ProjectId") %>' OnSelectedIndexChanged="ddlPRoject_OnSelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
 
                         </InsertItemTemplate>
                         <ItemTemplate>
@@ -43,10 +48,11 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Resource" SortExpression="ResourceId">
                         <EditItemTemplate>
-                            <asp:TextBox ID="TextBox3" Width="200" runat="server" Text='<%# Bind("ResourceId") %>'></asp:TextBox>
+                            <asp:DropDownList ID="ddlResource" runat="server" SelectedItem='<%# Bind("ResourceId") %>' DataSourceID="odsResource" DataTextField="Name" DataValueField="Id"></asp:DropDownList>
+                            
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:TextBox ID="TextBox3" Width="200" runat="server" Text='<%# Bind("ResourceId") %>'></asp:TextBox>
+                            <asp:DropDownList ID="ddlResource" runat="server" SelectedItem='<%# Bind("ResourceId") %>' DataSourceID="odsResource" DataTextField="Name" DataValueField="Id" ></asp:DropDownList>
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label3" runat="server" Text='<%# Bind("ResourceId") %>'></asp:Label>
