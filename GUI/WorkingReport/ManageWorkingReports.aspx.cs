@@ -47,5 +47,9 @@ namespace EbalitWebForms.GUI.WorkingReport
         }
 
 
+        protected void btnDetails_OnCommand(object sender, CommandEventArgs e)
+        {
+            Response.Redirect(string.Format("/GUI/WorkingReport/CreateWorkingReport.aspx?Id={0}",e.CommandArgument));
+        }
     }
 }

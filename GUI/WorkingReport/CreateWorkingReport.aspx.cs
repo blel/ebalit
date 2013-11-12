@@ -35,7 +35,11 @@ namespace EbalitWebForms.GUI.WorkingReport
             throw new NotImplementedException();
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void odsTasks_OnSelecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
             var id = Convert.ToInt32(((DropDownList)dtvCreateWorkingReport.FindControl("ddlProject")).SelectedValue);
@@ -104,6 +108,54 @@ namespace EbalitWebForms.GUI.WorkingReport
             if (ddlResource != null)
             {
                 ddlResource.DataBind();
+                trvTask.DataBind();
+            }
+        }
+
+
+        protected void htsTasks_OnSelecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        {
+            var ddlProject = (DropDownList) dtvCreateWorkingReport.FindControl("ddlProject");
+            if (ddlProject != null)
+            {
+                e.InputParameters["ProjectId"] = ddlProject.SelectedValue;
+            }
+        }
+
+
+
+
+        /// <summary>
+        /// Make sure the id from the query string is taken, especially 
+        /// when editing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void odsWorkingReport_OnSelecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        {
+            if (Request.QueryString["Id"] != null)
+            {
+                e.InputParameters["id"] = Request.QueryString["Id"];
+            }
+        }
+
+        /// <summary>
+        /// SEt the task text 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void dtvCreateWorkingReport_OnDataBound(object sender, EventArgs e)
+        {
+            var txtTask = dtvCreateWorkingReport.FindControl("txtTask");
+
+            if (txtTask != null && Request.QueryString["Id"]!=null)
+            {
+                var bll = new WorkingReportBll();
+                var workingReport = bll.GetWorkingReport(Convert.ToInt32(Request.QueryString["Id"]));
+
+                ((TextBox) txtTask).Text = workingReport.ProjectTask.Name;
+
+
             }
         }
     }

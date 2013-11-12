@@ -4,13 +4,9 @@
 <%@ Register Src="~/GUI/WebUserControls/TimeControl.ascx" TagPrefix="uc1" TagName="TimeControl" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ToolsContent" runat="server">
-    <asp:ObjectDataSource ID="odsProject" runat="server" SelectMethod="GetProjects" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll"></asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="odsTasks" runat="server" SelectMethod="GetTasks" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" OnSelecting="odsTasks_OnSelecting">
-        <SelectParameters>
-            <asp:Parameter Name="project" Type="Object" />
-        </SelectParameters>
-    </asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="odsWorkingReport" runat="server" SelectMethod="GetWorkingReport" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" DataObjectTypeName="EbalitWebForms.DataLayer.ProjectWorkingReport" DeleteMethod="DeleteWorkingReport" InsertMethod="CreateWorkingReport" UpdateMethod="UpdateWorkingReport">
+    <asp:ObjectDataSource ID="odsProject" runat="server" SelectMethod="GetProjects" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" ></asp:ObjectDataSource>
+   
+    <asp:ObjectDataSource ID="odsWorkingReport" runat="server" SelectMethod="GetWorkingReport" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" DataObjectTypeName="EbalitWebForms.DataLayer.ProjectWorkingReport" DeleteMethod="DeleteWorkingReport" InsertMethod="CreateWorkingReport" UpdateMethod="UpdateWorkingReport" OnSelecting="odsWorkingReport_OnSelecting">
         <SelectParameters>
             <asp:Parameter Name="id" Type="Int32" />
         </SelectParameters>
@@ -20,14 +16,14 @@
             <asp:Parameter Name="projectId" Type="Int32"></asp:Parameter>
         </SelectParameters>
     </asp:ObjectDataSource>
-    <cc1:HierarchicalTaskDataSource ID="htsTasks" runat="server" ProjectId="1"></cc1:HierarchicalTaskDataSource>
+    <cc1:HierarchicalTaskDataSource ID="htsTasks" runat="server"  OnSelecting="htsTasks_OnSelecting" ></cc1:HierarchicalTaskDataSource>
     <ajaxToolkit:ToolkitScriptManager ID="scmAjaxToolkit" runat="server"></ajaxToolkit:ToolkitScriptManager>
     <div id="Container">
         <div id="LeftColumn">
         </div>
         <div id="MainColumn">
             <h2>Working Report Details</h2>
-            <asp:DetailsView ID="dtvCreateWorkingReport" runat="server" CssClass="detailsview" Height="50px" Width="767px" AutoGenerateRows="False" DataSourceID="odsWorkingReport" DataKeyNames="Id" OnItemInserting="dtvCreateWorkingReport_ItemInserting">
+            <asp:DetailsView ID="dtvCreateWorkingReport" runat="server" CssClass="detailsview" Height="50px" Width="767px" AutoGenerateRows="False" DataSourceID="odsWorkingReport" DataKeyNames="Id" OnItemInserting="dtvCreateWorkingReport_ItemInserting" OnDataBound="dtvCreateWorkingReport_OnDataBound">
                 <EmptyDataTemplate>
                     No data.
                 </EmptyDataTemplate>
@@ -48,11 +44,11 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Resource" SortExpression="ResourceId">
                         <EditItemTemplate>
-                            <asp:DropDownList ID="ddlResource" runat="server" SelectedItem='<%# Bind("ResourceId") %>' DataSourceID="odsResource" DataTextField="Name" DataValueField="Id"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlResource" runat="server" SelectedValue='<%# Bind("ResourceId") %>' DataSourceID="odsResource" DataTextField="Name" DataValueField="Id"></asp:DropDownList>
                             
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:DropDownList ID="ddlResource" runat="server" SelectedItem='<%# Bind("ResourceId") %>' DataSourceID="odsResource" DataTextField="Name" DataValueField="Id" ></asp:DropDownList>
+                            <asp:DropDownList ID="ddlResource" runat="server" SelectedValue='<%# Bind("ResourceId") %>' DataSourceID="odsResource" DataTextField="Name" DataValueField="Id" ></asp:DropDownList>
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label3" runat="server" Text='<%# Bind("ResourceId") %>'></asp:Label>
@@ -61,11 +57,11 @@
 
                     <asp:TemplateField HeaderText="Task" SortExpression="TaskId">
                         <EditItemTemplate>
-                            <asp:TextBox ID="txtTask" Width="200" runat="server" Text='<%# Bind("TaskId") %>'></asp:TextBox>
+                            <asp:TextBox ID="txtTask" Width="200" runat="server" ></asp:TextBox>
                             <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="CommentsPopup" TargetControlID="txtTask"></ajaxToolkit:ModalPopupExtender>
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:TextBox ID="txtTask" Width="200" runat="server" Text='<%# Bind("TaskId") %>'></asp:TextBox>
+                            <asp:TextBox ID="txtTask" Width="200" runat="server"></asp:TextBox>
                             <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="CommentsPopup" TargetControlID="txtTask"></ajaxToolkit:ModalPopupExtender>
                         </InsertItemTemplate>
                         <ItemTemplate>
@@ -109,7 +105,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Notes" SortExpression="Notes">
                         <EditItemTemplate>
-                            <asp:TextBox ID="TextBox7" Width="200" runat="server" TextMode="MultiLine" Text='<%# Bind("Notes") %>'></asp:TextBox>
+                            <asp:TextBox ID="TextBox7" Width="200" Height="60" runat="server" TextMode="MultiLine" Text='<%# Bind("Notes") %>'></asp:TextBox>
                         </EditItemTemplate>
                         <InsertItemTemplate>
                             <asp:TextBox ID="TextBox7" Width="200" Height="60" runat="server" TextMode="MultiLine" Text='<%# Bind("Notes") %>'></asp:TextBox>

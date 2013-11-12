@@ -14,10 +14,12 @@ namespace EbalitWebForms.Common
 
         private int _projectId;
         
-        public HierarchicalTaskDataSourceView(string viewPath, string projectId )
+        public HierarchicalTaskDataSourceView(string viewPath, string projectId)
         {
-            
-            _projectId = Convert.ToInt32(projectId);
+            if (!string.IsNullOrWhiteSpace(projectId))
+            {
+                _projectId = Convert.ToInt32(projectId);
+            }
             _viewPath = viewPath;
         }
 
@@ -26,7 +28,7 @@ namespace EbalitWebForms.Common
         {
             var repository = new WorkingReportBll();
 
-            IList<ProjectTask> tasks = repository.GetTasks().ToList();
+            IList<ProjectTask> tasks = repository.GetTasks(_projectId).ToList();
 
             if (!string.IsNullOrWhiteSpace(_viewPath))
             {

@@ -82,7 +82,7 @@
                         <td>
                             <asp:LinkButton ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CssClass="CommandButton" />
                             <asp:LinkButton ID="EditButton" runat="server" CommandName="Edit" Text="Edit" CssClass="CommandButton" />
-                            <asp:LinkButton ID="btnDetails" runat="server" CommandArgument='<%# Eval("Id") %>' CssClass="CommandButton">Details</asp:LinkButton></td>
+                            <asp:LinkButton ID="btnDetails" runat="server" CommandArgument='<%# Eval("Id") %>' CssClass="CommandButton" OnCommand="btnDetails_OnCommand">Details</asp:LinkButton></td>
                         <td>
                             <asp:Label ID="ProjectIdLabel" runat="server" Text='<%# Eval("ProjectProject.Name") %>' />
                         </td>
@@ -178,7 +178,7 @@
                         <td>
                             <asp:LinkButton ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CssClass="CommandButton" />
                             <asp:LinkButton ID="EditButton" runat="server" CommandName="Edit" Text="Edit" CssClass="CommandButton" />
-                            <asp:LinkButton ID="btnDetails" runat="server" CommandArgument='<%# Eval("Id") %>' CssClass="CommandButton">Details</asp:LinkButton></td>
+                            <asp:LinkButton ID="btnDetails" runat="server" CommandArgument='<%# Eval("Id") %>' OnCommand="btnDetails_OnCommand" CssClass="CommandButton">Details</asp:LinkButton></td>
                         <td>
                             <asp:Label ID="ProjectIdLabel" runat="server" Text='<%# Eval("ProjectProject.Name") %>' />
                         </td>

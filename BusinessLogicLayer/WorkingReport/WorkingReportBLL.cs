@@ -55,6 +55,12 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             return project == null ? EbalitDBContext.ProjectTasks.ToList() : EbalitDBContext.ProjectTasks.Where(cc => cc.ProjectProject.Id == project.Id).ToList();
         }
 
+        public IList<ProjectTask> GetTasks(int projectId)
+        {
+            return EbalitDBContext.ProjectTasks.Where(cc => cc.ProjectId == projectId).ToList();
+        }
+
+
         /// <summary>
         /// Returns the id of the task with given guid
         /// </summary>

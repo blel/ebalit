@@ -22,15 +22,6 @@ namespace EbalitWebForms.GUI.WorkingReport {
         protected global::System.Web.UI.WebControls.ObjectDataSource odsProject;
         
         /// <summary>
-        /// odsTasks control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsTasks;
-        
-        /// <summary>
         /// odsWorkingReport control.
         /// </summary>
         /// <remarks>
