@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 
@@ -43,5 +44,24 @@ namespace EbalitWebForms.Common
             
         }
 
+        /// <summary>
+        /// Applies the converter to each item of the Source Collection
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TDest"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="converter"></param>
+        /// <returns></returns>
+        public static IList<TDest> ForEach<TSource, TDest>(this IEnumerable<TSource> source,
+            Func<TSource, TDest> converter)
+        {
+            var resultCollection = new Collection<TDest>();
+            foreach (var item in source)
+            {
+                var resultItem = converter(item);
+                resultCollection.Add(resultItem);
+            }
+            return resultCollection;
+        }
     }
 }

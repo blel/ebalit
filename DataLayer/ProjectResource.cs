@@ -25,6 +25,7 @@ namespace EbalitWebForms.DataLayer
         public string Name { get; set; }
         public Nullable<int> ProjectId { get; set; }
         public System.Guid Guid { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual ProjectProject ProjectProject { get; set; }
         public virtual ICollection<ProjectResourceTaskAssignment> ProjectResourceTaskAssignments { get; set; }

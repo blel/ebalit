@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using EbalitWebForms.DataLayer;
 
 namespace EbalitWebForms.WebService
 {
@@ -27,6 +28,12 @@ namespace EbalitWebForms.WebService
         /// The list of tasks of that project
         /// </summary>
         [DataMember]
-        public IList<TaskDto> Tasks { get; set; } 
+        public IList<TaskDto> Tasks { get; set; }
+
+        /// <summary>
+        /// All resources of teh project
+        /// </summary>
+        [DataMember]
+        public IList<ResourceDto> Resources { get; set; } 
     }
 }

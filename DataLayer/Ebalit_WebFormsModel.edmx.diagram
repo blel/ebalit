@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bb473dfd97f1433a85b00623fad3fd99" Name="Diagram1" ZoomLevel="98">
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.User" PointX="3.625" PointY="5.625" Width="1.5" IsExpanded="true" />
+      <Diagram DiagramId="bb473dfd97f1433a85b00623fad3fd99" Name="Diagram1" ZoomLevel="52">
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.User" PointX="0.75" PointY="0.75" Width="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogCategory" PointX="6.25" PointY="8.125" Width="1.5" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogEntry" PointX="1.0429241419969704" PointY="6.4562689841055629" Width="1.5" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogTopic" PointX="1.5" PointY="10" Width="1.5" />
@@ -27,9 +27,9 @@
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.WineConsumation" PointX="0.625" PointY="19.75" Width="1.5" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_WineConsumation_ToWine" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectResource" PointX="8.625" PointY="18.5" Width="2.125" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectProject" PointX="15.875" PointY="24" Width="1.5" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectProject" PointX="15.875" PointY="23.25" Width="1.5" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectResourceTaskAssignment" PointX="9.75" PointY="23.25" Width="2.5" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectTask" PointX="13" PointY="23.25" Width="1.5" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectTask" PointX="13" PointY="23.25" Width="1.75" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectUserAssignment" PointX="8.75" PointY="26.5" Width="2.5" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectUserAssignment_aspnet_Users" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectResources_ProjectProject" />
@@ -37,7 +37,7 @@
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectResourceTaskAssignment_ProjectResources" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectUserAssignment_ProjectResources" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectResourceTaskAssignment_ProjectTask" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectWorkingReport" PointX="13.75" PointY="19.375" Width="1.5" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectWorkingReport" PointX="13.75" PointY="19.375" Width="2" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectProject" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectResources" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectTask" />

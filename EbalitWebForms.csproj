@@ -91,6 +91,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataLayer\Ebalit_WebFormsModel.edmx.sql" />
     <Content Include="GUI\ProtectedSites\CreateBlogEntry.aspx" />
     <Content Include="GUI\ProtectedSites\AdminIndex.aspx" />
     <Content Include="GUI\ProtectedSites\BlogEntries.aspx" />
@@ -153,6 +154,8 @@
     <Compile Include="Common\HierarchicalTaskDataSourceView.cs" />
     <Compile Include="Common\HierarchicalTaskEnumerable.cs" />
     <Compile Include="Common\HierarchyTaskData.cs" />
+    <Compile Include="Common\ResourceDtoEqualityComparer.cs" />
+    <Compile Include="Common\TaskDtoEqualityComparer.cs" />
     <Compile Include="DataLayer\aspnet_Users.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
@@ -473,6 +476,9 @@
     </Compile>
     <Compile Include="WebService\IEbalitWebService.cs" />
     <Compile Include="WebService\ProjectDto.cs" />
+    <Compile Include="WebService\ProjectProject.cs" />
+    <Compile Include="WebService\ProjectResource.cs" />
+    <Compile Include="WebService\ProjectTask.cs" />
     <Compile Include="WebService\ResourceDto.cs" />
     <Compile Include="WebService\TaskDto.cs" />
   </ItemGroup>
