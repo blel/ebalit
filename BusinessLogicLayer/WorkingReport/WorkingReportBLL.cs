@@ -17,7 +17,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public IList<ProjectResource> GetResources(int projectId)
         {
-            return EbalitDBContext.ProjectResources.Where(cc => cc.ProjectId == projectId).ToList();
+            return EbalitDBContext.ProjectResources.Where(cc => cc.ProjectId == projectId && !cc.IsDeleted).ToList();
         }
 
 
@@ -52,12 +52,19 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public IList<ProjectTask> GetTasks(ProjectProject project=null)
         {
-            return project == null ? EbalitDBContext.ProjectTasks.ToList() : EbalitDBContext.ProjectTasks.Where(cc => cc.ProjectProject.Id == project.Id).ToList();
+            return project == null ? EbalitDBContext.ProjectTasks.ToList() :
+                EbalitDBContext.ProjectTasks.Where(cc => cc.ProjectProject.Id == project.Id && !cc.IsDeleted).ToList();
         }
 
+        /// <summary>
+        /// Returns a list of all tasks of the project.
+        /// The IsDeleted Flag of the tasks must be "false"
+        /// </summary>
+        /// <param name="projectId">The project id</param>
+        /// <returns></returns>
         public IList<ProjectTask> GetTasks(int projectId)
         {
-            return EbalitDBContext.ProjectTasks.Where(cc => cc.ProjectId == projectId).ToList();
+            return EbalitDBContext.ProjectTasks.Where(cc => (cc.ProjectId == projectId && !cc.IsDeleted)).ToList();
         }
 
 
@@ -152,6 +159,20 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             EbalitDBContext.SaveChanges();
 
 
+        }
+
+
+        public bool IsWorkingReportUpdateable(int workingReportId)
+        {
+            var workingReport = EbalitDBContext.ProjectWorkingReports.Single(cc => cc.Id == workingReportId);
+            if (workingReport != null)
+            {
+                //todo probably needs to be reviewed if resource to task assignment is limited to
+                //resources which are assigned to the task in ms project
+                return !(workingReport.ProjectTask.IsDeleted ||
+                  workingReport.ProjectResource.IsDeleted);
+            }
+            return false;
         }
     }
 }

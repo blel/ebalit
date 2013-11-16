@@ -16,8 +16,8 @@ namespace EbalitWebForms.DataLayer
         {
             return new ResourceDto
             {
-                Guid = this.Guid,
-                Name = this.Name
+                Guid = Guid,
+                Name = Name
             };
         }
     }

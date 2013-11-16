@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Web;
-using System.Web.ApplicationServices;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using EbalitWebForms.BusinessLogicLayer.WorkingReport;
-using EbalitWebForms.DataLayer;
 
 namespace EbalitWebForms.Common
 {
@@ -23,19 +14,12 @@ namespace EbalitWebForms.Common
         
         public string ProjectId { get; set; }
 
-        public HierarchicalTaskDataSource()
-        {
-
-        }
 
         protected override HierarchicalDataSourceView GetHierarchicalView(string viewPath)
         {
-            var inputArgs = new OrderedDictionary();
-            
-            inputArgs.Add("ProjectId", ProjectId);
+            var inputArgs = new OrderedDictionary {{"ProjectId", ProjectId}};
 
             var selectArgs = new DataSourceSelectArguments();
-
 
             var eventArgs = new ObjectDataSourceSelectingEventArgs(inputArgs,selectArgs,false);
             if (Selecting != null)
@@ -44,8 +28,7 @@ namespace EbalitWebForms.Common
             }
             ProjectId = Convert.ToString(eventArgs.InputParameters["ProjectId"]);
             
-           return new HierarchicalTaskDataSourceView(viewPath, ProjectId);
-       
+           return new HierarchicalTaskDataSourceView(viewPath, ProjectId);      
         }
     }
 

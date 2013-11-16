@@ -18,9 +18,10 @@ namespace EbalitWebForms.GUI
         /// <returns></returns>
         public static string GetUSDate(string anyDate)
         {
-            DateTime currentDate = DateTime.MinValue;
+            var currentDate = DateTime.MinValue;
+            var cultureInfo = CultureInfo.CurrentCulture.DateTimeFormat;
             
-            if (!string.IsNullOrEmpty(anyDate) && DateTime.TryParse(anyDate, out currentDate))
+            if (!string.IsNullOrEmpty(anyDate) && DateTime.TryParse(anyDate,cultureInfo, DateTimeStyles.None,  out currentDate))
             {
                 return currentDate.ToString(new CultureInfo("en-US"));
             }

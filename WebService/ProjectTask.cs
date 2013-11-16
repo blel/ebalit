@@ -1,26 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using EbalitWebForms.Common;
 using EbalitWebForms.WebService;
 
 namespace EbalitWebForms.DataLayer
 {
     /// <summary>
-    /// converts teh entity to the dto
+    /// ProjectTask entity.
+    /// This partial class contains converters to Dtos
     /// </summary>
     public partial class ProjectTask
     {
+        /// <summary>
+        /// Convert the entity to the corresponding dto
+        /// </summary>
+        /// <returns>the task as dto</returns>
         public TaskDto ToDto()
         {
             return new TaskDto
             {
-                ActualWork = Convert.ToDouble(this.ActualWork),
-                Guid = this.Guid,
-                Name = this.Name,
-                ParentGuid = this.Parent.GetValueOrDefault(),
-                Resources = this.ProjectResourceTaskAssignments.Select(cc=>cc.ProjectResource).ForEach(ccc=>ccc.ToDto())
+                ActualWork = Convert.ToDouble(ActualWork),
+                Guid = Guid,
+                Name = Name,
+                ParentGuid = Parent.GetValueOrDefault(),
+                Resources = ProjectResourceTaskAssignments.Select(cc=>cc.ProjectResource).ForEach(ccc=>ccc.ToDto())
             };
         }
     }

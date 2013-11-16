@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using EbalitWebForms.BusinessLogicLayer.WorkingReport;
 
 namespace EbalitWebForms.GUI.WorkingReport
 {
@@ -41,15 +42,29 @@ namespace EbalitWebForms.GUI.WorkingReport
             txtTaskDropDown.Text = trvTask.SelectedNode.Text;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void lnkCreate_Command(object sender, CommandEventArgs e)
         {
+            
             Response.Redirect("/GUI/WorkingReport/CreateWorkingReport.aspx");
         }
 
-
+        /// <summary>
+        /// Check whether the working report is updateable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnDetails_OnCommand(object sender, CommandEventArgs e)
         {
-            Response.Redirect(string.Format("/GUI/WorkingReport/CreateWorkingReport.aspx?Id={0}",e.CommandArgument));
+            var workingReportBll = new WorkingReportBll();
+            if (workingReportBll.IsWorkingReportUpdateable(Convert.ToInt32(e.CommandArgument)))
+            {
+                Response.Redirect(string.Format("/GUI/WorkingReport/CreateWorkingReport.aspx?Id={0}", e.CommandArgument));
+            }
         }
     }
 }

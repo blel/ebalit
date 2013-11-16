@@ -29,6 +29,10 @@ namespace EbalitWebForms.Common
             _path = task.Guid.ToString();
         }
 
+        /// <summary>
+        /// todo: put this logic in bll
+        /// </summary>
+        /// <returns></returns>
         private IList<ProjectTask> GetChildrenAsList()
         {
             IList<ProjectTask> childrenTasks;
@@ -36,7 +40,7 @@ namespace EbalitWebForms.Common
             using (var context = new Ebalit_WebFormsEntities())
             {
                 childrenTasks = (from cc in context.ProjectTasks
-                                 where cc.Parent == _task.Guid
+                                 where cc.Parent == _task.Guid && !cc.IsDeleted 
                                  select cc).ToList();
             }
             return childrenTasks;
@@ -52,6 +56,7 @@ namespace EbalitWebForms.Common
         {
             ProjectTask parent;
 
+            //Todo: put this logic in bll
             using (var context = new Ebalit_WebFormsEntities())
             {
                 parent = context.ProjectTasks.SingleOrDefault(cc => cc.Guid == _task.Parent);

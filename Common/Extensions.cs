@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -62,6 +63,21 @@ namespace EbalitWebForms.Common
                 resultCollection.Add(resultItem);
             }
             return resultCollection;
+        }
+
+        /// <summary>
+        /// Removes all items from an ICollection
+        /// TODO: not sure if this is really the best implementation...
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="entitiesToRemove"></param>
+        public static void RemoveMany<TSource>(this DbSet<TSource> source, ICollection<TSource> entitiesToRemove ) where TSource : class
+        {
+            for (int i = entitiesToRemove.Count; i > 0; i--)
+            {
+                source.Remove(entitiesToRemove.ElementAt(i - 1));
+            }
         }
     }
 }

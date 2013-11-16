@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using EbalitWebForms.Common;
 using EbalitWebForms.DataLayer;
 
@@ -10,27 +11,14 @@ namespace EbalitWebForms.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select EbalitWebService.svc or EbalitWebService.svc.cs at the Solution Explorer and start debugging.
     public class EbalitWebService : IEbalitWebService
     {
-
+        /// <summary>
+        /// Creates or updates the project on the server
+        /// </summary>
+        /// <param name="project">Project Dto</param>
         public void UpdateProject(ProjectDto project)
         {
             if (IsProjectExisting(project))
             {
-                //master is ms project
-                //set initial actual work as from ms project
-                //synchronize tasks
-                //--deactivate tasks which do not exist anymore
-                //--create tasks which do not exist yet
-                //--update tasks which are equal
-                //synchronize resources
-                //--deactivate resources which do not exist anymore
-                //--create resources which do not exist yet
-                //--update resources which are equal
-                //synchronize resource to task assignment
-                //--deactivate resource to task assignment which do not exist anymore
-                //--create resource to task assignment which do not exist yet
-                //--update resource to task assignment which are equal
-                //--make sure acutal work is right!
-                //transaction handling
                 SyncProjects(project);
             }
             else
@@ -90,9 +78,9 @@ namespace EbalitWebForms.WebService
                     Name = project.Name,
                     Guid = project.UniqueIdentifier,
                     //create the depending resources
-                    ProjectResources = GetResources(project),
+                    ProjectResources = project.GetResourcesAsEntities(),
                     //create the depending tasks
-                    ProjectTasks = GetTasks(project)
+                    ProjectTasks = project.GetTasksAsEntities()
                 };
                 //add project to context
                 context.ProjectProjects.Add(projectEntity);
@@ -125,14 +113,76 @@ namespace EbalitWebForms.WebService
         /// <param name="project"></param>
         private void SyncProjects(ProjectDto project)
         {
+            using (var transaction = new TransactionScope())
+            {
+                try
+                {
+                    SyncResources(project);
+
+                    SyncTasks(project);
+                    
+                    transaction.Complete();
+                }
+                catch (InvalidOperationException)
+                {
+                    //todo: exception handling                    
+                }
+            }
+        }
+
+        private void SyncResources(ProjectDto project)
+        {
+            using (var context = new Ebalit_WebFormsEntities())
+            {
+                //get the project entity corresponding to the project dto
+                var projectEntity = context.ProjectProjects.Single(cc => cc.Guid == project.UniqueIdentifier);
+                //delete resources
+                var deletedResources = context.ProjectResources.ForEach(cc => cc.ToDto()).Except(project.Resources,
+                    new ResourceDtoEqualityComparer());
+                foreach (var deleteResource in deletedResources)
+                {
+                    var resourceEntity = context.ProjectResources.Single(cc => cc.Guid == deleteResource.Guid);
+                    resourceEntity.IsDeleted = true;
+
+                    //make sure all ResourceTaskAssignments of this resource are deleted as well
+                    resourceEntity.ProjectResourceTaskAssignments.ForEach(cc => cc.IsDeleted = true);
+                }
+
+                //add new resources
+                var addedResources = project.Resources.Except(context.ProjectResources.ForEach(cc => cc.ToDto()),
+                    new ResourceDtoEqualityComparer());
+
+                foreach (var addedResource in addedResources)
+                {
+                    projectEntity.ProjectResources.Add(new ProjectResource
+                    {
+                        Guid = addedResource.Guid,
+                        Name = addedResource.Name,
+
+                    });
+                }
+
+                //update equal resources
+                var sameResources = project.Resources.Intersect(context.ProjectResources.ForEach(cc => cc.ToDto()),
+                    new ResourceDtoEqualityComparer());
+                foreach (var sameResource in sameResources)
+                {
+                    var resourceEntity = context.ProjectResources.Single(cc => cc.Guid == sameResource.Guid);
+                    resourceEntity.Name = sameResource.Name;
+                }
+
+                context.SaveChanges();
+            }
+            
+        }
+
+        private void SyncTasks(ProjectDto project)
+        {
             using (var context = new Ebalit_WebFormsEntities())
             {
                 //get the project entity corresponding to the project dto
                 var projectEntity = context.ProjectProjects.Single(cc => cc.Guid == project.UniqueIdentifier);
 
-                SyncResources(context, project, projectEntity);
-                
-                
                 //get tasks which exist on server but not in ms project
                 //implement the comparer
                 var deletedTasks = context.ProjectTasks.ForEach(cc => cc.ToDto()).Except(project.Tasks,
@@ -143,39 +193,31 @@ namespace EbalitWebForms.WebService
                 {
                     var taskEntity = context.ProjectTasks.Single(cc => cc.Guid == taskDto.Guid);
                     taskEntity.IsDeleted = true;
+
                     //mark the resource assignment as deleted
-                    foreach (var resourceAssignment in taskEntity.ProjectResourceTaskAssignments)
-                    {
-                        resourceAssignment.IsDeleted = true;
-                    }
+                    taskEntity.ProjectResourceTaskAssignments.ForEach(cc => cc.IsDeleted = true);
                 }
 
                 //get the new tasks
-                var newTasks = project.Tasks.Except(context.ProjectTasks.ForEach(cc => cc.ToDto()), new TaskDtoEqualityComparer());
+                var newTasks = project.Tasks.Except(context.ProjectTasks.ForEach(cc => cc.ToDto()),
+                    new TaskDtoEqualityComparer());
 
                 //add them
                 foreach (var newTask in newTasks)
                 {
+                    //create the task Entity
                     var projectTask = new ProjectTask
-
                     {
                         ActualWork = newTask.ActualWork,
                         Guid = newTask.Guid,
-                        Parent = newTask.ParentGuid  ,
+                        Parent = newTask.ParentGuid,
                         Name = newTask.Name
                     };
 
-                    foreach (var resource in newTask.Resources)
-                    {
-                        var taskResource = new ProjectResourceTaskAssignment
-                        {
-                            ProjectTask = projectTask,
-                            ProjectResource = new ProjectResource
-                            {
+                    //Assign the appropriate resources to this task
+                    CreateTaskResourceAssignments(context, newTask, projectTask);
 
-                            }
-                        };
-                    }
+                    //add the task to the project
                     projectEntity.ProjectTasks.Add(projectTask);
                 }
 
@@ -189,89 +231,37 @@ namespace EbalitWebForms.WebService
                     var taskEntity = context.ProjectTasks.Single(cc => cc.Guid == task.Guid);
                     taskEntity.Name = task.Name;
                     taskEntity.Parent = task.ParentGuid;
-                    
-                    //TODO: resources
+
+                    //to simplify, I delete taskResourceAssignments and create new ones based
+                    //on ms project
+                    context.ProjectResourceTaskAssignments.RemoveMany(taskEntity.ProjectResourceTaskAssignments);
+
+                    //create the new assignments
+                    CreateTaskResourceAssignments(context, task, taskEntity);
                 }
-                //save changes
 
                 context.SaveChanges();
             }
         }
 
-        private void SyncResources(Ebalit_WebFormsEntities context, ProjectDto project, ProjectProject projectEntity )
+        private void CreateTaskResourceAssignments(Ebalit_WebFormsEntities context, TaskDto newTask, ProjectTask projectTask)
         {
-            //delete resource
-            var deletedResources = context.ProjectResources.ForEach(cc => cc.ToDto()).Except(project.Resources, new ResourceDtoEqualityComparer());
-            foreach (var deleteResource in deletedResources)
+            //Assign the appropriate resources to this task
+            foreach (var resource in newTask.Resources)
             {
-                var resourceEntity = context.ProjectResources.Single(cc => cc.Guid == deleteResource.Guid);
-                resourceEntity.IsDeleted = true;
-            }
+                //get the Resource Entity
+                var resourceEntity = context.ProjectResources.Single(cc => cc.Guid == resource.Guid);
 
-            //add new resources
-            var addedResources = project.Resources.Except(context.ProjectResources.ForEach(cc => cc.ToDto()), new ResourceDtoEqualityComparer());
-            foreach (var addedResource in addedResources)
-            {
-                projectEntity.ProjectResources.Add(new ProjectResource
+                //create the assignment
+                var taskResourceAssignment = new ProjectResourceTaskAssignment
                 {
-                    Guid = addedResource.Guid,
-                    Name = addedResource.Name,
+                    ProjectTask = projectTask,
+                    ProjectResource = resourceEntity
+                };
 
-                });
+                //add it to the task
+                projectTask.ProjectResourceTaskAssignments.Add(taskResourceAssignment);
             }
-
-            //update equal resources
-            var sameResources = project.Resources.Intersect(context.ProjectResources.ForEach(cc => cc.ToDto()),
-                new ResourceDtoEqualityComparer());
-            foreach (var sameResource in sameResources)
-            {
-                var resourceEntity = context.ProjectResources.Single(cc => cc.Guid == sameResource.Guid);
-                resourceEntity.Name = sameResource.Name;
-            }                
-
-        }
-
-        /// <summary>
-        /// Get the resources from the project as entities
-        /// Each resource is added only once
-        /// </summary>
-        /// <param name="project"></param>
-        /// <returns></returns>
-        private IList<ProjectResource> GetResources(ProjectDto project)
-        {
-            var resources = new List<ProjectResource>();
-            foreach (var task in project.Tasks)
-            {
-                foreach (var resourceDto in task.Resources)
-                {
-                    if (!resources.Any(cc => cc.Guid == resourceDto.Guid))
-                    {
-                        resources.Add(new ProjectResource
-                        {
-                            Name = resourceDto.Name,
-                            Guid = resourceDto.Guid,
-                        });
-                    }
-                }
-            }
-            return resources;
-        }
-
-        /// <summary>
-        /// Get the tasks from teh project dto as entities 
-        /// 
-        /// </summary>
-        /// <param name="project"></param>
-        /// <returns></returns>
-        private IList<ProjectTask> GetTasks(ProjectDto project)
-        {
-            return project.Tasks.Select(task => new ProjectTask
-            {
-                Name = task.Name,
-                Guid = task.Guid,
-                Parent = task.ParentGuid,
-                ActualWork = task.ActualWork
-            }).ToList();
         }
     }
 }

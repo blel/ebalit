@@ -17,9 +17,9 @@ namespace EbalitWebForms.DataLayer
         {
             return new ProjectDto
             {
-                Name = this.Name,
-                UniqueIdentifier = this.Guid,
-                Tasks = this.ProjectTasks.ForEach(cc=>(cc.ToDto()))
+                Name = Name,
+                UniqueIdentifier = Guid,
+                Tasks = ProjectTasks.ForEach(cc=>(cc.ToDto()))
             };
         }
     }

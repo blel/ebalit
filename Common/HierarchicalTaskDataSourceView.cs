@@ -10,9 +10,9 @@ namespace EbalitWebForms.Common
 {
     public class HierarchicalTaskDataSourceView:HierarchicalDataSourceView
     {
-        private string _viewPath;
+        private readonly string _viewPath;
 
-        private int _projectId;
+        private readonly int _projectId;
         
         public HierarchicalTaskDataSourceView(string viewPath, string projectId)
         {

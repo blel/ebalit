@@ -5,7 +5,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ToolsContent" runat="server">
     <asp:ObjectDataSource ID="odsWorkingReports" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.ProjectWorkingReport" DeleteMethod="DeleteWorkingReport" InsertMethod="CreateWorkingReport" SelectMethod="GetWorkingReports" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" UpdateMethod="UpdateWorkingReport"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsProjects" runat="server" SelectMethod="GetProjects" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll"></asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="odsTasks" runat="server"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsResources" runat="server" SelectMethod="GetResources" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" OnSelecting="odsResources_OnSelecting">
         <SelectParameters>
             <asp:Parameter Name="projectId" Type="Int32" />

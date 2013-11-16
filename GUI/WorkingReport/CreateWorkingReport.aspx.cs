@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -74,12 +75,21 @@ namespace EbalitWebForms.GUI.WorkingReport
             var toTime = ((WebUserControls.TimeControl)
                 dtvCreateWorkingReport.FindControl("ToTime")).DisplayTime;
 
-            var date = DateTime.Parse(GUIHelper.GetUSDate(e.Values["From"].ToString()));
+            var cultureInfo = new CultureInfo("en-US");
+
+            var date = DateTime.Parse( GUIHelper.GetUSDate(e.Values["From"].ToString()), cultureInfo.DateTimeFormat);
 
 
             e.Values["From"] = new DateTime(date.Year, date.Month, date.Day, fromTime.Hour, fromTime.Minute, 0);
             e.Values["To"] = new DateTime(date.Year, date.Month, date.Day, toTime.Hour, toTime.Minute, 0);
-            e.Values["ResourceId"] = ((ListItem)e.Values["ResourceId"]).Value;
+
+            //manual "data binding" 
+            var ddlResource = (DropDownList) dtvCreateWorkingReport.FindControl("ddlResource");
+            if (ddlResource != null && ddlResource.SelectedItem!= null)
+            {
+                e.Values["ResourceId"] = ddlResource.SelectedItem.Value;
+            }
+            
 
         }
 
@@ -148,14 +158,26 @@ namespace EbalitWebForms.GUI.WorkingReport
         {
             var txtTask = dtvCreateWorkingReport.FindControl("txtTask");
 
-            if (txtTask != null && Request.QueryString["Id"]!=null)
+            if (txtTask != null && Request.QueryString["Id"] != null)
             {
                 var bll = new WorkingReportBll();
                 var workingReport = bll.GetWorkingReport(Convert.ToInt32(Request.QueryString["Id"]));
 
                 ((TextBox) txtTask).Text = workingReport.ProjectTask.Name;
+            }
+        }
 
-
+        /// <summary>
+        /// return back to the list screen when pressing cancel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void dtvCreateWorkingReport_OnModeChanging(object sender, DetailsViewModeEventArgs e)
+        {
+            if (e.CancelingEdit)
+            {
+                e.Cancel = true;
+                Response.Redirect("/GUI/WorkingReport/ManageWorkingReports.aspx");
             }
         }
     }

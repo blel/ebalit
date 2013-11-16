@@ -17,13 +17,14 @@
         </SelectParameters>
     </asp:ObjectDataSource>
     <cc1:HierarchicalTaskDataSource ID="htsTasks" runat="server"  OnSelecting="htsTasks_OnSelecting" ></cc1:HierarchicalTaskDataSource>
-    <ajaxToolkit:ToolkitScriptManager ID="scmAjaxToolkit" runat="server"></ajaxToolkit:ToolkitScriptManager>
+    <ajaxToolkit:ToolkitScriptManager ID="scmAjaxToolkit" runat="server" EnableScriptGlobalization="true" EnableScriptLocalization="true"></ajaxToolkit:ToolkitScriptManager>
     <div id="Container">
         <div id="LeftColumn">
         </div>
         <div id="MainColumn">
             <h2>Working Report Details</h2>
-            <asp:DetailsView ID="dtvCreateWorkingReport" runat="server" CssClass="detailsview" Height="50px" Width="767px" AutoGenerateRows="False" DataSourceID="odsWorkingReport" DataKeyNames="Id" OnItemInserting="dtvCreateWorkingReport_ItemInserting" OnDataBound="dtvCreateWorkingReport_OnDataBound">
+            <asp:DetailsView ID="dtvCreateWorkingReport" runat="server" CssClass="detailsview" Height="50px" Width="767px" AutoGenerateRows="False" DataSourceID="odsWorkingReport" DataKeyNames="Id" 
+                OnItemInserting="dtvCreateWorkingReport_ItemInserting" OnDataBound="dtvCreateWorkingReport_OnDataBound" OnModeChanging="dtvCreateWorkingReport_OnModeChanging">
                 <EmptyDataTemplate>
                     No data.
                 </EmptyDataTemplate>
@@ -48,7 +49,7 @@
                             
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:DropDownList ID="ddlResource" runat="server" SelectedValue='<%# Bind("ResourceId") %>' DataSourceID="odsResource" DataTextField="Name" DataValueField="Id" ></asp:DropDownList>
+                            <asp:DropDownList ID="ddlResource" runat="server" DataSourceID="odsResource" DataTextField="Name" DataValueField="Id" ></asp:DropDownList>
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label3" runat="server" Text='<%# Bind("ResourceId") %>'></asp:Label>
@@ -78,7 +79,7 @@
                             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtDate"></ajaxToolkit:CalendarExtender>
                         </InsertItemTemplate>
                         <ItemTemplate>
-                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("From", "{0:d}") %>'></asp:Label>
+                            <asp:Label ID="lblDate" runat="server" Text='<%# Bind("From", "{0:d}") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="From" SortExpression="From">
@@ -89,7 +90,7 @@
                             <uc1:TimeControl runat="server" ID="FromTime" />
                         </InsertItemTemplate>
                         <ItemTemplate>
-                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("From") %>'></asp:Label>
+                            <asp:Label ID="lblFrom" runat="server" Text='<%# Bind("From") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="To" SortExpression="To">
