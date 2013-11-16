@@ -20,6 +20,8 @@ namespace EbalitWebForms.GUI.WebUserControls
             }
             set {
                 _displayTime = value;
+                ddlHour.SelectedValue = _displayTime.Hour.ToString().PadLeft(2, '0');
+                ddlMinute.SelectedValue = _displayTime.Minute.ToString().PadLeft(2, '0');
             }
 
         }

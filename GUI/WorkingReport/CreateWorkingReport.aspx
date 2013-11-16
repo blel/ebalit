@@ -24,7 +24,7 @@
         <div id="MainColumn">
             <h2>Working Report Details</h2>
             <asp:DetailsView ID="dtvCreateWorkingReport" runat="server" CssClass="detailsview" Height="50px" Width="767px" AutoGenerateRows="False" DataSourceID="odsWorkingReport" DataKeyNames="Id" 
-                OnItemInserting="dtvCreateWorkingReport_ItemInserting" OnDataBound="dtvCreateWorkingReport_OnDataBound" OnModeChanging="dtvCreateWorkingReport_OnModeChanging">
+                OnItemInserting="dtvCreateWorkingReport_ItemInserting" OnItemUpdating="dtvCreateWorkingReport_OnItemUpdating" OnDataBound="dtvCreateWorkingReport_OnDataBound" OnModeChanging="dtvCreateWorkingReport_OnModeChanging">
                 <EmptyDataTemplate>
                     No data.
                 </EmptyDataTemplate>

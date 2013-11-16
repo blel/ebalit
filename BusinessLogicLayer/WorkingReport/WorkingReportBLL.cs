@@ -109,7 +109,11 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             var reportToUpdate = GetWorkingReport(workingReport.Id);
             if (reportToUpdate != null)
             {
-                reportToUpdate = workingReport;
+                reportToUpdate.Notes = workingReport.Notes;
+                reportToUpdate.ResourceId = workingReport.ResourceId;
+                reportToUpdate.TaskId = workingReport.TaskId;
+                reportToUpdate.To = workingReport.To;
+                reportToUpdate.From = workingReport.From;
             }
             
             EbalitDBContext.SaveChanges();

@@ -31,23 +31,11 @@ namespace EbalitWebForms.GUI.WorkingReport
             }
         }
 
-        protected void ddlPRoject_OnTextChanged(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
-        /// 
+        /// Save the Guid of the selected task in view state for later use
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void odsTasks_OnSelecting(object sender, ObjectDataSourceSelectingEventArgs e)
-        {
-            var id = Convert.ToInt32(((DropDownList)dtvCreateWorkingReport.FindControl("ddlProject")).SelectedValue);
-            e.InputParameters["project"] = new WorkingReportBll().GetProject(id);
-        }
-
-
         protected void trvTask_OnSelectedNodeChanged(object sender, EventArgs e)
         {
             var taskTextBox = (TextBox)GUIHelper.RecursiveFindControl(this, "txtTask");
@@ -89,8 +77,33 @@ namespace EbalitWebForms.GUI.WorkingReport
             {
                 e.Values["ResourceId"] = ddlResource.SelectedItem.Value;
             }
-            
+        }
 
+        protected void dtvCreateWorkingReport_OnItemUpdating(object sender, DetailsViewUpdateEventArgs e)
+        {
+            //need to get the id of the selected task
+            e.NewValues["TaskId"] = new WorkingReportBll().GetTaskIdByGuid(Guid.Parse(ViewState["selectedTaskId"].ToString()));
+
+            var fromTime = ((WebUserControls.TimeControl)
+                dtvCreateWorkingReport.FindControl("FromTime")).DisplayTime;
+
+            var toTime = ((WebUserControls.TimeControl)
+                dtvCreateWorkingReport.FindControl("ToTime")).DisplayTime;
+
+            var cultureInfo = new CultureInfo("en-US");
+
+            var date = DateTime.Parse(GUIHelper.GetUSDate(e.OldValues["From"].ToString()), cultureInfo.DateTimeFormat);
+
+
+            e.NewValues["From"] = new DateTime(date.Year, date.Month, date.Day, fromTime.Hour, fromTime.Minute, 0);
+            e.NewValues["To"] = new DateTime(date.Year, date.Month, date.Day, toTime.Hour, toTime.Minute, 0);
+
+            //manual "data binding" 
+            var ddlResource = (DropDownList)dtvCreateWorkingReport.FindControl("ddlResource");
+            if (ddlResource != null && ddlResource.SelectedItem != null)
+            {
+                e.NewValues["ResourceId"] = ddlResource.SelectedItem.Value;
+            }
         }
 
         /// <summary>
@@ -132,9 +145,6 @@ namespace EbalitWebForms.GUI.WorkingReport
             }
         }
 
-
-
-
         /// <summary>
         /// Make sure the id from the query string is taken, especially 
         /// when editing
@@ -164,6 +174,8 @@ namespace EbalitWebForms.GUI.WorkingReport
                 var workingReport = bll.GetWorkingReport(Convert.ToInt32(Request.QueryString["Id"]));
 
                 ((TextBox) txtTask).Text = workingReport.ProjectTask.Name;
+                //store the Guid in the view state
+                ViewState.Add("selectedTaskId", workingReport.ProjectTask.Guid);
             }
         }
 
