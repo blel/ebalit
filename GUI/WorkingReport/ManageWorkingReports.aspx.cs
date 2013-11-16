@@ -66,5 +66,19 @@ namespace EbalitWebForms.GUI.WorkingReport
                 Response.Redirect(string.Format("/GUI/WorkingReport/CreateWorkingReport.aspx?Id={0}", e.CommandArgument));
             }
         }
+
+        protected string GetTimeSpan(object id)
+        {
+            var workingReportBll = new WorkingReportBll();
+            var currentRecord = workingReportBll.GetWorkingReport(Convert.ToInt32(id));
+            if (currentRecord != null)
+            {
+                return (currentRecord.To - currentRecord.From).ToString();
+            }
+
+            return "";
+        }
+    
+
     }
 }

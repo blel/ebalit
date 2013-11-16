@@ -104,6 +104,7 @@ namespace EbalitWebForms.GUI.WorkingReport
             {
                 e.NewValues["ResourceId"] = ddlResource.SelectedItem.Value;
             }
+
         }
 
         /// <summary>
@@ -191,6 +192,26 @@ namespace EbalitWebForms.GUI.WorkingReport
                 e.Cancel = true;
                 Response.Redirect("/GUI/WorkingReport/ManageWorkingReports.aspx");
             }
+        }
+
+        /// <summary>
+        /// link back to list screen after update and insert
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void dtvCreateWorkingReport_OnItemUpdated(object sender, DetailsViewUpdatedEventArgs e)
+        {
+            Response.Redirect("/GUI/WorkingReport/ManageWorkingReports.aspx");
+        }
+
+        /// <summary>
+        /// link back to list screen after update and insert
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void dtvCreateWorkingReport_OnItemInserted(object sender, DetailsViewInsertedEventArgs e)
+        {
+            Response.Redirect("/GUI/WorkingReport/ManageWorkingReports.aspx");
         }
     }
 }

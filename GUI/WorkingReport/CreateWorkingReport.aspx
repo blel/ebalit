@@ -23,8 +23,11 @@
         </div>
         <div id="MainColumn">
             <h2>Working Report Details</h2>
-            <asp:DetailsView ID="dtvCreateWorkingReport" runat="server" CssClass="detailsview" Height="50px" Width="767px" AutoGenerateRows="False" DataSourceID="odsWorkingReport" DataKeyNames="Id" 
-                OnItemInserting="dtvCreateWorkingReport_ItemInserting" OnItemUpdating="dtvCreateWorkingReport_OnItemUpdating" OnDataBound="dtvCreateWorkingReport_OnDataBound" OnModeChanging="dtvCreateWorkingReport_OnModeChanging">
+            <asp:DetailsView ID="dtvCreateWorkingReport" runat="server" CssClass="detailsview" Height="50px" Width="767px" AutoGenerateRows="False"
+                 DataSourceID="odsWorkingReport" DataKeyNames="Id" 
+                OnItemInserting="dtvCreateWorkingReport_ItemInserting" OnItemUpdating="dtvCreateWorkingReport_OnItemUpdating"
+                 OnDataBound="dtvCreateWorkingReport_OnDataBound" OnModeChanging="dtvCreateWorkingReport_OnModeChanging"
+                OnItemUpdated="dtvCreateWorkingReport_OnItemUpdated" OnItemInserted="dtvCreateWorkingReport_OnItemInserted">
                 <EmptyDataTemplate>
                     No data.
                 </EmptyDataTemplate>

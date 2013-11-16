@@ -75,7 +75,7 @@
                     </asp:TableFooterRow>
                 </asp:Table>
             </div>
-            <asp:ListView ID="lvwWorkingReports" runat="server" DataSourceID="odsWorkingReports">
+            <asp:ListView ID="lvwWorkingReports" runat="server" DataSourceID="odsWorkingReports"  >
                 <AlternatingItemTemplate>
                     <tr style="background-color: #FFF8DC;">
                         <td>
@@ -86,7 +86,7 @@
                             <asp:Label ID="ProjectIdLabel" runat="server" Text='<%# Eval("ProjectProject.Name") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="ResourceIdLabel" runat="server" Text='<%# Eval("ResourceId") %>' />
+                            <asp:Label ID="ResourceIdLabel" runat="server" Text='<%# Eval("ProjectResource.Name") %>' />
                         </td>
                         <td>
                             <asp:Label ID="TaskIdLabel" runat="server" Text='<%# Eval("ProjectTask.Name") %>' />
@@ -99,6 +99,9 @@
                         </td>
                         <td>
                             <asp:Label ID="ToLabel" runat="server" Text='<%# Eval("To","{0:HH:mm}") %>' />
+                        </td>
+                                                <td>
+                            <asp:Label ID="lblTotal" runat="server" Text='<%# GetTimeSpan(Eval("Id")) %>' />
                         </td>
                         <td>
                             <asp:Label ID="NotesLabel" runat="server" Text='<%# Eval("Notes") %>' />
@@ -182,7 +185,7 @@
                             <asp:Label ID="ProjectIdLabel" runat="server" Text='<%# Eval("ProjectProject.Name") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="ResourceIdLabel" runat="server" Text='<%# Eval("ResourceId") %>' />
+                            <asp:Label ID="ResourceIdLabel" runat="server" Text='<%# Eval("ProjectResource.Name") %>' />
                         </td>
                         <td>
                             <asp:Label ID="TaskIdLabel" runat="server" Text='<%# Eval("ProjectTask.Name") %>' />
@@ -195,6 +198,9 @@
                         </td>
                         <td>
                             <asp:Label ID="ToLabel" runat="server" Text='<%# Eval("To","{0:HH:mm}") %>' />
+                        </td>
+                                                         <td>
+                            <asp:Label ID="lblTotal" runat="server" Text='<%# GetTimeSpan(Eval("Id")) %>' />
                         </td>
                         <td>
                             <asp:Label ID="NotesLabel" runat="server" Text='<%# Eval("Notes") %>' />
@@ -214,6 +220,7 @@
                                         <th runat="server">Date</th>
                                         <th runat="server">From</th>
                                         <th runat="server">To</th>
+                                        <th runat="server">Total</th>
                                         <th runat="server">Notes</th>
                                     </tr>
                                     <tr id="itemPlaceholder" runat="server">

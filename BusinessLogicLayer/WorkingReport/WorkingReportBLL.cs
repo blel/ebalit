@@ -95,7 +95,10 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public IList<ProjectWorkingReport> GetWorkingReports()
         {
-            return EbalitDBContext.ProjectWorkingReports.Include("ProjectProject").Include("ProjectTask").ToList();
+            return EbalitDBContext.ProjectWorkingReports.
+                Include("ProjectProject").
+                Include("ProjectTask").
+                Include("ProjectResource").ToList();
         }
 
         /// <summary>
