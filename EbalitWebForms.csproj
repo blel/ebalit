@@ -114,6 +114,7 @@
     <Content Include="GUI\WineDatabase\ManageConsumations.aspx" />
     <Content Include="GUI\WineDatabase\ManageWineAttribute.aspx" />
     <Content Include="GUI\WineDatabase\ManageWines.aspx" />
+    <Content Include="GUI\WorkingReport\AdminWorkingReport.aspx" />
     <Content Include="GUI\WorkingReport\CreateWorkingReport.aspx" />
     <Content Include="GUI\WorkingReport\ManageWorkingReports.aspx" />
     <Content Include="Index.html" />
@@ -136,9 +137,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogicLayer\CSVBuilder.cs" />
-    <Compile Include="BusinessLogicLayer\EbalitMembershipProvider.cs" />
     <Compile Include="BusinessLogicLayer\IRepository.cs" />
     <Compile Include="BusinessLogicLayer\MailManager.cs" />
+    <Compile Include="BusinessLogicLayer\User\MembershipBll.cs" />
     <Compile Include="BusinessLogicLayer\Repository.cs" />
     <Compile Include="BusinessLogicLayer\TaskBLL.cs" />
     <Compile Include="BusinessLogicLayer\TaskCategoryBLL.cs" />
@@ -146,7 +147,6 @@
     <Compile Include="BusinessLogicLayer\DTO\TaskSearchDTO.cs" />
     <Compile Include="BusinessLogicLayer\DTO\TaskToCsvDTO.cs" />
     <Compile Include="BusinessLogicLayer\Tests.cs" />
-    <Compile Include="BusinessLogicLayer\UserBLL.cs" />
     <Compile Include="BusinessLogicLayer\WineBLL.cs" />
     <Compile Include="BusinessLogicLayer\WorkingReport\WorkingReportBLL.cs" />
     <Compile Include="Common\Extensions.cs" />
@@ -216,9 +216,6 @@
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataLayer\TaskComment.cs">
-      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataLayer\User.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataLayer\Wine.cs">
@@ -373,6 +370,13 @@
     </Compile>
     <Compile Include="GUI\WineDatabase\ManageWines.aspx.designer.cs">
       <DependentUpon>ManageWines.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WorkingReport\AdminWorkingReport.aspx.cs">
+      <DependentUpon>AdminWorkingReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\WorkingReport\AdminWorkingReport.aspx.designer.cs">
+      <DependentUpon>AdminWorkingReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="GUI\WorkingReport\CreateWorkingReport.aspx.cs">
       <DependentUpon>CreateWorkingReport.aspx</DependentUpon>

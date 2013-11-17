@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using EbalitWebForms.DataLayer;
 using System.Web.Security;
 
 namespace EbalitWebForms.GUI
@@ -13,12 +8,19 @@ namespace EbalitWebForms.GUI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.ctlLogin.Focus();
+            //set the focus accordingly
+            ctlLogin.Focus();
         }
 
+        /// <summary>
+        /// Authenticate the user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ctlLogin_Authenticate(object sender, AuthenticateEventArgs e)
         {
-            e.Authenticated = Membership.ValidateUser(this.ctlLogin.UserName, this.ctlLogin.Password);
+            //Use membership to authenticate the user
+            e.Authenticated = Membership.ValidateUser(ctlLogin.UserName, ctlLogin.Password);
         }
 
     }

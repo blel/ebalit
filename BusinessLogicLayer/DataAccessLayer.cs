@@ -1,33 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using EbalitWebForms.DataLayer;
 
 namespace EbalitWebForms.BusinessLogicLayer
 {
-    public class DataAccessLayer:IDisposable
+    /// <summary>
+    /// The base class for all Dal (bll) classes
+    /// Implements IDisposable
+    /// </summary>
+    public class DataAccessLayer: IDisposable
     {
-        private readonly Ebalit_WebFormsEntities _ebalitDBContext;
-        public Ebalit_WebFormsEntities EbalitDBContext { get { return _ebalitDBContext; } }
+        private readonly Ebalit_WebFormsEntities _ebalitDbContext;
+
+        /// <summary>
+        /// The db context
+        /// </summary>
+        public Ebalit_WebFormsEntities EbalitDbContext
+        {
+            get
+            {
+                return _ebalitDbContext;
+            }
+        }
 
         public DataAccessLayer()
         {
-            _ebalitDBContext = new Ebalit_WebFormsEntities();
+            _ebalitDbContext = new Ebalit_WebFormsEntities();
          
         }
 
+        /// <summary>
+        /// Implementation of IDisposable
+        /// </summary>
         public void Dispose()
         {
-
             Dispose(true);
         }
 
+        /// <summary>
+        /// Implementation of IDisposable
+        /// </summary>
+        /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {
-                _ebalitDBContext.Dispose();
+                _ebalitDbContext.Dispose();
             }
         }
     }

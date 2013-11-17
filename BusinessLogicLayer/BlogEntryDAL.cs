@@ -16,20 +16,20 @@ namespace EbalitWebForms.BusinessLogicLayer
 
         public int CreateBlogEntry(BlogEntry blogEntry)
         {
-            base.EbalitDBContext.BlogEntries.Add(blogEntry);
-            base.EbalitDBContext.SaveChanges();
+            base.EbalitDbContext.BlogEntries.Add(blogEntry);
+            base.EbalitDbContext.SaveChanges();
             return blogEntry.Id;
         }
 
         public List<BlogEntry> GetBlogEntries()
         {
-            return (from cc in base.EbalitDBContext.BlogEntries.Include("BlogCategory")
+            return (from cc in base.EbalitDbContext.BlogEntries.Include("BlogCategory")
                    select cc).ToList<BlogEntry>();
         }
 
         public IEnumerable<IGrouping<DateTime,BlogEntry>> GetBlogEntriesGroupedByMonths()
         {
-            return base.EbalitDBContext.BlogEntries.Include("BlogCategory").Include("BlogCategory.BlogTopic").ToList().GroupBy(cc => new DateTime(cc.PublishedOn.Year,cc.PublishedOn.Month,1)).OrderByDescending(cc => cc.Key);
+            return base.EbalitDbContext.BlogEntries.Include("BlogCategory").Include("BlogCategory.BlogTopic").ToList().GroupBy(cc => new DateTime(cc.PublishedOn.Year,cc.PublishedOn.Month,1)).OrderByDescending(cc => cc.Key);
             
         }
 
@@ -37,7 +37,7 @@ namespace EbalitWebForms.BusinessLogicLayer
         public IEnumerable<BlogEntry> GetBlogEntries(int categoryID)
         {
             return
-                from cc in base.EbalitDBContext.BlogEntries
+                from cc in base.EbalitDbContext.BlogEntries
                 where cc.Category == categoryID
                 select cc;
         }
@@ -46,7 +46,7 @@ namespace EbalitWebForms.BusinessLogicLayer
         {
             Regex regex = new Regex(@"<(.|\n)*?>");
             
-            return base.EbalitDBContext.BlogEntries.Include("BlogCategory").Include("BlogCategory.BlogTopic").Where(
+            return base.EbalitDbContext.BlogEntries.Include("BlogCategory").Include("BlogCategory.BlogTopic").Where(
                 cc => (cc.BlogCategory.BlogTopic.Topic == blogTopic &&
                           (cc.Subject.Contains(searchText) ||
                           cc.Content.Contains(searchText)))).ToList().Select(cc => new BlogEntry() { Content = regex.Replace(cc.Content, ""), PublishedOn = cc.PublishedOn, Subject = cc.Subject, Id=cc.Id });
@@ -56,7 +56,7 @@ namespace EbalitWebForms.BusinessLogicLayer
         {
             Regex regex = new Regex(@"<(.|\n)*?>");
 
-            return base.EbalitDBContext.BlogEntries.Include("BlogCategory").Include("BlogCategory.BlogTopic").Where(
+            return base.EbalitDbContext.BlogEntries.Include("BlogCategory").Include("BlogCategory.BlogTopic").Where(
                 cc => (cc.Subject.Contains(searchText) ||
                           cc.Content.Contains(searchText))).ToList().Select(cc => new BlogEntry()
                           {
@@ -70,7 +70,7 @@ namespace EbalitWebForms.BusinessLogicLayer
 
         public int GetDefaultBlogEntryId(int BlogTopicId)
         {
-            BlogEntry blogEntry = (from cc in base.EbalitDBContext.BlogEntries.Include("BlogCategory")
+            BlogEntry blogEntry = (from cc in base.EbalitDbContext.BlogEntries.Include("BlogCategory")
                                    where cc.BlogCategory.FK_Topic == BlogTopicId
                                    orderby cc.PublishedOn descending
                                    select cc).FirstOrDefault();
@@ -84,7 +84,7 @@ namespace EbalitWebForms.BusinessLogicLayer
 
         public IList<BlogEntry> GetRecentBlogEntries(int count)
         {
-            return (from cc in base.EbalitDBContext.BlogEntries.Include("BlogCategory").Include("BlogCategory.BlogTopic")
+            return (from cc in base.EbalitDbContext.BlogEntries.Include("BlogCategory").Include("BlogCategory.BlogTopic")
                     orderby cc.PublishedOn descending
                     select cc).Take(count).ToList();
         }
@@ -92,7 +92,7 @@ namespace EbalitWebForms.BusinessLogicLayer
 
         public BlogEntry GetDefaultBlogEntry(string blogTopic)
         {
-            return (from cc in base.EbalitDBContext.BlogEntries.Include("BlogCategory").Include("BlogCategory.BlogTopic")
+            return (from cc in base.EbalitDbContext.BlogEntries.Include("BlogCategory").Include("BlogCategory.BlogTopic")
                     where cc.BlogCategory.BlogTopic.Topic == blogTopic
                     orderby cc.PublishedOn descending
                     select cc).FirstOrDefault();
@@ -101,7 +101,7 @@ namespace EbalitWebForms.BusinessLogicLayer
         
         public BlogEntry GetBlogEntry(int Id)
         {
-            var result = (from cc in base.EbalitDBContext.BlogEntries.Include("BlogCategory").Include("BlogCategory.BlogTopic")
+            var result = (from cc in base.EbalitDbContext.BlogEntries.Include("BlogCategory").Include("BlogCategory.BlogTopic")
                     where cc.Id == Id 
                     select cc).FirstOrDefault();
             return result;
@@ -114,20 +114,20 @@ namespace EbalitWebForms.BusinessLogicLayer
 
         public void DeleteBlogEntry(BlogEntry blogEntry)
         {
-            base.EbalitDBContext.BlogEntries.Attach(blogEntry);
-            base.EbalitDBContext.BlogEntries.Remove(blogEntry);
-            base.EbalitDBContext.SaveChanges();
+            base.EbalitDbContext.BlogEntries.Attach(blogEntry);
+            base.EbalitDbContext.BlogEntries.Remove(blogEntry);
+            base.EbalitDbContext.SaveChanges();
         }
 
 
         public void UpdateBlogEntry(BlogEntry blogEntry)
         {
             
-            var originalRecord = base.EbalitDBContext.BlogEntries.Find(blogEntry.Id);
+            var originalRecord = base.EbalitDbContext.BlogEntries.Find(blogEntry.Id);
             if (originalRecord != null)
             {
-                base.EbalitDBContext.Entry(originalRecord).CurrentValues.SetValues(blogEntry);
-                base.EbalitDBContext.SaveChanges();
+                base.EbalitDbContext.Entry(originalRecord).CurrentValues.SetValues(blogEntry);
+                base.EbalitDbContext.SaveChanges();
             }
 
         }

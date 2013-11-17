@@ -25,7 +25,6 @@ namespace EbalitWebForms.DataLayer
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<User> Users { get; set; }
         public DbSet<BlogCategory> BlogCategories { get; set; }
         public DbSet<BlogEntry> BlogEntries { get; set; }
         public DbSet<BlogTopic> BlogTopics { get; set; }

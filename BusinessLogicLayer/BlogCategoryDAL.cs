@@ -14,18 +14,18 @@ namespace EbalitWebForms.BusinessLogicLayer
 
         public int CreateBlogCategory(BlogCategory blogCategory)
         {
-            base.EbalitDBContext.BlogCategories.Add(blogCategory);
-            base.EbalitDBContext.SaveChanges();
+            base.EbalitDbContext.BlogCategories.Add(blogCategory);
+            base.EbalitDbContext.SaveChanges();
             return blogCategory.Id;
         }
 
         public void UpdateBlogCategory(BlogCategory blogCategory)
         {
-            var originalRecord = base.EbalitDBContext.BlogCategories.Find(blogCategory.Id);
+            var originalRecord = base.EbalitDbContext.BlogCategories.Find(blogCategory.Id);
             if (originalRecord != null)
             {
-                base.EbalitDBContext.Entry(originalRecord).CurrentValues.SetValues(blogCategory);
-                base.EbalitDBContext.SaveChanges();
+                base.EbalitDbContext.Entry(originalRecord).CurrentValues.SetValues(blogCategory);
+                base.EbalitDbContext.SaveChanges();
             }
         }
 
@@ -39,21 +39,21 @@ namespace EbalitWebForms.BusinessLogicLayer
 
         public IEnumerable<BlogCategory> ReadBlogCategory(string blogTopic)
         {
-            return base.EbalitDBContext.BlogCategories.Include("BlogTopic").Where(cc => cc.BlogTopic.Topic == blogTopic);
+            return base.EbalitDbContext.BlogCategories.Include("BlogTopic").Where(cc => cc.BlogTopic.Topic == blogTopic);
         }
 
         public List<BlogCategory> ReadBlogCategory()
         {
             //Ebalit_WebFormsEntities context = new Ebalit_WebFormsEntities();
-            return (from cc in base.EbalitDBContext.BlogCategories.Include("BlogTopic")
+            return (from cc in base.EbalitDbContext.BlogCategories.Include("BlogTopic")
                    select cc).ToList();
         }
 
         public int GetCategoryAccordionIndex(int blogCategoryID)
         {
             int index = 0;
-            int blogTopicID = base.EbalitDBContext.BlogCategories.Include("BlogTopic").Where(cc=>cc.Id == blogCategoryID).Select(cc=>cc.BlogTopic.Id).FirstOrDefault();
-            var elements = base.EbalitDBContext.BlogCategories.Include("BlogTopic").Where(cc=>cc.BlogTopic.Id==blogTopicID).Select(cc=>cc);
+            int blogTopicID = base.EbalitDbContext.BlogCategories.Include("BlogTopic").Where(cc=>cc.Id == blogCategoryID).Select(cc=>cc.BlogTopic.Id).FirstOrDefault();
+            var elements = base.EbalitDbContext.BlogCategories.Include("BlogTopic").Where(cc=>cc.BlogTopic.Id==blogTopicID).Select(cc=>cc);
  
             var enumerator = elements.GetEnumerator();
 
@@ -69,13 +69,13 @@ namespace EbalitWebForms.BusinessLogicLayer
         public bool DeleteBlogCategory(BlogCategory  blogCategory)
         {
             bool result = true;
-            var originalRecord = base.EbalitDBContext.BlogCategories.Find(blogCategory.Id);
+            var originalRecord = base.EbalitDbContext.BlogCategories.Find(blogCategory.Id);
             if (originalRecord != null)
             {
                 try
                 {
-                    base.EbalitDBContext.BlogCategories.Remove(originalRecord);
-                    base.EbalitDBContext.SaveChanges();
+                    base.EbalitDbContext.BlogCategories.Remove(originalRecord);
+                    base.EbalitDbContext.SaveChanges();
                 }
                 catch (Exception ex)
                 {

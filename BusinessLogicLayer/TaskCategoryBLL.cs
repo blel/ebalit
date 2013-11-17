@@ -10,7 +10,7 @@ namespace EbalitWebForms.BusinessLogicLayer
     {
         public IList<TaskCategory> GetTaskCategories()
         {
-            IList<TaskCategory> returnList = (from cc in base.EbalitDBContext.TaskCategories
+            IList<TaskCategory> returnList = (from cc in base.EbalitDbContext.TaskCategories
                     select cc).ToList();
 
             return returnList;
@@ -18,35 +18,35 @@ namespace EbalitWebForms.BusinessLogicLayer
 
         public int Create(TaskCategory taskCategory)
         {
-            base.EbalitDBContext.TaskCategories.Add(taskCategory);
-            base.EbalitDBContext.SaveChanges();
+            base.EbalitDbContext.TaskCategories.Add(taskCategory);
+            base.EbalitDbContext.SaveChanges();
             return taskCategory.Id;
         }
 
         public TaskCategory GetTaskCategoryById(int taskCategoryID)
         {
-            return (from cc in base.EbalitDBContext.TaskCategories
+            return (from cc in base.EbalitDbContext.TaskCategories
                     where cc.Id == taskCategoryID
                     select cc).FirstOrDefault();
         }
 
         public void Update(TaskCategory taskCategory)
         {
-            var originalRecord = base.EbalitDBContext.TaskCategories.Find(taskCategory.Id);
+            var originalRecord = base.EbalitDbContext.TaskCategories.Find(taskCategory.Id);
             if (originalRecord != null)
             {
-                base.EbalitDBContext.Entry(originalRecord).CurrentValues.SetValues(taskCategory);
-                base.EbalitDBContext.SaveChanges();
+                base.EbalitDbContext.Entry(originalRecord).CurrentValues.SetValues(taskCategory);
+                base.EbalitDbContext.SaveChanges();
             }
         }
 
         public void Delete(TaskCategory taskCategory)
         {
-            var originalRecord = base.EbalitDBContext.TaskCategories.Find(taskCategory.Id);
+            var originalRecord = base.EbalitDbContext.TaskCategories.Find(taskCategory.Id);
             if (originalRecord != null)
             {
-                base.EbalitDBContext.TaskCategories.Remove(originalRecord);
-                base.EbalitDBContext.SaveChanges();
+                base.EbalitDbContext.TaskCategories.Remove(originalRecord);
+                base.EbalitDbContext.SaveChanges();
             }
         }
 

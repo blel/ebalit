@@ -20,7 +20,7 @@ namespace EbalitWebForms.BusinessLogicLayer
         /// <returns></returns>
         public Wine GetWineById(int id)
         {
-            return (from wine in base.EbalitDBContext.Wines
+            return (from wine in base.EbalitDbContext.Wines
                     where wine.Id == id
                     select wine).FirstOrDefault();
         }
@@ -31,7 +31,7 @@ namespace EbalitWebForms.BusinessLogicLayer
         /// <returns></returns>
         public IList<Wine> GetWines()
         {
-            return (from wine in base.EbalitDBContext.Wines
+            return (from wine in base.EbalitDbContext.Wines
                     select wine).ToList();
         }
 
@@ -42,7 +42,7 @@ namespace EbalitWebForms.BusinessLogicLayer
         public IDictionary<string, string> GetWineAsString()
         {
 
-            return (from wine in base.EbalitDBContext.Wines
+            return (from wine in base.EbalitDbContext.Wines
                     select wine).ToDictionary(cc => cc.Id.ToString(), cc =>
                         string.Format("Label: {0}, Year: {1}, Grape(s): {2}, Origin: {3}",
                          cc.Label,
@@ -60,8 +60,8 @@ namespace EbalitWebForms.BusinessLogicLayer
         /// <returns></returns>
         public int CreateWine(Wine wine)
         {
-            base.EbalitDBContext.Wines.Add(wine);
-            base.EbalitDBContext.SaveChanges();
+            base.EbalitDbContext.Wines.Add(wine);
+            base.EbalitDbContext.SaveChanges();
             return wine.Id;
         }
 
@@ -74,8 +74,8 @@ namespace EbalitWebForms.BusinessLogicLayer
             var wineToUpdate = GetWineById(wine.Id);
             if (wineToUpdate != null)
             {
-                base.EbalitDBContext.Entry(wineToUpdate).CurrentValues.SetValues(wine);
-                base.EbalitDBContext.SaveChanges();
+                base.EbalitDbContext.Entry(wineToUpdate).CurrentValues.SetValues(wine);
+                base.EbalitDbContext.SaveChanges();
             }
         }
 
@@ -88,8 +88,8 @@ namespace EbalitWebForms.BusinessLogicLayer
             var wineToDelete = GetWineById(wine.Id);
             if (wineToDelete != null)
             {
-                base.EbalitDBContext.Wines.Remove(wineToDelete);
-                base.EbalitDBContext.SaveChanges();
+                base.EbalitDbContext.Wines.Remove(wineToDelete);
+                base.EbalitDbContext.SaveChanges();
             }
         }
     }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
 
@@ -63,8 +59,8 @@ namespace EbalitWebForms.GUI.TaskManager
             e.Values["CreatedOn"] = GUIHelper.GetUSDate(DateTime.Now.ToString());
             
             //TODO: shouldn't this be added in BL?
-            e.Values["CreatedBy"] = Membership.GetUser().UserName;
-
+            var membershipUser = Membership.GetUser();
+            if (membershipUser != null) e.Values["CreatedBy"] = membershipUser.UserName;
         }
 
         /// <summary>
@@ -84,7 +80,8 @@ namespace EbalitWebForms.GUI.TaskManager
 
             //TODO: move to bl?
             e.NewValues["ChangedOn"] = GUIHelper.GetUSDate(DateTime.Now.ToString());
-            e.NewValues["ChangedBy"] = Membership.GetUser().UserName;
+            var membershipUser = Membership.GetUser();
+            if (membershipUser != null) e.NewValues["ChangedBy"] = membershipUser.UserName;
         }
 
         /// <summary>

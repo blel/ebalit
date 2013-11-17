@@ -9,8 +9,8 @@ namespace EbalitWebForms.BusinessLogicLayer
     {
         public int CreateTaskComment(DataLayer.TaskComment comment)
         {
-            base.EbalitDBContext.TaskComments.Add(comment);
-            base.EbalitDBContext.SaveChanges();
+            base.EbalitDbContext.TaskComments.Add(comment);
+            base.EbalitDbContext.SaveChanges();
             return comment.Id;
         }
 
@@ -20,8 +20,8 @@ namespace EbalitWebForms.BusinessLogicLayer
             var commentToUpdate = GetTaskCommentById(comment.Id);
             if (commentToUpdate != null)
             {
-                base.EbalitDBContext.Entry(commentToUpdate).CurrentValues.SetValues(comment);
-                base.EbalitDBContext.SaveChanges();
+                base.EbalitDbContext.Entry(commentToUpdate).CurrentValues.SetValues(comment);
+                base.EbalitDbContext.SaveChanges();
             }
         }
 
@@ -30,14 +30,14 @@ namespace EbalitWebForms.BusinessLogicLayer
             var commentToRemove = GetTaskCommentById(comment.Id);
             if (commentToRemove!= null)
             {
-                base.EbalitDBContext.TaskComments.Remove(commentToRemove);
-                base.EbalitDBContext.SaveChanges();
+                base.EbalitDbContext.TaskComments.Remove(commentToRemove);
+                base.EbalitDbContext.SaveChanges();
             }
         }
 
         public IList<DataLayer.TaskComment> GetTaskComments(int taskID)
         {
-            var task = (from cc in base.EbalitDBContext.Tasks.Include("TaskComments")
+            var task = (from cc in base.EbalitDbContext.Tasks.Include("TaskComments")
                     where cc.Id == taskID
                     
                     select cc).FirstOrDefault();
@@ -53,7 +53,7 @@ namespace EbalitWebForms.BusinessLogicLayer
 
         public DataLayer.TaskComment GetTaskCommentById(int taskID)
         {
-            return (from cc in base.EbalitDBContext.TaskComments
+            return (from cc in base.EbalitDbContext.TaskComments
                     where cc.Id == taskID
                     select cc).FirstOrDefault();
         }

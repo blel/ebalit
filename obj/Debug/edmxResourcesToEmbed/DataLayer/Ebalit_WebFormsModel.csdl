@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Ebalit_WebFormsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
   <EntityContainer Name="Ebalit_WebFormsEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Users" EntityType="Ebalit_WebFormsModel.User" />
     <EntitySet Name="BlogCategories" EntityType="Ebalit_WebFormsModel.BlogCategory" />
     <EntitySet Name="BlogEntries" EntityType="Ebalit_WebFormsModel.BlogEntry" />
     <EntitySet Name="BlogTopics" EntityType="Ebalit_WebFormsModel.BlogTopic" />
@@ -89,31 +88,6 @@
       <End EntitySet="ProjectWorkingReports" Role="ProjectWorkingReport" />
     </AssociationSet>
   </EntityContainer>
-  <EntityType Name="User">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-    <Property Name="Username" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
-    <Property Name="Password" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-    <Property Name="LastActivityDate" Precision="3" Type="DateTime" />
-    <Property Name="CreationDate" Precision="3" Type="DateTime" />
-    <Property Name="LastLoginDate" Precision="3" Type="DateTime" />
-    <Property Name="LastPasswordChangedDate" Precision="3" Type="DateTime" />
-    <Property Name="ApplicationName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
-    <Property Name="Email" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
-    <Property Name="Comment" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
-    <Property Name="PasswordQuestion" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
-    <Property Name="PasswordAnswer" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
-    <Property Name="IsApproved" Type="Boolean" />
-    <Property Name="IsOnLine" Type="Boolean" />
-    <Property Name="IsLockedOut" Type="Boolean" />
-    <Property Name="LastLockedOutDate" Precision="3" Type="DateTime" />
-    <Property Name="FailedPasswordAttemptCount" Type="Int32" />
-    <Property Name="FailedPasswordAttemptWindowStart_" Precision="3" Type="DateTime" />
-    <Property Name="FailedPasswordAnswerAttemptCount_" Type="Int32" />
-    <Property Name="FailedPasswordAnswerAttemptWindowStart_" Precision="3" Type="DateTime" />
-  </EntityType>
   <EntityType Name="BlogCategory">
     <Key>
       <PropertyRef Name="Id" />

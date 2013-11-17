@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Transactions;
 using System.Web.Security;
+using EbalitWebForms.Common;
 using EbalitWebForms.DataLayer;
 
 namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
@@ -18,7 +19,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public IList<ProjectResource> GetResources(int projectId)
         {
-            return EbalitDBContext.ProjectResources.Where(cc => cc.ProjectId == projectId && !cc.IsDeleted).ToList();
+            return EbalitDbContext.ProjectResources.Where(cc => cc.ProjectId == projectId && !cc.IsDeleted).ToList();
         }
 
 
@@ -28,12 +29,12 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public IList<ProjectProject> GetProjects()
         {
-            return EbalitDBContext.ProjectProjects.ToList();
+            return EbalitDbContext.ProjectProjects.ToList();
         }
 
         public ProjectProject GetProject(int id)
         {
-            return EbalitDBContext.ProjectProjects.SingleOrDefault(cc => cc.Id == id);
+            return EbalitDbContext.ProjectProjects.SingleOrDefault(cc => cc.Id == id);
         }
 
         /// <summary>
@@ -53,8 +54,8 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public IList<ProjectTask> GetTasks(ProjectProject project=null)
         {
-            return project == null ? EbalitDBContext.ProjectTasks.ToList() :
-                EbalitDBContext.ProjectTasks.Where(cc => cc.ProjectProject.Id == project.Id && !cc.IsDeleted).ToList();
+            return project == null ? EbalitDbContext.ProjectTasks.ToList() :
+                EbalitDbContext.ProjectTasks.Where(cc => cc.ProjectProject.Id == project.Id && !cc.IsDeleted).ToList();
         }
 
         /// <summary>
@@ -65,7 +66,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public IList<ProjectTask> GetTasks(int projectId)
         {
-            return EbalitDBContext.ProjectTasks.Where(cc => (cc.ProjectId == projectId && !cc.IsDeleted)).ToList();
+            return EbalitDbContext.ProjectTasks.Where(cc => (cc.ProjectId == projectId && !cc.IsDeleted)).ToList();
         }
 
 
@@ -76,7 +77,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public int GetTaskIdByGuid(Guid guid)
         {
-            return EbalitDBContext.ProjectTasks.Single(cc => cc.Guid == guid).Id;
+            return EbalitDbContext.ProjectTasks.Single(cc => cc.Guid == guid).Id;
         }
 
 
@@ -87,7 +88,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public ProjectWorkingReport GetWorkingReport(int id)
         {
-            return EbalitDBContext.ProjectWorkingReports.
+            return EbalitDbContext.ProjectWorkingReports.
                 SingleOrDefault(cc => cc.Id == id);
         }
 
@@ -97,7 +98,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public IList<ProjectWorkingReport> GetWorkingReports()
         {
-            return EbalitDBContext.ProjectWorkingReports.
+            return EbalitDbContext.ProjectWorkingReports.
                 Include("ProjectProject").
                 Include("ProjectTask").
                 Include("ProjectResource").ToList();
@@ -121,7 +122,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
                 reportToUpdate.From = workingReport.From;
             }
             
-            EbalitDBContext.SaveChanges();
+            EbalitDbContext.SaveChanges();
             UpdateActualWork((int)workingReport.TaskId);
             return reportToUpdate;
         }
@@ -140,9 +141,9 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
                 {
                     var taskId = Convert.ToInt32(reportToDelete.TaskId);
 
-                    EbalitDBContext.ProjectWorkingReports.Remove(reportToDelete);
+                    EbalitDbContext.ProjectWorkingReports.Remove(reportToDelete);
 
-                    EbalitDBContext.SaveChanges();
+                    EbalitDbContext.SaveChanges();
 
                     UpdateActualWork(taskId);
 
@@ -167,9 +168,9 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             {
                 try
                 {
-                    EbalitDBContext.ProjectWorkingReports.Add(workingReport);
+                    EbalitDbContext.ProjectWorkingReports.Add(workingReport);
                  
-                    EbalitDBContext.SaveChanges();
+                    EbalitDbContext.SaveChanges();
                     
                     UpdateActualWork(Convert.ToInt32(workingReport.TaskId));
 
@@ -188,13 +189,13 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <param name="task"></param>
         private void UpdateActualWork(int taskId)
         {
-            var calculatedWork = (from cc in EbalitDBContext.ProjectWorkingReports
+            var calculatedWork = (from cc in EbalitDbContext.ProjectWorkingReports
                 where cc.TaskId == taskId
                 select EntityFunctions.DiffMinutes( cc.From , cc.To)).Sum();
-            var task = EbalitDBContext.ProjectTasks.SingleOrDefault(cc => cc.Id == taskId);
+            var task = EbalitDbContext.ProjectTasks.SingleOrDefault(cc => cc.Id == taskId);
             if (task!=null)
             { task.ActualWork = calculatedWork; }
-            EbalitDBContext.SaveChanges();
+            EbalitDbContext.SaveChanges();
 
 
         }
@@ -202,7 +203,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
 
         public bool IsWorkingReportUpdateable(int workingReportId)
         {
-            var workingReport = EbalitDBContext.ProjectWorkingReports.Single(cc => cc.Id == workingReportId);
+            var workingReport = EbalitDbContext.ProjectWorkingReports.Single(cc => cc.Id == workingReportId);
             if (workingReport != null)
             {
                 //todo probably needs to be reviewed if resource to task assignment is limited to
@@ -211,6 +212,22 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
                   workingReport.ProjectResource.IsDeleted);
             }
             return false;
+        }
+
+        public IEnumerable<ProjectResource> GetAvailableResources(int projectId)
+        {
+            var project = EbalitDbContext.ProjectProjects.Include("ProjectResources").SingleOrDefault(cc => cc.Id == projectId);
+            if (project != null)
+            {
+                return project.ProjectResources.
+                    Except(
+                        EbalitDbContext.ProjectUserAssignments.Include("ProjectResources")
+                            .Select(cc => cc.ProjectResource)).ToList();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ namespace EbalitWebForms.BusinessLogicLayer
 
         public Repository()
         {
-            _dbSet = base.EbalitDBContext.Set<T>();
+            _dbSet = base.EbalitDbContext.Set<T>();
 
         }
 
@@ -36,7 +36,7 @@ namespace EbalitWebForms.BusinessLogicLayer
         public int CreateItem(T item)
         {
             _dbSet.Add(item);
-            base.EbalitDBContext.SaveChanges();
+            base.EbalitDbContext.SaveChanges();
             return Convert.ToInt32(typeof(T).GetProperty("Id").GetValue(item,null));
         }
 
@@ -49,8 +49,8 @@ namespace EbalitWebForms.BusinessLogicLayer
             var itemToUpdate = GetItemById(GetId(item));
             if (itemToUpdate != null)
             {
-                base.EbalitDBContext.Entry(itemToUpdate).CurrentValues.SetValues(item);
-                base.EbalitDBContext.SaveChanges();
+                base.EbalitDbContext.Entry(itemToUpdate).CurrentValues.SetValues(item);
+                base.EbalitDbContext.SaveChanges();
             }
         }
 
@@ -61,7 +61,7 @@ namespace EbalitWebForms.BusinessLogicLayer
             {
                 _dbSet.Remove(itemToRemove);
             }
-            base.EbalitDBContext.SaveChanges();
+            base.EbalitDbContext.SaveChanges();
 
         }
 

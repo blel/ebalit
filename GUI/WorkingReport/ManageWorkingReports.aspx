@@ -69,8 +69,7 @@
                         <asp:LinkButton ID="lnkClear" runat="server" CausesValidation="false" CssClass="CommandButton">Clear</asp:LinkButton>&nbsp;
                         <asp:LinkButton ID="lnkCreate" runat="server" CausesValidation="false" CssClass="CommandButton" OnCommand="lnkCreate_Command">Create</asp:LinkButton>&nbsp;
                         <asp:LinkButton ID="lnkExport" runat="server" CausesValidation="false" CssClass="CommandButton">Export</asp:LinkButton>
-                        </asp:TableCell></asp:TableFooterRow></asp:Table></div>
-        <asp:ListView ID="lvwWorkingReports" runat="server" DataSourceID="odsWorkingReports"
+                        </asp:TableCell></asp:TableFooterRow></asp:Table></div><asp:ListView ID="lvwWorkingReports" runat="server" DataSourceID="odsWorkingReports"
              style="margin-bottom: 51px" DataKeyNames="Id"><AlternatingItemTemplate>
                     <tr style="background-color: #FFF8DC;">
                         <td>

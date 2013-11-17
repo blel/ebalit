@@ -11,7 +11,7 @@ namespace EbalitWebForms.BusinessLogicLayer
     {
         public IList<Task> GetTasks()
         {
-            return (from cc in base.EbalitDBContext.Tasks.Include("TaskCategory")
+            return (from cc in base.EbalitDbContext.Tasks.Include("TaskCategory")
                     select cc).ToList();
         }
 
@@ -24,7 +24,7 @@ namespace EbalitWebForms.BusinessLogicLayer
         public IList<Task> GetFilteredTasks(TaskSearchDTO filter, string orderByString="", bool sortDescending = false)
         {
             //Get items and apply date filter, since from and to date always contain valid values
-            var tasks = from cc in base.EbalitDBContext.Tasks.Include("TaskCategory")
+            var tasks = from cc in base.EbalitDbContext.Tasks.Include("TaskCategory")
                         where cc.DueDate == null || (cc.DueDate >= filter.DateFrom && cc.DueDate <= filter.DateTo)
                         select cc;
             //add Text filter
@@ -86,8 +86,8 @@ namespace EbalitWebForms.BusinessLogicLayer
 
         public int CreateTask(Task task)
         {
-            base.EbalitDBContext.Tasks.Add(task);
-            base.EbalitDBContext.SaveChanges();
+            base.EbalitDbContext.Tasks.Add(task);
+            base.EbalitDbContext.SaveChanges();
             return task.Id;
         }
 
@@ -96,8 +96,8 @@ namespace EbalitWebForms.BusinessLogicLayer
             var taskToUpdate = GetTaskById(task.Id);
             if (taskToUpdate != null)
             {
-                base.EbalitDBContext.Entry(taskToUpdate).CurrentValues.SetValues(task);
-                base.EbalitDBContext.SaveChanges();
+                base.EbalitDbContext.Entry(taskToUpdate).CurrentValues.SetValues(task);
+                base.EbalitDbContext.SaveChanges();
             }
 
         }
@@ -107,14 +107,14 @@ namespace EbalitWebForms.BusinessLogicLayer
             var taskToDelete = GetTaskById(task.Id);
             if (taskToDelete != null)
             {
-                base.EbalitDBContext.Tasks.Remove(taskToDelete);
-                base.EbalitDBContext.SaveChanges();
+                base.EbalitDbContext.Tasks.Remove(taskToDelete);
+                base.EbalitDbContext.SaveChanges();
             }
         }
 
         public Task GetTaskById(int id)
         {
-            return (from cc in base.EbalitDBContext.Tasks.Include("TaskCategory")
+            return (from cc in base.EbalitDbContext.Tasks.Include("TaskCategory")
                     where cc.Id == id
                     select cc).FirstOrDefault();
 

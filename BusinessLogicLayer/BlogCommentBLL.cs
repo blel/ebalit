@@ -15,8 +15,8 @@ namespace EbalitWebForms.BusinessLogicLayer
         /// <returns></returns>
         public BlogComment CreateBlogComment(BlogComment blogComment)
         {
-            base.EbalitDBContext.BlogComments.Add(blogComment);
-            base.EbalitDBContext.SaveChanges();
+            base.EbalitDbContext.BlogComments.Add(blogComment);
+            base.EbalitDbContext.SaveChanges();
             blogComment.BlogEntry = new BlogEntryDAL().GetBlogEntry(blogComment.FK_BlogEntry);
             return blogComment;
         }
@@ -30,7 +30,7 @@ namespace EbalitWebForms.BusinessLogicLayer
         public List<BlogComment> GetBlogComments(int blogEntryId)
         {
             return
-                (from cc in base.EbalitDBContext.BlogComments
+                (from cc in base.EbalitDbContext.BlogComments
                 where cc.FK_BlogEntry == blogEntryId
                 orderby cc.PostedOn
                 select cc).ToList();
@@ -39,7 +39,7 @@ namespace EbalitWebForms.BusinessLogicLayer
         public BlogComment GetBlogComment(int blogCommentId)
         {
             return
-                (from cc in base.EbalitDBContext.BlogComments
+                (from cc in base.EbalitDbContext.BlogComments
                 where cc.Id == blogCommentId
                 select cc).FirstOrDefault();
         }

@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="bb473dfd97f1433a85b00623fad3fd99" Name="Diagram1" ZoomLevel="77">
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.User" PointX="12.375" PointY="3.375" Width="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogCategory" PointX="6.25" PointY="8.125" Width="1.5" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogEntry" PointX="3.875" PointY="6.625" Width="1.5" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogTopic" PointX="8.75" PointY="8.125" Width="1.5" />

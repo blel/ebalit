@@ -6,7 +6,6 @@
     <edmx:StorageModels>
     <Schema Namespace="Ebalit_WebFormsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="Ebalit_WebFormsModelStoreContainer">
-    <EntitySet Name="Users" EntityType="Ebalit_WebFormsModel.Store.Users" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BlogCategories" EntityType="Ebalit_WebFormsModel.Store.BlogCategories" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BlogEntries" EntityType="Ebalit_WebFormsModel.Store.BlogEntries" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BlogTopics" EntityType="Ebalit_WebFormsModel.Store.BlogTopics" store:Type="Tables" Schema="dbo" />
@@ -94,31 +93,6 @@
       <End Role="ProjectWorkingReport" EntitySet="ProjectWorkingReports" />
     </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Users">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="255" />
-    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="LastActivityDate" Type="datetime" Nullable="true" />
-    <Property Name="CreationDate" Type="datetime" Nullable="true" />
-    <Property Name="LastLoginDate" Type="datetime" Nullable="true" />
-    <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="true" />
-    <Property Name="ApplicationName" Type="nvarchar" Nullable="false" MaxLength="255" />
-    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="255" />
-    <Property Name="Comment" Type="nvarchar" Nullable="true" MaxLength="255" />
-    <Property Name="PasswordQuestion" Type="nvarchar" Nullable="true" MaxLength="255" />
-    <Property Name="PasswordAnswer" Type="nvarchar" Nullable="true" MaxLength="255" />
-    <Property Name="IsApproved" Type="bit" Nullable="true" />
-    <Property Name="IsOnLine" Type="bit" Nullable="true" />
-    <Property Name="IsLockedOut" Type="bit" Nullable="true" />
-    <Property Name="LastLockedOutDate" Type="datetime" Nullable="true" />
-    <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="true" />
-    <Property Name="FailedPasswordAttemptWindowStart_" Type="datetime" Nullable="true" />
-    <Property Name="FailedPasswordAnswerAttemptCount_" Type="int" Nullable="true" />
-    <Property Name="FailedPasswordAnswerAttemptWindowStart_" Type="datetime" Nullable="true" />
-  </EntityType>
   <EntityType Name="BlogCategories">
     <Key>
       <PropertyRef Name="Id" />
@@ -524,7 +498,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="Ebalit_WebFormsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="Ebalit_WebFormsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Users" EntityType="Ebalit_WebFormsModel.User" />
           <EntitySet Name="BlogCategories" EntityType="Ebalit_WebFormsModel.BlogCategory" />
           <EntitySet Name="BlogEntries" EntityType="Ebalit_WebFormsModel.BlogEntry" />
           <EntitySet Name="BlogTopics" EntityType="Ebalit_WebFormsModel.BlogTopic" />
@@ -612,31 +585,6 @@
             <End EntitySet="ProjectWorkingReports" Role="ProjectWorkingReport" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-          <Property Name="Username" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="Password" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="LastActivityDate" Precision="3" Type="DateTime" />
-          <Property Name="CreationDate" Precision="3" Type="DateTime" />
-          <Property Name="LastLoginDate" Precision="3" Type="DateTime" />
-          <Property Name="LastPasswordChangedDate" Precision="3" Type="DateTime" />
-          <Property Name="ApplicationName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="Email" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="Comment" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="PasswordQuestion" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="PasswordAnswer" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="IsApproved" Type="Boolean" />
-          <Property Name="IsOnLine" Type="Boolean" />
-          <Property Name="IsLockedOut" Type="Boolean" />
-          <Property Name="LastLockedOutDate" Precision="3" Type="DateTime" />
-          <Property Name="FailedPasswordAttemptCount" Type="Int32" />
-          <Property Name="FailedPasswordAttemptWindowStart_" Precision="3" Type="DateTime" />
-          <Property Name="FailedPasswordAnswerAttemptCount_" Type="Int32" />
-          <Property Name="FailedPasswordAnswerAttemptWindowStart_" Precision="3" Type="DateTime" />
-        </EntityType>
         <EntityType Name="BlogCategory">
           <Key>
             <PropertyRef Name="Id" />
@@ -1077,32 +1025,6 @@
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Ebalit_WebFormsModelStoreContainer" CdmEntityContainer="Ebalit_WebFormsEntities">
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.User)">
-        <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
-          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
-          <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
-          <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Comment" ColumnName="Comment" />
-          <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
-          <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
-          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
-          <ScalarProperty Name="IsOnLine" ColumnName="IsOnLine" />
-          <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
-          <ScalarProperty Name="LastLockedOutDate" ColumnName="LastLockedOutDate" />
-          <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
-          <ScalarProperty Name="FailedPasswordAttemptWindowStart_" ColumnName="FailedPasswordAttemptWindowStart_" />
-          <ScalarProperty Name="FailedPasswordAnswerAttemptCount_" ColumnName="FailedPasswordAnswerAttemptCount_" />
-          <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart_" ColumnName="FailedPasswordAnswerAttemptWindowStart_" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="BlogCategories">
       <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.BlogCategory)">
         <MappingFragment StoreEntitySet="BlogCategories">
