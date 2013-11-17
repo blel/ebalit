@@ -3,14 +3,18 @@
 <%@ Register Assembly="EbalitWebForms" Namespace="EbalitWebForms.Common" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ToolsContent" runat="server">
-    <asp:ObjectDataSource ID="odsWorkingReports" runat="server" DataObjectTypeName="EbalitWebForms.DataLayer.ProjectWorkingReport" DeleteMethod="DeleteWorkingReport" InsertMethod="CreateWorkingReport" SelectMethod="GetWorkingReports" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" UpdateMethod="UpdateWorkingReport"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsWorkingReports" runat="server" 
+        DataObjectTypeName="EbalitWebForms.DataLayer.ProjectWorkingReport" 
+        DeleteMethod="DeleteWorkingReport" InsertMethod="CreateWorkingReport" 
+        SelectMethod="GetWorkingReports" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" 
+        UpdateMethod="UpdateWorkingReport" ></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsProjects" runat="server" SelectMethod="GetProjects" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="odsResources" runat="server" SelectMethod="GetResources" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" OnSelecting="odsResources_OnSelecting">
         <SelectParameters>
             <asp:Parameter Name="projectId" Type="Int32" />
         </SelectParameters>
     </asp:ObjectDataSource>
-    <cc1:HierarchicalTaskDataSource ID="htsTasks" runat="server" ProjectId="1"></cc1:HierarchicalTaskDataSource>
+    <cc1:HierarchicalTaskDataSource ID="htsTasks" runat="server" OnSelecting="htsTasks_OnSelecting"></cc1:HierarchicalTaskDataSource>
     <ajaxToolkit:ToolkitScriptManager ID="scmAjaxToolkit" runat="server"></ajaxToolkit:ToolkitScriptManager>
     <div id="Container">
     <div id="CommentsPopup" class="Popup">
@@ -30,7 +34,8 @@
                             <asp:Label ID="Label1" runat="server" Text="Project"></asp:Label>
                         </asp:TableCell>
                         <asp:TableCell ID="TableCell1" runat="server">
-                            <asp:DropDownList ID="ddlProjects" runat="server" DataSourceID="odsProjects" DataTextField="Name" DataValueField="Id"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlProjects" runat="server" DataSourceID="odsProjects" DataTextField="Name" DataValueField="Id"
+                                OnTextChanged="ddlProjects_OnTextChanged" OnDataBound="ddlProjects_OnDataBound" AutoPostBack="True"></asp:DropDownList>
                         </asp:TableCell>
                         <asp:TableCell ID="TableCell2" runat="server">
                             <asp:Label ID="Label2" runat="server" Text="Task"></asp:Label>
@@ -64,11 +69,13 @@
                         <asp:LinkButton ID="lnkClear" runat="server" CausesValidation="false" CssClass="CommandButton">Clear</asp:LinkButton>&nbsp;
                         <asp:LinkButton ID="lnkCreate" runat="server" CausesValidation="false" CssClass="CommandButton" OnCommand="lnkCreate_Command">Create</asp:LinkButton>&nbsp;
                         <asp:LinkButton ID="lnkExport" runat="server" CausesValidation="false" CssClass="CommandButton">Export</asp:LinkButton>
-                        </asp:TableCell></asp:TableFooterRow></asp:Table></div><asp:ListView ID="lvwWorkingReports" runat="server" DataSourceID="odsWorkingReports" style="margin-bottom: 51px"  ><AlternatingItemTemplate>
+                        </asp:TableCell></asp:TableFooterRow></asp:Table></div>
+        <asp:ListView ID="lvwWorkingReports" runat="server" DataSourceID="odsWorkingReports"
+             style="margin-bottom: 51px" DataKeyNames="Id"><AlternatingItemTemplate>
                     <tr style="background-color: #FFF8DC;">
                         <td>
                             <asp:LinkButton ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CssClass="CommandButton" />
-                            <asp:LinkButton ID="EditButton" runat="server" CommandName="Edit" Text="Edit" CssClass="CommandButton" />
+                            
                             <asp:LinkButton ID="btnDetails" runat="server" CommandArgument='<%# Eval("Id") %>' CssClass="CommandButton" OnCommand="btnDetails_OnCommand">Details</asp:LinkButton></td><td>
                             <asp:Label ID="ProjectIdLabel" runat="server" Text='<%# Eval("ProjectProject.Name") %>' />
                         </td>
@@ -161,7 +168,7 @@
                     <tr style="background-color: #DCDCDC; color: #000000;">
                         <td>
                             <asp:LinkButton ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CssClass="CommandButton" />
-                            <asp:LinkButton ID="EditButton" runat="server" CommandName="Edit" Text="Edit" CssClass="CommandButton" />
+                            
                             <asp:LinkButton ID="btnDetails" runat="server" CommandArgument='<%# Eval("Id") %>' OnCommand="btnDetails_OnCommand" CssClass="CommandButton">Details</asp:LinkButton></td><td>
                             <asp:Label ID="ProjectIdLabel" runat="server" Text='<%# Eval("ProjectProject.Name") %>' />
                         </td>

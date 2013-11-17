@@ -137,7 +137,9 @@ namespace EbalitWebForms.WebService
                 //get the project entity corresponding to the project dto
                 var projectEntity = context.ProjectProjects.Single(cc => cc.Guid == project.UniqueIdentifier);
                 //delete resources
-                var deletedResources = context.ProjectResources.ForEach(cc => cc.ToDto()).Except(project.Resources,
+                var deletedResources = context.ProjectResources.
+                    Where(cc=>cc.ProjectProject.Guid == project.UniqueIdentifier).
+                    ForEach(cc => cc.ToDto()).Except(project.Resources,
                     new ResourceDtoEqualityComparer());
                 foreach (var deleteResource in deletedResources)
                 {
@@ -185,7 +187,9 @@ namespace EbalitWebForms.WebService
 
                 //get tasks which exist on server but not in ms project
                 //implement the comparer
-                var deletedTasks = context.ProjectTasks.ForEach(cc => cc.ToDto()).Except(project.Tasks,
+                var deletedTasks = context.ProjectTasks.
+                    Where(cc=>cc.ProjectProject.Guid == project.UniqueIdentifier).
+                    ForEach(cc => cc.ToDto()).Except(project.Tasks,
                     new TaskDtoEqualityComparer());
 
                 //mark them as deleted

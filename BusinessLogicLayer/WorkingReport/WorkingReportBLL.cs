@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Objects;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Transactions;
 using System.Web.Security;
 using EbalitWebForms.DataLayer;
 
@@ -86,7 +87,8 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public ProjectWorkingReport GetWorkingReport(int id)
         {
-            return EbalitDBContext.ProjectWorkingReports.SingleOrDefault(cc => cc.Id == id);
+            return EbalitDBContext.ProjectWorkingReports.
+                SingleOrDefault(cc => cc.Id == id);
         }
 
         /// <summary>
@@ -131,10 +133,27 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         public void DeleteWorkingReport(ProjectWorkingReport workingReport)
         {
             var reportToDelete = GetWorkingReport(workingReport.Id);
-            EbalitDBContext.ProjectWorkingReports.Remove(reportToDelete);
-            
-            EbalitDBContext.SaveChanges();
-            UpdateActualWork((int)workingReport.TaskId);
+
+            using (var transaction = new TransactionScope())
+            {
+                try
+                {
+                    var taskId = Convert.ToInt32(reportToDelete.TaskId);
+
+                    EbalitDBContext.ProjectWorkingReports.Remove(reportToDelete);
+
+                    EbalitDBContext.SaveChanges();
+
+                    UpdateActualWork(taskId);
+
+                    transaction.Complete();
+                }
+                catch (InvalidOperationException)
+                {
+                    //todo: exception handling
+                }
+            }
+
         }
 
         /// <summary>
@@ -144,11 +163,23 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <param name="workingReport"></param>
         public void CreateWorkingReport(ProjectWorkingReport workingReport)
         {
-            EbalitDBContext.ProjectWorkingReports.Add(workingReport);
-            EbalitDBContext.SaveChanges();
-            UpdateActualWork((int)workingReport.TaskId);
+            using (var transaction = new TransactionScope())
+            {
+                try
+                {
+                    EbalitDBContext.ProjectWorkingReports.Add(workingReport);
+                 
+                    EbalitDBContext.SaveChanges();
+                    
+                    UpdateActualWork(Convert.ToInt32(workingReport.TaskId));
 
-            
+                    transaction.Complete();
+                }
+                catch (InvalidOperationException)
+                {
+                    //todo: exception handling
+                }
+            }
         }
 
         /// <summary>

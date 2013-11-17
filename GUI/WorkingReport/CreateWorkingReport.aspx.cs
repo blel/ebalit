@@ -79,6 +79,12 @@ namespace EbalitWebForms.GUI.WorkingReport
             }
         }
 
+        /// <summary>
+        /// Before updating a working report,
+        /// make sure all parameters are setup correctly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void dtvCreateWorkingReport_OnItemUpdating(object sender, DetailsViewUpdateEventArgs e)
         {
             //need to get the id of the selected task
@@ -122,7 +128,7 @@ namespace EbalitWebForms.GUI.WorkingReport
         }
 
         /// <summary>
-        /// Reload ddlResource if ddlProject changes
+        /// Reload ddlResource and trvTask if ddlProject changes
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -136,7 +142,11 @@ namespace EbalitWebForms.GUI.WorkingReport
             }
         }
 
-
+        /// <summary>
+        /// Make sure only tasks from the selected project are shown
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void htsTasks_OnSelecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
             var ddlProject = (DropDownList) dtvCreateWorkingReport.FindControl("ddlProject");

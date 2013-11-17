@@ -68,6 +68,12 @@ namespace EbalitWebForms.GUI.WorkingReport
             }
         }
 
+        /// <summary>
+        /// Returns the difference between to and from for the working report
+        /// with given id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         protected string GetTimeSpan(object id)
         {
             var workingReportBll = new WorkingReportBll();
@@ -77,10 +83,42 @@ namespace EbalitWebForms.GUI.WorkingReport
                 return (currentRecord.To.GetValueOrDefault() - 
                     currentRecord.From.GetValueOrDefault()).ToString(@"hh\:mm", new CultureInfo("de-CH").DateTimeFormat);
             }
-
             return string.Empty;
         }
-    
 
+        /// <summary>
+        /// Update resuorce and task filters when project changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ddlProjects_OnTextChanged(object sender, EventArgs e)
+        {
+            ddlResource.DataBind();
+            trvTask.DataBind();
+        }
+
+        /// <summary>
+        /// Make sure only tasks from the selected project are shown
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void htsTasks_OnSelecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        {
+            e.InputParameters["ProjectId"] = ddlProjects.SelectedValue;
+        }
+
+
+        /// <summary>
+        /// When data of the ddl Project is bound, make sure depending lists are loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ddlProjects_OnDataBound(object sender, EventArgs e)
+        {
+            trvTask.DataBind();
+            ddlResource.DataBind();
+        }
+
+      
     }
 }
