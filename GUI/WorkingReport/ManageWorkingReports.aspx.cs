@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -73,10 +74,11 @@ namespace EbalitWebForms.GUI.WorkingReport
             var currentRecord = workingReportBll.GetWorkingReport(Convert.ToInt32(id));
             if (currentRecord != null)
             {
-                return (currentRecord.To - currentRecord.From).ToString();
+                return (currentRecord.To.GetValueOrDefault() - 
+                    currentRecord.From.GetValueOrDefault()).ToString(@"hh\:mm", new CultureInfo("de-CH").DateTimeFormat);
             }
 
-            return "";
+            return string.Empty;
         }
     
 
