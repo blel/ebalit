@@ -109,25 +109,26 @@ namespace EbalitWebForms.WebService
 
         /// <summary>
         /// Syncs the project on the server with the project from ms project
+        /// TODO: had to remove transaction handling. which is a big risk, but 2005 seems to have problems with it.
         /// </summary>
         /// <param name="project"></param>
         private void SyncProjects(ProjectDto project)
         {
-            using (var transaction = new TransactionScope())
-            {
-                try
-                {
+            //using (var transaction = new TransactionScope())
+            //{
+            //    try
+            //    {
                     SyncResources(project);
 
                     SyncTasks(project);
                     
-                    transaction.Complete();
-                }
-                catch (InvalidOperationException)
-                {
-                    //todo: exception handling                    
-                }
-            }
+            //        transaction.Complete();
+            //    }
+            //    catch (InvalidOperationException)
+            //    {
+            //        //todo: exception handling                    
+            //    }
+            //}
         }
 
         private void SyncResources(ProjectDto project)

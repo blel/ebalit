@@ -1,226 +1,217 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-  <EntityContainerMapping CdmEntityContainer="Ebalit_WebFormsEntities" StorageEntityContainer="Ebalit_WebFormsModelStoreContainer">
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.User">
-        <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart_" ColumnName="FailedPasswordAnswerAttemptWindowStart " />
-          <ScalarProperty Name="FailedPasswordAnswerAttemptCount_" ColumnName="FailedPasswordAnswerAttemptCount " />
-          <ScalarProperty Name="FailedPasswordAttemptWindowStart_" ColumnName="FailedPasswordAttemptWindowStart " />
-          <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
-          <ScalarProperty Name="LastLockedOutDate" ColumnName="LastLockedOutDate" />
-          <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
-          <ScalarProperty Name="IsOnLine" ColumnName="IsOnLine" />
-          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
-          <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
-          <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
-          <ScalarProperty Name="Comment" ColumnName="Comment" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
-          <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
-          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
-          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-          <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+  <EntityContainerMapping StorageEntityContainer="Ebalit_WebFormsModelStoreContainer" CdmEntityContainer="Ebalit_WebFormsEntities">
     <EntitySetMapping Name="BlogCategories">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.BlogCategory">
-        <MappingFragment StoreEntitySet="BlogCategory">
-          <ScalarProperty Name="FK_Topic" ColumnName="FK_Topic" />
-          <ScalarProperty Name="Category" ColumnName="Category" />
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.BlogCategory)">
+        <MappingFragment StoreEntitySet="BlogCategories">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="FK_Topic" ColumnName="FK_Topic" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="BlogEntries">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.BlogEntry">
-        <MappingFragment StoreEntitySet="BlogEntry">
-          <ScalarProperty Name="Category" ColumnName="Category" />
-          <ScalarProperty Name="PublishedOn" ColumnName="PublishedOn" />
-          <ScalarProperty Name="Content" ColumnName="Content" />
-          <ScalarProperty Name="Subject" ColumnName="Subject" />
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.BlogEntry)">
+        <MappingFragment StoreEntitySet="BlogEntries">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="PublishedOn" ColumnName="PublishedOn" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="BlogTopics">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.BlogTopic">
-        <MappingFragment StoreEntitySet="BlogTopic">
-          <ScalarProperty Name="PageName" ColumnName="PageName" />
-          <ScalarProperty Name="Topic" ColumnName="Topic" />
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.BlogTopic)">
+        <MappingFragment StoreEntitySet="BlogTopics">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Topic" ColumnName="Topic" />
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="BlogComments">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.BlogComment">
-        <MappingFragment StoreEntitySet="BlogComment">
-          <ScalarProperty Name="PostedOn" ColumnName="PostedOn" />
-          <ScalarProperty Name="eMail" ColumnName="eMail" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Content" ColumnName="Content" />
-          <ScalarProperty Name="Subject" ColumnName="Subject" />
-          <ScalarProperty Name="FK_BlogEntry" ColumnName="FK_BlogEntry" />
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.BlogComment)">
+        <MappingFragment StoreEntitySet="BlogComments">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FK_BlogEntry" ColumnName="FK_BlogEntry" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="eMail" ColumnName="eMail" />
+          <ScalarProperty Name="PostedOn" ColumnName="PostedOn" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Tasks">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.Task">
-        <MappingFragment StoreEntitySet="Task">
-          <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
-          <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-          <ScalarProperty Name="ClosingType" ColumnName="ClosingType" />
-          <ScalarProperty Name="Priority" ColumnName="Priority" />
-          <ScalarProperty Name="State" ColumnName="State" />
-          <ScalarProperty Name="FK_TaskCategory" ColumnName="FK_TaskCategory" />
-          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
-          <ScalarProperty Name="Content" ColumnName="Content" />
-          <ScalarProperty Name="Subject" ColumnName="Subject" />
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.Task)">
+        <MappingFragment StoreEntitySet="Tasks">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="FK_TaskCategory" ColumnName="FK_TaskCategory" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="ClosingType" ColumnName="ClosingType" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
+          <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TaskCategories">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.TaskCategory">
-        <MappingFragment StoreEntitySet="TaskCategory">
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="TaskCategory1" ColumnName="TaskCategory" />
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.TaskCategory)">
+        <MappingFragment StoreEntitySet="TaskCategories">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TaskCategory1" ColumnName="TaskCategory1" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TaskComments">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.TaskComment">
-        <MappingFragment StoreEntitySet="TaskComment">
-          <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
-          <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-          <ScalarProperty Name="Comment" ColumnName="Comment" />
-          <ScalarProperty Name="FK_Task" ColumnName="FK_Task" />
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.TaskComment)">
+        <MappingFragment StoreEntitySet="TaskComments">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FK_Task" ColumnName="FK_Task" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
+          <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="aspnet_Users">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.aspnet_Users">
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.aspnet_Users)">
         <MappingFragment StoreEntitySet="aspnet_Users">
-          <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
-          <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
-          <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
-          <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
+          <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
+          <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+          <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Wines">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.Wine">
-        <MappingFragment StoreEntitySet="Wine">
-          <ScalarProperty Name="Origin" ColumnName="Origin" />
-          <ScalarProperty Name="Grape" ColumnName="Grape" />
-          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-          <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
-          <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-          <ScalarProperty Name="Magazine" ColumnName="Magazine" />
-          <ScalarProperty Name="BoughtOn" ColumnName="BoughtOn" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="Label" ColumnName="Label" />
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.Wine)">
+        <MappingFragment StoreEntitySet="Wines">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Label" ColumnName="Label" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="BoughtOn" ColumnName="BoughtOn" />
+          <ScalarProperty Name="Magazine" ColumnName="Magazine" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
+          <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Grape" ColumnName="Grape" />
+          <ScalarProperty Name="Origin" ColumnName="Origin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WineAttributes">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.WineAttribute">
-        <MappingFragment StoreEntitySet="WineAttribute">
-          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-          <ScalarProperty Name="Attribute" ColumnName="Attribute" />
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.WineAttribute)">
+        <MappingFragment StoreEntitySet="WineAttributes">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Attribute" ColumnName="Attribute" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WineToWineAttributes">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.WineToWineAttribute">
-        <MappingFragment StoreEntitySet="WineToWineAttribute">
-          <ScalarProperty Name="FK_WineAttribute" ColumnName="FK_WineAttribute" />
-          <ScalarProperty Name="FK_Wine" ColumnName="FK_Wine" />
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.WineToWineAttribute)">
+        <MappingFragment StoreEntitySet="WineToWineAttributes">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FK_Wine" ColumnName="FK_Wine" />
+          <ScalarProperty Name="FK_WineAttribute" ColumnName="FK_WineAttribute" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WineConsumations">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.WineConsumation">
-        <MappingFragment StoreEntitySet="WineConsumation">
-          <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
-          <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-          <ScalarProperty Name="Rating" ColumnName="Rating" />
-          <ScalarProperty Name="Meal" ColumnName="Meal" />
-          <ScalarProperty Name="FK_Wine" ColumnName="FK_Wine" />
-          <ScalarProperty Name="WeatherConditions" ColumnName="WeatherConditions" />
-          <ScalarProperty Name="TastedOn" ColumnName="TastedOn" />
-          <ScalarProperty Name="Taster" ColumnName="Taster" />
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.WineConsumation)">
+        <MappingFragment StoreEntitySet="WineConsumations">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Taster" ColumnName="Taster" />
+          <ScalarProperty Name="TastedOn" ColumnName="TastedOn" />
+          <ScalarProperty Name="WeatherConditions" ColumnName="WeatherConditions" />
+          <ScalarProperty Name="FK_Wine" ColumnName="FK_Wine" />
+          <ScalarProperty Name="Meal" ColumnName="Meal" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
+          <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProjectResources">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ProjectResource">
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.ProjectResource)">
         <MappingFragment StoreEntitySet="ProjectResources">
-          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-          <ScalarProperty Name="Surename" ColumnName="Surename" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProjectProjects">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ProjectProject">
-        <MappingFragment StoreEntitySet="ProjectProject">
-          <ScalarProperty Name="Guid" ColumnName="Guid" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.ProjectProject)">
+        <MappingFragment StoreEntitySet="ProjectProjects">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProjectResourceTaskAssignments">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ProjectResourceTaskAssignment">
-        <MappingFragment StoreEntitySet="ProjectResourceTaskAssignment">
-          <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
-          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.ProjectResourceTaskAssignment)">
+        <MappingFragment StoreEntitySet="ProjectResourceTaskAssignments">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+          <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProjectTasks">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ProjectTask">
-        <MappingFragment StoreEntitySet="ProjectTask">
-          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-          <ScalarProperty Name="Parent" ColumnName="Parent" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Guid" ColumnName="Guid" />
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.ProjectTask)">
+        <MappingFragment StoreEntitySet="ProjectTasks">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Parent" ColumnName="Parent" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ActualWork" ColumnName="ActualWork" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProjectUserAssignments">
-      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ProjectUserAssignment">
-        <MappingFragment StoreEntitySet="ProjectUserAssignment">
-          <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.ProjectUserAssignment)">
+        <MappingFragment StoreEntitySet="ProjectUserAssignments">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectWorkingReports">
+      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.ProjectWorkingReport)">
+        <MappingFragment StoreEntitySet="ProjectWorkingReports">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+          <ScalarProperty Name="From" ColumnName="From" />
+          <ScalarProperty Name="To" ColumnName="To" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

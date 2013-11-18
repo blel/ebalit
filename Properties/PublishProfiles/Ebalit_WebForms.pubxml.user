@@ -9,202 +9,221 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <LastUsedPlatform>Any CPU</LastUsedPlatform>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword />
+    <_PublishTargetUrl>ftp://ftp.ebalit.ch</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AjaxControlToolkit.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>11/15/2013 23:12:11</publishTime>
     </File>
     <File Include="bin/ar/AjaxControlToolkit.resources.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/cs/AjaxControlToolkit.resources.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/de/AjaxControlToolkit.resources.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/EbalitWebForms.dll">
-      <publishTime>11/02/2013 18:43:37</publishTime>
+      <publishTime>11/18/2013 23:12:15</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>11/15/2013 23:12:11</publishTime>
     </File>
     <File Include="bin/es/AjaxControlToolkit.resources.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/fr/AjaxControlToolkit.resources.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/he/AjaxControlToolkit.resources.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/hi/AjaxControlToolkit.resources.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/HtmlAgilityPack.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>11/15/2013 23:12:11</publishTime>
     </File>
     <File Include="bin/it/AjaxControlToolkit.resources.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/ja/AjaxControlToolkit.resources.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/ko/AjaxControlToolkit.resources.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/nl/AjaxControlToolkit.resources.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/pt/AjaxControlToolkit.resources.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/ru/AjaxControlToolkit.resources.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/SanitizerProviders.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>11/15/2013 23:12:11</publishTime>
     </File>
     <File Include="bin/tr-TR/AjaxControlToolkit.resources.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/zh-CHS/AjaxControlToolkit.resources.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/zh-CHT/AjaxControlToolkit.resources.dll">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="DataLayer/Ebalit_WebFormsModel.Context.tt">
-      <publishTime>02/23/2013 16:43:33</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="DataLayer/Ebalit_WebFormsModel.edmx.diagram">
-      <publishTime>11/02/2013 18:02:04</publishTime>
+      <publishTime>11/18/2013 21:57:49</publishTime>
+    </File>
+    <File Include="DataLayer/Ebalit_WebFormsModel.edmx.sql">
+      <publishTime>11/15/2013 23:59:23</publishTime>
     </File>
     <File Include="DataLayer/Ebalit_WebFormsModel.tt">
-      <publishTime>02/23/2013 16:43:33</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="GUI/Admin.aspx">
-      <publishTime>10/19/2013 11:47:19</publishTime>
+      <publishTime>11/18/2013 21:57:49</publishTime>
     </File>
     <File Include="GUI/AllSearchResult.aspx">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:11</publishTime>
     </File>
     <File Include="GUI/Index.aspx">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:39</publishTime>
     </File>
     <File Include="GUI/IT.aspx">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:11</publishTime>
     </File>
     <File Include="GUI/ITSearchResult.aspx">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:11</publishTime>
     </File>
     <File Include="GUI/Master.Master">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:39</publishTime>
     </File>
     <File Include="GUI/Music.aspx">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:11</publishTime>
     </File>
     <File Include="GUI/MusicSearchResult.aspx">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:11</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/AdminIndex.aspx">
-      <publishTime>10/19/2013 11:47:19</publishTime>
+      <publishTime>11/15/2013 23:12:11</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/AdminMaster.master">
-      <publishTime>10/19/2013 11:47:19</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/BlogEntries.aspx">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/CreateBlogEntry.aspx">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/CreateUser.aspx">
-      <publishTime>10/19/2013 11:47:19</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/ManageBlogCategories.aspx">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/Tools.aspx">
-      <publishTime>10/19/2013 11:47:19</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/ToolsMaster.master">
-      <publishTime>10/31/2013 21:01:10</publishTime>
+      <publishTime>11/18/2013 21:57:49</publishTime>
     </File>
     <File Include="GUI/TaskCategories.aspx">
-      <publishTime>05/04/2013 16:55:12</publishTime>
+      <publishTime>04/05/2013 16:55:12</publishTime>
     </File>
     <File Include="GUI/TaskManager/TaskCategories.aspx">
-      <publishTime>05/08/2013 20:40:20</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="GUI/TaskManager/TaskDetail.aspx">
-      <publishTime>10/19/2013 11:47:19</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="GUI/TaskManager/TaskList.aspx">
-      <publishTime>10/31/2013 21:01:10</publishTime>
+      <publishTime>11/15/2013 23:12:39</publishTime>
     </File>
     <File Include="GUI/Tools.aspx">
-      <publishTime>05/04/2013 22:28:41</publishTime>
+      <publishTime>04/05/2013 22:28:41</publishTime>
     </File>
     <File Include="GUI/Varia.aspx">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="GUI/VariaSearchResult.aspx">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="GUI/WebUserControls/Archive.ascx">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="GUI/WebUserControls/BlogContentUserControl.ascx">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:39</publishTime>
     </File>
     <File Include="GUI/WebUserControls/CategoryBrowser.ascx">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="GUI/WebUserControls/SearchUserControl.ascx">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
+    </File>
+    <File Include="GUI/WebUserControls/TimeControl.ascx">
+      <publishTime>11/15/2013 23:12:39</publishTime>
     </File>
     <File Include="GUI/WineDatabase/CreateConsumation.aspx">
-      <publishTime>10/19/2013 11:47:19</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="GUI/WineDatabase/CreateWine.aspx">
-      <publishTime>10/19/2013 11:47:19</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="GUI/WineDatabase/ManageConsumations.aspx">
-      <publishTime>10/19/2013 11:47:19</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="GUI/WineDatabase/ManageWineAttribute.aspx">
-      <publishTime>10/19/2013 11:47:19</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="GUI/WineDatabase/ManageWines.aspx">
-      <publishTime>10/19/2013 11:47:19</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
+    </File>
+    <File Include="GUI/WorkingReport/AdminWorkingReport.aspx">
+      <publishTime>11/18/2013 21:57:49</publishTime>
+    </File>
+    <File Include="GUI/WorkingReport/CreateWorkingReport.aspx">
+      <publishTime>11/18/2013 21:57:49</publishTime>
+    </File>
+    <File Include="GUI/WorkingReport/CreateWorkingReport.aspx.cs">
+      <publishTime>11/18/2013 21:57:49</publishTime>
+    </File>
+    <File Include="GUI/WorkingReport/ManageWorkingReports.aspx">
+      <publishTime>11/18/2013 21:57:49</publishTime>
     </File>
     <File Include="Index.html">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>10/19/2013 11:39:47</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="Resources/MasterData.xml">
-      <publishTime>10/19/2013 11:47:19</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="Scripts/jquery-2.0.0.js">
-      <publishTime>04/27/2013 21:32:05</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="Scripts/jquery-2.0.0.min.js">
-      <publishTime>04/27/2013 21:32:05</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="Scripts/jquery-2.0.0.min.map">
-      <publishTime>10/19/2013 11:39:46</publishTime>
+      <publishTime>11/15/2013 23:12:12</publishTime>
     </File>
     <File Include="Styles/Styles.css">
-      <publishTime>10/23/2013 21:55:41</publishTime>
+      <publishTime>11/15/2013 23:12:39</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/02/2013 18:43:42</publishTime>
+      <publishTime>11/18/2013 22:37:55</publishTime>
     </File>
     <File Include="WebService/EbalitWebService.svc">
-      <publishTime>10/31/2013 21:04:12</publishTime>
+      <publishTime>11/15/2013 23:12:39</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -9,16 +9,15 @@
     </div>
         </div>
     <div id="Container">
-
-
-
         <div id="LeftColumn">
-      
         </div>
-
         <div id="MainColumn" >
            <div id="login" style="display:block; margin-left:auto;margin-right:auto; width:400px;">
-            <asp:Login ID="ctlLogin" runat="server" EnableTheming="False" BorderColor="#CCCC99" BorderStyle="Solid" BorderWidth="1px" Height="160px" Width="400px" OnAuthenticate="ctlLogin_Authenticate" DestinationPageUrl="/GUI/ProtectedSites/AdminIndex.aspx" BackColor="#F7F7DE" Font-Names="Verdana" Font-Size="10pt">
+            <asp:Login ID="ctlLogin" runat="server" EnableTheming="False"
+                 BorderColor="#CCCC99" BorderStyle="Solid" BorderWidth="1px" 
+                Height="160px" Width="400px" OnAuthenticate="ctlLogin_Authenticate" 
+                DestinationPageUrl="/GUI/ProtectedSites/AdminIndex.aspx" BackColor="#F7F7DE" 
+                Font-Names="Verdana" Font-Size="10pt">
                 <CheckBoxStyle BorderColor="#666666" />
                 <LabelStyle HorizontalAlign="Left" />
                 <TextBoxStyle Width="200px" BorderColor="#666666" BorderStyle="Solid" />
@@ -30,5 +29,4 @@
          
         </div>
     </div>
-
 </asp:Content>

@@ -4,6 +4,7 @@
 <%@ Register Src="~/GUI/WebUserControls/CategoryBrowser.ascx" TagPrefix="uc1" TagName="CategoryBrowser" %>
 <%@ Register Src="~/GUI/WebUserControls/BlogContentUserControl.ascx" TagPrefix="uc1" TagName="BlogContentUserControl" %>
 <%@ Register Src="~/GUI/WebUserControls/SearchUserControl.ascx" TagPrefix="uc1" TagName="SearchUserControl" %>
+<%@ Register Src="~/GUI/WebUserControls/TimeControl.ascx" TagPrefix="uc1" TagName="TimeControl" %>
 
 
 

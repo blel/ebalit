@@ -17,3 +17,12 @@ C:\Users\elias\Source\Repos\ebalit\obj\Debug\EbalitWebForms.Resources.Resources.
 C:\Users\elias\Source\Repos\ebalit\obj\Debug\EbalitWebForms.csproj.GenerateResource.Cache
 C:\Users\elias\Source\Repos\ebalit\obj\Debug\EbalitWebForms.dll
 C:\Users\elias\Source\Repos\ebalit\obj\Debug\EbalitWebForms.pdb
+D:\Users\Elias\Source\Repos\ebalit\bin\EbalitWebForms.dll.config
+D:\Users\Elias\Source\Repos\ebalit\bin\EbalitWebForms.dll
+D:\Users\Elias\Source\Repos\ebalit\bin\EbalitWebForms.pdb
+D:\Users\Elias\Source\Repos\ebalit\bin\EntityFramework.xml
+D:\Users\Elias\Source\Repos\ebalit\obj\Debug\EbalitWebForms.csprojResolveAssemblyReference.cache
+D:\Users\Elias\Source\Repos\ebalit\obj\Debug\EbalitWebForms.Resources.Resources.resources
+D:\Users\Elias\Source\Repos\ebalit\obj\Debug\EbalitWebForms.csproj.GenerateResource.Cache
+D:\Users\Elias\Source\Repos\ebalit\obj\Debug\EbalitWebForms.dll
+D:\Users\Elias\Source\Repos\ebalit\obj\Debug\EbalitWebForms.pdb

@@ -129,16 +129,18 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
 
         /// <summary>
         /// Delete working report
+        /// TODO: had to remove transaction scope due to sql2005
+        /// see: http://pieterderycke.wordpress.com/2012/01/22/transactionscope-transaction-escalation-behavior/ for a solution
         /// </summary>
         /// <param name="workingReport"></param>
         public void DeleteWorkingReport(ProjectWorkingReport workingReport)
         {
             var reportToDelete = GetWorkingReport(workingReport.Id);
 
-            using (var transaction = new TransactionScope())
-            {
-                try
-                {
+            //using (var transaction = new TransactionScope())
+            //{
+            //    try
+            //    {
                     var taskId = Convert.ToInt32(reportToDelete.TaskId);
 
                     EbalitDbContext.ProjectWorkingReports.Remove(reportToDelete);
@@ -147,40 +149,41 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
 
                     UpdateActualWork(taskId);
 
-                    transaction.Complete();
-                }
-                catch (InvalidOperationException)
-                {
-                    //todo: exception handling
-                }
-            }
+                //    transaction.Complete();
+                //}
+                //catch (InvalidOperationException)
+                //{
+                //    //todo: exception handling
+                //}
+            //}
 
         }
 
         /// <summary>
         /// Create new working report
         /// TODO: validation
+        /// TODO: uncommented transactions as not working on ebalit.
         /// </summary>
         /// <param name="workingReport"></param>
         public void CreateWorkingReport(ProjectWorkingReport workingReport)
         {
-            using (var transaction = new TransactionScope())
-            {
-                try
-                {
+            //using (var transaction = new TransactionScope())
+            //{
+            //    try
+            //    {
                     EbalitDbContext.ProjectWorkingReports.Add(workingReport);
                  
                     EbalitDbContext.SaveChanges();
                     
                     UpdateActualWork(Convert.ToInt32(workingReport.TaskId));
 
-                    transaction.Complete();
-                }
-                catch (InvalidOperationException)
-                {
-                    //todo: exception handling
-                }
-            }
+                //    transaction.Complete();
+                //}
+                //catch (InvalidOperationException)
+                //{
+                //    //todo: exception handling
+                //}
+            //}
         }
 
         /// <summary>
