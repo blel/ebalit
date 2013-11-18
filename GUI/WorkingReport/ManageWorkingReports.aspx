@@ -18,11 +18,13 @@
     <ajaxToolkit:ToolkitScriptManager ID="scmAjaxToolkit" runat="server"></ajaxToolkit:ToolkitScriptManager>
     <div id="Container">
     <div id="CommentsPopup" class="Popup">
-                <asp:TreeView ID="trvTask" runat="server" DataSourceID="htsTasks" OnSelectedNodeChanged="trvTask_OnSelectedNodeChanged">
+    <asp:Panel ID="Panel1" runat="server" Height="600" ScrollBars="Vertical">
+                <asp:TreeView ID="trvTask" runat="server" ExpandDepth="0" DataSourceID="htsTasks" OnSelectedNodeChanged="trvTask_OnSelectedNodeChanged">
                     <DataBindings>
-                        <asp:TreeNodeBinding DataMember="Task" TextField="Name" />
+                        <asp:TreeNodeBinding DataMember="Task" TextField="Name"  PopulateOnDemand="True"/>
                     </DataBindings>
                 </asp:TreeView>
+        </asp:Panel>
                 <div id="Buttons">
                     <asp:LinkButton ID="lnkClose" runat="server" CssClass="CommandButton" CausesValidation="false">Close</asp:LinkButton>
                 </div>

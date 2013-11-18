@@ -224,10 +224,19 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
                         EbalitDbContext.ProjectUserAssignments.Include("ProjectResources")
                             .Select(cc => cc.ProjectResource)).ToList();
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
+
+        public string GetTaskPath(string taskGuid)
+        {
+            var taskRealGuid = Guid.Parse(taskGuid);
+            var task = EbalitDbContext.ProjectTasks.Include("ProjectProject").Single(cc => cc.Guid == taskRealGuid);
+            if (task.Parent == task.ProjectProject.Guid)
+            {
+                return task.Name;
+            }
+            return GetTaskPath(task.Parent.ToString()) + "/"+ task.Name;
+        }
+
     }
 }

@@ -41,7 +41,7 @@ namespace EbalitWebForms.GUI.WorkingReport
             var taskTextBox = (TextBox)GUIHelper.RecursiveFindControl(this, "txtTask");
             if (taskTextBox != null)
             {
-                taskTextBox.Text = trvTask.SelectedValue;
+                taskTextBox.Text = trvTask.SelectedNode.ValuePath;
                 ViewState.Add("selectedTaskId", trvTask.SelectedNode.DataPath);
             }
         }
@@ -177,14 +177,16 @@ namespace EbalitWebForms.GUI.WorkingReport
         /// <param name="e"></param>
         protected void dtvCreateWorkingReport_OnDataBound(object sender, EventArgs e)
         {
-            var txtTask = dtvCreateWorkingReport.FindControl("txtTask");
+            var txtTask = (TextBox)dtvCreateWorkingReport.FindControl("txtTask");
 
             if (txtTask != null && Request.QueryString["Id"] != null)
             {
                 var bll = new WorkingReportBll();
                 var workingReport = bll.GetWorkingReport(Convert.ToInt32(Request.QueryString["Id"]));
 
-                ((TextBox) txtTask).Text = workingReport.ProjectTask.Name;
+                txtTask.Text = bll.GetTaskPath(workingReport.ProjectTask.Guid.ToString());
+
+
                 //store the Guid in the view state
                 ViewState.Add("selectedTaskId", workingReport.ProjectTask.Guid);
             }
@@ -222,6 +224,13 @@ namespace EbalitWebForms.GUI.WorkingReport
         protected void dtvCreateWorkingReport_OnItemInserted(object sender, DetailsViewInsertedEventArgs e)
         {
             Response.Redirect("/GUI/WorkingReport/ManageWorkingReports.aspx");
+        }
+
+
+
+        protected void trvTask_OnTreeNodePopulate(object sender, TreeNodeEventArgs e)
+        {
+            
         }
     }
 }
