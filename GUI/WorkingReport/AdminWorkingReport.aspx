@@ -9,6 +9,12 @@
             <asp:Parameter Name="projectId" Type="Int32" />
         </SelectParameters>
     </asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsAssignedResources" runat="server" SelectMethod="GetAssignedResources" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll"
+        OnSelecting="odsAssignedResources_Selecting">
+        <SelectParameters>
+            <asp:Parameter Name="userId" Type="String" />
+        </SelectParameters>
+    </asp:ObjectDataSource>
     <div id="Container">
         <div id="LeftColumn">
         </div>
@@ -17,18 +23,18 @@
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server">
                         <asp:Label ID="Label1" runat="server" Text="Select user"></asp:Label><br />
-                        <asp:DropDownList ID="ddlUsers" runat="server" DataSourceID="odsUsers" DataTextField="UserName"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlUsers" runat="server" DataSourceID="odsUsers" DataTextField="UserName" OnTextChanged="ddlUsers_TextChanged" AutoPostBack="true" DataValueField="UserId"></asp:DropDownList>
                     </asp:TableCell>
                     <asp:TableCell runat="server">
                         <asp:Label ID="Label2" runat="server" Text="Select project"></asp:Label>
                         <br />
-                        <asp:DropDownList ID="ddlProjects" runat="server" DataSourceID="odsProjects" DataTextField="Name" DataValueField="Id"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlProjects" runat="server" DataSourceID="odsProjects" DataTextField="Name" DataValueField="Id" AutoPostBack="true" OnTextChanged="ddlProjects_TextChanged"></asp:DropDownList>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server">
                         <asp:Label ID="Label3" runat="server" Text="Assigned Resources"></asp:Label><br />
-                        <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
+                        <asp:ListBox ID="lsbAssignedUsers" runat="server" DataSourceID="odsAssignedResources" DataTextField="Name" DataValueField="Id" ></asp:ListBox>
                     </asp:TableCell>
                     <asp:TableCell runat="server">
                         <asp:Label ID="Label4" runat="server" Text="Available Resources"></asp:Label><br />
@@ -37,10 +43,10 @@
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server">
-                        <asp:Button ID="btnRemove" runat="server" Text="Remove" />
+                        <asp:Button ID="btnRemove" runat="server" Text="Remove" OnClick="btnRemove_Click"/>
                     </asp:TableCell>
                     <asp:TableCell runat="server">
-                        <asp:Button ID="btnAssign" runat="server" Text="Assign" />
+                        <asp:Button ID="btnAssign" runat="server" Text="Assign" OnClick="btnAssign_Click"/>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">

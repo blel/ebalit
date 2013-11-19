@@ -20,7 +20,10 @@ namespace EbalitWebForms.BusinessLogicLayer.User
         {
             return Membership.GetAllUsers().Cast<MembershipUser>().ForEach(cc => new aspnet_Users
             {
-                UserName = cc.UserName
+                UserName = cc.UserName,
+
+                UserId = EbalitDbContext.aspnet_Users.Single(ccc=>ccc.UserName == cc.UserName).UserId
+
             });
 
         }

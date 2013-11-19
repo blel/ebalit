@@ -40,6 +40,15 @@ namespace EbalitWebForms.GUI.WorkingReport {
         protected global::System.Web.UI.WebControls.ObjectDataSource odsAvailableResources;
         
         /// <summary>
+        /// odsAssignedResources control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsAssignedResources;
+        
+        /// <summary>
         /// tblAdministration control.
         /// </summary>
         /// <remarks>
@@ -94,13 +103,13 @@ namespace EbalitWebForms.GUI.WorkingReport {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// ListBox1 control.
+        /// lsbAssignedUsers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ListBox1;
+        protected global::System.Web.UI.WebControls.ListBox lsbAssignedUsers;
         
         /// <summary>
         /// Label4 control.

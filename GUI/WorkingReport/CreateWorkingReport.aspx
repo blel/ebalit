@@ -27,7 +27,8 @@
                 DataSourceID="odsWorkingReport" DataKeyNames="Id"
                 OnItemInserting="dtvCreateWorkingReport_ItemInserting" OnItemUpdating="dtvCreateWorkingReport_OnItemUpdating"
                 OnDataBound="dtvCreateWorkingReport_OnDataBound" OnModeChanging="dtvCreateWorkingReport_OnModeChanging"
-                OnItemUpdated="dtvCreateWorkingReport_OnItemUpdated" OnItemInserted="dtvCreateWorkingReport_OnItemInserted">
+                OnItemUpdated="dtvCreateWorkingReport_OnItemUpdated" OnItemInserted="dtvCreateWorkingReport_OnItemInserted"
+                OnItemCommand="dtvCreateWorkingReport_ItemCommand">
                 <EmptyDataTemplate>
                     No data.
                
@@ -130,7 +131,9 @@
                             <asp:Label ID="Label7" runat="server" Text='<%# Bind("Notes") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
+
                     <asp:CommandField ShowEditButton="True" ShowInsertButton="True" ControlStyle-CssClass="CommandButton" />
+                    <asp:ButtonField Text="Save and New" ControlStyle-CssClass="CommandButton" CommandName="SaveAndNew" ButtonType="Link" CausesValidation="True" />
                 </Fields>
             </asp:DetailsView>
             <div id="CommentsPopup" class="Popup">

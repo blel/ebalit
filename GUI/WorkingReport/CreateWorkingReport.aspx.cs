@@ -224,6 +224,13 @@ namespace EbalitWebForms.GUI.WorkingReport
         /// <param name="e"></param>
         protected void dtvCreateWorkingReport_OnItemInserted(object sender, DetailsViewInsertedEventArgs e)
         {
+            if (ViewState["SaveAndNew"] != null && (bool)ViewState["SaveAndNew"] == true)
+            {
+                ViewState.Add("SaveAndNew",false);
+
+                Response.Redirect("/GUI/WorkingReport/CreateWorkingReport.aspx");
+            }
+
             Response.Redirect("/GUI/WorkingReport/ManageWorkingReports.aspx");
         }
 
@@ -255,6 +262,28 @@ namespace EbalitWebForms.GUI.WorkingReport
                 {
                     var diff = toTime.DisplayTime - fromTime.DisplayTime;
                     txtTotal.Text = Convert.ToString(diff.TotalHours);
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// The save and new command
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void dtvCreateWorkingReport_ItemCommand(object sender, DetailsViewCommandEventArgs e)
+        {
+            if (e.CommandName == "SaveAndNew")
+            {
+                ViewState.Add("SaveAndNew", true);
+                if (dtvCreateWorkingReport.CurrentMode == DetailsViewMode.Insert)
+                {
+                    dtvCreateWorkingReport.InsertItem(true);
+                }
+                else if (dtvCreateWorkingReport.CurrentMode == DetailsViewMode.Edit)
+                {
+                    dtvCreateWorkingReport.UpdateItem(true);
                 }
             }
         }

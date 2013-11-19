@@ -19,7 +19,21 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public IList<ProjectResource> GetResources(int projectId)
         {
-            return EbalitDbContext.ProjectResources.Where(cc => cc.ProjectId == projectId && !cc.IsDeleted).ToList();
+            if (Membership.GetUser() == null) return null; 
+            
+            var userName = Membership.GetUser().UserName;
+
+            var userEntity = EbalitDbContext.aspnet_Users.SingleOrDefault(cc => cc.UserName == userName);
+
+            if (userEntity != null && projectId > 0)
+            {
+               
+                return EbalitDbContext.ProjectResources.Where(cc => cc.ProjectId == projectId && !cc.IsDeleted).
+                    Intersect(EbalitDbContext.ProjectUserAssignments.Where (cc=> cc.UserId == userEntity.UserId).Select(cc=>cc.ProjectResource)).ToList();
+            }
+
+            return null;
+
         }
 
 
@@ -218,6 +232,11 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             return false;
         }
 
+        /// <summary>
+        /// returns the available resources of a project
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         public IEnumerable<ProjectResource> GetAvailableResources(int projectId)
         {
             var project = EbalitDbContext.ProjectProjects.Include("ProjectResources").SingleOrDefault(cc => cc.Id == projectId);
@@ -231,6 +250,86 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             return null;
         }
 
+        /// <summary>
+        /// Returns the resources assigned to the given user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public IEnumerable<ProjectResource> GetAssignedResources(string userId)
+        {
+            if (userId != null)
+            {
+                var userGuid = Guid.Parse(userId);
+
+                return EbalitDbContext.ProjectUserAssignments.Include("ProjectResources").
+                    Where(cc => cc.UserId == userGuid).Select(cc => cc.ProjectResource).ToList();
+            }
+            return null;
+                
+        }
+
+        /// <summary>
+        /// Create new assignent with given userId and resourceId
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="resourceId"></param>
+        public void AssignUser(Guid userId, int resourceId)
+        {
+            var userAssignment = new ProjectUserAssignment
+            {
+                ResourceId = resourceId,
+                UserId = userId
+            };
+
+            EbalitDbContext.ProjectUserAssignments.Add(userAssignment);
+
+            try
+            {
+                EbalitDbContext.SaveChanges();
+            }
+            catch (InvalidOperationException)
+            {
+                //todo error handling
+
+                throw;
+            }
+                    
+        }
+
+
+
+        /// <summary>
+        /// remove assignment with given userid and resourceid
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="resourceId"></param>
+        public void RemoveUser(Guid userId, int resourceId)
+        {
+            var userAssignment = EbalitDbContext.ProjectUserAssignments.SingleOrDefault(cc => cc.UserId == userId && cc.ResourceId == resourceId);
+
+            if (userAssignment != null)
+            {
+                EbalitDbContext.ProjectUserAssignments.Remove(userAssignment);
+
+                try
+                {
+                    EbalitDbContext.SaveChanges();
+                }
+                catch (InvalidOperationException)
+                {
+                    //todo error handling
+
+                    throw;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Returns the full text path to the task with given guid
+        /// </summary>
+        /// <param name="taskGuid"></param>
+        /// <returns></returns>
         public string GetTaskPath(string taskGuid)
         {
             var taskRealGuid = Guid.Parse(taskGuid);
