@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using EbalitWebForms.BusinessLogicLayer.WorkingReport;
+using EbalitWebForms.GUI.WebUserControls;
 
 namespace EbalitWebForms.GUI.WorkingReport
 {
@@ -231,6 +232,31 @@ namespace EbalitWebForms.GUI.WorkingReport
         protected void trvTask_OnTreeNodePopulate(object sender, TreeNodeEventArgs e)
         {
             
+        }
+
+        protected void FromTime_OnTimeChanged(object sender, EventArgs e)
+        {
+            UpdateTotalTime();
+        }
+
+        protected void ToTime_OnTimeChanged(object sender, EventArgs e)
+        {
+            UpdateTotalTime();
+        }
+
+        private void UpdateTotalTime()
+        {
+            var txtTotal = (TextBox)dtvCreateWorkingReport.FindControl("txtTotal");
+            if (txtTotal != null)
+            {
+                var fromTime = (TimeControl)dtvCreateWorkingReport.FindControl("FromTime");
+                var toTime = (TimeControl)dtvCreateWorkingReport.FindControl("ToTime");
+                if (fromTime != null && toTime != null)
+                {
+                    var diff = toTime.DisplayTime - fromTime.DisplayTime;
+                    txtTotal.Text = Convert.ToString(diff.TotalHours);
+                }
+            }
         }
     }
 }

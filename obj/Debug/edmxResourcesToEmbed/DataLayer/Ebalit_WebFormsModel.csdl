@@ -485,6 +485,7 @@
     <NavigationProperty Name="ProjectProject" Relationship="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectProject" FromRole="ProjectWorkingReport" ToRole="ProjectProject" />
     <NavigationProperty Name="ProjectResource" Relationship="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectResources" FromRole="ProjectWorkingReport" ToRole="ProjectResource" />
     <NavigationProperty Name="ProjectTask" Relationship="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectTask" FromRole="ProjectWorkingReport" ToRole="ProjectTask" />
+    <Property Name="Total" Type="Decimal" Precision="5" Scale="2" />
   </EntityType>
   <Association Name="FK_ProjectWorkingReport_ProjectProject">
     <End Type="Ebalit_WebFormsModel.ProjectProject" Multiplicity="0..1" Role="ProjectProject" />

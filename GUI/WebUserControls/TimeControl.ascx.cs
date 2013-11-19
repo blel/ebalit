@@ -10,7 +10,9 @@ namespace EbalitWebForms.GUI.WebUserControls
     public partial class TimeControl : System.Web.UI.UserControl
     {
         private DateTime _displayTime;
-        
+
+        public event EventHandler TimeChanged;
+
         public DateTime DisplayTime { 
             get
             {
@@ -31,9 +33,26 @@ namespace EbalitWebForms.GUI.WebUserControls
             
         }
 
+        /// <summary>
+        /// Raises the time changed event when ddl is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ddlHour_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            //raise the time changed event
+            TimeChanged(sender, e);
+        }
 
-
-        
-        
+        /// <summary>
+        /// Raises the time changed event when ddl is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ddlMinute_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            //raise the time changed event
+            TimeChanged(sender, e);
+        }
     }
 }

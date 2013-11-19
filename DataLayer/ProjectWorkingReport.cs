@@ -21,6 +21,7 @@ namespace EbalitWebForms.DataLayer
         public Nullable<System.DateTime> From { get; set; }
         public Nullable<System.DateTime> To { get; set; }
         public string Notes { get; set; }
+        public Nullable<decimal> Total { get; set; }
     
         public virtual ProjectProject ProjectProject { get; set; }
         public virtual ProjectResource ProjectResource { get; set; }

@@ -68,7 +68,7 @@
                         <InsertItemTemplate>
                             <asp:TextBox ID="txtTask" Width="300" Height="40" TextMode="MultiLine" runat="server" ReadOnly="True"></asp:TextBox>
                             <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="CommentsPopup" TargetControlID="txtTask"></ajaxToolkit:ModalPopupExtender>
-                        </InsertItemTemplate> 
+                        </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label4" runat="server" Text='<%# Bind("TaskId") %>'></asp:Label>
                         </ItemTemplate>
@@ -88,10 +88,10 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="From" SortExpression="From">
                         <EditItemTemplate>
-                            <uc1:TimeControl runat="server" ID="FromTime" DisplayTime='<%# Bind("From") %>' />
+                            <uc1:TimeControl runat="server" ID="FromTime" DisplayTime='<%# Bind("From") %>' OnTimeChanged="FromTime_OnTimeChanged" />
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <uc1:TimeControl runat="server" ID="FromTime" />
+                            <uc1:TimeControl runat="server" ID="FromTime" OnTimeChanged="FromTime_OnTimeChanged" />
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="lblFrom" runat="server" Text='<%# Bind("From") %>'></asp:Label>
@@ -99,13 +99,24 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="To" SortExpression="To">
                         <EditItemTemplate>
-                            <uc1:TimeControl runat="server" ID="ToTime" DisplayTime='<%# Bind("To") %>' />
+                            <uc1:TimeControl runat="server" ID="ToTime" DisplayTime='<%# Bind("To") %>' OnTimeChanged="ToTime_OnTimeChanged" />
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <uc1:TimeControl runat="server" ID="ToTime" />
+                            <uc1:TimeControl runat="server" ID="ToTime" OnTimeChanged="ToTime_OnTimeChanged" />
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label6" runat="server" Text='<%# Bind("To") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Total" SortExpression="Total">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtTotal" runat="server" Text='<%# Bind("Total") %>'></asp:TextBox>
+                        </EditItemTemplate>
+                        <InsertItemTemplate>
+                            <asp:TextBox ID="txtTotal" runat="server" Text='<%# Bind("Total") %>'></asp:TextBox>
+                        </InsertItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label6" runat="server" Text='<%# Bind("Total") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Notes" SortExpression="Notes">

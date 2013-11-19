@@ -205,6 +205,7 @@
     <EntitySetMapping Name="ProjectWorkingReports">
       <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.ProjectWorkingReport)">
         <MappingFragment StoreEntitySet="ProjectWorkingReports">
+          <ScalarProperty Name="Total" ColumnName="Total" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
           <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />

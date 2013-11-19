@@ -120,6 +120,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
                 reportToUpdate.TaskId = workingReport.TaskId;
                 reportToUpdate.To = workingReport.To;
                 reportToUpdate.From = workingReport.From;
+                reportToUpdate.Total = workingReport.Total;
             }
             
             EbalitDbContext.SaveChanges();
@@ -188,19 +189,19 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
 
         /// <summary>
         /// Calculates the actual work based on all working reports booked on the given task.
+        /// The total is important, not the difference between to and from!
         /// </summary>
         /// <param name="task"></param>
         private void UpdateActualWork(int taskId)
         {
+            //must be * 60 since project interprets digits as minutes.
             var calculatedWork = (from cc in EbalitDbContext.ProjectWorkingReports
                 where cc.TaskId == taskId
-                select EntityFunctions.DiffMinutes( cc.From , cc.To)).Sum();
+                select cc.Total).Sum() * 60;
             var task = EbalitDbContext.ProjectTasks.SingleOrDefault(cc => cc.Id == taskId);
             if (task!=null)
-            { task.ActualWork = calculatedWork; }
+            { task.ActualWork = Convert.ToDouble(calculatedWork); }
             EbalitDbContext.SaveChanges();
-
-
         }
 
 

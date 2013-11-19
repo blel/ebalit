@@ -1,7 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TimeControl.ascx.cs" Inherits="EbalitWebForms.GUI.WebUserControls.TimeControl" %>
-<asp:DropDownList ID="ddlHour" runat="server">
+<asp:DropDownList ID="ddlHour" runat="server" OnSelectedIndexChanged="ddlHour_OnSelectedIndexChanged" AutoPostBack="True">
     <asp:ListItem>00</asp:ListItem>
     <asp:ListItem>01</asp:ListItem>
+    <asp:ListItem>02</asp:ListItem>
     <asp:ListItem>03</asp:ListItem>
     <asp:ListItem>04</asp:ListItem>
     <asp:ListItem>05</asp:ListItem>
@@ -24,9 +25,10 @@
     <asp:ListItem>22</asp:ListItem>
     <asp:ListItem>23</asp:ListItem>
 </asp:DropDownList>&nbsp;:&nbsp;
-<asp:DropDownList ID="ddlMinute" runat="server">
+<asp:DropDownList ID="ddlMinute" runat="server" OnSelectedIndexChanged="ddlMinute_OnSelectedIndexChanged" AutoPostBack="True">
     <asp:ListItem>00</asp:ListItem>
     <asp:ListItem>01</asp:ListItem>
+    <asp:ListItem>02</asp:ListItem>
     <asp:ListItem>03</asp:ListItem>
     <asp:ListItem>04</asp:ListItem>
     <asp:ListItem>05</asp:ListItem>
