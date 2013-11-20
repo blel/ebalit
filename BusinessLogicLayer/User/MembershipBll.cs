@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using EbalitWebForms.Common;
 using EbalitWebForms.DataLayer;
 using System.Web.Security;
@@ -12,20 +13,12 @@ namespace EbalitWebForms.BusinessLogicLayer.User
     public class MembershipBll:DataAccessLayer
     {
         /// <summary>
-        /// Returns a list of all membership users
-        /// Only the username is set.
+        /// Returns a list of the names of all membership users.
         /// </summary>
         /// <returns></returns>
-        public IList<aspnet_Users> GetUsers()
+        public IList<MembershipUser> GetUsers()
         {
-            return Membership.GetAllUsers().Cast<MembershipUser>().ForEach(cc => new aspnet_Users
-            {
-                UserName = cc.UserName,
-
-                UserId = EbalitDbContext.aspnet_Users.Single(ccc=>ccc.UserName == cc.UserName).UserId
-
-            });
-
+            return Membership.GetAllUsers().Cast<MembershipUser>().ToList();
         }
     }
 }

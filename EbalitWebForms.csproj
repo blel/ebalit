@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogicLayer\CSVBuilder.cs" />
+    <Compile Include="BusinessLogicLayer\DTO\WorkingReportFindDto.cs" />
     <Compile Include="BusinessLogicLayer\IRepository.cs" />
     <Compile Include="BusinessLogicLayer\MailManager.cs" />
     <Compile Include="BusinessLogicLayer\User\MembershipBll.cs" />
@@ -156,9 +157,6 @@
     <Compile Include="Common\HierarchyTaskData.cs" />
     <Compile Include="Common\ResourceDtoEqualityComparer.cs" />
     <Compile Include="Common\TaskDtoEqualityComparer.cs" />
-    <Compile Include="DataLayer\aspnet_Users.cs">
-      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataLayer\BlogCategory.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>

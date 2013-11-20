@@ -83,19 +83,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="aspnet_Users">
-      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.aspnet_Users)">
-        <MappingFragment StoreEntitySet="aspnet_Users">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
-          <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
-          <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
-          <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Wines">
       <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.Wine)">
         <MappingFragment StoreEntitySet="Wines">
@@ -196,8 +183,8 @@
     <EntitySetMapping Name="ProjectUserAssignments">
       <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.ProjectUserAssignment)">
         <MappingFragment StoreEntitySet="ProjectUserAssignments">
+          <ScalarProperty Name="MembershipUserName" ColumnName="MembershipUserName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
         </MappingFragment>
       </EntityTypeMapping>

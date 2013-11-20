@@ -15,10 +15,9 @@ namespace EbalitWebForms.DataLayer
     public partial class ProjectUserAssignment
     {
         public int Id { get; set; }
-        public Nullable<System.Guid> UserId { get; set; }
         public Nullable<int> ResourceId { get; set; }
+        public string MembershipUserName { get; set; }
     
-        public virtual aspnet_Users aspnet_Users { get; set; }
         public virtual ProjectResource ProjectResource { get; set; }
     }
 }

@@ -38,7 +38,6 @@
                     <asp:TemplateField HeaderText="Project" SortExpression="ProjectId">
                         <EditItemTemplate>
                             <asp:DropDownList ID="ddlPRoject" Width="300" runat="server" DataSourceID="odsProject" DataTextField="Name" DataValueField="Id" SelectedValue='<%# Bind("ProjectId") %>' OnSelectedIndexChanged="ddlPRoject_OnSelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-
                         </EditItemTemplate>
                         <InsertItemTemplate>
                             <asp:DropDownList ID="ddlPRoject" Width="300" runat="server" DataSourceID="odsProject" DataTextField="Name" DataValueField="Id" SelectedValue='<%# Bind("ProjectId") %>' OnSelectedIndexChanged="ddlPRoject_OnSelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
@@ -64,11 +63,15 @@
                     <asp:TemplateField HeaderText="Task" SortExpression="TaskId">
                         <EditItemTemplate>
                             <asp:TextBox ID="txtTask" Width="300" Height="40" TextMode="MultiLine" runat="server" ReadOnly="True"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtTask" runat="server" ErrorMessage="Please select a task."></asp:RequiredFieldValidator>
                             <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="CommentsPopup" TargetControlID="txtTask"></ajaxToolkit:ModalPopupExtender>
                         </EditItemTemplate>
                         <InsertItemTemplate>
                             <asp:TextBox ID="txtTask" Width="300" Height="40" TextMode="MultiLine" runat="server" ReadOnly="True"></asp:TextBox>
-                            <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="CommentsPopup" TargetControlID="txtTask"></ajaxToolkit:ModalPopupExtender>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtTask" runat="server" ErrorMessage="Please select a task."></asp:RequiredFieldValidator>
+                            <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server"
+                                PopupControlID="CommentsPopup" TargetControlID="txtTask">
+                            </ajaxToolkit:ModalPopupExtender>
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label4" runat="server" Text='<%# Bind("TaskId") %>'></asp:Label>
@@ -77,11 +80,15 @@
                     <asp:TemplateField HeaderText="Date" SortExpression="Date">
                         <EditItemTemplate>
                             <asp:TextBox ID="txtDate" runat="server" Text='<%# Bind("From", "{0:d}") %>'></asp:TextBox>
-                            <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDate"></ajaxToolkit:CalendarExtender>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtDate"  runat="server" ErrorMessage="Please enter a date."></asp:RequiredFieldValidator>
+                            <asp:CustomValidator ID="CustomValidator1" OnServerValidate="CustomValidator1_OnServerValidate" ControlToValidate="txtDate" runat="server" ErrorMessage="Please enter a date."></asp:CustomValidator>
+                                             <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDate"></ajaxToolkit:CalendarExtender>
                         </EditItemTemplate>
                         <InsertItemTemplate>
                             <asp:TextBox ID="txtDate" runat="server" Text='<%# Bind("From") %>'></asp:TextBox>
-                            <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtDate"></ajaxToolkit:CalendarExtender>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtDate"  runat="server" ErrorMessage="Please enter a date."></asp:RequiredFieldValidator>
+                            <asp:CustomValidator ID="CustomValidator1" OnServerValidate="CustomValidator1_OnServerValidate" ControlToValidate="txtDate" runat="server" ErrorMessage="Please enter a date."></asp:CustomValidator>                           
+                             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtDate"></ajaxToolkit:CalendarExtender>
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="lblDate" runat="server" Text='<%# Bind("From", "{0:d}") %>'></asp:Label>
@@ -109,12 +116,17 @@
                             <asp:Label ID="Label6" runat="server" Text='<%# Bind("To") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
+
                     <asp:TemplateField HeaderText="Total" SortExpression="Total">
                         <EditItemTemplate>
                             <asp:TextBox ID="txtTotal" runat="server" Text='<%# Bind("Total") %>'></asp:TextBox>
+                            <asp:RegularExpressionValidator ControlToValidate="txtTotal" ID="RegularExpressionValidator1" ValidationExpression="[-+]?[0-9]*\.?[0-9]+" runat="server" ErrorMessage="Please enter a number."></asp:RegularExpressionValidator>
                         </EditItemTemplate>
                         <InsertItemTemplate>
+
                             <asp:TextBox ID="txtTotal" runat="server" Text='<%# Bind("Total") %>'></asp:TextBox>
+                            <asp:RegularExpressionValidator ControlToValidate="txtTotal" ID="RegularExpressionValidator1" ValidationExpression="[-+]?[0-9]*\.?[0-9]+" runat="server" ErrorMessage="Please enter a number."></asp:RegularExpressionValidator>
+                            
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label6" runat="server" Text='<%# Bind("Total") %>'></asp:Label>

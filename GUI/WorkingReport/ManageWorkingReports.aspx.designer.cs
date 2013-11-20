@@ -238,13 +238,13 @@ namespace EbalitWebForms.GUI.WorkingReport {
         protected global::System.Web.UI.WebControls.TableCell TableCell7;
         
         /// <summary>
-        /// txtDate control.
+        /// txtDateFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDate;
+        protected global::System.Web.UI.WebControls.TextBox txtDateFrom;
         
         /// <summary>
         /// CalendarExtender1 control.

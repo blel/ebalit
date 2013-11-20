@@ -5,18 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Ebalit_WebFormsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityType Name="aspnet_Users">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="LoweredUserName" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
-          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
-          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="BlogCategories">
           <Key>
             <PropertyRef Name="Id" />
@@ -60,7 +48,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="ProjectResources">
@@ -88,7 +76,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Parent" Type="uniqueidentifier" />
           <Property Name="ProjectId" Type="int" />
           <Property Name="ActualWork" Type="float" />
@@ -99,8 +87,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="uniqueidentifier" />
           <Property Name="ResourceId" Type="int" />
+          <Property Name="MembershipUserName" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ProjectWorkingReports">
           <Key>
@@ -215,9 +203,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BlogComment_ToBlogEntry">
-          <End Role="BlogEntries" Type="Self.BlogEntries" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="BlogEntries" Type="Self.BlogEntries" Multiplicity="1" />
           <End Role="BlogComments" Type="Self.BlogComments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BlogEntries">
@@ -225,6 +211,18 @@
             </Principal>
             <Dependent Role="BlogComments">
               <PropertyRef Name="FK_BlogEntry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogEntry_ToBlogCategory">
+          <End Role="BlogCategories" Type="Self.BlogCategories" Multiplicity="1" />
+          <End Role="BlogEntries" Type="Self.BlogEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BlogEntries">
+              <PropertyRef Name="Category" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -273,18 +271,6 @@
             </Principal>
             <Dependent Role="ProjectTasks">
               <PropertyRef Name="ProjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProjectUserAssignment_aspnet_Users">
-          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="0..1" />
-          <End Role="ProjectUserAssignments" Type="Self.ProjectUserAssignments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="aspnet_Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="ProjectUserAssignments">
-              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -397,7 +383,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Ebalit_WebFormsModelStoreContainer">
-          <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BlogCategories" EntityType="Self.BlogCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BlogComments" EntityType="Self.BlogComments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BlogEntries" EntityType="Self.BlogEntries" Schema="dbo" store:Type="Tables" />
@@ -423,6 +408,10 @@
             <End Role="BlogEntries" EntitySet="BlogEntries" />
             <End Role="BlogComments" EntitySet="BlogComments" />
           </AssociationSet>
+          <AssociationSet Name="FK_BlogEntry_ToBlogCategory" Association="Self.FK_BlogEntry_ToBlogCategory">
+            <End Role="BlogCategories" EntitySet="BlogCategories" />
+            <End Role="BlogEntries" EntitySet="BlogEntries" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProjectResources_ProjectProject" Association="Self.FK_ProjectResources_ProjectProject">
             <End Role="ProjectProjects" EntitySet="ProjectProjects" />
             <End Role="ProjectResources" EntitySet="ProjectResources" />
@@ -438,10 +427,6 @@
           <AssociationSet Name="FK_ProjectTask_ProjectProject" Association="Self.FK_ProjectTask_ProjectProject">
             <End Role="ProjectProjects" EntitySet="ProjectProjects" />
             <End Role="ProjectTasks" EntitySet="ProjectTasks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProjectUserAssignment_aspnet_Users" Association="Self.FK_ProjectUserAssignment_aspnet_Users">
-            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-            <End Role="ProjectUserAssignments" EntitySet="ProjectUserAssignments" />
           </AssociationSet>
           <AssociationSet Name="FK_ProjectUserAssignment_ProjectResources" Association="Self.FK_ProjectUserAssignment_ProjectResources">
             <End Role="ProjectResources" EntitySet="ProjectResources" />
@@ -512,7 +497,6 @@
             <End EntitySet="Tasks" Role="Task" />
             <End EntitySet="TaskComments" Role="TaskComment" />
           </AssociationSet>
-          <EntitySet Name="aspnet_Users" EntityType="Ebalit_WebFormsModel.aspnet_Users" />
           <EntitySet Name="Wines" EntityType="Ebalit_WebFormsModel.Wine" />
           <EntitySet Name="WineAttributes" EntityType="Ebalit_WebFormsModel.WineAttribute" />
           <EntitySet Name="WineToWineAttributes" EntityType="Ebalit_WebFormsModel.WineToWineAttribute" />
@@ -534,10 +518,6 @@
           <EntitySet Name="ProjectResourceTaskAssignments" EntityType="Ebalit_WebFormsModel.ProjectResourceTaskAssignment" />
           <EntitySet Name="ProjectTasks" EntityType="Ebalit_WebFormsModel.ProjectTask" />
           <EntitySet Name="ProjectUserAssignments" EntityType="Ebalit_WebFormsModel.ProjectUserAssignment" />
-          <AssociationSet Name="FK_ProjectUserAssignment_aspnet_Users" Association="Ebalit_WebFormsModel.FK_ProjectUserAssignment_aspnet_Users">
-            <End EntitySet="aspnet_Users" Role="aspnet_Users" />
-            <End EntitySet="ProjectUserAssignments" Role="ProjectUserAssignment" />
-          </AssociationSet>
           <AssociationSet Name="FK_ProjectResources_ProjectProject" Association="Ebalit_WebFormsModel.FK_ProjectResources_ProjectProject">
             <End EntitySet="ProjectProjects" Role="ProjectProject" />
             <End EntitySet="ProjectResources" Role="ProjectResource" />
@@ -717,19 +697,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="aspnet_Users">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="ApplicationId" Nullable="false" Type="Guid" />
-          <Property Name="UserId" Nullable="false" Type="Guid" />
-          <Property Name="UserName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="LoweredUserName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="MobileAlias" MaxLength="16" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="IsAnonymous" Nullable="false" Type="Boolean" />
-          <Property Name="LastActivityDate" Nullable="false" Precision="3" Type="DateTime" />
-          <NavigationProperty Name="ProjectUserAssignments" Relationship="Ebalit_WebFormsModel.FK_ProjectUserAssignment_aspnet_Users" FromRole="aspnet_Users" ToRole="ProjectUserAssignment" />
-        </EntityType>
         <EntityType Name="Wine">
           <Key>
             <PropertyRef Name="Id" />
@@ -841,7 +808,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-          <Property Name="Name" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Name" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
           <Property Name="Guid" Nullable="false" Type="Guid" />
           <NavigationProperty Name="ProjectResources" Relationship="Ebalit_WebFormsModel.FK_ProjectResources_ProjectProject" FromRole="ProjectProject" ToRole="ProjectResource" />
           <NavigationProperty Name="ProjectTasks" Relationship="Ebalit_WebFormsModel.FK_ProjectTask_ProjectProject" FromRole="ProjectProject" ToRole="ProjectTask" />
@@ -864,7 +831,7 @@
           </Key>
           <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
           <Property Name="Guid" Nullable="false" Type="Guid" />
-          <Property Name="Name" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Name" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
           <Property Name="Parent" Type="Guid" />
           <Property Name="ProjectId" Type="Int32" />
           <NavigationProperty Name="ProjectProject" Relationship="Ebalit_WebFormsModel.FK_ProjectTask_ProjectProject" FromRole="ProjectTask" ToRole="ProjectProject" />
@@ -878,23 +845,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-          <Property Name="UserId" Type="Guid" />
           <Property Name="ResourceId" Type="Int32" />
-          <NavigationProperty Name="aspnet_Users" Relationship="Ebalit_WebFormsModel.FK_ProjectUserAssignment_aspnet_Users" FromRole="ProjectUserAssignment" ToRole="aspnet_Users" />
           <NavigationProperty Name="ProjectResource" Relationship="Ebalit_WebFormsModel.FK_ProjectUserAssignment_ProjectResources" FromRole="ProjectUserAssignment" ToRole="ProjectResource" />
+          <Property Name="MembershipUserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="FK_ProjectUserAssignment_aspnet_Users">
-          <End Type="Ebalit_WebFormsModel.aspnet_Users" Multiplicity="0..1" Role="aspnet_Users" />
-          <End Type="Ebalit_WebFormsModel.ProjectUserAssignment" Multiplicity="*" Role="ProjectUserAssignment" />
-          <ReferentialConstraint>
-            <Principal Role="aspnet_Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="ProjectUserAssignment">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ProjectResources_ProjectProject">
           <End Type="Ebalit_WebFormsModel.ProjectProject" Multiplicity="0..1" Role="ProjectProject" />
           <End Type="Ebalit_WebFormsModel.ProjectResource" Multiplicity="*" Role="ProjectResource" />
@@ -1095,19 +1049,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="aspnet_Users">
-      <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.aspnet_Users)">
-        <MappingFragment StoreEntitySet="aspnet_Users">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
-          <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
-          <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
-          <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Wines">
       <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.Wine)">
         <MappingFragment StoreEntitySet="Wines">
@@ -1208,8 +1149,8 @@
     <EntitySetMapping Name="ProjectUserAssignments">
       <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.ProjectUserAssignment)">
         <MappingFragment StoreEntitySet="ProjectUserAssignments">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="MembershipUserName" ColumnName="MembershipUserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
         </MappingFragment>
       </EntityTypeMapping>

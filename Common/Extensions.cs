@@ -79,5 +79,20 @@ namespace EbalitWebForms.Common
                 source.Remove(entitiesToRemove.ElementAt(i - 1));
             }
         }
+
+        public static IQueryable<TSource> ConditionalWhere<TSource>(this IQueryable<TSource> source,
+            Func<TSource, bool> predicate, Func<bool> condition)
+        {
+            if (!condition())
+            {
+                return source;
+            }
+
+            else
+            {
+                return source.Where(predicate).AsQueryable();
+            }
+        }
+
     }
 }

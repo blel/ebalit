@@ -14,7 +14,8 @@ namespace EbalitWebForms.GUI.WorkingReport
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.scmAjaxToolkit.RegisterPostBackControl(trvTask);
+            scmAjaxToolkit.RegisterPostBackControl(trvTask);
+
             //if site is really loaded and no postback
             if (!IsPostBack)
             {
@@ -284,6 +285,29 @@ namespace EbalitWebForms.GUI.WorkingReport
                 else if (dtvCreateWorkingReport.CurrentMode == DetailsViewMode.Edit)
                 {
                     dtvCreateWorkingReport.UpdateItem(true);
+                }
+            }
+        }
+
+        protected void CustomValidator1_OnServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (!string.IsNullOrWhiteSpace(args.Value))
+            {
+                var date = new DateTime();
+
+                try
+                {
+                    args.IsValid = DateTime.TryParse(args.Value, CultureInfo.CurrentCulture.DateTimeFormat,
+                        DateTimeStyles.None, out
+                            date);
+                }
+                catch (ArgumentException)
+                {
+                    args.IsValid = false;
+                }
+                catch (NotSupportedException)
+                {
+                    args.IsValid = false;
                 }
             }
         }

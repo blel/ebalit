@@ -12,7 +12,7 @@
     <asp:ObjectDataSource ID="odsAssignedResources" runat="server" SelectMethod="GetAssignedResources" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll"
         OnSelecting="odsAssignedResources_Selecting">
         <SelectParameters>
-            <asp:Parameter Name="userId" Type="String" />
+            <asp:Parameter Name="userName" Type="String" />
         </SelectParameters>
     </asp:ObjectDataSource>
     <div id="Container">
@@ -23,7 +23,7 @@
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server">
                         <asp:Label ID="Label1" runat="server" Text="Select user"></asp:Label><br />
-                        <asp:DropDownList ID="ddlUsers" runat="server" DataSourceID="odsUsers" DataTextField="UserName" OnTextChanged="ddlUsers_TextChanged" AutoPostBack="true" DataValueField="UserId"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlUsers" runat="server" DataSourceID="odsUsers" DataTextField="UserName" OnTextChanged="ddlUsers_TextChanged" AutoPostBack="true"></asp:DropDownList>
                     </asp:TableCell>
                     <asp:TableCell runat="server">
                         <asp:Label ID="Label2" runat="server" Text="Select project"></asp:Label>

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using EbalitWebForms.BusinessLogicLayer.WorkingReport;
 
@@ -38,7 +34,7 @@ namespace EbalitWebForms.GUI.WorkingReport
         {
             if (ddlUsers.SelectedItem != null)
             {
-                e.InputParameters["userId"] = ddlUsers.SelectedItem.Value;
+                e.InputParameters["userName"] = ddlUsers.SelectedItem.Value;
             }
         }
 
@@ -48,12 +44,12 @@ namespace EbalitWebForms.GUI.WorkingReport
 
             var selectedUser = ddlUsers.SelectedValue;
 
-            if (!string.IsNullOrWhiteSpace(selectedResource) && selectedUser != null)
+            if (!string.IsNullOrWhiteSpace(selectedResource) && !string.IsNullOrWhiteSpace(selectedUser))
             {
 
                 var workingReportBll = new WorkingReportBll();
 
-                workingReportBll.AssignUser(Guid.Parse(selectedUser), Convert.ToInt32(selectedResource));
+                workingReportBll.AssignUser(selectedUser, Convert.ToInt32(selectedResource));
 
                 lsbAssignedUsers.DataBind();
 
@@ -74,11 +70,11 @@ namespace EbalitWebForms.GUI.WorkingReport
 
             var selectedUser = ddlUsers.SelectedValue;
 
-            if (!string.IsNullOrWhiteSpace(selectedResource ) && selectedUser != null)
+            if (!string.IsNullOrWhiteSpace(selectedResource ) && !string.IsNullOrWhiteSpace(selectedUser))
             {
                 var workingReportBll = new WorkingReportBll();
 
-                workingReportBll.RemoveUser(Guid.Parse(selectedUser), Convert.ToInt32(selectedResource));
+                workingReportBll.RemoveUser(selectedUser, Convert.ToInt32(selectedResource));
 
                 lsbAssignedUsers.DataBind();
 

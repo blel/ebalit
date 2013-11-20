@@ -1,17 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Ebalit_WebFormsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-  <EntityType Name="aspnet_Users">
-    <Key>
-      <PropertyRef Name="UserId" />
-    </Key>
-    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
-    <Property Name="LoweredUserName" Type="nvarchar" MaxLength="256" Nullable="false" />
-    <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
-    <Property Name="IsAnonymous" Type="bit" Nullable="false" />
-    <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
-  </EntityType>
   <EntityType Name="BlogCategories">
     <Key>
       <PropertyRef Name="Id" />
@@ -55,7 +43,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="ProjectResources">
@@ -83,7 +71,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Parent" Type="uniqueidentifier" />
     <Property Name="ProjectId" Type="int" />
     <Property Name="ActualWork" Type="float" />
@@ -94,8 +82,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserId" Type="uniqueidentifier" />
     <Property Name="ResourceId" Type="int" />
+    <Property Name="MembershipUserName" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="ProjectWorkingReports">
     <Key>
@@ -210,9 +198,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_BlogComment_ToBlogEntry">
-    <End Role="BlogEntries" Type="Self.BlogEntries" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="BlogEntries" Type="Self.BlogEntries" Multiplicity="1" />
     <End Role="BlogComments" Type="Self.BlogComments" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="BlogEntries">
@@ -220,6 +206,18 @@
       </Principal>
       <Dependent Role="BlogComments">
         <PropertyRef Name="FK_BlogEntry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BlogEntry_ToBlogCategory">
+    <End Role="BlogCategories" Type="Self.BlogCategories" Multiplicity="1" />
+    <End Role="BlogEntries" Type="Self.BlogEntries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BlogCategories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BlogEntries">
+        <PropertyRef Name="Category" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -268,18 +266,6 @@
       </Principal>
       <Dependent Role="ProjectTasks">
         <PropertyRef Name="ProjectId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProjectUserAssignment_aspnet_Users">
-    <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="0..1" />
-    <End Role="ProjectUserAssignments" Type="Self.ProjectUserAssignments" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="aspnet_Users">
-        <PropertyRef Name="UserId" />
-      </Principal>
-      <Dependent Role="ProjectUserAssignments">
-        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -392,7 +378,6 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="Ebalit_WebFormsModelStoreContainer">
-    <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BlogCategories" EntityType="Self.BlogCategories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BlogComments" EntityType="Self.BlogComments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BlogEntries" EntityType="Self.BlogEntries" Schema="dbo" store:Type="Tables" />
@@ -418,6 +403,10 @@
       <End Role="BlogEntries" EntitySet="BlogEntries" />
       <End Role="BlogComments" EntitySet="BlogComments" />
     </AssociationSet>
+    <AssociationSet Name="FK_BlogEntry_ToBlogCategory" Association="Self.FK_BlogEntry_ToBlogCategory">
+      <End Role="BlogCategories" EntitySet="BlogCategories" />
+      <End Role="BlogEntries" EntitySet="BlogEntries" />
+    </AssociationSet>
     <AssociationSet Name="FK_ProjectResources_ProjectProject" Association="Self.FK_ProjectResources_ProjectProject">
       <End Role="ProjectProjects" EntitySet="ProjectProjects" />
       <End Role="ProjectResources" EntitySet="ProjectResources" />
@@ -433,10 +422,6 @@
     <AssociationSet Name="FK_ProjectTask_ProjectProject" Association="Self.FK_ProjectTask_ProjectProject">
       <End Role="ProjectProjects" EntitySet="ProjectProjects" />
       <End Role="ProjectTasks" EntitySet="ProjectTasks" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProjectUserAssignment_aspnet_Users" Association="Self.FK_ProjectUserAssignment_aspnet_Users">
-      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-      <End Role="ProjectUserAssignments" EntitySet="ProjectUserAssignments" />
     </AssociationSet>
     <AssociationSet Name="FK_ProjectUserAssignment_ProjectResources" Association="Self.FK_ProjectUserAssignment_ProjectResources">
       <End Role="ProjectResources" EntitySet="ProjectResources" />

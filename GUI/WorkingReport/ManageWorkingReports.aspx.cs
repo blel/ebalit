@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using EbalitWebForms.BusinessLogicLayer.DTO;
 using EbalitWebForms.BusinessLogicLayer.WorkingReport;
 
 namespace EbalitWebForms.GUI.WorkingReport
@@ -41,6 +42,8 @@ namespace EbalitWebForms.GUI.WorkingReport
         protected void trvTask_OnSelectedNodeChanged(object sender, EventArgs e)
         {
             txtTaskDropDown.Text = trvTask.SelectedNode.Text;
+
+            ViewState.Add("taskGuid", trvTask.SelectedNode.DataPath);
         }
 
         /// <summary>
@@ -119,6 +122,117 @@ namespace EbalitWebForms.GUI.WorkingReport
             ddlResource.DataBind();
         }
 
-      
+        /// <summary>
+        /// Find method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void lnkFind_OnCommand(object sender, CommandEventArgs e)
+        {
+            DateTime? fromTime = null;
+            
+            DateTime? toTime = null;
+
+            try
+            {
+                fromTime = DateTime.Parse(txtDateFrom.Text, CultureInfo.CurrentCulture.DateTimeFormat,
+                    DateTimeStyles.None);
+            }
+            catch (FormatException)
+            {
+                //todo: validation
+            }
+            catch (ArgumentNullException)
+            {
+                //todo: validation
+            }
+            catch (ArgumentException)
+            {
+                //todo: validation
+            }
+
+            try
+            {
+            toTime = DateTime.Parse(txtDateTo.Text, CultureInfo.CurrentCulture.DateTimeFormat,
+                    DateTimeStyles.None);
+            }
+            catch (FormatException)
+            {
+                //todo: validation
+            }
+            catch (ArgumentNullException)
+            {
+                //todo: validation
+            }
+            catch (ArgumentException)
+            {
+                //todo: validation
+            }
+
+            int? projectId = null;
+            if (!string.IsNullOrWhiteSpace(ddlProjects.SelectedValue))
+            {
+                projectId = Convert.ToInt32(ddlProjects.SelectedValue);
+            }
+
+            int? resourceId = null;
+            if (!string.IsNullOrWhiteSpace(ddlResource.SelectedValue))
+            {
+                resourceId = Convert.ToInt32(ddlResource.SelectedValue);
+            }
+
+            var findDto = new WorkingReportFindDto
+           {
+               From = fromTime,
+               To = toTime,
+               ProjectId = projectId,
+               ResourceId = resourceId,
+               TaskGuid = Convert.ToString(ViewState["taskGuid"])
+           } ;
+
+            ViewState.Add("findDto", findDto);
+
+            lvwWorkingReports.DataBind();
+        }
+
+        protected void odsWorkingReports_OnSelecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        {
+            e.InputParameters["findDto"] = ViewState["findDto"];
+
+        }
+
+        protected void lnkClear_OnCommand(object sender, CommandEventArgs e)
+        {
+            txtDateFrom.Text = string.Empty;
+            txtDateTo.Text = string.Empty;
+            txtTaskDropDown.Text = string.Empty;
+            ddlProjects.SelectedIndex = 0;
+            ddlResource.SelectedIndex = 0;
+
+
+        }
+
+        protected void vdtDate_OnServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (!string.IsNullOrWhiteSpace(args.Value))
+            {
+                var date = new DateTime();
+
+                try
+                {
+                    args.IsValid = DateTime.TryParse(args.Value, CultureInfo.CurrentCulture.DateTimeFormat,
+                        DateTimeStyles.None, out
+                            date);
+                }
+                catch (ArgumentException)
+                {
+                    args.IsValid = false;
+                }
+                catch (NotSupportedException)
+                {
+                    args.IsValid = false;
+                }
+            }
+        }
     }
 }

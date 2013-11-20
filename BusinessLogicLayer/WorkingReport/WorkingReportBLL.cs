@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Objects;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Transactions;
 using System.Web.Security;
+using EbalitWebForms.BusinessLogicLayer.DTO;
 using EbalitWebForms.Common;
 using EbalitWebForms.DataLayer;
 
 namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
 {
-    public class WorkingReportBll:DataAccessLayer
+    public class WorkingReportBll : DataAccessLayer
     {
         /// <summary>
         /// returns a list of all resources assigned to the project wiht id = projectId
@@ -19,23 +17,22 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public IList<ProjectResource> GetResources(int projectId)
         {
-            if (Membership.GetUser() == null) return null; 
-            
-            var userName = Membership.GetUser().UserName;
-
-            var userEntity = EbalitDbContext.aspnet_Users.SingleOrDefault(cc => cc.UserName == userName);
-
-            if (userEntity != null && projectId > 0)
+            var membershipUser = Membership.GetUser();
+            if (membershipUser != null)
             {
-               
-                return EbalitDbContext.ProjectResources.Where(cc => cc.ProjectId == projectId && !cc.IsDeleted).
-                    Intersect(EbalitDbContext.ProjectUserAssignments.Where (cc=> cc.UserId == userEntity.UserId).Select(cc=>cc.ProjectResource)).ToList();
+                if (projectId > 0)
+                {
+                    return EbalitDbContext.ProjectResources.
+                        Where(cc => cc.ProjectId == projectId && !cc.IsDeleted).
+                        Intersect(EbalitDbContext.ProjectUserAssignments.
+                            Where(cc => cc.MembershipUserName == membershipUser.UserName).
+                            Select(cc => cc.ProjectResource)).ToList();
+                }
             }
 
             return null;
 
         }
-
 
         /// <summary>
         /// Returns a list of all projects
@@ -66,7 +63,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// </summary>
         /// <param name="project"></param>
         /// <returns></returns>
-        public IList<ProjectTask> GetTasks(ProjectProject project=null)
+        public IList<ProjectTask> GetTasks(ProjectProject project = null)
         {
             return project == null ? EbalitDbContext.ProjectTasks.ToList() :
                 EbalitDbContext.ProjectTasks.Where(cc => cc.ProjectProject.Id == project.Id && !cc.IsDeleted).ToList();
@@ -83,7 +80,6 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             return EbalitDbContext.ProjectTasks.Where(cc => (cc.ProjectId == projectId && !cc.IsDeleted)).ToList();
         }
 
-
         /// <summary>
         /// Returns the id of the task with given guid
         /// </summary>
@@ -93,7 +89,6 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         {
             return EbalitDbContext.ProjectTasks.Single(cc => cc.Guid == guid).Id;
         }
-
 
         /// <summary>
         /// Returns the working report with given id
@@ -110,12 +105,28 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// returns all working reports
         /// </summary>
         /// <returns></returns>
-        public IList<ProjectWorkingReport> GetWorkingReports()
+        public IList<ProjectWorkingReport> GetWorkingReports(WorkingReportFindDto findDto = null)
         {
-            return EbalitDbContext.ProjectWorkingReports.
+            var resultList =
+            EbalitDbContext.ProjectWorkingReports.
                 Include("ProjectProject").
                 Include("ProjectTask").
-                Include("ProjectResource").ToList();
+                Include("ProjectResource").AsQueryable();
+
+            if (findDto != null)
+            {
+                resultList = resultList.
+                    ConditionalWhere(cc=> cc.From >= findDto.From, () => findDto.From !=null).
+                    ConditionalWhere(cc=> cc.To <= findDto.To, () => findDto.To != null).
+                    ConditionalWhere(cc=> cc.ProjectId == findDto.ProjectId, () => findDto.ProjectId != null && findDto.ProjectId !=0).
+                    ConditionalWhere(cc=> cc.ResourceId == findDto.ResourceId, () => findDto.ResourceId !=null && findDto.ResourceId !=0).
+                    ConditionalWhere(cc=> cc.ProjectTask.Guid == Guid.Parse(findDto.TaskGuid), ()=> !string.IsNullOrWhiteSpace(findDto.TaskGuid));
+                //todo search for child tasks
+
+
+        
+            }
+            return resultList.ToList();
         }
 
         /// <summary>
@@ -136,7 +147,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
                 reportToUpdate.From = workingReport.From;
                 reportToUpdate.Total = workingReport.Total;
             }
-            
+
             EbalitDbContext.SaveChanges();
             UpdateActualWork((int)workingReport.TaskId);
             return reportToUpdate;
@@ -156,20 +167,20 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             //{
             //    try
             //    {
-                    var taskId = Convert.ToInt32(reportToDelete.TaskId);
+            var taskId = Convert.ToInt32(reportToDelete.TaskId);
 
-                    EbalitDbContext.ProjectWorkingReports.Remove(reportToDelete);
+            EbalitDbContext.ProjectWorkingReports.Remove(reportToDelete);
 
-                    EbalitDbContext.SaveChanges();
+            EbalitDbContext.SaveChanges();
 
-                    UpdateActualWork(taskId);
+            UpdateActualWork(taskId);
 
-                //    transaction.Complete();
-                //}
-                //catch (InvalidOperationException)
-                //{
-                //    //todo: exception handling
-                //}
+            //    transaction.Complete();
+            //}
+            //catch (InvalidOperationException)
+            //{
+            //    //todo: exception handling
+            //}
             //}
 
         }
@@ -186,18 +197,18 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             //{
             //    try
             //    {
-                    EbalitDbContext.ProjectWorkingReports.Add(workingReport);
-                 
-                    EbalitDbContext.SaveChanges();
-                    
-                    UpdateActualWork(Convert.ToInt32(workingReport.TaskId));
+            EbalitDbContext.ProjectWorkingReports.Add(workingReport);
 
-                //    transaction.Complete();
-                //}
-                //catch (InvalidOperationException)
-                //{
-                //    //todo: exception handling
-                //}
+            EbalitDbContext.SaveChanges();
+
+            UpdateActualWork(Convert.ToInt32(workingReport.TaskId));
+
+            //    transaction.Complete();
+            //}
+            //catch (InvalidOperationException)
+            //{
+            //    //todo: exception handling
+            //}
             //}
         }
 
@@ -205,31 +216,39 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// Calculates the actual work based on all working reports booked on the given task.
         /// The total is important, not the difference between to and from!
         /// </summary>
-        /// <param name="task"></param>
+        /// <param name="taskId"></param>
         private void UpdateActualWork(int taskId)
         {
             //must be * 60 since project interprets digits as minutes.
             var calculatedWork = (from cc in EbalitDbContext.ProjectWorkingReports
-                where cc.TaskId == taskId
-                select cc.Total).Sum() * 60;
+                                  where cc.TaskId == taskId
+                                  select cc.Total).Sum() * 60;
             var task = EbalitDbContext.ProjectTasks.SingleOrDefault(cc => cc.Id == taskId);
-            if (task!=null)
+            if (task != null)
             { task.ActualWork = Convert.ToDouble(calculatedWork); }
             EbalitDbContext.SaveChanges();
         }
 
-
+        /// <summary>
+        /// Checks whether the current working report can be updated
+        /// </summary>
+        /// <param name="workingReportId"></param>
+        /// <returns></returns>
         public bool IsWorkingReportUpdateable(int workingReportId)
         {
             var workingReport = EbalitDbContext.ProjectWorkingReports.Single(cc => cc.Id == workingReportId);
-            if (workingReport != null)
+            if (workingReport == null) return false;
+
+            //check whether the current user contains the resource the current working report is assigned to
+            if (!GetAssignedResources(Membership.GetUser().UserName).Contains(workingReport.ProjectResource))
             {
-                //todo probably needs to be reviewed if resource to task assignment is limited to
-                //resources which are assigned to the task in ms project
-                return !(workingReport.ProjectTask.IsDeleted ||
-                  workingReport.ProjectResource.IsDeleted);
+                return false;
             }
-            return false;
+
+            //todo probably needs to be reviewed if resource to task assignment is limited to
+            //resources which are assigned to the task in ms project
+            return !(workingReport.ProjectTask.IsDeleted ||
+                     workingReport.ProjectResource.IsDeleted);
         }
 
         /// <summary>
@@ -253,32 +272,29 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <summary>
         /// Returns the resources assigned to the given user
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="userName"></param>
         /// <returns></returns>
-        public IEnumerable<ProjectResource> GetAssignedResources(string userId)
+        public IEnumerable<ProjectResource> GetAssignedResources(string userName)
         {
-            if (userId != null)
+            if (userName != null)
             {
-                var userGuid = Guid.Parse(userId);
-
-                return EbalitDbContext.ProjectUserAssignments.Include("ProjectResources").
-                    Where(cc => cc.UserId == userGuid).Select(cc => cc.ProjectResource).ToList();
+                return EbalitDbContext.ProjectUserAssignments.
+                    Where(cc => cc.MembershipUserName == userName).Select(cc => cc.ProjectResource).ToList();
             }
             return null;
-                
         }
 
         /// <summary>
         /// Create new assignent with given userId and resourceId
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="userName"></param>
         /// <param name="resourceId"></param>
-        public void AssignUser(Guid userId, int resourceId)
+        public void AssignUser(string userName, int resourceId)
         {
             var userAssignment = new ProjectUserAssignment
             {
                 ResourceId = resourceId,
-                UserId = userId
+                MembershipUserName = userName
             };
 
             EbalitDbContext.ProjectUserAssignments.Add(userAssignment);
@@ -293,19 +309,18 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
 
                 throw;
             }
-                    
+
         }
-
-
 
         /// <summary>
         /// remove assignment with given userid and resourceid
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="userName"></param>
         /// <param name="resourceId"></param>
-        public void RemoveUser(Guid userId, int resourceId)
+        public void RemoveUser(string userName, int resourceId)
         {
-            var userAssignment = EbalitDbContext.ProjectUserAssignments.SingleOrDefault(cc => cc.UserId == userId && cc.ResourceId == resourceId);
+            var userAssignment = EbalitDbContext.ProjectUserAssignments.
+                SingleOrDefault(cc => cc.MembershipUserName == userName && cc.ResourceId == resourceId);
 
             if (userAssignment != null)
             {
@@ -338,7 +353,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             {
                 return task.Name;
             }
-            return GetTaskPath(task.Parent.ToString()) + "/"+ task.Name;
+            return GetTaskPath(task.Parent.ToString()) + "/" + task.Name;
         }
 
     }
