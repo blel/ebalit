@@ -1,107 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Ebalit_WebFormsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-  <EntityContainer Name="Ebalit_WebFormsModelStoreContainer">
-    <EntitySet Name="BlogCategories" EntityType="Ebalit_WebFormsModel.Store.BlogCategories" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="BlogEntries" EntityType="Ebalit_WebFormsModel.Store.BlogEntries" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="BlogTopics" EntityType="Ebalit_WebFormsModel.Store.BlogTopics" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="BlogComments" EntityType="Ebalit_WebFormsModel.Store.BlogComments" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Tasks" EntityType="Ebalit_WebFormsModel.Store.Tasks" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TaskCategories" EntityType="Ebalit_WebFormsModel.Store.TaskCategories" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TaskComments" EntityType="Ebalit_WebFormsModel.Store.TaskComments" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="aspnet_Users" EntityType="Ebalit_WebFormsModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Wines" EntityType="Ebalit_WebFormsModel.Store.Wines" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="WineAttributes" EntityType="Ebalit_WebFormsModel.Store.WineAttributes" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="WineToWineAttributes" EntityType="Ebalit_WebFormsModel.Store.WineToWineAttributes" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="WineConsumations" EntityType="Ebalit_WebFormsModel.Store.WineConsumations" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ProjectResources" EntityType="Ebalit_WebFormsModel.Store.ProjectResources" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ProjectProjects" EntityType="Ebalit_WebFormsModel.Store.ProjectProjects" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ProjectResourceTaskAssignments" EntityType="Ebalit_WebFormsModel.Store.ProjectResourceTaskAssignments" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ProjectTasks" EntityType="Ebalit_WebFormsModel.Store.ProjectTasks" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ProjectUserAssignments" EntityType="Ebalit_WebFormsModel.Store.ProjectUserAssignments" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ProjectWorkingReports" EntityType="Ebalit_WebFormsModel.Store.ProjectWorkingReports" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_BlogEntry_ToBlogCategory" Association="Ebalit_WebFormsModel.Store.FK_BlogEntry_ToBlogCategory">
-      <End Role="BlogCategory" EntitySet="BlogCategories" />
-      <End Role="BlogEntry" EntitySet="BlogEntries" />
-    </AssociationSet>
-    <AssociationSet Name="FK_BlogCategory_BlogTopic" Association="Ebalit_WebFormsModel.Store.FK_BlogCategory_BlogTopic">
-      <End Role="BlogTopic" EntitySet="BlogTopics" />
-      <End Role="BlogCategory" EntitySet="BlogCategories" />
-    </AssociationSet>
-    <AssociationSet Name="FK_BlogComment_ToBlogEntry" Association="Ebalit_WebFormsModel.Store.FK_BlogComment_ToBlogEntry">
-      <End Role="BlogEntry" EntitySet="BlogEntries" />
-      <End Role="BlogComment" EntitySet="BlogComments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Task_ToTaskCategory" Association="Ebalit_WebFormsModel.Store.FK_Task_ToTaskCategory">
-      <End Role="TaskCategory" EntitySet="TaskCategories" />
-      <End Role="Task" EntitySet="Tasks" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TaskComment_ToTask" Association="Ebalit_WebFormsModel.Store.FK_TaskComment_ToTask">
-      <End Role="Task" EntitySet="Tasks" />
-      <End Role="TaskComment" EntitySet="TaskComments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_WineToWineAttribute_ToWine" Association="Ebalit_WebFormsModel.Store.FK_WineToWineAttribute_ToWine">
-      <End Role="Wine" EntitySet="Wines" />
-      <End Role="WineToWineAttribute" EntitySet="WineToWineAttributes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_WineToWineAttribute_ToWineAttribute" Association="Ebalit_WebFormsModel.Store.FK_WineToWineAttribute_ToWineAttribute">
-      <End Role="WineAttribute" EntitySet="WineAttributes" />
-      <End Role="WineToWineAttribute" EntitySet="WineToWineAttributes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_WineConsumation_ToWine" Association="Ebalit_WebFormsModel.Store.FK_WineConsumation_ToWine">
-      <End Role="Wine" EntitySet="Wines" />
-      <End Role="WineConsumation" EntitySet="WineConsumations" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProjectUserAssignment_aspnet_Users" Association="Ebalit_WebFormsModel.Store.FK_ProjectUserAssignment_aspnet_Users">
-      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-      <End Role="ProjectUserAssignment" EntitySet="ProjectUserAssignments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProjectResources_ProjectProject" Association="Ebalit_WebFormsModel.Store.FK_ProjectResources_ProjectProject">
-      <End Role="ProjectProject" EntitySet="ProjectProjects" />
-      <End Role="ProjectResource" EntitySet="ProjectResources" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProjectTask_ProjectProject" Association="Ebalit_WebFormsModel.Store.FK_ProjectTask_ProjectProject">
-      <End Role="ProjectProject" EntitySet="ProjectProjects" />
-      <End Role="ProjectTask" EntitySet="ProjectTasks" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProjectResourceTaskAssignment_ProjectResources" Association="Ebalit_WebFormsModel.Store.FK_ProjectResourceTaskAssignment_ProjectResources">
-      <End Role="ProjectResource" EntitySet="ProjectResources" />
-      <End Role="ProjectResourceTaskAssignment" EntitySet="ProjectResourceTaskAssignments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProjectUserAssignment_ProjectResources" Association="Ebalit_WebFormsModel.Store.FK_ProjectUserAssignment_ProjectResources">
-      <End Role="ProjectResource" EntitySet="ProjectResources" />
-      <End Role="ProjectUserAssignment" EntitySet="ProjectUserAssignments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProjectResourceTaskAssignment_ProjectTask" Association="Ebalit_WebFormsModel.Store.FK_ProjectResourceTaskAssignment_ProjectTask">
-      <End Role="ProjectTask" EntitySet="ProjectTasks" />
-      <End Role="ProjectResourceTaskAssignment" EntitySet="ProjectResourceTaskAssignments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProjectWorkingReport_ProjectProject" Association="Ebalit_WebFormsModel.Store.FK_ProjectWorkingReport_ProjectProject">
-      <End Role="ProjectProject" EntitySet="ProjectProjects" />
-      <End Role="ProjectWorkingReport" EntitySet="ProjectWorkingReports" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProjectWorkingReport_ProjectResources" Association="Ebalit_WebFormsModel.Store.FK_ProjectWorkingReport_ProjectResources">
-      <End Role="ProjectResource" EntitySet="ProjectResources" />
-      <End Role="ProjectWorkingReport" EntitySet="ProjectWorkingReports" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProjectWorkingReport_ProjectTask" Association="Ebalit_WebFormsModel.Store.FK_ProjectWorkingReport_ProjectTask">
-      <End Role="ProjectTask" EntitySet="ProjectTasks" />
-      <End Role="ProjectWorkingReport" EntitySet="ProjectWorkingReports" />
-    </AssociationSet>
-  </EntityContainer>
+<Schema Namespace="Ebalit_WebFormsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="aspnet_Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="LoweredUserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
+    <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+    <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="BlogCategories">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Category" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="FK_Topic" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BlogComments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FK_BlogEntry" Type="int" Nullable="false" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="eMail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PostedOn" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="BlogEntries">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Subject" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PublishedOn" Type="datetime" Nullable="false" />
     <Property Name="Category" Type="int" Nullable="false" />
@@ -111,45 +47,76 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Topic" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="PageName" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Topic" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PageName" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="BlogComments">
+  <EntityType Name="ProjectProjects">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FK_BlogEntry" Type="int" Nullable="false" />
-    <Property Name="Subject" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="eMail" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="PostedOn" Type="datetime" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
-  <EntityType Name="Tasks">
+  <EntityType Name="ProjectResources">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Subject" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Content" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="DueDate" Type="datetime" Nullable="true" />
-    <Property Name="FK_TaskCategory" Type="int" Nullable="true" />
-    <Property Name="State" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="Priority" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="ClosingType" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="CreatedOn" Type="datetime" Nullable="true" />
-    <Property Name="CreatedBy" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="ChangedOn" Type="datetime" Nullable="true" />
-    <Property Name="ChangedBy" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectResourceTaskAssignments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaskId" Type="int" />
+    <Property Name="ResourceId" Type="int" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectTasks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Parent" Type="uniqueidentifier" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="ActualWork" Type="float" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectUserAssignments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" />
+    <Property Name="ResourceId" Type="int" />
+  </EntityType>
+  <EntityType Name="ProjectWorkingReports">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="ResourceId" Type="int" />
+    <Property Name="TaskId" Type="int" />
+    <Property Name="From" Type="datetime" />
+    <Property Name="To" Type="datetime" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="Total" Type="decimal" Precision="5" Scale="2" />
   </EntityType>
   <EntityType Name="TaskCategories">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TaskCategory1" Type="varchar" Nullable="true" MaxLength="255" />
-    <Property Name="Description" Type="varchar(max)" Nullable="true" />
+    <Property Name="TaskCategory1" Type="varchar" MaxLength="255" />
+    <Property Name="Description" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="TaskComments">
     <Key>
@@ -157,48 +124,70 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FK_Task" Type="int" Nullable="false" />
-    <Property Name="Comment" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="CreatedOn" Type="datetime" Nullable="true" />
-    <Property Name="CreatedBy" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="ChangedOn" Type="datetime" Nullable="true" />
-    <Property Name="ChangedBy" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChangedOn" Type="datetime" />
+    <Property Name="ChangedBy" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="aspnet_Users">
-    <Key>
-      <PropertyRef Name="UserId" />
-    </Key>
-    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
-    <Property Name="LoweredUserName" Type="nvarchar" Nullable="false" MaxLength="256" />
-    <Property Name="MobileAlias" Type="nvarchar" Nullable="true" MaxLength="16" />
-    <Property Name="IsAnonymous" Type="bit" Nullable="false" />
-    <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Wines">
+  <EntityType Name="Tasks">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Label" Type="nvarchar" Nullable="false" MaxLength="255" />
-    <Property Name="Year" Type="int" Nullable="false" />
-    <Property Name="BoughtOn" Type="datetime" Nullable="true" />
-    <Property Name="Magazine" Type="nvarchar" Nullable="true" MaxLength="255" />
-    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
-    <Property Name="CreatedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="ChangedOn" Type="datetime" Nullable="true" />
-    <Property Name="ChangedBy" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="Remarks" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Grape" Type="nvarchar" Nullable="true" MaxLength="255" />
-    <Property Name="Origin" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="Subject" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="FK_TaskCategory" Type="int" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="Priority" Type="varchar" MaxLength="50" />
+    <Property Name="ClosingType" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="ChangedOn" Type="datetime" />
+    <Property Name="ChangedBy" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="WineAttributes">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Attribute" Type="nvarchar" Nullable="false" MaxLength="255" />
-    <Property Name="Remarks" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Attribute" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Remarks" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="WineConsumations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Taster" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TastedOn" Type="datetime" />
+    <Property Name="WeatherConditions" Type="nvarchar(max)" />
+    <Property Name="FK_Wine" Type="int" Nullable="false" />
+    <Property Name="Meal" Type="nvarchar(max)" />
+    <Property Name="Rating" Type="int" />
+    <Property Name="Remarks" Type="nvarchar(max)" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChangedOn" Type="datetime" />
+    <Property Name="ChangedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Wines">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Label" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="BoughtOn" Type="datetime" />
+    <Property Name="Magazine" Type="nvarchar" MaxLength="255" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ChangedOn" Type="datetime" />
+    <Property Name="ChangedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remarks" Type="nvarchar(max)" />
+    <Property Name="Grape" Type="nvarchar" MaxLength="255" />
+    <Property Name="Origin" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="WineToWineAttributes">
     <Key>
@@ -208,284 +197,282 @@
     <Property Name="FK_Wine" Type="int" Nullable="false" />
     <Property Name="FK_WineAttribute" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="WineConsumations">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Taster" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="TastedOn" Type="datetime" Nullable="true" />
-    <Property Name="WeatherConditions" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="FK_Wine" Type="int" Nullable="false" />
-    <Property Name="Meal" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Rating" Type="int" Nullable="true" />
-    <Property Name="Remarks" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="CreatedOn" Type="datetime" Nullable="true" />
-    <Property Name="CreatedBy" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="ChangedOn" Type="datetime" Nullable="true" />
-    <Property Name="ChangedBy" Type="nvarchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="ProjectResources">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ProjectId" Type="int" Nullable="true" />
-    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="IsDeleted" Type="bit" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ProjectProjects">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ProjectResourceTaskAssignments">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TaskId" Type="int" Nullable="true" />
-    <Property Name="ResourceId" Type="int" Nullable="true" />
-    <Property Name="IsDeleted" Type="bit" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ProjectTasks">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="Parent" Type="uniqueidentifier" Nullable="true" />
-    <Property Name="ProjectId" Type="int" Nullable="true" />
-    <Property Name="ActualWork" Type="float" Nullable="true" />
-    <Property Name="IsDeleted" Type="bit" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ProjectUserAssignments">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserId" Type="uniqueidentifier" Nullable="true" />
-    <Property Name="ResourceId" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="ProjectWorkingReports">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ProjectId" Type="int" Nullable="true" />
-    <Property Name="ResourceId" Type="int" Nullable="true" />
-    <Property Name="TaskId" Type="int" Nullable="true" />
-    <Property Name="From" Type="datetime" Nullable="true" />
-    <Property Name="To" Type="datetime" Nullable="true" />
-    <Property Name="Notes" Type="nvarchar(max)" Nullable="true" />
-  </EntityType>
-  <Association Name="FK_BlogEntry_ToBlogCategory">
-    <End Role="BlogCategory" Type="Ebalit_WebFormsModel.Store.BlogCategories" Multiplicity="1" />
-    <End Role="BlogEntry" Type="Ebalit_WebFormsModel.Store.BlogEntries" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="BlogCategory">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="BlogEntry">
-        <PropertyRef Name="Category" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_BlogCategory_BlogTopic">
-    <End Role="BlogTopic" Type="Ebalit_WebFormsModel.Store.BlogTopics" Multiplicity="1" />
-    <End Role="BlogCategory" Type="Ebalit_WebFormsModel.Store.BlogCategories" Multiplicity="*" />
+    <End Role="BlogTopics" Type="Self.BlogTopics" Multiplicity="1" />
+    <End Role="BlogCategories" Type="Self.BlogCategories" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="BlogTopic">
+      <Principal Role="BlogTopics">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="BlogCategory">
+      <Dependent Role="BlogCategories">
         <PropertyRef Name="FK_Topic" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_BlogComment_ToBlogEntry">
-    <End Role="BlogEntry" Type="Ebalit_WebFormsModel.Store.BlogEntries" Multiplicity="1" />
-    <End Role="BlogComment" Type="Ebalit_WebFormsModel.Store.BlogComments" Multiplicity="*" />
+    <End Role="BlogEntries" Type="Self.BlogEntries" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BlogComments" Type="Self.BlogComments" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="BlogEntry">
+      <Principal Role="BlogEntries">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="BlogComment">
+      <Dependent Role="BlogComments">
         <PropertyRef Name="FK_BlogEntry" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Task_ToTaskCategory">
-    <End Role="TaskCategory" Type="Ebalit_WebFormsModel.Store.TaskCategories" Multiplicity="0..1" />
-    <End Role="Task" Type="Ebalit_WebFormsModel.Store.Tasks" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TaskCategory">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Task">
-        <PropertyRef Name="FK_TaskCategory" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TaskComment_ToTask">
-    <End Role="Task" Type="Ebalit_WebFormsModel.Store.Tasks" Multiplicity="1" />
-    <End Role="TaskComment" Type="Ebalit_WebFormsModel.Store.TaskComments" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Task">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TaskComment">
-        <PropertyRef Name="FK_Task" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_WineToWineAttribute_ToWine">
-    <End Role="Wine" Type="Ebalit_WebFormsModel.Store.Wines" Multiplicity="1" />
-    <End Role="WineToWineAttribute" Type="Ebalit_WebFormsModel.Store.WineToWineAttributes" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Wine">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="WineToWineAttribute">
-        <PropertyRef Name="FK_Wine" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_WineToWineAttribute_ToWineAttribute">
-    <End Role="WineAttribute" Type="Ebalit_WebFormsModel.Store.WineAttributes" Multiplicity="1" />
-    <End Role="WineToWineAttribute" Type="Ebalit_WebFormsModel.Store.WineToWineAttributes" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="WineAttribute">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="WineToWineAttribute">
-        <PropertyRef Name="FK_WineAttribute" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_WineConsumation_ToWine">
-    <End Role="Wine" Type="Ebalit_WebFormsModel.Store.Wines" Multiplicity="1" />
-    <End Role="WineConsumation" Type="Ebalit_WebFormsModel.Store.WineConsumations" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Wine">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="WineConsumation">
-        <PropertyRef Name="FK_Wine" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProjectUserAssignment_aspnet_Users">
-    <End Role="aspnet_Users" Type="Ebalit_WebFormsModel.Store.aspnet_Users" Multiplicity="0..1" />
-    <End Role="ProjectUserAssignment" Type="Ebalit_WebFormsModel.Store.ProjectUserAssignments" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="aspnet_Users">
-        <PropertyRef Name="UserId" />
-      </Principal>
-      <Dependent Role="ProjectUserAssignment">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ProjectResources_ProjectProject">
-    <End Role="ProjectProject" Type="Ebalit_WebFormsModel.Store.ProjectProjects" Multiplicity="0..1" />
-    <End Role="ProjectResource" Type="Ebalit_WebFormsModel.Store.ProjectResources" Multiplicity="*" />
+    <End Role="ProjectProjects" Type="Self.ProjectProjects" Multiplicity="0..1" />
+    <End Role="ProjectResources" Type="Self.ProjectResources" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ProjectProject">
+      <Principal Role="ProjectProjects">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="ProjectResource">
-        <PropertyRef Name="ProjectId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProjectTask_ProjectProject">
-    <End Role="ProjectProject" Type="Ebalit_WebFormsModel.Store.ProjectProjects" Multiplicity="0..1" />
-    <End Role="ProjectTask" Type="Ebalit_WebFormsModel.Store.ProjectTasks" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProjectProject">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProjectTask">
+      <Dependent Role="ProjectResources">
         <PropertyRef Name="ProjectId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProjectResourceTaskAssignment_ProjectResources">
-    <End Role="ProjectResource" Type="Ebalit_WebFormsModel.Store.ProjectResources" Multiplicity="0..1" />
-    <End Role="ProjectResourceTaskAssignment" Type="Ebalit_WebFormsModel.Store.ProjectResourceTaskAssignments" Multiplicity="*" />
+    <End Role="ProjectResources" Type="Self.ProjectResources" Multiplicity="0..1" />
+    <End Role="ProjectResourceTaskAssignments" Type="Self.ProjectResourceTaskAssignments" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ProjectResource">
+      <Principal Role="ProjectResources">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="ProjectResourceTaskAssignment">
-        <PropertyRef Name="ResourceId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProjectUserAssignment_ProjectResources">
-    <End Role="ProjectResource" Type="Ebalit_WebFormsModel.Store.ProjectResources" Multiplicity="0..1" />
-    <End Role="ProjectUserAssignment" Type="Ebalit_WebFormsModel.Store.ProjectUserAssignments" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProjectResource">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProjectUserAssignment">
+      <Dependent Role="ProjectResourceTaskAssignments">
         <PropertyRef Name="ResourceId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProjectResourceTaskAssignment_ProjectTask">
-    <End Role="ProjectTask" Type="Ebalit_WebFormsModel.Store.ProjectTasks" Multiplicity="0..1" />
-    <End Role="ProjectResourceTaskAssignment" Type="Ebalit_WebFormsModel.Store.ProjectResourceTaskAssignments" Multiplicity="*" />
+    <End Role="ProjectTasks" Type="Self.ProjectTasks" Multiplicity="0..1" />
+    <End Role="ProjectResourceTaskAssignments" Type="Self.ProjectResourceTaskAssignments" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ProjectTask">
+      <Principal Role="ProjectTasks">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="ProjectResourceTaskAssignment">
+      <Dependent Role="ProjectResourceTaskAssignments">
         <PropertyRef Name="TaskId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ProjectWorkingReport_ProjectProject">
-    <End Role="ProjectProject" Type="Ebalit_WebFormsModel.Store.ProjectProjects" Multiplicity="0..1" />
-    <End Role="ProjectWorkingReport" Type="Ebalit_WebFormsModel.Store.ProjectWorkingReports" Multiplicity="*" />
+  <Association Name="FK_ProjectTask_ProjectProject">
+    <End Role="ProjectProjects" Type="Self.ProjectProjects" Multiplicity="0..1" />
+    <End Role="ProjectTasks" Type="Self.ProjectTasks" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ProjectProject">
+      <Principal Role="ProjectProjects">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="ProjectWorkingReport">
+      <Dependent Role="ProjectTasks">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectUserAssignment_aspnet_Users">
+    <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="0..1" />
+    <End Role="ProjectUserAssignments" Type="Self.ProjectUserAssignments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="ProjectUserAssignments">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectUserAssignment_ProjectResources">
+    <End Role="ProjectResources" Type="Self.ProjectResources" Multiplicity="0..1" />
+    <End Role="ProjectUserAssignments" Type="Self.ProjectUserAssignments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectResources">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectUserAssignments">
+        <PropertyRef Name="ResourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectWorkingReport_ProjectProject">
+    <End Role="ProjectProjects" Type="Self.ProjectProjects" Multiplicity="0..1" />
+    <End Role="ProjectWorkingReports" Type="Self.ProjectWorkingReports" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectProjects">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectWorkingReports">
         <PropertyRef Name="ProjectId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProjectWorkingReport_ProjectResources">
-    <End Role="ProjectResource" Type="Ebalit_WebFormsModel.Store.ProjectResources" Multiplicity="0..1" />
-    <End Role="ProjectWorkingReport" Type="Ebalit_WebFormsModel.Store.ProjectWorkingReports" Multiplicity="*" />
+    <End Role="ProjectResources" Type="Self.ProjectResources" Multiplicity="0..1" />
+    <End Role="ProjectWorkingReports" Type="Self.ProjectWorkingReports" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ProjectResource">
+      <Principal Role="ProjectResources">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="ProjectWorkingReport">
+      <Dependent Role="ProjectWorkingReports">
         <PropertyRef Name="ResourceId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProjectWorkingReport_ProjectTask">
-    <End Role="ProjectTask" Type="Ebalit_WebFormsModel.Store.ProjectTasks" Multiplicity="0..1" />
-    <End Role="ProjectWorkingReport" Type="Ebalit_WebFormsModel.Store.ProjectWorkingReports" Multiplicity="*" />
+    <End Role="ProjectTasks" Type="Self.ProjectTasks" Multiplicity="0..1" />
+    <End Role="ProjectWorkingReports" Type="Self.ProjectWorkingReports" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ProjectTask">
+      <Principal Role="ProjectTasks">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="ProjectWorkingReport">
+      <Dependent Role="ProjectWorkingReports">
         <PropertyRef Name="TaskId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Task_ToTaskCategory">
+    <End Role="TaskCategories" Type="Self.TaskCategories" Multiplicity="0..1" />
+    <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskCategories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tasks">
+        <PropertyRef Name="FK_TaskCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskComment_ToTask">
+    <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+    <End Role="TaskComments" Type="Self.TaskComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tasks">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskComments">
+        <PropertyRef Name="FK_Task" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WineConsumation_ToWine">
+    <End Role="Wines" Type="Self.Wines" Multiplicity="1" />
+    <End Role="WineConsumations" Type="Self.WineConsumations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Wines">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WineConsumations">
+        <PropertyRef Name="FK_Wine" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WineToWineAttribute_ToWine">
+    <End Role="Wines" Type="Self.Wines" Multiplicity="1" />
+    <End Role="WineToWineAttributes" Type="Self.WineToWineAttributes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Wines">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WineToWineAttributes">
+        <PropertyRef Name="FK_Wine" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WineToWineAttribute_ToWineAttribute">
+    <End Role="WineAttributes" Type="Self.WineAttributes" Multiplicity="1" />
+    <End Role="WineToWineAttributes" Type="Self.WineToWineAttributes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WineAttributes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WineToWineAttributes">
+        <PropertyRef Name="FK_WineAttribute" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Ebalit_WebFormsModelStoreContainer">
+    <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BlogCategories" EntityType="Self.BlogCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BlogComments" EntityType="Self.BlogComments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BlogEntries" EntityType="Self.BlogEntries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BlogTopics" EntityType="Self.BlogTopics" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectProjects" EntityType="Self.ProjectProjects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectResources" EntityType="Self.ProjectResources" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectResourceTaskAssignments" EntityType="Self.ProjectResourceTaskAssignments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectTasks" EntityType="Self.ProjectTasks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectUserAssignments" EntityType="Self.ProjectUserAssignments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectWorkingReports" EntityType="Self.ProjectWorkingReports" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskCategories" EntityType="Self.TaskCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskComments" EntityType="Self.TaskComments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WineAttributes" EntityType="Self.WineAttributes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WineConsumations" EntityType="Self.WineConsumations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Wines" EntityType="Self.Wines" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WineToWineAttributes" EntityType="Self.WineToWineAttributes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BlogCategory_BlogTopic" Association="Self.FK_BlogCategory_BlogTopic">
+      <End Role="BlogTopics" EntitySet="BlogTopics" />
+      <End Role="BlogCategories" EntitySet="BlogCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BlogComment_ToBlogEntry" Association="Self.FK_BlogComment_ToBlogEntry">
+      <End Role="BlogEntries" EntitySet="BlogEntries" />
+      <End Role="BlogComments" EntitySet="BlogComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectResources_ProjectProject" Association="Self.FK_ProjectResources_ProjectProject">
+      <End Role="ProjectProjects" EntitySet="ProjectProjects" />
+      <End Role="ProjectResources" EntitySet="ProjectResources" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectResourceTaskAssignment_ProjectResources" Association="Self.FK_ProjectResourceTaskAssignment_ProjectResources">
+      <End Role="ProjectResources" EntitySet="ProjectResources" />
+      <End Role="ProjectResourceTaskAssignments" EntitySet="ProjectResourceTaskAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectResourceTaskAssignment_ProjectTask" Association="Self.FK_ProjectResourceTaskAssignment_ProjectTask">
+      <End Role="ProjectTasks" EntitySet="ProjectTasks" />
+      <End Role="ProjectResourceTaskAssignments" EntitySet="ProjectResourceTaskAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectTask_ProjectProject" Association="Self.FK_ProjectTask_ProjectProject">
+      <End Role="ProjectProjects" EntitySet="ProjectProjects" />
+      <End Role="ProjectTasks" EntitySet="ProjectTasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectUserAssignment_aspnet_Users" Association="Self.FK_ProjectUserAssignment_aspnet_Users">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="ProjectUserAssignments" EntitySet="ProjectUserAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectUserAssignment_ProjectResources" Association="Self.FK_ProjectUserAssignment_ProjectResources">
+      <End Role="ProjectResources" EntitySet="ProjectResources" />
+      <End Role="ProjectUserAssignments" EntitySet="ProjectUserAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectWorkingReport_ProjectProject" Association="Self.FK_ProjectWorkingReport_ProjectProject">
+      <End Role="ProjectProjects" EntitySet="ProjectProjects" />
+      <End Role="ProjectWorkingReports" EntitySet="ProjectWorkingReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectWorkingReport_ProjectResources" Association="Self.FK_ProjectWorkingReport_ProjectResources">
+      <End Role="ProjectResources" EntitySet="ProjectResources" />
+      <End Role="ProjectWorkingReports" EntitySet="ProjectWorkingReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectWorkingReport_ProjectTask" Association="Self.FK_ProjectWorkingReport_ProjectTask">
+      <End Role="ProjectTasks" EntitySet="ProjectTasks" />
+      <End Role="ProjectWorkingReports" EntitySet="ProjectWorkingReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_ToTaskCategory" Association="Self.FK_Task_ToTaskCategory">
+      <End Role="TaskCategories" EntitySet="TaskCategories" />
+      <End Role="Tasks" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskComment_ToTask" Association="Self.FK_TaskComment_ToTask">
+      <End Role="Tasks" EntitySet="Tasks" />
+      <End Role="TaskComments" EntitySet="TaskComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WineConsumation_ToWine" Association="Self.FK_WineConsumation_ToWine">
+      <End Role="Wines" EntitySet="Wines" />
+      <End Role="WineConsumations" EntitySet="WineConsumations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WineToWineAttribute_ToWine" Association="Self.FK_WineToWineAttribute_ToWine">
+      <End Role="Wines" EntitySet="Wines" />
+      <End Role="WineToWineAttributes" EntitySet="WineToWineAttributes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WineToWineAttribute_ToWineAttribute" Association="Self.FK_WineToWineAttribute_ToWineAttribute">
+      <End Role="WineAttributes" EntitySet="WineAttributes" />
+      <End Role="WineToWineAttributes" EntitySet="WineToWineAttributes" />
+    </AssociationSet>
+  </EntityContainer>
 </Schema>
