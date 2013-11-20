@@ -149,7 +149,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             }
 
             EbalitDbContext.SaveChanges();
-            UpdateActualWork((int)workingReport.TaskId);
+            if (workingReport.TaskId != null) UpdateActualWork((int)workingReport.TaskId);
             return reportToUpdate;
         }
 
@@ -339,7 +339,6 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             }
         }
 
-
         /// <summary>
         /// Returns the full text path to the task with given guid
         /// </summary>
@@ -355,6 +354,5 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             }
             return GetTaskPath(task.Parent.ToString()) + "/" + task.Name;
         }
-
     }
 }

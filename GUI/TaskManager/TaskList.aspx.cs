@@ -232,7 +232,7 @@ namespace EbalitWebForms.GUI.TaskManager
             //Create the searchDTO according to the current field entries
             TaskSearchDTO searchDTO = GetTaskSearchDTO();
             IList<TaskToCsvDTO> csvObjs = taskBLL.GetFilteredTasksForCsv(searchDTO);
-            string csvlist = CSVBuilder<TaskToCsvDTO>.ToCsv(";", csvObjs);
+            string csvlist = CSVBuilder.ToCsv<TaskToCsvDTO>(";", csvObjs);
             SendFileToClient(csvlist);
         }
 
@@ -288,9 +288,7 @@ namespace EbalitWebForms.GUI.TaskManager
                         case "ddlTaskStatus":
                             senderDdl.Items.SetSelectedItems(taskSearchDTO.TaskStatus);
                             break;
-                        default:
                             //error - should not occur
-                            break;
                     }
                 }
 
@@ -316,7 +314,7 @@ namespace EbalitWebForms.GUI.TaskManager
             }
 
             ViewState["orderByString"] = e.CommandArgument;
-            this.lvwTasks.DataBind();
+            lvwTasks.DataBind();
         }
 
     }

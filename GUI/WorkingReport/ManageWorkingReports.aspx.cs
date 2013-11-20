@@ -5,8 +5,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using EbalitWebForms.BusinessLogicLayer;
 using EbalitWebForms.BusinessLogicLayer.DTO;
 using EbalitWebForms.BusinessLogicLayer.WorkingReport;
+using EbalitWebForms.Common;
+using EbalitWebForms.GUI.WebUserControls;
 
 namespace EbalitWebForms.GUI.WorkingReport
 {
@@ -233,6 +236,24 @@ namespace EbalitWebForms.GUI.WorkingReport
                     args.IsValid = false;
                 }
             }
+        }
+
+        /// <summary>
+        /// Export data to csv file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void lnkExport_OnCommand(object sender, CommandEventArgs e)
+        {
+            var workingReportBll = new WorkingReportBll();
+            var dataList = workingReportBll.
+                GetWorkingReports((WorkingReportFindDto) ViewState["findDto"]).
+                ForEach(cc=>cc.ToCsvDto());
+
+            var data = CSVBuilder.ToCsv(";", dataList);
+
+            FileDownloader.Data = data;
+            FileDownloader.SendFileToClient();
         }
     }
 }

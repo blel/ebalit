@@ -13,17 +13,19 @@ namespace EbalitWebForms.BusinessLogicLayer
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class CSVBuilder<T>
+    public class CSVBuilder
 
     {
         public static string ToCsv<T>(string separator, IEnumerable<T> objectlist)
         {
-            Type t = typeof(T);
-            PropertyInfo[] fields = t.GetProperties();
+            var t = typeof(T);
 
-            string header = String.Join(separator, fields.Select(f => f.Name).ToArray());
+            var fields = t.GetProperties();
 
-            StringBuilder csvdata = new StringBuilder();
+
+            var header = String.Join(separator, fields.Select(f => f.Name).ToArray());
+
+            var csvdata = new StringBuilder();
             csvdata.AppendLine(header);
 
             foreach (var o in objectlist)

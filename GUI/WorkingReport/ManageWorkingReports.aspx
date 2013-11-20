@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/GUI/ProtectedSites/ToolsMaster.master" AutoEventWireup="true" CodeBehind="ManageWorkingReports.aspx.cs" Inherits="EbalitWebForms.GUI.WorkingReport.ManageWorkingReports" %>
 
 <%@ Register Assembly="EbalitWebForms" Namespace="EbalitWebForms.Common" TagPrefix="cc1" %>
+<%@ Register Src="~/GUI/WebUserControls/FileDownloader.ascx" TagPrefix="uc1" TagName="FileDownloader" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ToolsContent" runat="server">
     <asp:ObjectDataSource ID="odsWorkingReports" runat="server"
@@ -22,6 +24,7 @@
     </asp:ObjectDataSource>
     <cc1:HierarchicalTaskDataSource ID="htsTasks" runat="server" OnSelecting="htsTasks_OnSelecting"></cc1:HierarchicalTaskDataSource>
     <ajaxToolkit:ToolkitScriptManager ID="scmAjaxToolkit" runat="server" EnableScriptGlobalization="true" EnableScriptLocalization="true"></ajaxToolkit:ToolkitScriptManager>
+    <uc1:FileDownloader runat="server" id="FileDownloader" FileName="WorkingReports"/>
     <div id="Container">
         <div id="CommentsPopup" class="Popup">
             <asp:Panel ID="Panel1" runat="server" Height="600" ScrollBars="Vertical">
@@ -87,7 +90,7 @@
                         <asp:LinkButton ID="lnkFind" runat="server" CausesValidation="true"  CssClass="CommandButton" OnCommand="lnkFind_OnCommand">Find</asp:LinkButton>&nbsp;
                         <asp:LinkButton ID="lnkClear" runat="server" CausesValidation="false" CssClass="CommandButton" OnCommand="lnkClear_OnCommand">Clear</asp:LinkButton>&nbsp;
                         <asp:LinkButton ID="lnkCreate" runat="server" CausesValidation="false" CssClass="CommandButton" OnCommand="lnkCreate_Command">Create</asp:LinkButton>&nbsp;
-                        <asp:LinkButton ID="lnkExport" runat="server" CausesValidation="false" CssClass="CommandButton">Export</asp:LinkButton>
+                        <asp:LinkButton ID="lnkExport" runat="server" CausesValidation="false" CssClass="CommandButton" OnCommand="lnkExport_OnCommand">Export</asp:LinkButton>
                     </asp:TableCell>
                 </asp:TableFooterRow>
             </asp:Table>

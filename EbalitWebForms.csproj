@@ -107,6 +107,7 @@
     <Content Include="GUI\WebUserControls\Archive.ascx" />
     <Content Include="GUI\WebUserControls\BlogContentUserControl.ascx" />
     <Content Include="GUI\WebUserControls\CategoryBrowser.ascx" />
+    <Content Include="GUI\WebUserControls\FileDownloader.ascx" />
     <Content Include="GUI\WebUserControls\SearchUserControl.ascx" />
     <Content Include="GUI\WebUserControls\TimeControl.ascx" />
     <Content Include="GUI\WineDatabase\CreateConsumation.aspx" />
@@ -138,6 +139,7 @@
   <ItemGroup>
     <Compile Include="BusinessLogicLayer\CSVBuilder.cs" />
     <Compile Include="BusinessLogicLayer\DTO\WorkingReportFindDto.cs" />
+    <Compile Include="BusinessLogicLayer\DTO\WorkingReportToCsvDto.cs" />
     <Compile Include="BusinessLogicLayer\IRepository.cs" />
     <Compile Include="BusinessLogicLayer\MailManager.cs" />
     <Compile Include="BusinessLogicLayer\User\MembershipBll.cs" />
@@ -189,6 +191,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Ebalit_WebFormsModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataLayer\EntityExtensions\ProjectWorkingReport.cs" />
     <Compile Include="DataLayer\ProjectProject.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>
@@ -319,6 +322,13 @@
     </Compile>
     <Compile Include="GUI\WebUserControls\CategoryBrowser.ascx.designer.cs">
       <DependentUpon>CategoryBrowser.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WebUserControls\FileDownloader.ascx.cs">
+      <DependentUpon>FileDownloader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\WebUserControls\FileDownloader.ascx.designer.cs">
+      <DependentUpon>FileDownloader.ascx</DependentUpon>
     </Compile>
     <Compile Include="GUI\WebUserControls\SearchUserControl.ascx.cs">
       <DependentUpon>SearchUserControl.ascx</DependentUpon>
