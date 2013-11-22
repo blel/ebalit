@@ -346,13 +346,17 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public string GetTaskPath(string taskGuid)
         {
-            var taskRealGuid = Guid.Parse(taskGuid);
-            var task = EbalitDbContext.ProjectTasks.Include("ProjectProject").Single(cc => cc.Guid == taskRealGuid);
-            if (task.Parent == task.ProjectProject.Guid)
+            if (!string.IsNullOrWhiteSpace(taskGuid))
             {
-                return task.Name;
+                var taskRealGuid = Guid.Parse(taskGuid);
+                var task = EbalitDbContext.ProjectTasks.Include("ProjectProject").Single(cc => cc.Guid == taskRealGuid);
+                if (task.Parent == task.ProjectProject.Guid)
+                {
+                    return task.Name;
+                }
+                return GetTaskPath(task.Parent.ToString()) + "/" + task.Name;
             }
-            return GetTaskPath(task.Parent.ToString()) + "/" + task.Name;
+            return string.Empty;
         }
     }
 }
