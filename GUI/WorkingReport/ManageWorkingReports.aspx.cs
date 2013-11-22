@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using EbalitWebForms.BusinessLogicLayer;
 using EbalitWebForms.BusinessLogicLayer.DTO;
 using EbalitWebForms.BusinessLogicLayer.WorkingReport;
 using EbalitWebForms.Common;
-using EbalitWebForms.GUI.WebUserControls;
 
 namespace EbalitWebForms.GUI.WorkingReport
 {
@@ -19,6 +14,27 @@ namespace EbalitWebForms.GUI.WorkingReport
         {
             //TODO: This seems to work, but need to checkout why exactly...
             scmAjaxToolkit.RegisterPostBackControl(trvTask);
+
+            if (!IsPostBack)
+            {
+                //retrieve filter parameters from session and update fields with
+                //appropriate values
+                var findDto = (WorkingReportFindDto) Session["findDto"];
+                if (findDto != null)
+                {
+                    txtDateFrom.Text = string.Format("{0:d}",findDto.From);
+
+                    txtDateTo.Text = string.Format("{0:d}", findDto.To);
+
+                    ddlProjects.SelectedValue = findDto.ProjectId.ToString();
+
+                    ddlResource.SelectedValue = findDto.ResourceId.ToString();
+
+                    ViewState.Add("taskGuid", findDto.TaskGuid);
+
+                    txtTaskDropDown.Text = new WorkingReportBll().GetTaskPath(findDto.TaskGuid);
+                }
+            }
         }
 
         /// <summary>
@@ -36,7 +52,6 @@ namespace EbalitWebForms.GUI.WorkingReport
             }
         }
 
-
         /// <summary>
         /// Assign selected text to the text box.
         /// </summary>
@@ -50,7 +65,7 @@ namespace EbalitWebForms.GUI.WorkingReport
         }
 
         /// <summary>
-        /// 
+        /// Go to create page when create button is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -193,17 +208,27 @@ namespace EbalitWebForms.GUI.WorkingReport
                TaskGuid = Convert.ToString(ViewState["taskGuid"])
            } ;
 
-            ViewState.Add("findDto", findDto);
+            Session.Add("findDto", findDto);
 
             lvwWorkingReports.DataBind();
         }
 
+        /// <summary>
+        /// Make sure filter is applied when selecting working reports
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void odsWorkingReports_OnSelecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
-            e.InputParameters["findDto"] = ViewState["findDto"];
+            e.InputParameters["findDto"] = Session["findDto"];
 
         }
 
+        /// <summary>
+        /// Clear all filter parameters and any stored view state or session parameters
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void lnkClear_OnCommand(object sender, CommandEventArgs e)
         {
             txtDateFrom.Text = string.Empty;
@@ -211,10 +236,18 @@ namespace EbalitWebForms.GUI.WorkingReport
             txtTaskDropDown.Text = string.Empty;
             ddlProjects.SelectedIndex = 0;
             ddlResource.SelectedIndex = 0;
+            Session.Remove("findDto");
+            ViewState.Remove("taskGuid");
 
 
         }
-
+        
+        /// <summary>
+        /// Check whether value is a valid datae
+        /// TODO: convert to custom control
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="args"></param>
         protected void vdtDate_OnServerValidate(object source, ServerValidateEventArgs args)
         {
             if (!string.IsNullOrWhiteSpace(args.Value))
@@ -247,7 +280,7 @@ namespace EbalitWebForms.GUI.WorkingReport
         {
             var workingReportBll = new WorkingReportBll();
             var dataList = workingReportBll.
-                GetWorkingReports((WorkingReportFindDto) ViewState["findDto"]).
+                GetWorkingReports((WorkingReportFindDto) Session["findDto"]).
                 ForEach(cc=>cc.ToCsvDto());
 
             var data = CSVBuilder.ToCsv(";", dataList);
