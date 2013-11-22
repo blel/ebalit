@@ -100,7 +100,7 @@ namespace EbalitWebForms.GUI.WorkingReport
 
             var cultureInfo = new CultureInfo("en-US");
 
-            var date = DateTime.Parse(GUIHelper.GetUSDate(e.OldValues["From"].ToString()), cultureInfo.DateTimeFormat);
+            var date = DateTime.Parse(GUIHelper.GetUSDate(((TextBox)dtvCreateWorkingReport.FindControl("txtDate")).Text), cultureInfo.DateTimeFormat);
 
 
             e.NewValues["From"] = new DateTime(date.Year, date.Month, date.Day, fromTime.Hour, fromTime.Minute, 0);
