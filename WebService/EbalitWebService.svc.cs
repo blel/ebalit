@@ -61,7 +61,9 @@ namespace EbalitWebForms.WebService
             using (var context = new Ebalit_WebFormsEntities())
             {
                 return (from projectEntity in context.ProjectProjects
-                        where projectEntity.Guid == project.UniqueIdentifier
+                        //where projectEntity.Guid == project.UniqueIdentifier
+                        //TODO: validate if this is a good idea just to replace guid with name...
+                        where projectEntity.Name == project.Name
                         select projectEntity).Any();
             }
         }

@@ -91,7 +91,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataLayer\Change_ProjectUserAssignment_UserId_to_UserName.sql" />
     <Content Include="DataLayer\Ebalit_WebFormsModel.edmx.sql" />
+    <Content Include="DataLayer\Flush Project DB.sql" />
     <Content Include="GUI\ProtectedSites\CreateBlogEntry.aspx" />
     <Content Include="GUI\ProtectedSites\AdminIndex.aspx" />
     <Content Include="GUI\ProtectedSites\BlogEntries.aspx" />

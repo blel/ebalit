@@ -41,5 +41,18 @@ namespace EbalitWebForms.WebService
         [DataMember]
         public double ActualWork { get; set; }
 
+        /// <summary>
+        /// The TFS taks id.
+        /// This will replace the Guid
+        /// </summary>
+        [DataMember]
+        public string TfsTaskId { get; set; }
+
+        /// <summary>
+        /// The parent tfs task id.
+        /// </summary>
+        [DataMember]
+        public string ParentTfsTaskId { get; set; }
+
     }
 }

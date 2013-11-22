@@ -43,7 +43,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar(max)" />
     <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="ProjectResources">
@@ -71,7 +71,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar(max)" />
     <Property Name="Parent" Type="uniqueidentifier" />
     <Property Name="ProjectId" Type="int" />
     <Property Name="ActualWork" Type="float" />
@@ -198,7 +198,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_BlogComment_ToBlogEntry">
-    <End Role="BlogEntries" Type="Self.BlogEntries" Multiplicity="1" />
+    <End Role="BlogEntries" Type="Self.BlogEntries" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="BlogComments" Type="Self.BlogComments" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="BlogEntries">
@@ -209,7 +211,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_BlogEntry_ToBlogCategory">
+  <Association Name="FK_BlogEntries_BlogCategories">
     <End Role="BlogCategories" Type="Self.BlogCategories" Multiplicity="1" />
     <End Role="BlogEntries" Type="Self.BlogEntries" Multiplicity="*" />
     <ReferentialConstraint>
@@ -403,7 +405,7 @@
       <End Role="BlogEntries" EntitySet="BlogEntries" />
       <End Role="BlogComments" EntitySet="BlogComments" />
     </AssociationSet>
-    <AssociationSet Name="FK_BlogEntry_ToBlogCategory" Association="Self.FK_BlogEntry_ToBlogCategory">
+    <AssociationSet Name="FK_BlogEntries_BlogCategories" Association="Self.FK_BlogEntries_BlogCategories">
       <End Role="BlogCategories" EntitySet="BlogCategories" />
       <End Role="BlogEntries" EntitySet="BlogEntries" />
     </AssociationSet>
