@@ -5,39 +5,39 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="bb473dfd97f1433a85b00623fad3fd99" Name="Diagram1" ZoomLevel="77">
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogCategory" PointX="6.25" PointY="8.125" Width="1.5" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogEntry" PointX="3.875" PointY="6.625" Width="1.5" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogTopic" PointX="8.75" PointY="8.125" Width="1.5" />
-        <AssociationConnector Association="Ebalit_WebFormsModel.FK_BlogEntry_ToBlogCategory" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogCategory" Width="1.5" PointX="13" PointY="6.25" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogComment" Width="1.5" PointX="17.5" PointY="6" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogEntry" Width="1.5" PointX="15.25" PointY="6" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogTopic" Width="1.5" PointX="10.75" PointY="6.375" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectProject" Width="1.5" PointX="0.75" PointY="6.5" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectResource" Width="1.5" PointX="3" PointY="4.375" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectResourceTaskAssignment" Width="1.5" PointX="8.25" PointY="6.5" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectTask" Width="1.5" PointX="3" PointY="7.875" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectUserAssignment" Width="1.5" PointX="5.25" PointY="4.875" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectWorkingReport" Width="1.5" PointX="5.25" PointY="8" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.TaskCategory" Width="1.5" PointX="7.75" PointY="2" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.TaskComment" Width="1.5" PointX="12.25" PointY="1.625" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.Task" Width="1.5" PointX="10" PointY="1" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.WineAttribute" Width="1.5" PointX="7.75" PointY="16.375" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.WineConsumation" Width="1.5" PointX="10" PointY="14.25" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.Wine" Width="1.5" PointX="7.75" PointY="11.375" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.WineToWineAttribute" Width="1.5" PointX="10" PointY="11.25" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_BlogCategory_BlogTopic" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogComment" PointX="6.25" PointY="5" Width="1.5" />
+        <AssociationConnector Association="Ebalit_WebFormsModel.FK_BlogEntries_BlogCategories" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_BlogComment_ToBlogEntry" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.Task" PointX="3.125" PointY="12.75" Width="1.5" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.TaskCategory" PointX="5.75" PointY="12.875" Width="1.5" />
-        <AssociationConnector Association="Ebalit_WebFormsModel.FK_Task_ToTaskCategory" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.TaskComment" PointX="0.75" PointY="12.5" Width="1.5" />
-        <AssociationConnector Association="Ebalit_WebFormsModel.FK_TaskComment_ToTask" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.Wine" PointX="3.5" PointY="18.375" Width="1.5" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.WineAttribute" PointX="5.5" PointY="22.25" Width="1.5" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.WineToWineAttribute" PointX="5.75" PointY="19.625" Width="1.5" />
-        <AssociationConnector Association="Ebalit_WebFormsModel.FK_WineToWineAttribute_ToWine" />
-        <AssociationConnector Association="Ebalit_WebFormsModel.FK_WineToWineAttribute_ToWineAttribute" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.WineConsumation" PointX="0.625" PointY="19.75" Width="1.5" />
-        <AssociationConnector Association="Ebalit_WebFormsModel.FK_WineConsumation_ToWine" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectResource" PointX="8.625" PointY="18.5" Width="2.125" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectProject" PointX="16.25" PointY="18.5" Width="1.5" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectResourceTaskAssignment" PointX="9.75" PointY="23.25" Width="2.5" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectTask" PointX="13" PointY="23.25" Width="1.75" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectUserAssignment" PointX="7.75" PointY="26.375" Width="2.5" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectResources_ProjectProject" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectTask_ProjectProject" />
+        <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectProject" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectResourceTaskAssignment_ProjectResources" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectUserAssignment_ProjectResources" />
-        <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectResourceTaskAssignment_ProjectTask" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectWorkingReport" PointX="13" PointY="19.375" Width="2" />
-        <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectProject" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectResources" />
+        <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectResourceTaskAssignment_ProjectTask" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectTask" />
+        <AssociationConnector Association="Ebalit_WebFormsModel.FK_Task_ToTaskCategory" />
+        <AssociationConnector Association="Ebalit_WebFormsModel.FK_TaskComment_ToTask" />
+        <AssociationConnector Association="Ebalit_WebFormsModel.FK_WineToWineAttribute_ToWineAttribute" />
+        <AssociationConnector Association="Ebalit_WebFormsModel.FK_WineConsumation_ToWine" />
+        <AssociationConnector Association="Ebalit_WebFormsModel.FK_WineToWineAttribute_ToWine" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
