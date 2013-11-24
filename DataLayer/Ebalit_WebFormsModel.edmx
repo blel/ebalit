@@ -81,6 +81,8 @@
           <Property Name="ProjectId" Type="int" />
           <Property Name="ActualWork" Type="float" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="TfsTaskId" Type="nvarchar" MaxLength="10" />
+          <Property Name="ParentTfsTaskId" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="ProjectUserAssignments">
           <Key>
@@ -841,6 +843,8 @@
           <Property Name="ActualWork" Type="Double" />
           <NavigationProperty Name="ProjectWorkingReports" Relationship="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectTask" FromRole="ProjectTask" ToRole="ProjectWorkingReport" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="TfsTaskId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ParentTfsTaskId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ProjectUserAssignment">
           <Key>
@@ -1138,7 +1142,9 @@
     <EntitySetMapping Name="ProjectTasks">
       <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.ProjectTask)">
         <MappingFragment StoreEntitySet="ProjectTasks">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ParentTfsTaskId" ColumnName="ParentTfsTaskId" />
+                <ScalarProperty Name="TfsTaskId" ColumnName="TfsTaskId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Guid" ColumnName="Guid" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Parent" ColumnName="Parent" />

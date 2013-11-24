@@ -370,6 +370,8 @@
     <Property Name="ActualWork" Type="Double" />
     <NavigationProperty Name="ProjectWorkingReports" Relationship="Ebalit_WebFormsModel.FK_ProjectWorkingReport_ProjectTask" FromRole="ProjectTask" ToRole="ProjectWorkingReport" />
     <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="TfsTaskId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ParentTfsTaskId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="ProjectUserAssignment">
     <Key>

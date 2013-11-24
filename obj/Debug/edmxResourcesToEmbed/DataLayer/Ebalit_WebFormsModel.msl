@@ -170,6 +170,8 @@
     <EntitySetMapping Name="ProjectTasks">
       <EntityTypeMapping TypeName="IsTypeOf(Ebalit_WebFormsModel.ProjectTask)">
         <MappingFragment StoreEntitySet="ProjectTasks">
+          <ScalarProperty Name="ParentTfsTaskId" ColumnName="ParentTfsTaskId" />
+          <ScalarProperty Name="TfsTaskId" ColumnName="TfsTaskId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Guid" ColumnName="Guid" />
           <ScalarProperty Name="Name" ColumnName="Name" />

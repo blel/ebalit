@@ -48,7 +48,9 @@ namespace EbalitWebForms.WebService
                 Name = task.Name,
                 Guid = task.Guid,
                 Parent = task.ParentGuid,
-                ActualWork = task.ActualWork
+                ActualWork = task.ActualWork,
+                TfsTaskId = task.TfsTaskId,
+                ParentTfsTaskId = task.ParentTfsTaskId
             }).ToList();
         }
 
@@ -56,7 +58,7 @@ namespace EbalitWebForms.WebService
         /// Returns the resources of the ProjectDto as a list of resource entities
         /// </summary>
         /// <returns></returns>
-        public IList<ProjectResource> GetResourcesAsEntities()
+        public IList<ProjectResource>  GetResourcesAsEntities()
         {
             var resources = new List<ProjectResource>();
             foreach (var resourceDto in 

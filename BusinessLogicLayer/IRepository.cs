@@ -8,8 +8,8 @@ namespace EbalitWebForms.BusinessLogicLayer
     public interface IRepository<T>
     {
         T GetItemById(int id);
-        IList<T> GetItems();
-        IList<T> GetItems(string include);
+        List<T> GetItems();
+        List<T> GetItems(string include);
 
         int CreateItem(T item);
         void UpdateItem(T item);

@@ -76,6 +76,8 @@
     <Property Name="ProjectId" Type="int" />
     <Property Name="ActualWork" Type="float" />
     <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="TfsTaskId" Type="nvarchar" MaxLength="10" />
+    <Property Name="ParentTfsTaskId" Type="nvarchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="ProjectUserAssignments">
     <Key>

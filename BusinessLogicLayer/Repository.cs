@@ -22,12 +22,12 @@ namespace EbalitWebForms.BusinessLogicLayer
             return _dbSet.AsEnumerable().Where(cc => GetId(cc) == id).Select(cc => cc).FirstOrDefault();
         }
 
-        public IList<T> GetItems()
+        public List<T> GetItems()
         {
             return _dbSet.ToList();
         }
 
-        public IList<T> GetItems(string include)
+        public List<T> GetItems(string include)
         {
             return _dbSet.Include(include).ToList();
         }

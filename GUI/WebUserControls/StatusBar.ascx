@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="StatusBar.ascx.cs" Inherits="EbalitWebForms.GUI.WebUserControls.StatusBar" %>
+<asp:Label ID="lblStatus" runat="server" Text="" ForeColor="Red"></asp:Label>

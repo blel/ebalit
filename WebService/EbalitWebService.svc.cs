@@ -85,6 +85,8 @@ namespace EbalitWebForms.WebService
                     ProjectResources = project.GetResourcesAsEntities(),
                     //create the depending tasks
                     ProjectTasks = project.GetTasksAsEntities()
+                 
+                    
                 };
                 //add project to context
                 context.ProjectProjects.Add(projectEntity);

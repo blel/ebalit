@@ -111,6 +111,7 @@
     <Content Include="GUI\WebUserControls\CategoryBrowser.ascx" />
     <Content Include="GUI\WebUserControls\FileDownloader.ascx" />
     <Content Include="GUI\WebUserControls\SearchUserControl.ascx" />
+    <Content Include="GUI\WebUserControls\StatusBar.ascx" />
     <Content Include="GUI\WebUserControls\TimeControl.ascx" />
     <Content Include="GUI\WineDatabase\CreateConsumation.aspx" />
     <Content Include="GUI\WineDatabase\CreateWine.aspx" />
@@ -118,7 +119,9 @@
     <Content Include="GUI\WineDatabase\ManageWineAttribute.aspx" />
     <Content Include="GUI\WineDatabase\ManageWines.aspx" />
     <Content Include="GUI\WorkingReport\AdminWorkingReport.aspx" />
+    <Content Include="GUI\WorkingReport\CreateProject.aspx" />
     <Content Include="GUI\WorkingReport\CreateWorkingReport.aspx" />
+    <Content Include="GUI\WorkingReport\ManageProjects.aspx" />
     <Content Include="GUI\WorkingReport\ManageWorkingReports.aspx" />
     <Content Include="Index.html" />
     <Content Include="GUI\ProtectedSites\ToolsMaster.master" />
@@ -153,6 +156,7 @@
     <Compile Include="BusinessLogicLayer\DTO\TaskToCsvDTO.cs" />
     <Compile Include="BusinessLogicLayer\Tests.cs" />
     <Compile Include="BusinessLogicLayer\WineBLL.cs" />
+    <Compile Include="BusinessLogicLayer\WorkingReport\ProjectBll.cs" />
     <Compile Include="BusinessLogicLayer\WorkingReport\WorkingReportBLL.cs" />
     <Compile Include="Common\Extensions.cs" />
     <Compile Include="Common\HierarchicalTaskDataSource.cs" />
@@ -339,6 +343,13 @@
     <Compile Include="GUI\WebUserControls\SearchUserControl.ascx.designer.cs">
       <DependentUpon>SearchUserControl.ascx</DependentUpon>
     </Compile>
+    <Compile Include="GUI\WebUserControls\StatusBar.ascx.cs">
+      <DependentUpon>StatusBar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\WebUserControls\StatusBar.ascx.designer.cs">
+      <DependentUpon>StatusBar.ascx</DependentUpon>
+    </Compile>
     <Compile Include="GUI\WebUserControls\TimeControl.ascx.cs">
       <DependentUpon>TimeControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -388,12 +399,26 @@
     <Compile Include="GUI\WorkingReport\AdminWorkingReport.aspx.designer.cs">
       <DependentUpon>AdminWorkingReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GUI\WorkingReport\CreateProject.aspx.cs">
+      <DependentUpon>CreateProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\WorkingReport\CreateProject.aspx.designer.cs">
+      <DependentUpon>CreateProject.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GUI\WorkingReport\CreateWorkingReport.aspx.cs">
       <DependentUpon>CreateWorkingReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GUI\WorkingReport\CreateWorkingReport.aspx.designer.cs">
       <DependentUpon>CreateWorkingReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WorkingReport\ManageProjects.aspx.cs">
+      <DependentUpon>ManageProjects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\WorkingReport\ManageProjects.aspx.designer.cs">
+      <DependentUpon>ManageProjects.aspx</DependentUpon>
     </Compile>
     <Compile Include="GUI\WorkingReport\ManageWorkingReports.aspx.cs">
       <DependentUpon>ManageWorkingReports.aspx</DependentUpon>
