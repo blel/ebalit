@@ -13,12 +13,28 @@ namespace EbalitWebForms.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select EbalitWebService.svc or EbalitWebService.svc.cs at the Solution Explorer and start debugging.
     public class EbalitWebService : IEbalitWebService
     {
+        #region IEbalitWebService Members
+
+        public IList<ProjectDto> GetProjects()
+        {
+            using (var context = new Ebalit_WebFormsEntities())
+            {
+                return context.ProjectProjects.Select(cc => new ProjectDto
+                {
+                    Name = cc.Name,
+                    UniqueIdentifier = cc.Guid
+                }).ToList();
+            }
+        }
+
+
         /// <summary>
         /// Creates or updates the project on the server
         /// </summary>
         /// <param name="project">Project Dto</param>
-        public void UpdateProject(ProjectDto project)
+        public IList<ResourceDto> UpdateProject(ProjectDto project)
         {
+            var returnList = new List<ResourceDto>();
             if (IsProjectExisting(project))
             {
                 SyncProjects(project);
@@ -27,6 +43,8 @@ namespace EbalitWebForms.WebService
             {
                 CreateProject(project);
             }
+
+            return returnList;
         }
 
         /// <summary>
@@ -37,7 +55,7 @@ namespace EbalitWebForms.WebService
         public IList<TaskDto> GetActualWork(ProjectDto project)
         {
             var taskDtos = new List<TaskDto>();
-
+            //TODO: throws an error if sequence contains no elements
             using (var context = new Ebalit_WebFormsEntities())
             {
                 taskDtos.AddRange(context.ProjectProjects.Single(cc => cc.Guid == project.UniqueIdentifier).ProjectTasks.Select(taskEntity => new TaskDto
@@ -50,6 +68,8 @@ namespace EbalitWebForms.WebService
             return taskDtos;
         }
 
+        #endregion
+
         /// <summary>
         /// Checks whether there is a project in the database with 
         /// same guid as dto
@@ -61,9 +81,7 @@ namespace EbalitWebForms.WebService
             using (var context = new Ebalit_WebFormsEntities())
             {
                 return (from projectEntity in context.ProjectProjects
-                        //where projectEntity.Guid == project.UniqueIdentifier
-                        //TODO: validate if this is a good idea just to replace guid with name...
-                        where projectEntity.Name == project.Name
+                        where projectEntity.Guid == project.UniqueIdentifier
                         select projectEntity).Any();
             }
         }
@@ -74,6 +92,7 @@ namespace EbalitWebForms.WebService
         /// <param name="project"></param>
         private void CreateProject(ProjectDto project)
         {
+            var resources = new List<ResourceDto>();
             using (var context = new Ebalit_WebFormsEntities())
             {
                 //create the project entity
@@ -328,6 +347,8 @@ namespace EbalitWebForms.WebService
                 projectTask.ProjectResourceTaskAssignments.Add(taskResourceAssignment);
             }
         }
+
+ 
     }
 }
 

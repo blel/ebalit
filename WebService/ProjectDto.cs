@@ -61,18 +61,15 @@ namespace EbalitWebForms.WebService
         public IList<ProjectResource>  GetResourcesAsEntities()
         {
             var resources = new List<ProjectResource>();
-            foreach (var resourceDto in 
-                from task in Tasks 
-                from resourceDto in task.Resources 
-                where resources.All(cc => cc.Guid != resourceDto.Guid) 
-                select resourceDto)
-            {
-                resources.Add(new ProjectResource
+            foreach (TaskDto task in Tasks)
+                foreach (ResourceDto resourceDto in task.Resources)
                 {
-                    Name = resourceDto.Name,
-                    Guid = resourceDto.Guid,
-                });
-            }
+                    if (resources.All(cc => cc.Guid != resourceDto.Guid))
+                        resources.Add(new ProjectResource
+                        {
+                            Name = resourceDto.Name, Guid = resourceDto.Guid,
+                        });
+                }
             return resources;
         }
 

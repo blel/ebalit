@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Globalization;
 using System.Web.UI.WebControls;
+using CsvParser;
 using EbalitWebForms.BusinessLogicLayer;
+using EbalitWebForms.BusinessLogicLayer.CsvFileImport;
 using EbalitWebForms.BusinessLogicLayer.DTO;
 using EbalitWebForms.BusinessLogicLayer.WorkingReport;
 using EbalitWebForms.Common;
@@ -10,13 +12,20 @@ namespace EbalitWebForms.GUI.WorkingReport
 {
     public partial class ManageWorkingReports : System.Web.UI.Page
     {
+        private CsvParser<WorkingReportCsvFile> _parser; 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //TODO: This seems to work, but need to checkout why exactly...
             scmAjaxToolkit.RegisterPostBackControl(trvTask);
 
+            _parser = new CsvParser<WorkingReportCsvFile>();
+
+            _parser.ValidationErrorOccurred += parser_ValidationErrorOccurred;
+
             if (!IsPostBack)
             {
+                
                 //retrieve filter parameters from session and update fields with
                 //appropriate values
                 var findDto = (WorkingReportFindDto) Session["findDto"];
@@ -35,6 +44,12 @@ namespace EbalitWebForms.GUI.WorkingReport
                     txtTaskDropDown.Text = new WorkingReportBll().GetTaskPath(findDto.TaskGuid);
                 }
             }
+        }
+
+        void parser_ValidationErrorOccurred(int line, int col, string message)
+        {
+            StatusBar.StatusText = string.Format("File could not be imported: Error at line {0}, col {1}: {2}", line,
+                col, message);
         }
 
         /// <summary>
@@ -287,6 +302,28 @@ namespace EbalitWebForms.GUI.WorkingReport
 
             FileDownloader.Data = data;
             FileDownloader.SendFileToClient();
+        }
+
+        /// <summary>
+        /// Upload file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void lnkUpload_OnCommand(object sender, CommandEventArgs e)
+        {
+            if (fulCsvFileUpload.HasFile)
+            {
+                try
+                {
+                    var result = _parser.ReadFromStream(fulCsvFileUpload.FileContent, ";", true);
+                }
+                catch (Exception ex)
+                {
+                    
+                  
+                }
+                
+            }
         }
     }
 }

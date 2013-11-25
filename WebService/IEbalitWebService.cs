@@ -27,7 +27,17 @@ namespace EbalitWebForms.WebService
         /// </summary>
         /// <param name="project"></param>
         [OperationContract]
-        void UpdateProject(ProjectDto project);
+        IList<ResourceDto> UpdateProject(ProjectDto project);
+
+        /// <summary>
+        /// Returns a list of all available projects
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        IList<ProjectDto> GetProjects();
+
+
+
 
 
     }
