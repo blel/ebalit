@@ -2,17 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CsvParser;
 
 namespace EbalitWebForms.BusinessLogicLayer.CsvFileImport
 {
     public class WorkingReportCsvFile
     {
-        public string Date { get; set; }
+        [MandatoryField]
+        public string ResourceName { get; set; }
 
-        public string WorkingTime { get; set; }
+        [MandatoryField]
+        public DateTime Date { get; set; }
+
+        [MandatoryField]
+        public decimal WorkingTime { get; set; }
 
         public string Description { get; set; }
 
+        [MandatoryField]
         public string TfsTaskName { get; set; }
     }
 }

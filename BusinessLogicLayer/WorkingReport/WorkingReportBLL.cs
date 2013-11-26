@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Security;
+using EbalitWebForms.BusinessLogicLayer.CsvFileImport;
 using EbalitWebForms.BusinessLogicLayer.DTO;
 using EbalitWebForms.Common;
 using EbalitWebForms.DataLayer;
@@ -357,6 +358,21 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
                 return GetTaskPath(task.Parent.ToString()) + "/" + task.Name;
             }
             return string.Empty;
+        }
+
+        public void InsertManyWorkingReports(List<WorkingReportCsvFile> workingreportsCsvFile)
+        {
+            foreach (var workingReport in workingreportsCsvFile)
+            {
+                var workingReportEntity = new ProjectWorkingReport
+                {
+                    Notes = workingReport.Description,
+                    Total = workingReport.WorkingTime
+                    //todo: finish
+                };
+                EbalitDbContext.ProjectWorkingReports.Add(workingReportEntity);
+            }
+            EbalitDbContext.SaveChanges();
         }
     }
 }

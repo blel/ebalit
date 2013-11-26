@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Web.UI.WebControls;
 using CsvParser;
+using CSVParser;
 using EbalitWebForms.BusinessLogicLayer;
 using EbalitWebForms.BusinessLogicLayer.CsvFileImport;
 using EbalitWebForms.BusinessLogicLayer.DTO;
@@ -12,26 +13,22 @@ namespace EbalitWebForms.GUI.WorkingReport
 {
     public partial class ManageWorkingReports : System.Web.UI.Page
     {
-        private CsvParser<WorkingReportCsvFile> _parser; 
-
         protected void Page_Load(object sender, EventArgs e)
         {
             //TODO: This seems to work, but need to checkout why exactly...
             scmAjaxToolkit.RegisterPostBackControl(trvTask);
 
-            _parser = new CsvParser<WorkingReportCsvFile>();
 
-            _parser.ValidationErrorOccurred += parser_ValidationErrorOccurred;
 
             if (!IsPostBack)
             {
-                
+
                 //retrieve filter parameters from session and update fields with
                 //appropriate values
-                var findDto = (WorkingReportFindDto) Session["findDto"];
+                var findDto = (WorkingReportFindDto)Session["findDto"];
                 if (findDto != null)
                 {
-                    txtDateFrom.Text = string.Format("{0:d}",findDto.From);
+                    txtDateFrom.Text = string.Format("{0:d}", findDto.From);
 
                     txtDateTo.Text = string.Format("{0:d}", findDto.To);
 
@@ -46,11 +43,7 @@ namespace EbalitWebForms.GUI.WorkingReport
             }
         }
 
-        void parser_ValidationErrorOccurred(int line, int col, string message)
-        {
-            StatusBar.StatusText = string.Format("File could not be imported: Error at line {0}, col {1}: {2}", line,
-                col, message);
-        }
+
 
         /// <summary>
         /// When resources are selected from the db,
@@ -86,7 +79,7 @@ namespace EbalitWebForms.GUI.WorkingReport
         /// <param name="e"></param>
         protected void lnkCreate_Command(object sender, CommandEventArgs e)
         {
-            
+
             Response.Redirect("/GUI/WorkingReport/CreateWorkingReport.aspx");
         }
 
@@ -116,7 +109,7 @@ namespace EbalitWebForms.GUI.WorkingReport
             var currentRecord = workingReportBll.GetWorkingReport(Convert.ToInt32(id));
             if (currentRecord != null)
             {
-                return (currentRecord.To.GetValueOrDefault() - 
+                return (currentRecord.To.GetValueOrDefault() -
                     currentRecord.From.GetValueOrDefault()).ToString(@"hh\:mm", new CultureInfo("de-CH").DateTimeFormat);
             }
             return string.Empty;
@@ -163,7 +156,7 @@ namespace EbalitWebForms.GUI.WorkingReport
         protected void lnkFind_OnCommand(object sender, CommandEventArgs e)
         {
             DateTime? fromTime = null;
-            
+
             DateTime? toTime = null;
 
             try
@@ -186,8 +179,8 @@ namespace EbalitWebForms.GUI.WorkingReport
 
             try
             {
-            toTime = DateTime.Parse(txtDateTo.Text, CultureInfo.CurrentCulture.DateTimeFormat,
-                    DateTimeStyles.None);
+                toTime = DateTime.Parse(txtDateTo.Text, CultureInfo.CurrentCulture.DateTimeFormat,
+                        DateTimeStyles.None);
             }
             catch (FormatException)
             {
@@ -221,7 +214,7 @@ namespace EbalitWebForms.GUI.WorkingReport
                ProjectId = projectId,
                ResourceId = resourceId,
                TaskGuid = Convert.ToString(ViewState["taskGuid"])
-           } ;
+           };
 
             Session.Add("findDto", findDto);
 
@@ -256,7 +249,7 @@ namespace EbalitWebForms.GUI.WorkingReport
 
 
         }
-        
+
         /// <summary>
         /// Check whether value is a valid datae
         /// TODO: convert to custom control
@@ -295,8 +288,8 @@ namespace EbalitWebForms.GUI.WorkingReport
         {
             var workingReportBll = new WorkingReportBll();
             var dataList = workingReportBll.
-                GetWorkingReports((WorkingReportFindDto) Session["findDto"]).
-                ForEach(cc=>cc.ToCsvDto());
+                GetWorkingReports((WorkingReportFindDto)Session["findDto"]).
+                ForEach(cc => cc.ToCsvDto());
 
             var data = CSVBuilder.ToCsv(";", dataList);
 
@@ -315,15 +308,29 @@ namespace EbalitWebForms.GUI.WorkingReport
             {
                 try
                 {
-                    var result = _parser.ReadFromStream(fulCsvFileUpload.FileContent, ";", true);
+                    var parser = new StreamCsvParser<WorkingReportCsvFile>(fulCsvFileUpload.FileContent, ";", false);
+
+                    parser.ValidationErrorOccurred += parser_ValidationErrorOccurred;
+
+                    var result = parser.Read();
                 }
                 catch (Exception ex)
                 {
-                    
-                  
+                    StatusBar.StatusText = string.Format("File could not be imported: {0}", ex.Message);
                 }
-                
             }
+        }
+
+        /// <summary>
+        /// The call back
+        /// </summary>
+        /// <param name="line"></param>
+        /// <param name="col"></param>
+        /// <param name="message"></param>
+        protected void parser_ValidationErrorOccurred(int line, int col, string message)
+        {
+            StatusBar.StatusText = string.Format("File could not be imported: Error at line {0}, col {1}: {2}", line,
+                col, message);
         }
     }
 }
