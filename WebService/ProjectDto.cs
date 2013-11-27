@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using EbalitWebForms.DataLayer;
@@ -54,24 +55,31 @@ namespace EbalitWebForms.WebService
             }).ToList();
         }
 
-        /// <summary>
-        /// Returns the resources of the ProjectDto as a list of resource entities
-        /// </summary>
-        /// <returns></returns>
-        public IList<ProjectResource>  GetResourcesAsEntities()
-        {
-            var resources = new List<ProjectResource>();
-            foreach (TaskDto task in Tasks)
-                foreach (ResourceDto resourceDto in task.Resources)
-                {
-                    if (resources.All(cc => cc.Guid != resourceDto.Guid))
-                        resources.Add(new ProjectResource
-                        {
-                            Name = resourceDto.Name, Guid = resourceDto.Guid,
-                        });
-                }
-            return resources;
-        }
+        ///// <summary>
+        ///// Returns the resources of the ProjectDto as a list of resource entities
+        ///// </summary>
+        ///// <returns></returns>
+        //public IList<ProjectResource>  GetResourcesAsEntities()
+        //{
+        //    var resources = new List<ProjectResource>();
+        //    foreach (TaskDto task in Tasks)
+        //        foreach (ResourceDto resourceDto in task.Resources)
+        //        {
+        //            if (resources.All(cc => cc.Guid != resourceDto.Guid))
+        //                resources.Add(new ProjectResource
+        //                {
+        //                    Name = resourceDto.Name, Guid = resourceDto.Guid,
+        //                });
+        //        }
+        //    return resources;
+        //}
 
+        public IList<ProjectResource> GetResourcesAsEntities()
+        {
+            return Resources.Select(resource => new ProjectResource
+            {
+                Name = resource.Name
+            }).ToList();
+        }
     }
 }

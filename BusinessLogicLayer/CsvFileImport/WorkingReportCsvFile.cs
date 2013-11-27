@@ -9,6 +9,9 @@ namespace EbalitWebForms.BusinessLogicLayer.CsvFileImport
     public class WorkingReportCsvFile
     {
         [MandatoryField]
+        public string ProjectName { get; set; }
+        
+        [MandatoryField]
         public string ResourceName { get; set; }
 
         [MandatoryField]
@@ -17,9 +20,9 @@ namespace EbalitWebForms.BusinessLogicLayer.CsvFileImport
         [MandatoryField]
         public decimal WorkingTime { get; set; }
 
-        public string Description { get; set; }
-
         [MandatoryField]
         public string TfsTaskName { get; set; }
+
+        public string Description { get; set; }
     }
 }

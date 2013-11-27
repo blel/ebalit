@@ -54,9 +54,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\AjaxControlToolkit.7.1005\lib\40\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="CSVParser, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\CsvParser\CSVParser.dll</HintPath>
+    <Reference Include="CSVParser">
+      <HintPath>..\..\Workspaces\ebalit\ebalit\packages\CsvParser\CSVParser.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
@@ -167,6 +166,7 @@
     <Compile Include="Common\HierarchyTaskData.cs" />
     <Compile Include="Common\ResourceDtoEqualityComparer.cs" />
     <Compile Include="Common\TaskDtoEqualityComparer.cs" />
+    <Compile Include="Common\WorkingReportBatchImportException.cs" />
     <Compile Include="DataLayer\BlogCategory.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>

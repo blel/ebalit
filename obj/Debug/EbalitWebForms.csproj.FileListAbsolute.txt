@@ -11,7 +11,6 @@ D:\Users\Elias\Documents\Visual Studio 2012\Projects\EbalitWebForms\EbalitWebFor
 C:\Users\elias\Source\Repos\ebalit\bin\EbalitWebForms.dll.config
 C:\Users\elias\Source\Repos\ebalit\bin\EbalitWebForms.dll
 C:\Users\elias\Source\Repos\ebalit\bin\EbalitWebForms.pdb
-C:\Users\elias\Source\Repos\ebalit\bin\EntityFramework.xml
 C:\Users\elias\Source\Repos\ebalit\obj\Debug\EbalitWebForms.csprojResolveAssemblyReference.cache
 C:\Users\elias\Source\Repos\ebalit\obj\Debug\EbalitWebForms.Resources.Resources.resources
 C:\Users\elias\Source\Repos\ebalit\obj\Debug\EbalitWebForms.csproj.GenerateResource.Cache
@@ -26,3 +25,4 @@ D:\Users\Elias\Source\Repos\ebalit\obj\Debug\EbalitWebForms.csproj.GenerateResou
 D:\Users\Elias\Source\Repos\ebalit\obj\Debug\EbalitWebForms.dll
 D:\Users\Elias\Source\Repos\ebalit\obj\Debug\EbalitWebForms.pdb
 D:\Users\Elias\Source\Repos\ebalit\bin\CSVParser.dll
+C:\Users\elias\Source\Repos\ebalit\bin\CSVParser.dll

@@ -312,7 +312,11 @@ namespace EbalitWebForms.GUI.WorkingReport
 
                     parser.ValidationErrorOccurred += parser_ValidationErrorOccurred;
 
-                    var result = parser.Read();
+                    var importResult = parser.Read();
+
+                    var workingReportBll = new WorkingReportBll();
+
+                    workingReportBll.InsertManyWorkingReports(importResult);
                 }
                 catch (Exception ex)
                 {

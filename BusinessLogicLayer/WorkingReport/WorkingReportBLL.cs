@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Security;
+using System.Web.UI.WebControls;
 using EbalitWebForms.BusinessLogicLayer.CsvFileImport;
 using EbalitWebForms.BusinessLogicLayer.DTO;
 using EbalitWebForms.Common;
@@ -360,15 +361,45 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             return string.Empty;
         }
 
+        /// <summary>
+        /// Creates working reports for each working report in the file.
+        /// </summary>
+        /// <exception cref="WorkingReportBatchImportException"></exception>
+        /// <param name="workingreportsCsvFile"></param>
         public void InsertManyWorkingReports(List<WorkingReportCsvFile> workingreportsCsvFile)
         {
             foreach (var workingReport in workingreportsCsvFile)
             {
+                var projectEntity =
+                    EbalitDbContext.ProjectProjects.SingleOrDefault(cc => cc.Name == workingReport.ProjectName);
+                if (projectEntity == null)
+                {
+                    throw new WorkingReportBatchImportException(string.Format("The project {0} could not be found.", workingReport.ProjectName));
+                }
+
+                var resourceEntity =
+                    EbalitDbContext.ProjectResources.SingleOrDefault(cc => cc.ProjectProject.Id == projectEntity.Id &&
+                                                                           cc.Name == workingReport.ResourceName);
+                if (resourceEntity == null)
+                {
+                    throw new WorkingReportBatchImportException(string.Format("The resource {0} could not be found.", workingReport.ResourceName));
+                }
+
+                var taskEntity =
+                    EbalitDbContext.ProjectTasks.SingleOrDefault(cc => cc.TfsTaskId == workingReport.TfsTaskName);
+
+                if (taskEntity == null)
+                {
+                    throw new WorkingReportBatchImportException(string.Format("The task {0} could not be found.", workingReport.TfsTaskName));
+                }
+
                 var workingReportEntity = new ProjectWorkingReport
                 {
+                    ProjectProject = projectEntity,
+                    ProjectResource = resourceEntity,
+                    ProjectTask = taskEntity,
                     Notes = workingReport.Description,
                     Total = workingReport.WorkingTime
-                    //todo: finish
                 };
                 EbalitDbContext.ProjectWorkingReports.Add(workingReportEntity);
             }
