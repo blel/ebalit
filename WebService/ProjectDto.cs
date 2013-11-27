@@ -47,8 +47,6 @@ namespace EbalitWebForms.WebService
             return this.Tasks.Select(task => new ProjectTask
             {
                 Name = task.Name,
-                Guid = task.Guid,
-                Parent = task.ParentGuid,
                 ActualWork = task.ActualWork,
                 TfsTaskId = task.TfsTaskId,
                 ParentTfsTaskId = task.ParentTfsTaskId

@@ -18,7 +18,7 @@ namespace EbalitWebForms.DataLayer
         public int FK_Wine { get; set; }
         public int FK_WineAttribute { get; set; }
     
-        public virtual Wine Wine { get; set; }
         public virtual WineAttribute WineAttribute { get; set; }
+        public virtual Wine Wine { get; set; }
     }
 }

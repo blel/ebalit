@@ -36,9 +36,9 @@ namespace EbalitWebForms.GUI.WorkingReport
 
                     ddlResource.SelectedValue = findDto.ResourceId.ToString();
 
-                    ViewState.Add("taskGuid", findDto.TaskGuid);
+                    ViewState.Add("taskTfsId", findDto.TaskTfsId);
 
-                    txtTaskDropDown.Text = new WorkingReportBll().GetTaskPath(findDto.TaskGuid);
+                    txtTaskDropDown.Text = new WorkingReportBll().GetTaskPath(findDto.TaskTfsId);
                 }
             }
         }
@@ -69,7 +69,7 @@ namespace EbalitWebForms.GUI.WorkingReport
         {
             txtTaskDropDown.Text = trvTask.SelectedNode.Text;
 
-            ViewState.Add("taskGuid", trvTask.SelectedNode.DataPath);
+            ViewState.Add("taskTfsId", trvTask.SelectedNode.DataPath);
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace EbalitWebForms.GUI.WorkingReport
                To = toTime,
                ProjectId = projectId,
                ResourceId = resourceId,
-               TaskGuid = Convert.ToString(ViewState["taskGuid"])
+               TaskTfsId = Convert.ToString(ViewState["taskTfsId"])
            };
 
             Session.Add("findDto", findDto);
@@ -245,7 +245,7 @@ namespace EbalitWebForms.GUI.WorkingReport
             ddlProjects.SelectedIndex = 0;
             ddlResource.SelectedIndex = 0;
             Session.Remove("findDto");
-            ViewState.Remove("taskGuid");
+            ViewState.Remove("taskTfsId");
 
 
         }

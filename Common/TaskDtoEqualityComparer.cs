@@ -10,12 +10,12 @@ namespace EbalitWebForms.Common
     {
         public bool Equals(TaskDto x, TaskDto y)
         {
-            return x.Guid == y.Guid;
+            return x.TfsTaskId == y.TfsTaskId;
         }
 
         public int GetHashCode(TaskDto obj)
         {
-            return obj.Guid.GetHashCode();
+            return obj.TfsTaskId.GetHashCode();
         }
     }
 }

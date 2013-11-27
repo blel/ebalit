@@ -167,6 +167,9 @@
     <Compile Include="Common\ResourceDtoEqualityComparer.cs" />
     <Compile Include="Common\TaskDtoEqualityComparer.cs" />
     <Compile Include="Common\WorkingReportBatchImportException.cs" />
+    <Compile Include="DataLayer\aspnet_Users.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataLayer\BlogCategory.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>

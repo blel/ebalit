@@ -83,14 +83,15 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         }
 
         /// <summary>
-        /// Returns the id of the task with given guid
+        /// Returns the id of the task with given tfsId
         /// </summary>
-        /// <param name="guid"></param>
+        /// <param name="tfsId"></param>
         /// <returns></returns>
-        public int GetTaskIdByGuid(Guid guid)
+        public int GetTaksIdByTfsId(string tfsId)
         {
-            return EbalitDbContext.ProjectTasks.Single(cc => cc.Guid == guid).Id;
+            return EbalitDbContext.ProjectTasks.Single(cc => cc.TfsTaskId == tfsId).Id;
         }
+
 
         /// <summary>
         /// Returns the working report with given id
@@ -122,7 +123,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
                     ConditionalWhere(cc=> cc.To <= findDto.To, () => findDto.To != null).
                     ConditionalWhere(cc=> cc.ProjectId == findDto.ProjectId, () => findDto.ProjectId != null && findDto.ProjectId !=0).
                     ConditionalWhere(cc=> cc.ResourceId == findDto.ResourceId, () => findDto.ResourceId !=null && findDto.ResourceId !=0).
-                    ConditionalWhere(cc=> cc.ProjectTask.Guid == Guid.Parse(findDto.TaskGuid), ()=> !string.IsNullOrWhiteSpace(findDto.TaskGuid));
+                    ConditionalWhere(cc => cc.ProjectTask.TfsTaskId == findDto.TaskTfsId, () => !string.IsNullOrWhiteSpace(findDto.TaskTfsId));
                 //todo search for child tasks
 
 
@@ -344,19 +345,19 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <summary>
         /// Returns the full text path to the task with given guid
         /// </summary>
-        /// <param name="taskGuid"></param>
+        /// <param name="taskTfsId"></param>
         /// <returns></returns>
-        public string GetTaskPath(string taskGuid)
+        public string GetTaskPath(string taskTfsId)
         {
-            if (!string.IsNullOrWhiteSpace(taskGuid))
+            if (!string.IsNullOrWhiteSpace(taskTfsId))
             {
-                var taskRealGuid = Guid.Parse(taskGuid);
-                var task = EbalitDbContext.ProjectTasks.Include("ProjectProject").Single(cc => cc.Guid == taskRealGuid);
-                if (task.Parent == task.ProjectProject.Guid)
+
+                var task = EbalitDbContext.ProjectTasks.Include("ProjectProject").Single(cc => cc.TfsTaskId == taskTfsId);
+                if (string.IsNullOrWhiteSpace(task.ParentTfsTaskId))
                 {
                     return task.Name;
                 }
-                return GetTaskPath(task.Parent.ToString()) + "/" + task.Name;
+                return GetTaskPath(task.ParentTfsTaskId) + "/" + task.Name;
             }
             return string.Empty;
         }

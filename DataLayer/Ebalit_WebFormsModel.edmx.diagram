@@ -5,6 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="bb473dfd97f1433a85b00623fad3fd99" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.aspnet_Users" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogCategory" Width="1.5" PointX="13" PointY="6.25" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogComment" Width="1.5" PointX="17.5" PointY="6" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.BlogEntry" Width="1.5" PointX="15.25" PointY="6" />
@@ -13,11 +14,11 @@
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectResource" Width="1.5" PointX="3" PointY="4.375" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectResourceTaskAssignment" Width="1.5" PointX="8.25" PointY="6.5" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectTask" Width="1.5" PointX="3" PointY="7.875" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectUserAssignment" Width="1.5" PointX="5.25" PointY="4.875" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectWorkingReport" Width="1.5" PointX="5.25" PointY="8" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.TaskCategory" Width="1.5" PointX="7.75" PointY="2" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.TaskComment" Width="1.5" PointX="12.25" PointY="1.625" />
-        <EntityTypeShape EntityType="Ebalit_WebFormsModel.Task" Width="1.5" PointX="10" PointY="1" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectUserAssignment" Width="1.5" PointX="5.25" PointY="11.625" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ProjectWorkingReport" Width="1.5" PointX="5.25" PointY="6" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.TaskCategory" Width="1.5" PointX="5.75" PointY="2" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.TaskComment" Width="1.5" PointX="10.25" PointY="1.625" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.Task" Width="1.5" PointX="8" PointY="1" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.WineAttribute" Width="1.5" PointX="7.75" PointY="16.375" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.WineConsumation" Width="1.5" PointX="10" PointY="14.25" />
         <EntityTypeShape EntityType="Ebalit_WebFormsModel.Wine" Width="1.5" PointX="7.75" PointY="11.375" />

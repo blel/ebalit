@@ -8,7 +8,7 @@ namespace EbalitWebForms.BusinessLogicLayer.DTO
     public class WorkingReportFindDto
     {
         public int? ProjectId { get; set; }
-        public string TaskGuid { get; set; }
+        public string TaskTfsId { get; set; }
         public int? ResourceId { get; set; }
         public DateTime? From { get; set; }
         public DateTime? To { get; set; }

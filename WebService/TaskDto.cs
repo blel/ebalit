@@ -18,18 +18,6 @@ namespace EbalitWebForms.WebService
         public string Name { get; set; }
 
         /// <summary>
-        /// The parent task - if this is a top level task, use project as parent.
-        /// </summary>
-        [DataMember]
-        public Guid ParentGuid { get; set; }
-
-        /// <summary>
-        /// the unique identifier of the task
-        /// </summary>
-        [DataMember]
-        public Guid Guid{ get; set; }
-
-        /// <summary>
         /// the work resources of the task.
         /// </summary>
         [DataMember]

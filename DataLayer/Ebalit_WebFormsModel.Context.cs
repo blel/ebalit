@@ -25,22 +25,23 @@ namespace EbalitWebForms.DataLayer
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<aspnet_Users> aspnet_Users { get; set; }
         public DbSet<BlogCategory> BlogCategories { get; set; }
+        public DbSet<BlogComment> BlogComments { get; set; }
         public DbSet<BlogEntry> BlogEntries { get; set; }
         public DbSet<BlogTopic> BlogTopics { get; set; }
-        public DbSet<BlogComment> BlogComments { get; set; }
-        public DbSet<Task> Tasks { get; set; }
-        public DbSet<TaskCategory> TaskCategories { get; set; }
-        public DbSet<TaskComment> TaskComments { get; set; }
-        public DbSet<Wine> Wines { get; set; }
-        public DbSet<WineAttribute> WineAttributes { get; set; }
-        public DbSet<WineToWineAttribute> WineToWineAttributes { get; set; }
-        public DbSet<WineConsumation> WineConsumations { get; set; }
-        public DbSet<ProjectResource> ProjectResources { get; set; }
         public DbSet<ProjectProject> ProjectProjects { get; set; }
+        public DbSet<ProjectResource> ProjectResources { get; set; }
         public DbSet<ProjectResourceTaskAssignment> ProjectResourceTaskAssignments { get; set; }
         public DbSet<ProjectTask> ProjectTasks { get; set; }
         public DbSet<ProjectUserAssignment> ProjectUserAssignments { get; set; }
         public DbSet<ProjectWorkingReport> ProjectWorkingReports { get; set; }
+        public DbSet<TaskCategory> TaskCategories { get; set; }
+        public DbSet<TaskComment> TaskComments { get; set; }
+        public DbSet<Task> Tasks { get; set; }
+        public DbSet<WineAttribute> WineAttributes { get; set; }
+        public DbSet<WineConsumation> WineConsumations { get; set; }
+        public DbSet<Wine> Wines { get; set; }
+        public DbSet<WineToWineAttribute> WineToWineAttributes { get; set; }
     }
 }

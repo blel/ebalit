@@ -12,18 +12,14 @@ namespace EbalitWebForms.DataLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class BlogCategory
+    public partial class aspnet_Users
     {
-        public BlogCategory()
-        {
-            this.BlogEntries = new HashSet<BlogEntry>();
-        }
-    
-        public int Id { get; set; }
-        public string Category { get; set; }
-        public int FK_Topic { get; set; }
-    
-        public virtual BlogTopic BlogTopic { get; set; }
-        public virtual ICollection<BlogEntry> BlogEntries { get; set; }
+        public System.Guid ApplicationId { get; set; }
+        public System.Guid UserId { get; set; }
+        public string UserName { get; set; }
+        public string LoweredUserName { get; set; }
+        public string MobileAlias { get; set; }
+        public bool IsAnonymous { get; set; }
+        public System.DateTime LastActivityDate { get; set; }
     }
 }

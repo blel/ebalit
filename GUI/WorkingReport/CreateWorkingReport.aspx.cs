@@ -57,7 +57,7 @@ namespace EbalitWebForms.GUI.WorkingReport
         protected void dtvCreateWorkingReport_ItemInserting(object sender, DetailsViewInsertEventArgs e)
         {
             //need to get the id of the selected task
-            e.Values["TaskId"] = new WorkingReportBll().GetTaskIdByGuid(Guid.Parse(ViewState["selectedTaskId"].ToString()));
+            e.Values["TaskId"] = new WorkingReportBll().GetTaksIdByTfsId(ViewState["selectedTaskId"].ToString());
 
             var fromTime = ((WebUserControls.TimeControl)
                 dtvCreateWorkingReport.FindControl("FromTime")).DisplayTime;
@@ -90,7 +90,7 @@ namespace EbalitWebForms.GUI.WorkingReport
         protected void dtvCreateWorkingReport_OnItemUpdating(object sender, DetailsViewUpdateEventArgs e)
         {
             //need to get the id of the selected task
-            e.NewValues["TaskId"] = new WorkingReportBll().GetTaskIdByGuid(Guid.Parse(ViewState["selectedTaskId"].ToString()));
+            e.NewValues["TaskId"] = new WorkingReportBll().GetTaksIdByTfsId(ViewState["selectedTaskId"].ToString());
 
             var fromTime = ((WebUserControls.TimeControl)
                 dtvCreateWorkingReport.FindControl("FromTime")).DisplayTime;
@@ -186,11 +186,11 @@ namespace EbalitWebForms.GUI.WorkingReport
                 var bll = new WorkingReportBll();
                 var workingReport = bll.GetWorkingReport(Convert.ToInt32(Request.QueryString["Id"]));
 
-                txtTask.Text = bll.GetTaskPath(workingReport.ProjectTask.Guid.ToString());
+                txtTask.Text = bll.GetTaskPath(workingReport.ProjectTask.TfsTaskId);
 
 
-                //store the Guid in the view state
-                ViewState.Add("selectedTaskId", workingReport.ProjectTask.Guid);
+                //store the TfsId in the view state
+                ViewState.Add("selectedTaskId", workingReport.ProjectTask.TfsTaskId);
             }
         }
 

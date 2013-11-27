@@ -20,9 +20,9 @@ namespace EbalitWebForms.DataLayer
             return new TaskDto
             {
                 ActualWork = Convert.ToDouble(ActualWork),
-                Guid = Guid,
+                TfsTaskId = TfsTaskId,
+                ParentTfsTaskId = ParentTfsTaskId,
                 Name = Name,
-                ParentGuid = Parent.GetValueOrDefault(),
                 Resources = ProjectResourceTaskAssignments.Select(cc=>cc.ProjectResource).ForEach(ccc=>ccc.ToDto())
             };
         }

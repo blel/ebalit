@@ -16,8 +16,8 @@ namespace EbalitWebForms.DataLayer
     {
         public Wine()
         {
-            this.WineToWineAttributes = new HashSet<WineToWineAttribute>();
             this.WineConsumations = new HashSet<WineConsumation>();
+            this.WineToWineAttributes = new HashSet<WineToWineAttribute>();
         }
     
         public int Id { get; set; }
@@ -33,7 +33,7 @@ namespace EbalitWebForms.DataLayer
         public string Grape { get; set; }
         public string Origin { get; set; }
     
-        public virtual ICollection<WineToWineAttribute> WineToWineAttributes { get; set; }
         public virtual ICollection<WineConsumation> WineConsumations { get; set; }
+        public virtual ICollection<WineToWineAttribute> WineToWineAttributes { get; set; }
     }
 }

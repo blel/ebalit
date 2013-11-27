@@ -28,15 +28,18 @@ namespace EbalitWebForms.Common
         {
             var repository = new WorkingReportBll();
 
+            //retrieve the tasks for the project with given id
             IList<ProjectTask> tasks = repository.GetTasks(_projectId).ToList();
 
+            //if a view path is given, return all tasks with that view path as parent
             if (!string.IsNullOrWhiteSpace(_viewPath))
             {
-                tasks = tasks.Where(cc => cc.Parent == Guid.Parse(_viewPath)).ToList();
+                tasks = tasks.Where(cc => cc.ParentTfsTaskId == _viewPath).ToList();
             }
             else
             {
-                tasks = tasks.Where(cc => cc.Parent == cc.ProjectProject.Guid).ToList();
+                //otherwise return all root tasks (parentTfsTaskId is empty
+                tasks = tasks.Where(cc => string.IsNullOrWhiteSpace(cc.ParentTfsTaskId)).ToList();
             }
             return new HierarchicalTaskEnumerable(tasks, _viewPath);
         }

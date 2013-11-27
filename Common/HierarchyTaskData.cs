@@ -14,7 +14,7 @@ namespace EbalitWebForms.Common
 
         private readonly bool _hasChildren;
 
-        private string _path;
+        private readonly string _path;
 
         private readonly object _item;
 
@@ -26,7 +26,7 @@ namespace EbalitWebForms.Common
             _hasChildren = GetChildrenAsList().Count > 0;
             _item = task;
             _type = "Task";
-            _path = task.Guid.ToString();
+            _path = task.TfsTaskId;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace EbalitWebForms.Common
             using (var context = new Ebalit_WebFormsEntities())
             {
                 childrenTasks = (from cc in context.ProjectTasks
-                                 where cc.Parent == _task.Guid && !cc.IsDeleted 
+                                 where cc.ParentTfsTaskId == _task.TfsTaskId && !cc.IsDeleted 
                                  select cc).ToList();
             }
             return childrenTasks;
@@ -59,9 +59,9 @@ namespace EbalitWebForms.Common
             //Todo: put this logic in bll
             using (var context = new Ebalit_WebFormsEntities())
             {
-                parent = context.ProjectTasks.SingleOrDefault(cc => cc.Guid == _task.Parent);
+                parent = context.ProjectTasks.SingleOrDefault(cc => cc.TfsTaskId == _task.ParentTfsTaskId);
             }
-            if (parent != null && parent.Guid == _task.Guid)
+            if (parent != null && string.IsNullOrWhiteSpace(parent.TfsTaskId))
             {
                 return null;
             }
