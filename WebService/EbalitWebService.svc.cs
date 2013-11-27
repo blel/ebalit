@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
-using System.Transactions;
+//using System.Transactions;
 using EbalitWebForms.Common;
 using EbalitWebForms.DataLayer;
 
@@ -34,17 +34,7 @@ namespace EbalitWebForms.WebService
         /// <param name="project">Project Dto</param>
         public IList<ResourceDto> UpdateProject(ProjectDto project)
         {
-            var returnList = new List<ResourceDto>();
-            if (IsProjectExisting(project))
-            {
-                SyncProjects(project);
-            }
-            else
-            {
-                CreateProject(project);
-            }
-
-            return returnList;
+            return IsProjectExisting(project) ? SyncProjects(project) : CreateProject(project);
         }
 
         /// <summary>
@@ -60,7 +50,7 @@ namespace EbalitWebForms.WebService
             {
                 taskDtos.AddRange(context.ProjectProjects.Single(cc => cc.Guid == project.UniqueIdentifier).ProjectTasks.Select(taskEntity => new TaskDto
                 {
-                    ActualWork = taskEntity.ActualWork != null ? (double) taskEntity.ActualWork : 0.0,
+                    ActualWork = taskEntity.ActualWork != null ? (double)taskEntity.ActualWork : 0.0,
                     Guid = taskEntity.Guid
                 }));
             }
@@ -90,9 +80,13 @@ namespace EbalitWebForms.WebService
         /// Creates a project entity from the dto and saves it to the database
         /// </summary>
         /// <param name="project"></param>
-        private void CreateProject(ProjectDto project)
+        private IList<ResourceDto> CreateProject(ProjectDto project)
         {
-            var resources = new List<ResourceDto>();
+            var resources = project.GetResourcesAsEntities();
+
+            //create new guid foreach resource
+            resources.ForEach(cc => cc.Guid = Guid.NewGuid());
+
             using (var context = new Ebalit_WebFormsEntities())
             {
                 //create the project entity
@@ -101,17 +95,17 @@ namespace EbalitWebForms.WebService
                     Name = project.Name,
                     Guid = project.UniqueIdentifier,
                     //create the depending resources
-                    ProjectResources = project.GetResourcesAsEntities(),
+                    ProjectResources = resources,
                     //create the depending tasks
                     ProjectTasks = project.GetTasksAsEntities()
-                 
-                    
+
+
                 };
                 //add project to context
                 context.ProjectProjects.Add(projectEntity);
 
                 //create the resource to task assignments
-                
+
                 foreach (var task in project.Tasks)
                 {
                     foreach (var resource in task.Resources)
@@ -119,7 +113,7 @@ namespace EbalitWebForms.WebService
                         var resourceToTaskAssignment = new ProjectResourceTaskAssignment
                         {
                             ProjectResource = projectEntity.ProjectResources.Single(cc => cc.Guid == resource.Guid),
-                            ProjectTask = projectEntity.ProjectTasks.Single(cc => cc.Guid == task.Guid)
+                            ProjectTask = projectEntity.ProjectTasks.Single(cc => cc.TfsTaskId == task.TfsTaskId)
 
                         };
                         //add assignment to context
@@ -131,6 +125,8 @@ namespace EbalitWebForms.WebService
                 try
                 {
                     context.SaveChanges();
+                    //return the resources as dtos
+                    return resources.ForEach(cc => cc.ToDto());
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -155,16 +151,16 @@ namespace EbalitWebForms.WebService
         /// TODO: had to remove transaction handling. which is a big risk, but 2005 seems to have problems with it.
         /// </summary>
         /// <param name="project"></param>
-        private void SyncProjects(ProjectDto project)
+        private List<ResourceDto> SyncProjects(ProjectDto project)
         {
             //using (var transaction = new TransactionScope())
             //{
             //    try
             //    {
-                    SyncResources(project);
+            var resources = SyncResources(project);
 
-                    SyncTasks(project);
-                    
+            SyncTasks(project);
+
             //        transaction.Complete();
             //    }
             //    catch (InvalidOperationException)
@@ -172,17 +168,19 @@ namespace EbalitWebForms.WebService
             //        //todo: exception handling                    
             //    }
             //}
+            return resources;
         }
 
-        private void SyncResources(ProjectDto project)
+        private List<ResourceDto> SyncResources(ProjectDto project)
         {
             using (var context = new Ebalit_WebFormsEntities())
             {
                 //get the project entity corresponding to the project dto
                 var projectEntity = context.ProjectProjects.Single(cc => cc.Guid == project.UniqueIdentifier);
                 //delete resources
+                //todo: this could also be removed
                 var deletedResources = context.ProjectResources.
-                    Where(cc=>cc.ProjectProject.Guid == project.UniqueIdentifier).
+                    Where(cc => cc.ProjectProject.Guid == project.UniqueIdentifier).
                     ForEach(cc => cc.ToDto()).Except(project.Resources,
                     new ResourceDtoEqualityComparer());
                 foreach (var deleteResource in deletedResources)
@@ -202,9 +200,9 @@ namespace EbalitWebForms.WebService
                 {
                     projectEntity.ProjectResources.Add(new ProjectResource
                     {
-                        Guid = addedResource.Guid,
+                        //the Guid needs to be created here
+                        Guid = Guid.NewGuid(),
                         Name = addedResource.Name,
-
                     });
                 }
 
@@ -221,6 +219,8 @@ namespace EbalitWebForms.WebService
                 try
                 {
                     context.SaveChanges();
+
+                    return (List<ResourceDto>)projectEntity.ProjectResources.ForEach(cc => cc.ToDto());
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -237,7 +237,7 @@ namespace EbalitWebForms.WebService
                     throw;
                 }
             }
-            
+
         }
 
         private void SyncTasks(ProjectDto project)
@@ -250,7 +250,7 @@ namespace EbalitWebForms.WebService
                 //get tasks which exist on server but not in ms project
                 //implement the comparer
                 var deletedTasks = context.ProjectTasks.
-                    Where(cc=>cc.ProjectProject.Guid == project.UniqueIdentifier).
+                    Where(cc => cc.ProjectProject.Guid == project.UniqueIdentifier).
                     ForEach(cc => cc.ToDto()).Except(project.Tasks,
                     new TaskDtoEqualityComparer());
 
@@ -348,7 +348,7 @@ namespace EbalitWebForms.WebService
             }
         }
 
- 
+
     }
 }
 
