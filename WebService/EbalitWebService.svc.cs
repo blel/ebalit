@@ -15,6 +15,10 @@ namespace EbalitWebForms.WebService
     {
         #region IEbalitWebService Members
 
+        /// <summary>
+        /// Returns the list of projects on the mps server
+        /// </summary>
+        /// <returns></returns>
         public IList<ProjectDto> GetProjects()
         {
             using (var context = new Ebalit_WebFormsEntities())
@@ -186,18 +190,18 @@ namespace EbalitWebForms.WebService
                 var projectEntity = context.ProjectProjects.Single(cc => cc.Guid == project.UniqueIdentifier);
                 //delete resources
                 //todo: this could also be removed
-                var deletedResources = context.ProjectResources.
-                    Where(cc => cc.ProjectProject.Guid == project.UniqueIdentifier).
-                    ForEach(cc => cc.ToDto()).Except(project.Resources,
-                    new ResourceDtoEqualityComparer());
-                foreach (var deleteResource in deletedResources)
-                {
-                    var resourceEntity = context.ProjectResources.Single(cc => cc.Guid == deleteResource.Guid);
-                    resourceEntity.IsDeleted = true;
+                //var deletedResources = context.ProjectResources.
+                //    Where(cc => cc.ProjectProject.Guid == project.UniqueIdentifier).
+                //    ForEach(cc => cc.ToDto()).Except(project.Resources,
+                //    new ResourceDtoEqualityComparer());
+                //foreach (var deleteResource in deletedResources)
+                //{
+                //    var resourceEntity = context.ProjectResources.Single(cc => cc.Guid == deleteResource.Guid);
+                //    resourceEntity.IsDeleted = true;
 
-                    //make sure all ResourceTaskAssignments of this resource are deleted as well
-                    resourceEntity.ProjectResourceTaskAssignments.ForEach(cc => cc.IsDeleted = true);
-                }
+                //    //make sure all ResourceTaskAssignments of this resource are deleted as well
+                //    resourceEntity.ProjectResourceTaskAssignments.ForEach(cc => cc.IsDeleted = true);
+                //}
 
                 //add new resources
                 var addedResources = project.Resources.Except(context.ProjectResources.ForEach(cc => cc.ToDto()),
@@ -257,20 +261,20 @@ namespace EbalitWebForms.WebService
 
                 //get tasks which exist on server but not in ms project
                 //implement the comparer
-                var deletedTasks = context.ProjectTasks.
-                    Where(cc => cc.ProjectProject.Guid == project.UniqueIdentifier).
-                    ForEach(cc => cc.ToDto()).Except(project.Tasks,
-                    new TaskDtoEqualityComparer());
+                //var deletedTasks = context.ProjectTasks.
+                //    Where(cc => cc.ProjectProject.Guid == project.UniqueIdentifier).
+                //    ForEach(cc => cc.ToDto()).Except(project.Tasks,
+                //    new TaskDtoEqualityComparer());
 
-                //mark them as deleted
-                foreach (var taskDto in deletedTasks)
-                {
-                    var taskEntity = context.ProjectTasks.Single(cc => cc.TfsTaskId == taskDto.TfsTaskId);
-                    taskEntity.IsDeleted = true;
+                ////mark them as deleted
+                //foreach (var taskDto in deletedTasks)
+                //{
+                //    var taskEntity = context.ProjectTasks.Single(cc => cc.TfsTaskId == taskDto.TfsTaskId);
+                //    taskEntity.IsDeleted = true;
 
-                    //mark the resource assignment as deleted
-                    taskEntity.ProjectResourceTaskAssignments.ForEach(cc => cc.IsDeleted = true);
-                }
+                //    //mark the resource assignment as deleted
+                //    taskEntity.ProjectResourceTaskAssignments.ForEach(cc => cc.IsDeleted = true);
+                //}
 
                 //get the new tasks
                 var newTasks = project.Tasks.Except(context.ProjectTasks.ForEach(cc => cc.ToDto()),
