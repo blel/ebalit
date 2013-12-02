@@ -1,9 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/GUI/ProtectedSites/ToolsMaster.master" AutoEventWireup="true" CodeBehind="CreateWorkingReport.aspx.cs" Inherits="EbalitWebForms.GUI.WorkingReport.CreateWorkingReport" %>
-
-<%@ Register Assembly="EbalitWebForms" Namespace="EbalitWebForms.Common" TagPrefix="cc1" %>
 <%@ Register Src="~/GUI/WebUserControls/TimeControl.ascx" TagPrefix="uc1" TagName="TimeControl" %>
 <%@ Register Src="~/GUI/WebUserControls/StatusBar.ascx" TagPrefix="uc1" TagName="StatusBar" %>
-<%@ Register Src="~/GUI/WebUserControls/DateFormatValidator.ascx" TagPrefix="uc1" TagName="DateFormatValidator" %>
 
 
 
@@ -89,7 +86,6 @@
                         <EditItemTemplate>
                             <asp:TextBox ID="txtDate" runat="server" Text='<%# Bind("From", "{0:d}") %>'></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtDate" runat="server" ErrorMessage="Please enter a date."></asp:RequiredFieldValidator>
-                            <uc1:DateFormatValidator runat="server" ID="DateFormatValidator" ControlToValidate="txtDate" ErrorMessage="Pleaes enter a correct date." />
                             <asp:CustomValidator ID="cvdDateFormat" runat="server" ControlToValidate="txtDate" ErrorMessage="Please enter a correct date." OnServerValidate="cvdDateFormat_OnServerValidate"></asp:CustomValidator>
                             <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDate"></ajaxToolkit:CalendarExtender>
                         </EditItemTemplate>

@@ -68,8 +68,9 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public IList<ProjectTask> GetTasks(ProjectProject project = null)
         {
-            return project == null ? EbalitDbContext.ProjectTasks.ToList() :
-                EbalitDbContext.ProjectTasks.Where(cc => cc.ProjectProject.Id == project.Id && !cc.IsDeleted).ToList();
+            return project == null
+                ? EbalitDbContext.ProjectTasks.ToList()
+                : EbalitDbContext.ProjectTasks.Where(cc => cc.ProjectProject.Id == project.Id && !cc.IsDeleted).ToList();
         }
 
         /// <summary>
@@ -113,19 +114,22 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         public IList<ProjectWorkingReport> GetWorkingReports(WorkingReportFindDto findDto = null)
         {
             var resultList =
-            EbalitDbContext.ProjectWorkingReports.
-                Include("ProjectProject").
-                Include("ProjectTask").
-                Include("ProjectResource").AsQueryable();
+                EbalitDbContext.ProjectWorkingReports.
+                    Include("ProjectProject").
+                    Include("ProjectTask").
+                    Include("ProjectResource").AsQueryable();
 
             if (findDto != null)
             {
                 resultList = resultList.
                     ConditionalWhere(cc => cc.From >= findDto.From, () => findDto.From != null).
                     ConditionalWhere(cc => cc.To <= findDto.To, () => findDto.To != null).
-                    ConditionalWhere(cc => cc.ProjectId == findDto.ProjectId, () => findDto.ProjectId != null && findDto.ProjectId != 0).
-                    ConditionalWhere(cc => cc.ResourceId == findDto.ResourceId, () => findDto.ResourceId != null && findDto.ResourceId != 0).
-                    ConditionalWhere(cc => cc.ProjectTask.TfsTaskId == findDto.TaskTfsId, () => !string.IsNullOrWhiteSpace(findDto.TaskTfsId));
+                    ConditionalWhere(cc => cc.ProjectId == findDto.ProjectId,
+                        () => findDto.ProjectId != null && findDto.ProjectId != 0).
+                    ConditionalWhere(cc => cc.ResourceId == findDto.ResourceId,
+                        () => findDto.ResourceId != null && findDto.ResourceId != 0).
+                    ConditionalWhere(cc => cc.ProjectTask.TfsTaskId == findDto.TaskTfsId,
+                        () => !string.IsNullOrWhiteSpace(findDto.TaskTfsId));
                 //todo search for child tasks
             }
             return resultList.ToList();
@@ -214,7 +218,9 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
                                   select cc.Total).Sum() * 60;
             var task = EbalitDbContext.ProjectTasks.SingleOrDefault(cc => cc.Id == taskId);
             if (task != null)
-            { task.ActualWork = Convert.ToDouble(calculatedWork); }
+            {
+                task.ActualWork = Convert.ToDouble(calculatedWork);
+            }
             EbalitDbContext.SaveChanges();
         }
 
@@ -247,7 +253,8 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <returns></returns>
         public IEnumerable<ProjectResource> GetAvailableResources(int projectId)
         {
-            var project = EbalitDbContext.ProjectProjects.Include("ProjectResources").SingleOrDefault(cc => cc.Id == projectId);
+            var project =
+                EbalitDbContext.ProjectProjects.Include("ProjectResources").SingleOrDefault(cc => cc.Id == projectId);
             if (project != null)
             {
                 return project.ProjectResources.
@@ -321,7 +328,9 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             if (!string.IsNullOrWhiteSpace(taskTfsId))
             {
 
-                var task = EbalitDbContext.ProjectTasks.Include("ProjectProject").Single(cc => cc.TfsTaskId == taskTfsId && cc.ProjectId == projectId);
+                var task =
+                    EbalitDbContext.ProjectTasks.Include("ProjectProject")
+                        .Single(cc => cc.TfsTaskId == taskTfsId && cc.ProjectId == projectId);
                 if (string.IsNullOrWhiteSpace(task.ParentTfsTaskId))
                 {
                     return task.Name;
@@ -336,44 +345,59 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// </summary>
         /// <exception cref="WorkingReportBatchImportException"></exception>
         /// <param name="workingreportsCsvFile"></param>
-        public void InsertManyWorkingReports(List<WorkingReportCsvFile> workingreportsCsvFile)
+        public List<WorkingReportCsvFile> InsertManyWorkingReports(List<WorkingReportCsvFile> workingreportsCsvFile)
         {
+            var erroneousRecords = new List<WorkingReportCsvFile>();
+            if (workingreportsCsvFile == null)
+            {
+                return erroneousRecords;
+            }
+
             foreach (var workingReport in workingreportsCsvFile)
             {
                 var projectEntity =
                     EbalitDbContext.ProjectProjects.SingleOrDefault(cc => cc.Name == workingReport.ProjectName);
-                if (projectEntity == null)
-                {
-                    throw new WorkingReportBatchImportException(string.Format("The project {0} could not be found.", workingReport.ProjectName));
-                }
+
 
                 var resourceEntity =
                     EbalitDbContext.ProjectResources.SingleOrDefault(cc => cc.ProjectProject.Id == projectEntity.Id &&
                                                                            cc.Name == workingReport.ResourceName);
-                if (resourceEntity == null)
-                {
-                    throw new WorkingReportBatchImportException(string.Format("The resource {0} could not be found.", workingReport.ResourceName));
-                }
+
 
                 var taskEntity =
                     EbalitDbContext.ProjectTasks.SingleOrDefault(cc => cc.TfsTaskId == workingReport.TfsTaskName);
 
-                if (taskEntity == null)
+
+
+                if (projectEntity == null || resourceEntity == null || taskEntity == null)
                 {
-                    throw new WorkingReportBatchImportException(string.Format("The task {0} could not be found.", workingReport.TfsTaskName));
+                    var erroneousRecord = new WorkingReportCsvFile
+                    {
+                        Date = workingReport.Date,
+                        Description = workingReport.Description,
+                        ProjectName = projectEntity == null ? string.Empty : projectEntity.Name,
+                        ResourceName = resourceEntity == null ? string.Empty : resourceEntity.Name,
+                        TfsTaskName = taskEntity == null ? string.Empty : taskEntity.Name,
+                        WorkingTime = workingReport.WorkingTime
+                    };
+                    erroneousRecords.Add(erroneousRecord);
+                }
+                else
+                {
+                    var workingReportEntity = new ProjectWorkingReport
+                    {
+                        ProjectProject = projectEntity,
+                        ProjectResource = resourceEntity,
+                        ProjectTask = taskEntity,
+                        Notes = workingReport.Description,
+                        Total = workingReport.WorkingTime
+                    };
+                    EbalitDbContext.ProjectWorkingReports.Add(workingReportEntity);
                 }
 
-                var workingReportEntity = new ProjectWorkingReport
-                {
-                    ProjectProject = projectEntity,
-                    ProjectResource = resourceEntity,
-                    ProjectTask = taskEntity,
-                    Notes = workingReport.Description,
-                    Total = workingReport.WorkingTime
-                };
-                EbalitDbContext.ProjectWorkingReports.Add(workingReportEntity);
             }
             EbalitDbContext.SaveChanges();
+            return erroneousRecords;
         }
     }
 }

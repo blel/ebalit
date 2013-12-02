@@ -31,8 +31,8 @@ namespace EbalitWebForms.GUI.WebUserControls
             //Add the header & other information      
             Response.Cache.SetCacheability(HttpCacheability.Private);
             Response.CacheControl = "private";
-            Response.Charset = System.Text.Encoding.UTF8.WebName;
-            Response.ContentEncoding = System.Text.Encoding.UTF8;
+            Response.Charset = System.Text.Encoding.Unicode.WebName;
+            Response.ContentEncoding = System.Text.Encoding.Unicode;
             Response.AppendHeader("Content-Length", Data.Length.ToString());
             Response.AppendHeader("Pragma", "cache");
             Response.AppendHeader("Expires", "60");

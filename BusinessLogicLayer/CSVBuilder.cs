@@ -10,46 +10,57 @@ namespace EbalitWebForms.BusinessLogicLayer
 {
     /// <summary>
     /// Code found here: http://stackoverflow.com/questions/1179816/best-practices-for-serializing-objects-to-a-custom-string-format-for-use-in-an-o
-    /// 
+    /// Converts a list of types to a csv file.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class CSVBuilder
-
     {
+        /// <summary>
+        /// Converts the objectlist to csv
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="separator"></param>
+        /// <param name="objectlist"></param>
+        /// <returns></returns>
         public static string ToCsv<T>(string separator, IEnumerable<T> objectlist)
         {
             var t = typeof(T);
-
             var fields = t.GetProperties();
-
-
             var header = String.Join(separator, fields.Select(f => f.Name).ToArray());
 
             var csvdata = new StringBuilder();
             csvdata.AppendLine(header);
 
-            foreach (var o in objectlist)
-                csvdata.AppendLine(ToCsvFields(separator, fields, o));
+            foreach (var item in objectlist)
+                csvdata.AppendLine(ToCsvFields(separator, fields, item));
 
             return csvdata.ToString();
         }
 
-        public static string ToCsvFields(string separator, PropertyInfo[] fields, object o)
+        /// <summary>
+        /// adds a new line with the values of each item 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="separator"></param>
+        /// <param name="properties"></param>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private static string ToCsvFields<T>(string separator, PropertyInfo[] properties, T item)
         {
-            StringBuilder linie = new StringBuilder();
+            var csvLine = new StringBuilder();
 
-            foreach (var f in fields)
+            foreach (var property in properties)
             {
-                if (linie.Length > 0)
-                    linie.Append(separator);
+                if (csvLine.Length > 0)
+                    csvLine.Append(separator);
 
-                var x = f.GetValue(o,null);
+                var propertyValue = property.GetValue(item, null);
 
-                if (x != null)
-                    linie.Append(x.ToString());
+                if (propertyValue != null)
+                    csvLine.Append("\"" + propertyValue + "\"");
             }
 
-            return linie.ToString();
+            return csvLine.ToString();
         }
 
 

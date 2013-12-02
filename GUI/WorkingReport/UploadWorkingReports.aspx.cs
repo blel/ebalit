@@ -37,7 +37,10 @@ namespace EbalitWebForms.GUI.WorkingReport
 
                     var workingReportBll = new WorkingReportBll();
 
-                    workingReportBll.InsertManyWorkingReports(importResult);
+                    var erroneousRecords = workingReportBll.InsertManyWorkingReports(importResult);
+
+                    lvwErroneousRecords.DataSource = erroneousRecords;
+                    lvwErroneousRecords.DataBind();
                 }
                 catch (Exception ex)
                 {
