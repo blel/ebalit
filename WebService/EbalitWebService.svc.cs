@@ -110,15 +110,15 @@ namespace EbalitWebForms.WebService
         /// <param name="project"></param>
         private ProjectDto SyncProjects(ProjectDto project)
         {
-            using (var transaction = new TransactionScope())
-            {
+            //using (var transaction = new TransactionScope())
+            //{
 
                 SyncResources(project);
 
                 SyncTasks(project);
 
-                transaction.Complete();
-            }
+                //transaction.Complete();
+            //}
             return project;
         }
 

@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Ebalit_WebFormsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="aspnet_Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="LoweredUserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
+    <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+    <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="BlogCategories">
     <Key>
       <PropertyRef Name="Id" />
@@ -43,7 +55,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar(max)" />
     <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="ProjectResources">
@@ -70,12 +82,12 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="Parent" Type="uniqueidentifier" />
+    <Property Name="Name" Type="nvarchar(max)" />
     <Property Name="ProjectId" Type="int" />
     <Property Name="ActualWork" Type="float" />
     <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="TfsTaskId" Type="nvarchar" MaxLength="10" />
+    <Property Name="ParentTfsTaskId" Type="nvarchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="ProjectUserAssignments">
     <Key>
@@ -198,7 +210,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_BlogComment_ToBlogEntry">
-    <End Role="BlogEntries" Type="Self.BlogEntries" Multiplicity="1" />
+    <End Role="BlogEntries" Type="Self.BlogEntries" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="BlogComments" Type="Self.BlogComments" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="BlogEntries">
@@ -209,7 +223,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_BlogEntry_ToBlogCategory">
+  <Association Name="FK_BlogEntries_BlogCategories">
     <End Role="BlogCategories" Type="Self.BlogCategories" Multiplicity="1" />
     <End Role="BlogEntries" Type="Self.BlogEntries" Multiplicity="*" />
     <ReferentialConstraint>
@@ -378,6 +392,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="Ebalit_WebFormsModelStoreContainer">
+    <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BlogCategories" EntityType="Self.BlogCategories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BlogComments" EntityType="Self.BlogComments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BlogEntries" EntityType="Self.BlogEntries" Schema="dbo" store:Type="Tables" />
@@ -403,7 +418,7 @@
       <End Role="BlogEntries" EntitySet="BlogEntries" />
       <End Role="BlogComments" EntitySet="BlogComments" />
     </AssociationSet>
-    <AssociationSet Name="FK_BlogEntry_ToBlogCategory" Association="Self.FK_BlogEntry_ToBlogCategory">
+    <AssociationSet Name="FK_BlogEntries_BlogCategories" Association="Self.FK_BlogEntries_BlogCategories">
       <End Role="BlogCategories" EntitySet="BlogCategories" />
       <End Role="BlogEntries" EntitySet="BlogEntries" />
     </AssociationSet>

@@ -29,7 +29,6 @@ D:\Users\Elias\Documents\Visual Studio 2012\Projects\EbalitWebForms\EbalitWebFor
 D:\Users\Elias\Source\Repos\ebalit\bin\EbalitWebForms.dll.config
 D:\Users\Elias\Source\Repos\ebalit\bin\EbalitWebForms.dll
 D:\Users\Elias\Source\Repos\ebalit\bin\EbalitWebForms.pdb
-D:\Users\Elias\Source\Repos\ebalit\bin\EntityFramework.xml
 D:\Users\Elias\Source\Repos\ebalit\obj\Release\EbalitWebForms.csprojResolveAssemblyReference.cache
 D:\Users\Elias\Source\Repos\ebalit\obj\Release\EbalitWebForms.Resources.Resources.resources
 D:\Users\Elias\Source\Repos\ebalit\obj\Release\EbalitWebForms.csproj.GenerateResource.Cache
