@@ -294,7 +294,32 @@ namespace EbalitWebForms.GUI.WorkingReport
             }
         }
 
-        protected void CustomValidator1_OnServerValidate(object source, ServerValidateEventArgs args)
+
+
+        protected void odsWorkingReport_OnDeleted(object sender, ObjectDataSourceStatusEventArgs e)
+        {
+            if (e.Exception != null)
+            {
+                StatusBar.StatusText = "Delete was not successful.";
+                e.ExceptionHandled = true;
+            }
+        }
+
+        protected void odsWorkingReport_OnInserted(object sender, ObjectDataSourceStatusEventArgs e)
+        {
+            if (e.Exception != null)
+            {
+                StatusBar.StatusText = "Insert was not successful.";
+                e.ExceptionHandled = true;
+            }
+        }
+
+        /// <summary>
+        /// Todo: Did not work as custom control...
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="args"></param>
+        protected void cvdDateFormat_OnServerValidate(object source, ServerValidateEventArgs args)
         {
             if (!string.IsNullOrWhiteSpace(args.Value))
             {
@@ -303,8 +328,7 @@ namespace EbalitWebForms.GUI.WorkingReport
                 try
                 {
                     args.IsValid = DateTime.TryParse(args.Value, CultureInfo.CurrentCulture.DateTimeFormat,
-                        DateTimeStyles.None, out
-                            date);
+                        DateTimeStyles.None, out date);
                 }
                 catch (ArgumentException)
                 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using System.Web.Security;
 using System.Web.UI.WebControls;
 using EbalitWebForms.BusinessLogicLayer.CsvFileImport;
@@ -120,22 +121,18 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             if (findDto != null)
             {
                 resultList = resultList.
-                    ConditionalWhere(cc=> cc.From >= findDto.From, () => findDto.From !=null).
-                    ConditionalWhere(cc=> cc.To <= findDto.To, () => findDto.To != null).
-                    ConditionalWhere(cc=> cc.ProjectId == findDto.ProjectId, () => findDto.ProjectId != null && findDto.ProjectId !=0).
-                    ConditionalWhere(cc=> cc.ResourceId == findDto.ResourceId, () => findDto.ResourceId !=null && findDto.ResourceId !=0).
+                    ConditionalWhere(cc => cc.From >= findDto.From, () => findDto.From != null).
+                    ConditionalWhere(cc => cc.To <= findDto.To, () => findDto.To != null).
+                    ConditionalWhere(cc => cc.ProjectId == findDto.ProjectId, () => findDto.ProjectId != null && findDto.ProjectId != 0).
+                    ConditionalWhere(cc => cc.ResourceId == findDto.ResourceId, () => findDto.ResourceId != null && findDto.ResourceId != 0).
                     ConditionalWhere(cc => cc.ProjectTask.TfsTaskId == findDto.TaskTfsId, () => !string.IsNullOrWhiteSpace(findDto.TaskTfsId));
                 //todo search for child tasks
-
-
-        
             }
             return resultList.ToList();
         }
 
         /// <summary>
         /// Updates a given working report
-        /// TODO: Check if this really works.
         /// </summary>
         /// <param name="workingReport"></param>
         /// <returns></returns>
@@ -159,7 +156,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
 
         /// <summary>
         /// Delete working report
-        /// TODO: had to remove transaction scope due to sql2005
+        /// TODO: check whether transactionhandling works now
         /// see: http://pieterderycke.wordpress.com/2012/01/22/transactionscope-transaction-escalation-behavior/ for a solution
         /// </summary>
         /// <param name="workingReport"></param>
@@ -167,53 +164,41 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         {
             var reportToDelete = GetWorkingReport(workingReport.Id);
 
-            //using (var transaction = new TransactionScope())
-            //{
-            //    try
-            //    {
-            var taskId = Convert.ToInt32(reportToDelete.TaskId);
+            using (var transaction = new TransactionScope())
+            {
 
-            EbalitDbContext.ProjectWorkingReports.Remove(reportToDelete);
+                var taskId = Convert.ToInt32(reportToDelete.TaskId);
 
-            EbalitDbContext.SaveChanges();
+                EbalitDbContext.ProjectWorkingReports.Remove(reportToDelete);
 
-            UpdateActualWork(taskId);
+                EbalitDbContext.SaveChanges();
 
-            //    transaction.Complete();
-            //}
-            //catch (InvalidOperationException)
-            //{
-            //    //todo: exception handling
-            //}
-            //}
+                UpdateActualWork(taskId);
+
+                transaction.Complete();
+
+            }
 
         }
 
         /// <summary>
         /// Create new working report
-        /// TODO: validation
-        /// TODO: uncommented transactions as not working on ebalit.
         /// </summary>
         /// <param name="workingReport"></param>
         public void CreateWorkingReport(ProjectWorkingReport workingReport)
         {
-            //using (var transaction = new TransactionScope())
-            //{
-            //    try
-            //    {
-            EbalitDbContext.ProjectWorkingReports.Add(workingReport);
+            using (var transaction = new TransactionScope())
+            {
 
-            EbalitDbContext.SaveChanges();
+                EbalitDbContext.ProjectWorkingReports.Add(workingReport);
 
-            UpdateActualWork(Convert.ToInt32(workingReport.TaskId));
+                EbalitDbContext.SaveChanges();
 
-            //    transaction.Complete();
-            //}
-            //catch (InvalidOperationException)
-            //{
-            //    //todo: exception handling
-            //}
-            //}
+                UpdateActualWork(Convert.ToInt32(workingReport.TaskId));
+
+                transaction.Complete();
+            }
+
         }
 
         /// <summary>
@@ -303,17 +288,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
 
             EbalitDbContext.ProjectUserAssignments.Add(userAssignment);
 
-            try
-            {
-                EbalitDbContext.SaveChanges();
-            }
-            catch (InvalidOperationException)
-            {
-                //todo error handling
-
-                throw;
-            }
-
+            EbalitDbContext.SaveChanges();
         }
 
         /// <summary>
@@ -330,16 +305,9 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             {
                 EbalitDbContext.ProjectUserAssignments.Remove(userAssignment);
 
-                try
-                {
-                    EbalitDbContext.SaveChanges();
-                }
-                catch (InvalidOperationException)
-                {
-                    //todo error handling
+                //error handling has to be done by client
+                EbalitDbContext.SaveChanges();
 
-                    throw;
-                }
             }
         }
 

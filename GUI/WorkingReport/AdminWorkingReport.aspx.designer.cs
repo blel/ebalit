@@ -146,5 +146,32 @@ namespace EbalitWebForms.GUI.WorkingReport {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAssign;
+        
+        /// <summary>
+        /// chkDeleteResources control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkDeleteResources;
+        
+        /// <summary>
+        /// chkDeleteTasks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkDeleteTasks;
+        
+        /// <summary>
+        /// StatusBar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::EbalitWebForms.GUI.WebUserControls.StatusBar StatusBar;
     }
 }

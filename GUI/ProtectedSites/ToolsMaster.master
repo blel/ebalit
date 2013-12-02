@@ -34,6 +34,7 @@
                         <asp:MenuItem Text="Working Report">
                             <asp:MenuItem Text="Create Working Report" NavigateUrl="/GUI/WorkingReport/CreateWorkingReport.aspx"></asp:MenuItem>
                             <asp:MenuItem Text="Manage Working Reports" NavigateUrl="/GUI/WorkingReport/ManageWorkingReports.aspx"></asp:MenuItem>
+                             <asp:MenuItem Text="Upload Working Reports" NavigateUrl="/GUI/WorkingReport/UploadWorkingReports.aspx"></asp:MenuItem>
                             <asp:MenuItem Text="Create Project" NavigateUrl="/GUI/WorkingReport/CreateProject.aspx"></asp:MenuItem>
                             <asp:MenuItem Text="Manage Projects" NavigateUrl="/GUI/WorkingReport/ManageProjects.aspx"></asp:MenuItem>
                             <asp:MenuItem Text="Admin Working Reports" NavigateUrl="/GUI/WorkingReport/AdminWorkingReport.aspx"></asp:MenuItem>

@@ -123,6 +123,7 @@
     <Content Include="GUI\WorkingReport\CreateWorkingReport.aspx" />
     <Content Include="GUI\WorkingReport\ManageProjects.aspx" />
     <Content Include="GUI\WorkingReport\ManageWorkingReports.aspx" />
+    <Content Include="GUI\WorkingReport\UploadWorkingReports.aspx" />
     <Content Include="Index.html" />
     <Content Include="GUI\ProtectedSites\ToolsMaster.master" />
     <Content Include="WebService\EbalitWebService.svc" />
@@ -159,7 +160,6 @@
     <Compile Include="BusinessLogicLayer\WineBLL.cs" />
     <Compile Include="BusinessLogicLayer\WorkingReport\ProjectBll.cs" />
     <Compile Include="BusinessLogicLayer\WorkingReport\WorkingReportBLL.cs" />
-    <Compile Include="Common\EbalitConfig.cs" />
     <Compile Include="Common\Extensions.cs" />
     <Compile Include="Common\HierarchicalTaskDataSource.cs" />
     <Compile Include="Common\HierarchicalTaskDataSourceView.cs" />
@@ -432,6 +432,13 @@
     </Compile>
     <Compile Include="GUI\WorkingReport\ManageWorkingReports.aspx.designer.cs">
       <DependentUpon>ManageWorkingReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WorkingReport\UploadWorkingReports.aspx.cs">
+      <DependentUpon>UploadWorkingReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GUI\WorkingReport\UploadWorkingReports.aspx.designer.cs">
+      <DependentUpon>UploadWorkingReports.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GUI\Index.aspx.cs">

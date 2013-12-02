@@ -67,7 +67,6 @@ namespace EbalitWebForms.Common
 
         /// <summary>
         /// Removes all items from an ICollection
-        /// TODO: not sure if this is really the best implementation...
         /// </summary>
         /// <typeparam name="TSource"></typeparam>
         /// <param name="source"></param>

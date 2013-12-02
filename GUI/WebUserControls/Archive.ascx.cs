@@ -1,25 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using EbalitWebForms.BusinessLogicLayer;
 using System.Reflection;
-using System.Collections;
-
-
-
 
 namespace EbalitWebForms.GUI.WebUserControls
 {
 
     /// <summary>
-    /// The archive user control displays an accordion. Each header displays the month&year, and 
+    /// The archive user control displays an accordion. Each header displays the month & year, and 
     /// the content shows a list of links belonging to that year.
     /// In order to make this work
     /// </summary>
-    public partial class Archive : System.Web.UI.UserControl
+    public partial class Archive : UserControl
     {
         private Type _itemsBusinessLayerObject;
         private Type _itemType;
@@ -45,9 +38,7 @@ namespace EbalitWebForms.GUI.WebUserControls
         }
 
         /// <summary>
-        /// Name of the select method
-        /// The select method must return a IEnumerable<IGrouping<DateTime, ItemType>> object
-        /// (such objects are returned by the Linq GroupBy function.)
+        /// Select method
         /// </summary>
         public string SelectMethod
         {
@@ -85,7 +76,6 @@ namespace EbalitWebForms.GUI.WebUserControls
         /// <summary>
         /// In the page load, the accordion is created. Content to display is retrieved by using reflection and dynamic programming
         /// from the properties that the user setup declaratively in the markup.
-        /// TODO: some selftest would be good (are the properties set correctly...)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -110,11 +100,11 @@ namespace EbalitWebForms.GUI.WebUserControls
             foreach (dynamic key in result)
             {
 
-                AjaxControlToolkit.AccordionPane pane = new AjaxControlToolkit.AccordionPane();
+                var pane = new AjaxControlToolkit.AccordionPane();
                 pane.ID = "pane" + idCounter;
                 idCounter += 1;
 
-                LiteralControl header = new LiteralControl(string.Format("<div class = \"MenuHeader\" id=\"{0}\"><b>{1:MMMM yyyy}</b></div>", "header" + idCounter,
+                var header = new LiteralControl(string.Format("<div class = \"MenuHeader\" id=\"{0}\"><b>{1:MMMM yyyy}</b></div>", "header" + idCounter,
                     key.GetType().GetProperty("Key").GetValue(key,null)));
 
                 pane.HeaderContainer.Controls.Add(header);
@@ -122,11 +112,13 @@ namespace EbalitWebForms.GUI.WebUserControls
                 pane.ContentContainer.Controls.Add(new LiteralControl("<ul style='margin-top:0; margin-bottom:0'>"));
                 foreach (dynamic entry in key)
                 {
-                    LinkButton linkButton = new LinkButton();
-                    linkButton.ID = "linkButton" + entry.Id;
-                    linkButton.Text = entry.GetType().GetProperty(DisplayField).GetValue(entry,null);
-                    linkButton.CommandArgument = entry.Id.ToString();
-                    linkButton.Command += new CommandEventHandler(linkButton_Command);
+                    var linkButton = new LinkButton
+                    {
+                        ID = "linkButton" + entry.Id,
+                        Text = entry.GetType().GetProperty(DisplayField).GetValue(entry, null),
+                        CommandArgument = entry.Id.ToString()
+                    };
+                    linkButton.Command += linkButton_Command;
                     linkButton.CausesValidation = false;
                     linkButton.CssClass = "MenuButton";
                     pane.ContentContainer.Controls.Add(new LiteralControl("<li>"));

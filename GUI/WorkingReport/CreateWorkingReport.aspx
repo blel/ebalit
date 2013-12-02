@@ -2,11 +2,19 @@
 
 <%@ Register Assembly="EbalitWebForms" Namespace="EbalitWebForms.Common" TagPrefix="cc1" %>
 <%@ Register Src="~/GUI/WebUserControls/TimeControl.ascx" TagPrefix="uc1" TagName="TimeControl" %>
+<%@ Register Src="~/GUI/WebUserControls/StatusBar.ascx" TagPrefix="uc1" TagName="StatusBar" %>
+<%@ Register Src="~/GUI/WebUserControls/DateFormatValidator.ascx" TagPrefix="uc1" TagName="DateFormatValidator" %>
+
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ToolsContent" runat="server">
     <asp:ObjectDataSource ID="odsProject" runat="server" SelectMethod="GetProjects" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll"></asp:ObjectDataSource>
 
-    <asp:ObjectDataSource ID="odsWorkingReport" runat="server" SelectMethod="GetWorkingReport" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" DataObjectTypeName="EbalitWebForms.DataLayer.ProjectWorkingReport" DeleteMethod="DeleteWorkingReport" InsertMethod="CreateWorkingReport" UpdateMethod="UpdateWorkingReport" OnSelecting="odsWorkingReport_OnSelecting">
+    <asp:ObjectDataSource ID="odsWorkingReport" runat="server" SelectMethod="GetWorkingReport" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" DataObjectTypeName="EbalitWebForms.DataLayer.ProjectWorkingReport"
+        DeleteMethod="DeleteWorkingReport" InsertMethod="CreateWorkingReport"
+        UpdateMethod="UpdateWorkingReport" OnSelecting="odsWorkingReport_OnSelecting"
+        OnDeleted="odsWorkingReport_OnDeleted"
+        OnInserted="odsWorkingReport_OnInserted">
         <SelectParameters>
             <asp:Parameter Name="id" Type="Int32" />
         </SelectParameters>
@@ -80,15 +88,16 @@
                     <asp:TemplateField HeaderText="Date" SortExpression="Date">
                         <EditItemTemplate>
                             <asp:TextBox ID="txtDate" runat="server" Text='<%# Bind("From", "{0:d}") %>'></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtDate"  runat="server" ErrorMessage="Please enter a date."></asp:RequiredFieldValidator>
-                            <asp:CustomValidator ID="CustomValidator1" OnServerValidate="CustomValidator1_OnServerValidate" ControlToValidate="txtDate" runat="server" ErrorMessage="Please enter a date."></asp:CustomValidator>
-                                             <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDate"></ajaxToolkit:CalendarExtender>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtDate" runat="server" ErrorMessage="Please enter a date."></asp:RequiredFieldValidator>
+                            <uc1:DateFormatValidator runat="server" ID="DateFormatValidator" ControlToValidate="txtDate" ErrorMessage="Pleaes enter a correct date." />
+                            <asp:CustomValidator ID="cvdDateFormat" runat="server" ControlToValidate="txtDate" ErrorMessage="Please enter a correct date." OnServerValidate="cvdDateFormat_OnServerValidate"></asp:CustomValidator>
+                            <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDate"></ajaxToolkit:CalendarExtender>
                         </EditItemTemplate>
                         <InsertItemTemplate>
                             <asp:TextBox ID="txtDate" runat="server" Text='<%# Bind("From") %>'></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtDate"  runat="server" ErrorMessage="Please enter a date."></asp:RequiredFieldValidator>
-                            <asp:CustomValidator ID="CustomValidator1" OnServerValidate="CustomValidator1_OnServerValidate" ControlToValidate="txtDate" runat="server" ErrorMessage="Please enter a date."></asp:CustomValidator>                           
-                             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtDate"></ajaxToolkit:CalendarExtender>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtDate" runat="server" ErrorMessage="Please enter a date."></asp:RequiredFieldValidator>
+                             <asp:CustomValidator ID="cvdDateFormat" runat="server" ControlToValidate="txtDate" ErrorMessage="Please enter a correct date." OnServerValidate="cvdDateFormat_OnServerValidate"></asp:CustomValidator>                           
+                            <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtDate"></ajaxToolkit:CalendarExtender>
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="lblDate" runat="server" Text='<%# Bind("From", "{0:d}") %>'></asp:Label>
@@ -126,7 +135,7 @@
 
                             <asp:TextBox ID="txtTotal" runat="server" Text='<%# Bind("Total") %>'></asp:TextBox>
                             <asp:RegularExpressionValidator ControlToValidate="txtTotal" ID="RegularExpressionValidator1" ValidationExpression="[-+]?[0-9]*\.?[0-9]+" runat="server" ErrorMessage="Please enter a number."></asp:RegularExpressionValidator>
-                            
+
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label6" runat="server" Text='<%# Bind("Total") %>'></asp:Label>
@@ -148,6 +157,7 @@
                     <asp:ButtonField Text="Save and New" ControlStyle-CssClass="CommandButton" CommandName="SaveAndNew" ButtonType="Link" CausesValidation="True" />
                 </Fields>
             </asp:DetailsView>
+            <uc1:StatusBar runat="server" ID="StatusBar" />
             <div id="CommentsPopup" class="Popup">
                 <asp:Panel runat="server" Height="600" ScrollBars="Vertical">
                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">

@@ -15,11 +15,9 @@ namespace EbalitWebForms.GUI.WorkingReport
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //TODO: This seems to work, but need to checkout why exactly...
+          
             scmAjaxToolkit.RegisterPostBackControl(trvTask);
-
-
-
+            
             if (!IsPostBack)
             {
 
@@ -159,42 +157,39 @@ namespace EbalitWebForms.GUI.WorkingReport
 
             DateTime? toTime = null;
 
-            try
+            if (!string.IsNullOrWhiteSpace(txtDateFrom.Text))
             {
-                fromTime = DateTime.Parse(txtDateFrom.Text, CultureInfo.CurrentCulture.DateTimeFormat,
-                    DateTimeStyles.None);
-            }
-            catch (FormatException)
-            {
-                //todo: validation
-            }
-            catch (ArgumentNullException)
-            {
-                //todo: validation
-            }
-            catch (ArgumentException)
-            {
-                //todo: validation
-            }
-
-            try
-            {
-                toTime = DateTime.Parse(txtDateTo.Text, CultureInfo.CurrentCulture.DateTimeFormat,
+                try
+                {
+                    fromTime = DateTime.Parse(txtDateFrom.Text, CultureInfo.CurrentCulture.DateTimeFormat,
                         DateTimeStyles.None);
-            }
-            catch (FormatException)
-            {
-                //todo: validation
-            }
-            catch (ArgumentNullException)
-            {
-                //todo: validation
-            }
-            catch (ArgumentException)
-            {
-                //todo: validation
+                }
+                catch (FormatException)
+                {
+                    StatusBar.StatusText = "Wrong format in From Time.";
+                }
+                catch (ArgumentException)
+                {
+                    StatusBar.StatusText = "Invalid argument in From Time.";
+                }
             }
 
+            if (!string.IsNullOrWhiteSpace(txtDateTo.Text))
+            {
+                try
+                {
+                    toTime = DateTime.Parse(txtDateTo.Text, CultureInfo.CurrentCulture.DateTimeFormat,
+                        DateTimeStyles.None);
+                }
+                catch (FormatException)
+                {
+                    StatusBar.StatusText = "Wrong format in To Time.";
+                }
+                catch (ArgumentException)
+                {
+                    StatusBar.StatusText = "Invalid argument in To Time.";
+                }
+            }
             int? projectId = null;
             if (!string.IsNullOrWhiteSpace(ddlProjects.SelectedValue))
             {
@@ -246,37 +241,6 @@ namespace EbalitWebForms.GUI.WorkingReport
             ddlResource.SelectedIndex = 0;
             Session.Remove("findDto");
             ViewState.Remove("taskTfsId");
-
-
-        }
-
-        /// <summary>
-        /// Check whether value is a valid datae
-        /// TODO: convert to custom control
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="args"></param>
-        protected void vdtDate_OnServerValidate(object source, ServerValidateEventArgs args)
-        {
-            if (!string.IsNullOrWhiteSpace(args.Value))
-            {
-                var date = new DateTime();
-
-                try
-                {
-                    args.IsValid = DateTime.TryParse(args.Value, CultureInfo.CurrentCulture.DateTimeFormat,
-                        DateTimeStyles.None, out
-                            date);
-                }
-                catch (ArgumentException)
-                {
-                    args.IsValid = false;
-                }
-                catch (NotSupportedException)
-                {
-                    args.IsValid = false;
-                }
-            }
         }
 
         /// <summary>
@@ -297,44 +261,24 @@ namespace EbalitWebForms.GUI.WorkingReport
             FileDownloader.SendFileToClient();
         }
 
-        /// <summary>
-        /// Upload file
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void lnkUpload_OnCommand(object sender, CommandEventArgs e)
+
+
+        protected void odsWorkingReports_OnDeleted(object sender, ObjectDataSourceStatusEventArgs e)
         {
-            if (fulCsvFileUpload.HasFile)
+            if (e.Exception != null)
             {
-                try
-                {
-                    var parser = new StreamCsvParser<WorkingReportCsvFile>(fulCsvFileUpload.FileContent, ";", false);
-
-                    parser.ValidationErrorOccurred += parser_ValidationErrorOccurred;
-
-                    var importResult = parser.Read();
-
-                    var workingReportBll = new WorkingReportBll();
-
-                    workingReportBll.InsertManyWorkingReports(importResult);
-                }
-                catch (Exception ex)
-                {
-                    StatusBar.StatusText = string.Format("File could not be imported: {0}", ex.Message);
-                }
+                StatusBar.StatusText = "Delete was not successful.";
+                e.ExceptionHandled = true;
             }
         }
 
-        /// <summary>
-        /// The call back
-        /// </summary>
-        /// <param name="line"></param>
-        /// <param name="col"></param>
-        /// <param name="message"></param>
-        protected void parser_ValidationErrorOccurred(int line, int col, string message)
+        protected void odsWorkingReports_OnInserted(object sender, ObjectDataSourceStatusEventArgs e)
         {
-            StatusBar.StatusText = string.Format("File could not be imported: Error at line {0}, col {1}: {2}", line,
-                col, message);
+            if (e.Exception != null)
+            {
+                StatusBar.StatusText = "Insert was not successful.";
+                e.ExceptionHandled = true;
+            }
         }
     }
 }

@@ -364,24 +364,6 @@ namespace EbalitWebForms.GUI.WorkingReport {
         protected global::System.Web.UI.WebControls.LinkButton lnkExport;
         
         /// <summary>
-        /// fulCsvFileUpload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fulCsvFileUpload;
-        
-        /// <summary>
-        /// lnkUpload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkUpload;
-        
-        /// <summary>
         /// lvwWorkingReports control.
         /// </summary>
         /// <remarks>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
+using System.ServiceModel;
 using System.Transactions;
 using EbalitWebForms.Common;
 using EbalitWebForms.DataLayer;
@@ -27,11 +28,7 @@ namespace EbalitWebForms.WebService
             _ebalitContext = new Ebalit_WebFormsEntities();
 
             //Get the configuration from config file
-            var config = (EbalitConfig)System.Configuration.ConfigurationManager.GetSection("ebalit");
 
-            _deleteResources = config.DeleteResourcesRemovedFromMsProject;
-
-            _deleteTasks = config.DeleteTasksRemovedFromMsProject;
 
         }
 
@@ -108,25 +105,19 @@ namespace EbalitWebForms.WebService
 
         /// <summary>
         /// Syncs the project on the server with the project from ms project
-        /// TODO: had to remove transaction handling. which is a big risk, but 2005 seems to have problems with it.
+        /// TODO: check if it works now
         /// </summary>
         /// <param name="project"></param>
         private ProjectDto SyncProjects(ProjectDto project)
         {
             using (var transaction = new TransactionScope())
             {
-                try
-                {
-                    SyncResources(project);
 
-                    SyncTasks(project);
+                SyncResources(project);
 
-                    transaction.Complete();
-                }
-                catch (InvalidOperationException)
-                {
-                    //todo: exception handling                    
-                }
+                SyncTasks(project);
+
+                transaction.Complete();
             }
             return project;
         }
@@ -135,7 +126,7 @@ namespace EbalitWebForms.WebService
         {
             //get the project entity corresponding to the project dto
             var projectEntity = _ebalitContext.ProjectProjects.Single(cc => cc.Guid == project.UniqueIdentifier);
-            
+
             //delete resource only if configured accordingly
             if (_deleteResources)
             {
@@ -261,7 +252,6 @@ namespace EbalitWebForms.WebService
                 };
 
                 //Assign the appropriate resources to this task
-                //TODO: Reimplement
                 CreateTaskResourceAssignments(newTask, taskEntity);
 
                 //add the task to the project
@@ -289,7 +279,6 @@ namespace EbalitWebForms.WebService
                 _ebalitContext.ProjectResourceTaskAssignments.RemoveMany(taskEntity.ProjectResourceTaskAssignments);
 
                 //create the new assignments
-                //TODO: Reimplement
                 CreateTaskResourceAssignments(task, taskEntity);
             }
 

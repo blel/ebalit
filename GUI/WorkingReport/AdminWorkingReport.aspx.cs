@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.UI.WebControls;
 using EbalitWebForms.BusinessLogicLayer.WorkingReport;
+using EbalitWebForms.Common;
 
 namespace EbalitWebForms.GUI.WorkingReport
 {
@@ -49,13 +50,18 @@ namespace EbalitWebForms.GUI.WorkingReport
 
                 var workingReportBll = new WorkingReportBll();
 
-                workingReportBll.AssignUser(selectedUser, Convert.ToInt32(selectedResource));
-
+                try
+                {
+                    workingReportBll.AssignUser(selectedUser, Convert.ToInt32(selectedResource));
+                }
+                catch (InvalidOperationException ex)
+                {
+                    StatusBar.StatusText = ex.Message;
+                }
+                
                 lsbAssignedUsers.DataBind();
 
                 lsbAvailableResources.DataBind();
-
- 
             }
         }
 
@@ -74,13 +80,27 @@ namespace EbalitWebForms.GUI.WorkingReport
             {
                 var workingReportBll = new WorkingReportBll();
 
-                workingReportBll.RemoveUser(selectedUser, Convert.ToInt32(selectedResource));
+                try
+                {
+
+                    workingReportBll.RemoveUser(selectedUser, Convert.ToInt32(selectedResource));
+                }
+                catch (InvalidOperationException ex)
+                {
+                    StatusBar.StatusText = ex.Message;
+                }
 
                 lsbAssignedUsers.DataBind();
 
                 lsbAvailableResources.DataBind();
 
             }
+        }
+
+        protected void chkDeleteResources_OnCheckedChanged(object sender, EventArgs e)
+        {
+      
+
         }
     }
 }

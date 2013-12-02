@@ -12,7 +12,9 @@
         DeleteMethod="DeleteWorkingReport" InsertMethod="CreateWorkingReport"
         SelectMethod="GetWorkingReports" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll"
         UpdateMethod="UpdateWorkingReport"
-        OnSelecting="odsWorkingReports_OnSelecting">
+        OnSelecting="odsWorkingReports_OnSelecting"
+        OnDeleted ="odsWorkingReports_OnDeleted"
+        OnInserted="odsWorkingReports_OnInserted">
 
         <SelectParameters>
             <asp:Parameter Name="findDto" Type="Object" />
@@ -89,8 +91,7 @@
                         <asp:LinkButton ID="lnkClear" runat="server" CausesValidation="false" CssClass="CommandButton" OnCommand="lnkClear_OnCommand">Clear</asp:LinkButton>&nbsp;
                         <asp:LinkButton ID="lnkCreate" runat="server" CausesValidation="false" CssClass="CommandButton" OnCommand="lnkCreate_Command">Create</asp:LinkButton>&nbsp;
                         <asp:LinkButton ID="lnkExport" runat="server" CausesValidation="false" CssClass="CommandButton" OnCommand="lnkExport_OnCommand">Export</asp:LinkButton>&nbsp;
-                        <asp:FileUpload ID="fulCsvFileUpload" runat="server" Width="300"  />&nbsp;
-                        <asp:LinkButton ID="lnkUpload" runat="server"  CausesValidation="false" CssClass="CommandButton" OnCommand="lnkUpload_OnCommand">Import</asp:LinkButton>&nbsp;
+                        
                     </asp:TableCell></asp:TableFooterRow></asp:Table></div><asp:ListView ID="lvwWorkingReports" runat="server" DataSourceID="odsWorkingReports"
             Style="margin-bottom: 51px" DataKeyNames="Id">
             <AlternatingItemTemplate>
@@ -280,7 +281,7 @@
                 </tr>
             </SelectedItemTemplate>
         </asp:ListView>
-        <uc1:StatusBar runat="server" ID="StatusBar" />
+        <uc1:StatusBar runat="server" ID="StatusBar"  ClearOnPostback="true"/>
     </div>
 </asp:Content>
 
