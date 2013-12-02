@@ -159,6 +159,7 @@
     <Compile Include="BusinessLogicLayer\WineBLL.cs" />
     <Compile Include="BusinessLogicLayer\WorkingReport\ProjectBll.cs" />
     <Compile Include="BusinessLogicLayer\WorkingReport\WorkingReportBLL.cs" />
+    <Compile Include="Common\EbalitConfig.cs" />
     <Compile Include="Common\Extensions.cs" />
     <Compile Include="Common\HierarchicalTaskDataSource.cs" />
     <Compile Include="Common\HierarchicalTaskDataSourceView.cs" />

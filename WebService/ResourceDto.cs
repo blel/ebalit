@@ -16,9 +16,18 @@ namespace EbalitWebForms.WebService
         public string Name { get; set; }
 
         /// <summary>
-        /// Resource guid
+        /// The guid which is used to check whether it is 
+        /// the same resource in ms project as on the mps server
         /// </summary>
         [DataMember]
-        public Guid Guid { get; set; }
+        public Guid MpsServerGuid { get; set; }
+
+        /// <summary>
+        /// The MsProject Guid. This is to make sure resources are correctly
+        /// identified as long as no mps server guid is existing
+        /// </summary>
+        [DataMember]
+        public Guid MsProjectGuid { get; set; }
+
     }
 }

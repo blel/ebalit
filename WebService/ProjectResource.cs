@@ -16,7 +16,7 @@ namespace EbalitWebForms.DataLayer
         {
             return new ResourceDto
             {
-                Guid = Guid,
+                MpsServerGuid = Guid,
                 Name = Name
             };
         }

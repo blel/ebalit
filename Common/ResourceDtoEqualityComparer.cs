@@ -10,12 +10,12 @@ namespace EbalitWebForms.Common
     {
         public bool Equals(ResourceDto x, ResourceDto y)
         {
-            return x.Guid == y.Guid;
+            return x.MpsServerGuid == y.MpsServerGuid;
         }
 
         public int GetHashCode(ResourceDto obj)
         {
-            return obj.Guid.GetHashCode();
+            return obj.MpsServerGuid.GetHashCode();
         }
     }
 }

@@ -87,9 +87,10 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// </summary>
         /// <param name="tfsId"></param>
         /// <returns></returns>
-        public int GetTaksIdByTfsId(string tfsId)
+        public int GetTaksIdByTfsId(string tfsId, string projectId)
         {
-            return EbalitDbContext.ProjectTasks.Single(cc => cc.TfsTaskId == tfsId).Id;
+            var projectIdInt = Convert.ToInt32(projectId);
+            return EbalitDbContext.ProjectTasks.Single(cc => cc.TfsTaskId == tfsId && cc.ProjectId == projectIdInt).Id;
         }
 
 
@@ -347,17 +348,17 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// </summary>
         /// <param name="taskTfsId"></param>
         /// <returns></returns>
-        public string GetTaskPath(string taskTfsId)
+        public string GetTaskPath(string taskTfsId, int projectId)
         {
             if (!string.IsNullOrWhiteSpace(taskTfsId))
             {
 
-                var task = EbalitDbContext.ProjectTasks.Include("ProjectProject").Single(cc => cc.TfsTaskId == taskTfsId);
+                var task = EbalitDbContext.ProjectTasks.Include("ProjectProject").Single(cc => cc.TfsTaskId == taskTfsId && cc.ProjectId == projectId);
                 if (string.IsNullOrWhiteSpace(task.ParentTfsTaskId))
                 {
                     return task.Name;
                 }
-                return GetTaskPath(task.ParentTfsTaskId) + "/" + task.Name;
+                return GetTaskPath(task.ParentTfsTaskId, projectId) + "/" + task.Name;
             }
             return string.Empty;
         }

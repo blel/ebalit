@@ -38,7 +38,7 @@ namespace EbalitWebForms.GUI.WorkingReport
 
                     ViewState.Add("taskTfsId", findDto.TaskTfsId);
 
-                    txtTaskDropDown.Text = new WorkingReportBll().GetTaskPath(findDto.TaskTfsId);
+                    txtTaskDropDown.Text = new WorkingReportBll().GetTaskPath(findDto.TaskTfsId, Convert.ToInt32(ddlProjects.SelectedValue));
                 }
             }
         }

@@ -56,13 +56,15 @@ namespace EbalitWebForms.GUI.WorkingReport
         /// <param name="e"></param>
         protected void dtvCreateWorkingReport_ItemInserting(object sender, DetailsViewInsertEventArgs e)
         {
-            //need to get the id of the selected task
-            e.Values["TaskId"] = new WorkingReportBll().GetTaksIdByTfsId(ViewState["selectedTaskId"].ToString());
+            var ddlProject = (DropDownList)dtvCreateWorkingReport.FindControl("ddlProject");
 
-            var fromTime = ((WebUserControls.TimeControl)
+            //need to get the id of the selected task
+            e.Values["TaskId"] = new WorkingReportBll().GetTaksIdByTfsId(ViewState["selectedTaskId"].ToString(), ddlProject.SelectedValue);
+
+            var fromTime = ((TimeControl)
                 dtvCreateWorkingReport.FindControl("FromTime")).DisplayTime;
 
-            var toTime = ((WebUserControls.TimeControl)
+            var toTime = ((TimeControl)
                 dtvCreateWorkingReport.FindControl("ToTime")).DisplayTime;
 
             var cultureInfo = new CultureInfo("en-US");
@@ -89,8 +91,9 @@ namespace EbalitWebForms.GUI.WorkingReport
         /// <param name="e"></param>
         protected void dtvCreateWorkingReport_OnItemUpdating(object sender, DetailsViewUpdateEventArgs e)
         {
+            var ddlProject = (DropDownList)dtvCreateWorkingReport.FindControl("ddlProject");
             //need to get the id of the selected task
-            e.NewValues["TaskId"] = new WorkingReportBll().GetTaksIdByTfsId(ViewState["selectedTaskId"].ToString());
+            e.NewValues["TaskId"] = new WorkingReportBll().GetTaksIdByTfsId(ViewState["selectedTaskId"].ToString(), ddlProject.SelectedValue);
 
             var fromTime = ((WebUserControls.TimeControl)
                 dtvCreateWorkingReport.FindControl("FromTime")).DisplayTime;
@@ -186,7 +189,9 @@ namespace EbalitWebForms.GUI.WorkingReport
                 var bll = new WorkingReportBll();
                 var workingReport = bll.GetWorkingReport(Convert.ToInt32(Request.QueryString["Id"]));
 
-                txtTask.Text = bll.GetTaskPath(workingReport.ProjectTask.TfsTaskId);
+                var ddlProject = (DropDownList) dtvCreateWorkingReport.FindControl("ddlProject");
+
+                txtTask.Text = bll.GetTaskPath(workingReport.ProjectTask.TfsTaskId, Convert.ToInt32(ddlProject.SelectedValue));
 
 
                 //store the TfsId in the view state
