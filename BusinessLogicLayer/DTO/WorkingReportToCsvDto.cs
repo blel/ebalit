@@ -11,6 +11,8 @@ namespace EbalitWebForms.BusinessLogicLayer.DTO
 
         public string Resource { get; set; }
 
+        public string TfsTaskId { get; set; }
+
         public string Task { get; set; }
 
         public string Date { get; set; }

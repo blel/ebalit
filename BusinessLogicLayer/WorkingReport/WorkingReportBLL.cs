@@ -390,7 +390,9 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
                         ProjectResource = resourceEntity,
                         ProjectTask = taskEntity,
                         Notes = workingReport.Description,
-                        Total = workingReport.WorkingTime
+                        Total = workingReport.WorkingTime,
+                        From = workingReport.Date,
+                        To = workingReport.Date
                     };
                     EbalitDbContext.ProjectWorkingReports.Add(workingReportEntity);
                 }

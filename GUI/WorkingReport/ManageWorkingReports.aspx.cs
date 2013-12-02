@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Web.UI.WebControls;
-using CsvParser;
-using CSVParser;
 using EbalitWebForms.BusinessLogicLayer;
-using EbalitWebForms.BusinessLogicLayer.CsvFileImport;
 using EbalitWebForms.BusinessLogicLayer.DTO;
 using EbalitWebForms.BusinessLogicLayer.WorkingReport;
 using EbalitWebForms.Common;
@@ -40,8 +37,6 @@ namespace EbalitWebForms.GUI.WorkingReport
                 }
             }
         }
-
-
 
         /// <summary>
         /// When resources are selected from the db,
@@ -262,7 +257,11 @@ namespace EbalitWebForms.GUI.WorkingReport
         }
 
 
-
+        /// <summary>
+        /// Display erro messages if any after delete
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void odsWorkingReports_OnDeleted(object sender, ObjectDataSourceStatusEventArgs e)
         {
             if (e.Exception != null)
@@ -272,6 +271,11 @@ namespace EbalitWebForms.GUI.WorkingReport
             }
         }
 
+        /// <summary>
+        /// Display error messages if any after insert
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void odsWorkingReports_OnInserted(object sender, ObjectDataSourceStatusEventArgs e)
         {
             if (e.Exception != null)

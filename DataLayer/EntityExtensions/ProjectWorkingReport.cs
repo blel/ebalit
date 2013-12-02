@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using EbalitWebForms.BusinessLogicLayer.DTO;
+using EbalitWebForms.BusinessLogicLayer.WorkingReport;
 
 namespace EbalitWebForms.DataLayer
 {
@@ -10,6 +11,8 @@ namespace EbalitWebForms.DataLayer
     {
         public WorkingReportToCsvDto ToCsvDto()
         {
+            var workingReportBll = new WorkingReportBll();
+
             return new WorkingReportToCsvDto
             {
                 Comments = Notes,
@@ -18,7 +21,8 @@ namespace EbalitWebForms.DataLayer
                 Date = string.Format("{0:d}", Convert.ToDateTime(From)),
                 Project = ProjectProject.Name,
                 Resource = ProjectResource.Name,
-                Task = ProjectTask.Name,
+                TfsTaskId = ProjectTask.TfsTaskId,
+                Task = workingReportBll.GetTaskPath(ProjectTask.TfsTaskId,ProjectProject.Id),
                 Total = Convert.ToString(Total)
             };
         }
