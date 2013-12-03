@@ -168,8 +168,8 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         {
             var reportToDelete = GetWorkingReport(workingReport.Id);
 
-            using (var transaction = new TransactionScope())
-            {
+            //using (var transaction = new TransactionScope())
+            //{
 
                 var taskId = Convert.ToInt32(reportToDelete.TaskId);
 
@@ -179,9 +179,9 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
 
                 UpdateActualWork(taskId);
 
-                transaction.Complete();
+            //    transaction.Complete();
 
-            }
+            //}
 
         }
 
@@ -191,8 +191,8 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// <param name="workingReport"></param>
         public void CreateWorkingReport(ProjectWorkingReport workingReport)
         {
-            using (var transaction = new TransactionScope())
-            {
+            //using (var transaction = new TransactionScope())
+            //{
 
                 EbalitDbContext.ProjectWorkingReports.Add(workingReport);
 
@@ -200,8 +200,8 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
 
                 UpdateActualWork(Convert.ToInt32(workingReport.TaskId));
 
-                transaction.Complete();
-            }
+            //    transaction.Complete();
+            //}
 
         }
 
