@@ -20,7 +20,6 @@ namespace EbalitWebForms.GUI
         {
             if (!IsPostBack)
             {
-                
             }
 
         }

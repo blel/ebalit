@@ -43,5 +43,6 @@ namespace EbalitWebForms.DataLayer
         public DbSet<WineConsumation> WineConsumations { get; set; }
         public DbSet<Wine> Wines { get; set; }
         public DbSet<WineToWineAttribute> WineToWineAttributes { get; set; }
+        public DbSet<ErroneousWorkingReport> ErroneousWorkingReports { get; set; }
     }
 }

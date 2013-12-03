@@ -55,6 +55,18 @@
           <Property Name="Topic" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PageName" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="ErroneousWorkingReports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="nvarchar(max)" />
+          <Property Name="ResourceName" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="WorkingTime" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TfsTaskName" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="ProjectProjects">
           <Key>
             <PropertyRef Name="Id" />
@@ -402,6 +414,7 @@
           <EntitySet Name="BlogComments" EntityType="Self.BlogComments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BlogEntries" EntityType="Self.BlogEntries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BlogTopics" EntityType="Self.BlogTopics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ErroneousWorkingReports" EntityType="Self.ErroneousWorkingReports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectProjects" EntityType="Self.ProjectProjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectResources" EntityType="Self.ProjectResources" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectResourceTaskAssignments" EntityType="Self.ProjectResourceTaskAssignments" Schema="dbo" store:Type="Tables" />
@@ -567,6 +580,7 @@
             <End Role="Wine" EntitySet="Wines" />
             <End Role="WineToWineAttribute" EntitySet="WineToWineAttributes" />
           </AssociationSet>
+          <EntitySet Name="ErroneousWorkingReports" EntityType="Ebalit_WebFormsModel.ErroneousWorkingReport" />
         </EntityContainer>
         <EntityType Name="aspnet_Users">
           <Key>
@@ -991,6 +1005,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ErroneousWorkingReport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ResourceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="WorkingTime" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TfsTaskName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1208,6 +1234,19 @@
               <MappingFragment StoreEntitySet="WineToWineAttributes">
                 <ScalarProperty Name="FK_WineAttribute" ColumnName="FK_WineAttribute" />
                 <ScalarProperty Name="FK_Wine" ColumnName="FK_Wine" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ErroneousWorkingReports">
+            <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ErroneousWorkingReport">
+              <MappingFragment StoreEntitySet="ErroneousWorkingReports">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TfsTaskName" ColumnName="TfsTaskName" />
+                <ScalarProperty Name="WorkingTime" ColumnName="WorkingTime" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ResourceName" ColumnName="ResourceName" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

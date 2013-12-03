@@ -94,6 +94,7 @@
     <Content Include="DataLayer\AddTfsIds.sql" />
     <Content Include="DataLayer\Change_ProjectUserAssignment_UserId_to_UserName.sql" />
     <Content Include="DataLayer\Ebalit_WebFormsModel.edmx.sql" />
+    <Content Include="DataLayer\ErroneousWorkingReports.sql" />
     <Content Include="DataLayer\Flush Project DB.sql" />
     <Content Include="GUI\ProtectedSites\CreateBlogEntry.aspx" />
     <Content Include="GUI\ProtectedSites\AdminIndex.aspx" />
@@ -206,6 +207,9 @@
       <DependentUpon>Ebalit_WebFormsModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataLayer\EntityExtensions\ProjectWorkingReport.cs" />
+    <Compile Include="DataLayer\ErroneousWorkingReport.cs">
+      <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataLayer\ProjectProject.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>
     </Compile>

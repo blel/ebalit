@@ -22,7 +22,7 @@
 
         <div id="LeftColumn">
             <img runat="server" src="/WebResources/cutHead.gif"  style="margin-left:auto;margin-right:auto; display:block;"/>
-
+            
             <div id="RecentBlogEntries" class="partlet">
                 <h3>Recent posts</h3>
                 <asp:ObjectDataSource ID="odsRecentEntries" runat="server" SelectMethod="GetRecentBlogEntries" TypeName="EbalitWebForms.BusinessLogicLayer.BlogEntryDAL">

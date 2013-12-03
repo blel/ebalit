@@ -39,6 +39,7 @@
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_WineToWineAttribute_ToWineAttribute" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_WineConsumation_ToWine" />
         <AssociationConnector Association="Ebalit_WebFormsModel.FK_WineToWineAttribute_ToWine" />
+        <EntityTypeShape EntityType="Ebalit_WebFormsModel.ErroneousWorkingReport" Width="1.5" PointX="0.75" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

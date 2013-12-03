@@ -401,5 +401,28 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             EbalitDbContext.SaveChanges();
             return erroneousRecords;
         }
+
+        public void PersistErroneousWorkingReports(IList<WorkingReportCsvFile> erroneousWorkingReports)
+        {
+            foreach (var erroneousWorkingReport in erroneousWorkingReports)
+            {
+                var erroneousWorkingReportEntity = new ErroneousWorkingReport
+                {
+                    Date = erroneousWorkingReport.Date,
+                    Description = erroneousWorkingReport.Description,
+                    ProjectName = erroneousWorkingReport.ProjectName,
+                    ResourceName = erroneousWorkingReport.ResourceName,
+                    TfsTaskName = erroneousWorkingReport.TfsTaskName,
+                    WorkingTime = erroneousWorkingReport.WorkingTime
+                };
+                EbalitDbContext.ErroneousWorkingReports.Add(erroneousWorkingReportEntity);
+            }
+            EbalitDbContext.SaveChanges();
+        }
+
+        public IList<ErroneousWorkingReport> GetErroneousWorkingReports()
+        {
+            return EbalitDbContext.ErroneousWorkingReports.ToList();
+        }
     }
 }
