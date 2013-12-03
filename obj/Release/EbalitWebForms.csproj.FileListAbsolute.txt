@@ -43,3 +43,5 @@ C:\Users\elias\Source\Repos\ebalit\obj\Release\EbalitWebForms.Resources.Resource
 C:\Users\elias\Source\Repos\ebalit\obj\Release\EbalitWebForms.csproj.GenerateResource.Cache
 C:\Users\elias\Source\Repos\ebalit\obj\Release\EbalitWebForms.dll
 C:\Users\elias\Source\Repos\ebalit\obj\Release\EbalitWebForms.pdb
+D:\Users\Elias\Source\Repos\ebalit\bin\Configuration.dll
+D:\Users\Elias\Source\Repos\ebalit\bin\Configuration.pdb

@@ -33,9 +33,9 @@ namespace EbalitWebForms.GUI.WebUserControls
             Response.CacheControl = "private";
             Response.Charset = System.Text.Encoding.Unicode.WebName;
             Response.ContentEncoding = System.Text.Encoding.Unicode;
-            Response.AppendHeader("Content-Length", Data.Length.ToString());
+            Response.AppendHeader("Content-Length", System.Text.Encoding.Unicode.GetByteCount(Data).ToString());
             Response.AppendHeader("Pragma", "cache");
-            Response.AppendHeader("Expires", "60");
+            Response.AppendHeader("Expires", DateTime.Now.AddYears(1).ToLongDateString());
             Response.AppendHeader("Content-Disposition",
             "attachment; " + "filename=\"" + FileName + ".csv\"; ");
 
