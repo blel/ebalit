@@ -9,7 +9,15 @@ namespace EbalitWebForms.GUI.WorkingReport
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                var manager = Configuration.ConfigurationManager.GetManager();
+                var config = manager.LoadConfiguration();
 
+                var section = config.GetConfigurationSection<WorkingReportConfigurationSection>();
+                chkDeleteResources.Checked = section.DeleteResourcesIfRemovedFromProject;
+                chkDeleteTasks.Checked = section.DeleteTasksIfRemovedFromProject;
+            }
         }
 
         protected void odsAvailableResources_OnSelecting(object sender, ObjectDataSourceSelectingEventArgs e)
@@ -97,10 +105,22 @@ namespace EbalitWebForms.GUI.WorkingReport
             }
         }
 
-        protected void chkDeleteResources_OnCheckedChanged(object sender, EventArgs e)
-        {
-      
 
+
+        protected void lnkSave_OnCommand(object sender, CommandEventArgs e)
+        {
+            var manager = Configuration.ConfigurationManager.GetManager();
+
+            var section = new WorkingReportConfigurationSection
+            {
+                DeleteResourcesIfRemovedFromProject = chkDeleteResources.Checked,
+
+                DeleteTasksIfRemovedFromProject = chkDeleteTasks.Checked
+            };
+
+            var config = manager.LoadConfiguration();
+            config.AddConfigurationSection(section);
+            manager.SaveConfiguration();
         }
     }
 }

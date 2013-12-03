@@ -161,6 +161,7 @@
     <Compile Include="BusinessLogicLayer\WineBLL.cs" />
     <Compile Include="BusinessLogicLayer\WorkingReport\ProjectBll.cs" />
     <Compile Include="BusinessLogicLayer\WorkingReport\WorkingReportBLL.cs" />
+    <Compile Include="BusinessLogicLayer\WorkingReport\WorkingReportConfigurationSection.cs" />
     <Compile Include="Common\Extensions.cs" />
     <Compile Include="Common\HierarchicalTaskDataSource.cs" />
     <Compile Include="Common\HierarchicalTaskDataSourceView.cs" />
@@ -576,6 +577,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Configuration\Configuration.csproj">
+      <Project>{2a6d0d95-4d7b-4400-ab39-9c7b81f89e7d}</Project>
+      <Name>Configuration</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

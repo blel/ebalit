@@ -59,13 +59,17 @@
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server">
-                        <asp:CheckBox ID="chkDeleteResources" runat="server" Text="Delete Resources on MPS Server if removed in MS Project" OnCheckedChanged="chkDeleteResources_OnCheckedChanged" AutoPostBack="true" /><br />
+                        <asp:CheckBox ID="chkDeleteResources" runat="server" Text="Delete Resources on MPS Server if removed in MS Project" /><br />
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server">
                        <asp:CheckBox ID="chkDeleteTasks" runat="server" Text="Delete Tasks on MPS Server if removed in MS Project" /><br />
                     </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow runat="server">
+                    <asp:TableCell runat="server">
+                        <asp:LinkButton ID="lnkSave" CssClass="CommandButton" runat="server" OnCommand="lnkSave_OnCommand">Save Settings</asp:LinkButton></asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
             <uc1:StatusBar runat="server" ID="StatusBar" ClearOnPostback="true"  />

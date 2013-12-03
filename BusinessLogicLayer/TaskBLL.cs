@@ -71,7 +71,7 @@ namespace EbalitWebForms.BusinessLogicLayer
                 ChangedOn = Convert.ToString(cc.ChangedOn),
                 ClosingType = cc.ClosingType,
                 Comments = (from ccc in new TaskComments().GetTaskComments(cc.Id)
-                            select ccc).Aggregate("\"", (a, b) => (a + "Comment by " + b.CreatedBy + " on " +  Convert.ToString(b.CreatedOn) + "\r\n"+ b.Comment + "\r\n")) + "\"",
+                            select ccc).Aggregate(string.Empty, (a, b) => (a + "Comment by " + b.CreatedBy + " on " +  Convert.ToString(b.CreatedOn) + "\n"+ b.Comment + "\n")) ,
                 Content = cc.Content,
                 CreatedBy = cc.CreatedBy,
                 CreatedOn = Convert.ToString(cc.CreatedOn),

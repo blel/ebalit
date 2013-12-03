@@ -1,5 +1,6 @@
 ﻿using System;
 using Configuration;
+using Configuration.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ConfigurationTest
@@ -7,23 +8,31 @@ namespace ConfigurationTest
     [TestClass]
     public class UnitTest1
     {
-        public class SampleConfiguration:ConfigurationSection<SampleConfiguration>
+        public class SampleSection:IConfigurationSection
         {
-            public string NameIt { get; set; }
-            public string Address { get; set; }
+           
+            public bool DeleteEnabled { get; set; }
         }
 
         [TestMethod]
         public void TestConfiguration()
         {
-            var config = new SampleConfiguration();
-            config.Address = "Hello";
-            config.NameIt = "darling";
+            var section = new SampleSection
+            {
+                DeleteEnabled = true
 
-            var manager = ConfigurationManager.GetManager();
-            manager.SaveSection(config);
+            };
 
-            var q = manager.ReadSection<SampleConfiguration>();
+            var config = ConfigurationManager.GetManager().LoadConfiguration();
+
+
+            config.AddConfigurationSection(section);
+
+            ConfigurationManager.GetManager().SaveConfiguration();
+
+
+
+            
         }
     }
 }

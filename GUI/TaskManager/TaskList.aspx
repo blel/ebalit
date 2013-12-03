@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/GUI/ProtectedSites/ToolsMaster.Master" AutoEventWireup="true" CodeBehind="TaskList.aspx.cs" Inherits="EbalitWebForms.GUI.TaskManager.TaskList" %>
 
+<%@ Register Src="~/GUI/WebUserControls/FileDownloader.ascx" TagPrefix="uc1" TagName="FileDownloader" %>
+
+
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ToolsContent" runat="server">
     <asp:ScriptManager ID="ScriptManager" runat="server" EnableScriptGlobalization="true" EnableScriptLocalization="true"></asp:ScriptManager>
@@ -18,7 +21,7 @@
         </SelectParameters>
     </asp:ObjectDataSource>
     <asp:HiddenField ID="hdfSelectedTaskId" runat="server" />
-
+    <uc1:FileDownloader runat="server" ID="FileDownloader" FileName="TaskList"/>
     <div id="Container">
         
         <div id="Filter" >

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
 using System.Transactions;
+using EbalitWebForms.BusinessLogicLayer.WorkingReport;
 using EbalitWebForms.Common;
 using EbalitWebForms.DataLayer;
 
@@ -15,10 +16,6 @@ namespace EbalitWebForms.WebService
     public class EbalitWebService : IEbalitWebService, IDisposable
     {
         private readonly Ebalit_WebFormsEntities _ebalitContext;
-
-        private readonly bool _deleteResources;
-
-        private readonly bool _deleteTasks;
 
         /// <summary>
         /// Ctor creates a context and assigns it to field
@@ -126,9 +123,11 @@ namespace EbalitWebForms.WebService
         {
             //get the project entity corresponding to the project dto
             var projectEntity = _ebalitContext.ProjectProjects.Single(cc => cc.Guid == project.UniqueIdentifier);
+            var manager = Configuration.ConfigurationManager.GetManager();
+            var config = manager.LoadConfiguration();
 
-            //delete resource only if configured accordingly
-            if (_deleteResources)
+            var section = config.GetConfigurationSection<WorkingReportConfigurationSection>();
+            if (section.DeleteResourcesIfRemovedFromProject)
             {
                 var deletedResources = _ebalitContext.ProjectResources.
                     Where(cc => cc.ProjectProject.Guid == project.UniqueIdentifier).
@@ -211,9 +210,12 @@ namespace EbalitWebForms.WebService
 
             //get the project entity corresponding to the project dto
             var projectEntity = _ebalitContext.ProjectProjects.Single(cc => cc.Guid == project.UniqueIdentifier);
+            var manager = Configuration.ConfigurationManager.GetManager();
+            var config = manager.LoadConfiguration();
 
+            var section = config.GetConfigurationSection<WorkingReportConfigurationSection>();
             //get tasks which exist on server but not in ms project
-            if (_deleteTasks)
+            if (section.DeleteTasksIfRemovedFromProject)
             {
                 var deletedTasks = _ebalitContext.ProjectTasks.
                     Where(cc => cc.ProjectProject.Guid == project.UniqueIdentifier).
