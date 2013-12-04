@@ -61,7 +61,7 @@ CREATE TABLE [dbo].[ErroneousWorkingReports] (
     [ResourceName] NVARCHAR (MAX)  NULL,
     [Date]         DATETIME        NULL,
     [WorkingTime]  DECIMAL (18, 2) NULL,
-    [TfsTaskName]  NVARCHAR (MAX)  NULL,
+    [TfsTaskId]  NVARCHAR (MAX)  NULL,
     [Description]  NVARCHAR (MAX)  NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );

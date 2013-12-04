@@ -15,7 +15,7 @@ namespace EbalitWebForms.GUI.WorkingReport
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         /// <summary>
@@ -39,7 +39,9 @@ namespace EbalitWebForms.GUI.WorkingReport
 
                     var erroneousRecords = workingReportBll.InsertManyWorkingReports(importResult);
 
-                    workingReportBll.PersistErroneousWorkingReports(erroneousRecords);
+                    var erroneousBll = new ErroneousWorkingReportBll();
+
+                    erroneousBll.PersistErroneousWorkingReports(erroneousRecords);
 
                     lvwErroneousRecords.DataBind();
 
@@ -63,6 +65,40 @@ namespace EbalitWebForms.GUI.WorkingReport
         {
             StatusBar.StatusText = string.Format("File could not be imported: Error at line {0}, col {1}: {2}", line,
                 col, message);
+        }
+
+        /// <summary>
+        /// Preselect values of ddls if possible 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void lvwErroneousRecords_OnItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            //TODO: to be continued...
+            if (lvwErroneousRecords.EditItem!=null && e.Item.DataItemIndex == lvwErroneousRecords.EditItem.DataItemIndex)
+            {
+                var ddlProjects = (DropDownList) GUIHelper.RecursiveFindControl(lvwErroneousRecords, "ddlProjects");
+                var erroneousEntity = (DataLayer.ErroneousWorkingReport) e.Item.DataItem;
+                if (ddlProjects.Items.FindByText(erroneousEntity.ProjectName) != null)
+                {
+                    ddlProjects.SelectedValue = erroneousEntity.ProjectName;
+
+                    var projectBll = new ProjectBll();
+                    var projectEntity = projectBll.GetItems().SingleOrDefault(cc => cc.Name == ddlProjects.SelectedValue);
+                    if (projectEntity != null)
+                    {
+                        odsResources.SelectParameters["projectId"].DefaultValue = projectEntity.Id.ToString();
+                        var ddlResources =
+                            (DropDownList) GUIHelper.RecursiveFindControl(lvwErroneousRecords, "ddlResources");
+                        ddlProjects.DataBind();
+                    }
+                    else
+                    {
+                        odsResources.SelectParameters["projectId"].DefaultValue = string.Empty;
+                    }
+
+                }
+            }
         }
     }
 }

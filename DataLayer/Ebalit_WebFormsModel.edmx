@@ -64,7 +64,7 @@
           <Property Name="ResourceName" Type="nvarchar(max)" />
           <Property Name="Date" Type="datetime" />
           <Property Name="WorkingTime" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="TfsTaskName" Type="nvarchar(max)" />
+          <Property Name="TfsTaskId" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ProjectProjects">
@@ -1014,7 +1014,7 @@
           <Property Name="ResourceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="DateTime" Precision="3" />
           <Property Name="WorkingTime" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="TfsTaskName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TfsTaskId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
@@ -1242,7 +1242,7 @@
             <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ErroneousWorkingReport">
               <MappingFragment StoreEntitySet="ErroneousWorkingReports">
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="TfsTaskName" ColumnName="TfsTaskName" />
+                <ScalarProperty Name="TfsTaskId" ColumnName="TfsTaskId" />
                 <ScalarProperty Name="WorkingTime" ColumnName="WorkingTime" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="ResourceName" ColumnName="ResourceName" />

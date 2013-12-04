@@ -19,7 +19,7 @@ namespace EbalitWebForms.DataLayer
         public string ResourceName { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<decimal> WorkingTime { get; set; }
-        public string TfsTaskName { get; set; }
+        public string TfsTaskId { get; set; }
         public string Description { get; set; }
     }
 }

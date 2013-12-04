@@ -59,7 +59,7 @@
     <Property Name="ResourceName" Type="nvarchar(max)" />
     <Property Name="Date" Type="datetime" />
     <Property Name="WorkingTime" Type="decimal" Precision="18" Scale="2" />
-    <Property Name="TfsTaskName" Type="nvarchar(max)" />
+    <Property Name="TfsTaskId" Type="nvarchar(max)" />
     <Property Name="Description" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="ProjectProjects">

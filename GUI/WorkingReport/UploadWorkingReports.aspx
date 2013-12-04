@@ -2,19 +2,36 @@
 
 <%@ Register Src="~/GUI/WebUserControls/StatusBar.ascx" TagPrefix="uc1" TagName="StatusBar" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ToolsContent" runat="server">
-    <asp:ObjectDataSource ID="odsErroneousWorkingReports" runat="server" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" OldValuesParameterFormatString="original_{0}" SelectMethod="GetErroneousWorkingReports"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsErroneousWorkingReports" runat="server" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.ErroneousWorkingReportBll"
+         OldValuesParameterFormatString="original_{0}" SelectMethod="GetItems" 
+        DataObjectTypeName="EbalitWebForms.DataLayer.ErroneousWorkingReport" 
+        DeleteMethod="DeleteItem" UpdateMethod="UpdateItem"
+        ></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsProjects" runat="server" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.ProjectBll" 
+        OldValuesParameterFormatString="original_{0}" SelectMethod="GetItems"
+        ></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="odsResources" runat="server" TypeName="EbalitWebForms.BusinessLogicLayer.WorkingReport.WorkingReportBll" OldValuesParameterFormatString="original_{0}" SelectMethod="GetResources">
+        <SelectParameters>
+            <asp:Parameter Name="projectId" Type="Int32"></asp:Parameter>
+        </SelectParameters>
+    </asp:ObjectDataSource>
     <div id="Container">
         <div id="LeftColumn">
         </div>
         <div id="MainColumn">
             <asp:FileUpload ID="fulCsvFileUpload" runat="server" Width="300" />&nbsp;
             <asp:LinkButton ID="lnkUpload" runat="server" CausesValidation="false" CssClass="CommandButton" OnCommand="lnkUpload_OnCommand">Import</asp:LinkButton>&nbsp;
-            <asp:ListView ID="lvwErroneousRecords" runat="server" DataSourceID="odsErroneousWorkingReports">
+            <h2>Pending Items</h2>
+            <asp:ListView ID="lvwErroneousRecords" runat="server" DataSourceID="odsErroneousWorkingReports" DataKeyNames="Id"
+                OnItemDataBound="lvwErroneousRecords_OnItemDataBound">
                 <AlternatingItemTemplate>
                     <tr style="background-color: #FFF8DC;">
                         <td>
-                            <asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Id") %>' />
+                            <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" />
+                            <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
+
                         </td>
+
                         <td>
                             <asp:Label ID="ProjectNameLabel" runat="server" Text='<%# Eval("ProjectName") %>' />
                         </td>
@@ -28,8 +45,7 @@
                             <asp:Label ID="WorkingTimeLabel" runat="server" Text='<%# Eval("WorkingTime") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="TfsTaskNameLabel" runat="server" Text='<%# Eval("TfsTaskName") %>' />
-                        </td>
+                            <asp:Label Text='<%# Eval("TfsTaskId") %>' runat="server" ID="TfsTaskIdLabel" /></td>
                         <td>
                             <asp:Label Text='<%# Eval("Description") %>' runat="server" ID="DescriptionLabel" /></td>
                     </tr>
@@ -41,13 +57,16 @@
                             <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" />
                         </td>
                         <td>
-                            <asp:TextBox ID="IdTextBox" runat="server" Text='<%# Bind("Id") %>' />
+                            <asp:DropDownList ID="ddlProjects" runat="server" DataSourceID="odsProjects" DataTextField="Name" DataValueField="Name" AppendDataBoundItems="true" AutoPostBack="True" >
+                                <asp:ListItem>---Select a value---</asp:ListItem>
+                            </asp:DropDownList>
+                           
                         </td>
                         <td>
-                            <asp:TextBox ID="ProjectNameTextBox" runat="server" Text='<%# Bind("ProjectName") %>' />
-                        </td>
-                        <td>
-                            <asp:TextBox ID="ResourceNameTextBox" runat="server" Text='<%# Bind("ResourceName") %>' />
+                            <asp:DropDownList ID="ddlResources" runat="server" DataSourceID="odsResources" DataTextField="Name" DataValueField="Name" AppendDataBoundItems="true" AutoPostBack="True" >
+                                <asp:ListItem>---Select a value---</asp:ListItem>
+                            </asp:DropDownList>
+
                         </td>
                         <td>
                             <asp:TextBox ID="DateTextBox" runat="server" Text='<%# Bind("Date") %>' />
@@ -56,7 +75,7 @@
                             <asp:TextBox ID="WorkingTimeTextBox" runat="server" Text='<%# Bind("WorkingTime") %>' />
                         </td>
                         <td>
-                            <asp:TextBox ID="TfsTaskNameTextBox" runat="server" Text='<%# Bind("TfsTaskName") %>' />
+                            <asp:TextBox ID="TfsTaskIdTextBox" runat="server" Text='<%# Bind("TfsTaskId") %>' />
                         </td>
                         <td>
                             <asp:TextBox Text='<%# Bind("Description") %>' runat="server" ID="DescriptionTextBox" /></td>
@@ -65,43 +84,18 @@
                 <EmptyDataTemplate>
                     <table runat="server" style="background-color: #FFFFFF; border-collapse: collapse; border-color: #999999; border-style: none; border-width: 1px;">
                         <tr>
-                            <td>No data was returned.</td>
+                            <td></td>
                         </tr>
                     </table>
                 </EmptyDataTemplate>
-                <InsertItemTemplate>
-                    <tr style="">
-                        <td>
-                            <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" />
-                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Clear" />
-                        </td>
-                        <td>
-                            <asp:TextBox ID="IdTextBox" runat="server" Text='<%# Bind("Id") %>' />
-                        </td>
-                        <td>
-                            <asp:TextBox ID="ProjectNameTextBox" runat="server" Text='<%# Bind("ProjectName") %>' />
-                        </td>
-                        <td>
-                            <asp:TextBox ID="ResourceNameTextBox" runat="server" Text='<%# Bind("ResourceName") %>' />
-                        </td>
-                        <td>
-                            <asp:TextBox ID="DateTextBox" runat="server" Text='<%# Bind("Date") %>' />
-                        </td>
-                        <td>
-                            <asp:TextBox ID="WorkingTimeTextBox" runat="server" Text='<%# Bind("WorkingTime") %>' />
-                        </td>
-                        <td>
-                            <asp:TextBox ID="TfsTaskNameTextBox" runat="server" Text='<%# Bind("TfsTaskName") %>' />
-                        </td>
-                        <td>
-                            <asp:TextBox Text='<%# Bind("Description") %>' runat="server" ID="DescriptionTextBox" /></td>
-                    </tr>
-                </InsertItemTemplate>
                 <ItemTemplate>
                     <tr style="background-color: #DCDCDC; color: #000000;">
                         <td>
-                            <asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Id") %>' />
+                            <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" />
+                            <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
+
                         </td>
+
                         <td>
                             <asp:Label ID="ProjectNameLabel" runat="server" Text='<%# Eval("ProjectName") %>' />
                         </td>
@@ -115,8 +109,7 @@
                             <asp:Label ID="WorkingTimeLabel" runat="server" Text='<%# Eval("WorkingTime") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="TfsTaskNameLabel" runat="server" Text='<%# Eval("TfsTaskName") %>' />
-                        </td>
+                            <asp:Label Text='<%# Eval("TfsTaskId") %>' runat="server" ID="TfsTaskIdLabel" /></td>
                         <td>
                             <asp:Label Text='<%# Eval("Description") %>' runat="server" ID="DescriptionLabel" /></td>
                     </tr>
@@ -127,12 +120,13 @@
                             <td runat="server">
                                 <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF; border-collapse: collapse; border-color: #999999; border-style: none; border-width: 1px; font-family: Verdana, Arial, Helvetica, sans-serif;">
                                     <tr runat="server" style="background-color: #DCDCDC; color: #000000;">
-                                        <th runat="server">Id</th>
-                                        <th runat="server">ProjectName</th>
-                                        <th runat="server">ResourceName</th>
+                                        <th runat="server"></th>
+
+                                        <th runat="server">Project Name</th>
+                                        <th runat="server">Resource Name</th>
                                         <th runat="server">Date</th>
-                                        <th runat="server">WorkingTime</th>
-                                        <th runat="server">TfsTaskName</th>
+                                        <th runat="server">Working Time</th>
+                                        <th runat="server">Tfs Task Id</th>
                                         <th runat="server">Description</th>
                                     </tr>
                                     <tr id="itemPlaceholder" runat="server">
@@ -145,8 +139,8 @@
                                 <asp:DataPager ID="DataPager2" runat="server">
                                     <Fields>
                                         <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
-                                        <asp:NumericPagerField />
-                                        <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+                                        <asp:NumericPagerField></asp:NumericPagerField>
+                                        <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False"></asp:NextPreviousPagerField>
                                     </Fields>
                                 </asp:DataPager>
                             </td>
@@ -156,8 +150,11 @@
                 <SelectedItemTemplate>
                     <tr style="background-color: #008A8C; font-weight: bold; color: #FFFFFF;">
                         <td>
-                            <asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Id") %>' />
+                            <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" />
+                            <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
+
                         </td>
+
                         <td>
                             <asp:Label ID="ProjectNameLabel" runat="server" Text='<%# Eval("ProjectName") %>' />
                         </td>
@@ -171,8 +168,7 @@
                             <asp:Label ID="WorkingTimeLabel" runat="server" Text='<%# Eval("WorkingTime") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="TfsTaskNameLabel" runat="server" Text='<%# Eval("TfsTaskName") %>' />
-                        </td>
+                            <asp:Label Text='<%# Eval("TfsTaskId") %>' runat="server" ID="TfsTaskIdLabel" /></td>
                         <td>
                             <asp:Label Text='<%# Eval("Description") %>' runat="server" ID="DescriptionLabel" /></td>
                     </tr>

@@ -22,6 +22,24 @@ namespace EbalitWebForms.GUI.WorkingReport {
         protected global::System.Web.UI.WebControls.ObjectDataSource odsErroneousWorkingReports;
         
         /// <summary>
+        /// odsProjects control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsProjects;
+        
+        /// <summary>
+        /// odsResources control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsResources;
+        
+        /// <summary>
         /// fulCsvFileUpload control.
         /// </summary>
         /// <remarks>

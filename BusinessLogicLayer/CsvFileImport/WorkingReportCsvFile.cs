@@ -21,7 +21,7 @@ namespace EbalitWebForms.BusinessLogicLayer.CsvFileImport
         public decimal WorkingTime { get; set; }
 
         [MandatoryField]
-        public string TfsTaskName { get; set; }
+        public string TfsTaskId { get; set; }
 
         public string Description { get; set; }
     }

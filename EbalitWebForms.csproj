@@ -160,6 +160,7 @@
     <Compile Include="BusinessLogicLayer\DTO\TaskToCsvDTO.cs" />
     <Compile Include="BusinessLogicLayer\Tests.cs" />
     <Compile Include="BusinessLogicLayer\WineBLL.cs" />
+    <Compile Include="BusinessLogicLayer\WorkingReport\ErroneousWorkingReportBll.cs" />
     <Compile Include="BusinessLogicLayer\WorkingReport\ProjectBll.cs" />
     <Compile Include="BusinessLogicLayer\WorkingReport\WorkingReportBLL.cs" />
     <Compile Include="BusinessLogicLayer\WorkingReport\WorkingReportConfigurationSection.cs" />
