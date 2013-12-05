@@ -207,6 +207,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Ebalit_WebFormsModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataLayer\EntityExtensions\ErroneousWorkingReport.cs" />
     <Compile Include="DataLayer\EntityExtensions\ProjectWorkingReport.cs" />
     <Compile Include="DataLayer\ErroneousWorkingReport.cs">
       <DependentUpon>Ebalit_WebFormsModel.tt</DependentUpon>

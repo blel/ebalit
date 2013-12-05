@@ -25,6 +25,8 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
                 EbalitDbContext.ErroneousWorkingReports.Add(erroneousWorkingReportEntity);
             }
             EbalitDbContext.SaveChanges();
-        }   
+        }  
+ 
+        
     }
 }

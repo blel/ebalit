@@ -40,6 +40,24 @@ namespace EbalitWebForms.GUI.WorkingReport {
         protected global::System.Web.UI.WebControls.ObjectDataSource odsResources;
         
         /// <summary>
+        /// htsTasks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::EbalitWebForms.Common.HierarchicalTaskDataSource htsTasks;
+        
+        /// <summary>
+        /// scmAjaxToolkit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ToolkitScriptManager scmAjaxToolkit;
+        
+        /// <summary>
         /// fulCsvFileUpload control.
         /// </summary>
         /// <remarks>

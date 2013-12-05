@@ -143,8 +143,18 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         public ProjectWorkingReport UpdateWorkingReport(ProjectWorkingReport workingReport)
         {
             var reportToUpdate = GetWorkingReport(workingReport.Id);
+            var oldTaskId = 0;
+            
+
             if (reportToUpdate != null)
             {
+                //if the update moves the working report from one task to another,
+                //make sure that the actual work of the old task is updated as well
+                if (reportToUpdate.TaskId != workingReport.TaskId)
+                {
+                    oldTaskId = Convert.ToInt32(reportToUpdate.TaskId);
+                }
+
                 reportToUpdate.Notes = workingReport.Notes;
                 reportToUpdate.ResourceId = workingReport.ResourceId;
                 reportToUpdate.TaskId = workingReport.TaskId;
@@ -154,6 +164,13 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             }
 
             EbalitDbContext.SaveChanges();
+
+            //update old task actual work
+            if (oldTaskId > 0)
+            {
+                UpdateActualWork(oldTaskId);
+            }
+            //update new task actual work
             if (workingReport.TaskId != null) UpdateActualWork((int)workingReport.TaskId);
             return reportToUpdate;
         }
@@ -322,6 +339,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         /// Returns the full text path to the task with given guid
         /// </summary>
         /// <param name="taskTfsId"></param>
+        /// <param name="projectId"></param>
         /// <returns></returns>
         public string GetTaskPath(string taskTfsId, int projectId)
         {
@@ -359,17 +377,21 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
                     EbalitDbContext.ProjectProjects.SingleOrDefault(cc => cc.Name == workingReport.ProjectName);
 
 
-                var resourceEntity =
-                    EbalitDbContext.ProjectResources.SingleOrDefault(cc => cc.ProjectProject.Id == projectEntity.Id &&
-                                                                           cc.Name == workingReport.ResourceName);
+                ProjectResource resourceEntity = null;
+                ProjectTask taskEntity = null;
+
+                if (projectEntity != null)
+                {
+                    resourceEntity = EbalitDbContext.ProjectResources.SingleOrDefault(cc => cc.Name == workingReport.ResourceName && cc.ProjectId == projectEntity.Id);
 
 
-                var taskEntity =
-                    EbalitDbContext.ProjectTasks.SingleOrDefault(cc => cc.TfsTaskId == workingReport.TfsTaskId);
+                     taskEntity =
+                        EbalitDbContext.ProjectTasks.SingleOrDefault(cc => cc.TfsTaskId == workingReport.TfsTaskId && cc.ProjectId == projectEntity.Id);
+                }
 
-
-
-                if (projectEntity == null || resourceEntity == null || taskEntity == null)
+                if (projectEntity == null || resourceEntity == null || taskEntity == null || 
+                    resourceEntity.ProjectId != projectEntity.Id || taskEntity.ProjectId != projectEntity.Id )
+                    
                 {
                     var erroneousRecord = new WorkingReportCsvFile
                     {
@@ -384,6 +406,8 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
                 }
                 else
                 {
+
+
                     var workingReportEntity = new ProjectWorkingReport
                     {
                         ProjectProject = projectEntity,
@@ -400,6 +424,20 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
             }
             EbalitDbContext.SaveChanges();
             return erroneousRecords;
-        }   
+        }
+
+        public List<WorkingReportCsvFile> TransferWorkingReort(int erroneousWorkingReportId)
+        {
+            var transferRecord = EbalitDbContext.ErroneousWorkingReports.Single(cc => cc.Id == erroneousWorkingReportId);
+            var transferRecordAsCsv = transferRecord.ToCsvFile();
+            var result = InsertManyWorkingReports(new List<WorkingReportCsvFile> { transferRecordAsCsv });
+            if (result.Count == 0)
+            {
+                EbalitDbContext.ErroneousWorkingReports.Remove(transferRecord);
+                EbalitDbContext.SaveChanges();
+
+            }
+            return result;
+        }
     }
 }

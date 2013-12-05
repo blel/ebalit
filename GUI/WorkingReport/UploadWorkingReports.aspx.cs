@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using CSVParser;
 using EbalitWebForms.BusinessLogicLayer.CsvFileImport;
 using EbalitWebForms.BusinessLogicLayer.WorkingReport;
-using EbalitWebForms.GUI.WebUserControls;
 
 namespace EbalitWebForms.GUI.WorkingReport
 {
@@ -15,7 +11,7 @@ namespace EbalitWebForms.GUI.WorkingReport
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+           
         }
 
         /// <summary>
@@ -45,6 +41,16 @@ namespace EbalitWebForms.GUI.WorkingReport
 
                     lvwErroneousRecords.DataBind();
 
+                    if (ViewState["notImportedLinesMessage"]!=null)
+                    {
+                        StatusBar.StatusText = ViewState["notImportedLinesMessage"].ToString();
+                        ViewState.Remove("notImportedLinesMessage");
+                    }
+                    else
+                    {
+                        StatusBar.StatusText = "All lines succesfully imported. Check in pending items for lines which could not be allocated correctly.";
+                    }
+
                 }
                 catch (Exception ex)
                 {
@@ -63,8 +69,10 @@ namespace EbalitWebForms.GUI.WorkingReport
         /// <param name="message"></param>
         protected void parser_ValidationErrorOccurred(int line, int col, string message)
         {
-            StatusBar.StatusText = string.Format("File could not be imported: Error at line {0}, col {1}: {2}", line,
+            var notImportedLinesMessage = ViewState["notImportedLinesMessage"];
+            notImportedLinesMessage += string.Format("Line {0} could not be imported due to an error at col {1}: {2}</br>", line,
                 col, message);
+            ViewState.Add("notImportedLinesMessage", notImportedLinesMessage);
         }
 
         /// <summary>
@@ -74,30 +82,142 @@ namespace EbalitWebForms.GUI.WorkingReport
         /// <param name="e"></param>
         protected void lvwErroneousRecords_OnItemDataBound(object sender, ListViewItemEventArgs e)
         {
-            //TODO: to be continued...
-            if (lvwErroneousRecords.EditItem!=null && e.Item.DataItemIndex == lvwErroneousRecords.EditItem.DataItemIndex)
+            if (lvwErroneousRecords.EditItem != null &&
+                e.Item.DataItemIndex == lvwErroneousRecords.EditItem.DataItemIndex)
             {
+                //the data bound item is the edit item, so update the drop down lists
+
                 var ddlProjects = (DropDownList) GUIHelper.RecursiveFindControl(lvwErroneousRecords, "ddlProjects");
+                
+                var ddlResources = (DropDownList)GUIHelper.RecursiveFindControl(lvwErroneousRecords, "ddlResources");
+                
                 var erroneousEntity = (DataLayer.ErroneousWorkingReport) e.Item.DataItem;
+
                 if (ddlProjects.Items.FindByText(erroneousEntity.ProjectName) != null)
                 {
                     ddlProjects.SelectedValue = erroneousEntity.ProjectName;
-
-                    var projectBll = new ProjectBll();
-                    var projectEntity = projectBll.GetItems().SingleOrDefault(cc => cc.Name == ddlProjects.SelectedValue);
-                    if (projectEntity != null)
-                    {
-                        odsResources.SelectParameters["projectId"].DefaultValue = projectEntity.Id.ToString();
-                        var ddlResources =
-                            (DropDownList) GUIHelper.RecursiveFindControl(lvwErroneousRecords, "ddlResources");
-                        ddlProjects.DataBind();
-                    }
-                    else
-                    {
-                        odsResources.SelectParameters["projectId"].DefaultValue = string.Empty;
-                    }
-
                 }
+
+                var projectBll = new ProjectBll();
+                var projectEntity = projectBll.GetItems().SingleOrDefault(cc => cc.Name == ddlProjects.SelectedValue);
+                if (projectEntity != null)
+                {
+                    ViewState.Add("projectId", projectEntity.Id);
+
+                    AdjustDdlResources();
+
+                    if (ddlResources.Items.FindByText(erroneousEntity.ResourceName) != null)
+                    {
+                        ddlResources.SelectedValue = erroneousEntity.ResourceName;
+                    }
+                }
+                else
+                {
+                    ViewState.Remove("projectId");
+                    AdjustDdlResources();
+                }
+                var trvTask = (TreeView)GUIHelper.RecursiveFindControl(lvwErroneousRecords, "trvTask");
+                scmAjaxToolkit.RegisterPostBackControl(trvTask);
+                trvTask.DataBind();
+            }
+        }
+
+        /// <summary>
+        /// Get the projectId from View state
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void odsResources_OnSelecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        {
+            e.InputParameters["projectId"] = ViewState["projectId"];
+        }
+
+        /// <summary>
+        /// Update the resource drop down list if ddlProjects changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ddlProjects_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var ddlProjects = (DropDownList)GUIHelper.RecursiveFindControl(lvwErroneousRecords, "ddlProjects");
+            var projectBll = new ProjectBll();
+            var projectEntity = projectBll.GetItems().SingleOrDefault(cc => cc.Name == ddlProjects.SelectedValue);
+            if (projectEntity != null)
+            {
+                ViewState.Add("projectId", projectEntity.Id);
+
+                AdjustDdlResources();
+               
+
+            }
+            var trvTask = (TreeView)GUIHelper.RecursiveFindControl(lvwErroneousRecords, "trvTask");
+            trvTask.DataBind();
+        }
+
+        /// <summary>
+        /// Make sure project and resource is added to the new values (not databound) and workaround 
+        /// bug with dates.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void lvwErroneousRecords_OnItemUpdating(object sender, ListViewUpdateEventArgs e)
+        {
+            var ddlProjects = (DropDownList)GUIHelper.RecursiveFindControl(lvwErroneousRecords, "ddlProjects");
+            var ddlResources = (DropDownList)GUIHelper.RecursiveFindControl(lvwErroneousRecords, "ddlResources");
+            e.NewValues["Date"] = GUIHelper.GetUSDate(e.NewValues["Date"].ToString());
+            e.NewValues.Add("projectName", ddlProjects.SelectedValue);
+            e.NewValues.Add("resourceName", ddlResources.SelectedValue);
+        }
+
+        /// <summary>
+        /// Clear resource ddl, add the default item and data bind it
+        /// </summary>
+        private void AdjustDdlResources()
+        {
+            var ddlResources = (DropDownList)GUIHelper.RecursiveFindControl(lvwErroneousRecords, "ddlResources");
+            if (ddlResources != null)
+            {
+                ddlResources.Items.Clear();
+                ddlResources.Items.Add(new ListItem("---Select a value---",string.Empty));
+                ddlResources.DataBind();
+            }
+        }
+
+
+        protected void htsTasks_OnSelecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        {
+            e.InputParameters["ProjectId"] = ViewState["projectId"];
+
+        }
+
+        protected void trvTask_OnSelectedNodeChanged(object sender, EventArgs e)
+        {
+            var tfsTaskIdTextBox = (TextBox)GUIHelper.RecursiveFindControl(lvwErroneousRecords,("TfsTaskIdTextBox"));
+            tfsTaskIdTextBox.Text = ((TreeView)sender).SelectedNode.DataPath;
+        }
+
+        protected void lnkTransfer_OnCommand(object sender, CommandEventArgs e)
+        {
+            var workingReportBll = new WorkingReportBll();
+            try
+            {
+                var resultList = workingReportBll.TransferWorkingReort(Convert.ToInt32(e.CommandArgument));
+                if (resultList.Count > 0)
+                {
+                    StatusBar.StatusText = string.Format("Transfer of item not successful");
+                }
+
+                else
+                {
+                    lvwErroneousRecords.DataBind();
+                    StatusBar.StatusText = "Transfer successful!";
+                }
+
+            }
+            catch (InvalidOperationException ex)
+            {
+                
+                StatusBar.StatusText = string.Format("Transfer not successful:{0}", ex.Message);
             }
         }
     }
