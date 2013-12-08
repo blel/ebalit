@@ -14,6 +14,12 @@ namespace ConfigurationTest
             public bool DeleteEnabled { get; set; }
         }
 
+        public class AnotherSection : IConfigurationSection
+        {
+            public string Property1 { get; set; }
+            public string Property2 { get; set; }
+        }
+
         [TestMethod]
         public void TestConfiguration()
         {
@@ -23,16 +29,27 @@ namespace ConfigurationTest
 
             };
 
-            var config = ConfigurationManager.GetManager().LoadConfiguration();
+            var config = ConfigurationManager.GetManager().CurrentConfig;
 
+            var q = config.GetConfigurationSection<SampleSection>();
 
             config.AddConfigurationSection(section);
 
-            ConfigurationManager.GetManager().SaveConfiguration();
-
-
-
-            
+            ConfigurationManager.GetManager().SaveConfig();
         }
+
+        [TestMethod]
+        public void TestAdditionalSection()
+        {
+            var newSection = new AnotherSection
+            {
+                Property1 = "Elias",
+                Property2 = "Balmer"
+
+            };
+            ConfigurationManager.GetManager().CurrentConfig.AddConfigurationSection(newSection);
+            ConfigurationManager.GetManager().SaveConfig();
+        }
+
     }
 }

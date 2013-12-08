@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/GUI/ProtectedSites/ToolsMaster.master" AutoEventWireup="true" CodeBehind="CreateProject.aspx.cs" Inherits="EbalitWebForms.GUI.WorkingReport.CreateProject" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ToolsContent" runat="server">
-    <asp:ObjectDataSource ID="odsProjects" runat="server" 
-        TypeName="EbalitWebForms.BusinessLogicLayer.Repository`1[[EbalitWebForms.DataLayer.ProjectProject, EbalitWebForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], EbalitWebForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" 
-        OldValuesParameterFormatString="original_{0}" SelectMethod="GetItemById" 
+    <asp:ObjectDataSource ID="odsProjects" runat="server"
+        TypeName="EbalitWebForms.BusinessLogicLayer.Repository`1[[EbalitWebForms.DataLayer.ProjectProject, EbalitWebForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], EbalitWebForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+        OldValuesParameterFormatString="original_{0}" SelectMethod="GetItemById"
         DataObjectTypeName="EbalitWebForms.DataLayer.ProjectProject" DeleteMethod="DeleteItem" InsertMethod="CreateItem" UpdateMethod="UpdateItem"
         OnInserting="odsProjects_OnInserting" OnSelecting="odsProjects_OnSelecting" OnInserted="odsProjects_OnInserted" OnUpdated="odsProjects_OnUpdated">
         <SelectParameters>
@@ -15,18 +15,21 @@
         </div>
         <div id="MainColumn">
             <h2>Project Details</h2>
-            <asp:DetailsView ID="dtvProject" CssClass="detailsview" runat="server" Height="50px" Width="769px" 
+            <asp:DetailsView ID="dtvProject" CssClass="detailsview" runat="server" Height="50px" Width="769px"
                 AutoGenerateRows="False" DataSourceID="odsProjects" DataKeyNames="Id" OnModeChanging="dtvProject_OnModeChanging">
                 <Fields>
                     <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" />
                     <asp:TemplateField HeaderText="Name">
                         <EditItemTemplate>
-                            <asp:TextBox ID="txtName" runat="server" Width="300" Text='<%# Bind("Name") %>'></asp:TextBox>
+                            <asp:TextBox ID="txtName" runat="server" Width="300" BackColor="LightYellow" Text='<%# Bind("Name") %>'></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="Name is required."></asp:RequiredFieldValidator>
+                            <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="Name must be unique." OnServerValidate="CustomValidator1_OnServerValidate"></asp:CustomValidator>
+
                         </EditItemTemplate>
                         <InsertItemTemplate>
-                            <asp:TextBox ID="txtName" runat="server" Width="300" Text='<%# Bind("Name") %>'></asp:TextBox>
+                            <asp:TextBox ID="txtName" runat="server" Width="300" BackColor="LightYellow" Text='<%# Bind("Name") %>'></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="Name is required."></asp:RequiredFieldValidator>
+                            <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="Name must be unique." OnServerValidate="CustomValidator1_OnServerValidate"></asp:CustomValidator>
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>

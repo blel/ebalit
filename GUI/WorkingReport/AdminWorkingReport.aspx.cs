@@ -12,7 +12,7 @@ namespace EbalitWebForms.GUI.WorkingReport
             if (!IsPostBack)
             {
                 var manager = Configuration.ConfigurationManager.GetManager();
-                var config = manager.LoadConfiguration();
+                var config = manager.CurrentConfig;
 
                 var section = config.GetConfigurationSection<WorkingReportConfigurationSection>();
                 chkDeleteResources.Checked = section.DeleteResourcesIfRemovedFromProject;
@@ -115,12 +115,15 @@ namespace EbalitWebForms.GUI.WorkingReport
             {
                 DeleteResourcesIfRemovedFromProject = chkDeleteResources.Checked,
 
-                DeleteTasksIfRemovedFromProject = chkDeleteTasks.Checked
+                DeleteTasksIfRemovedFromProject = chkDeleteTasks.Checked,
+
+                RetrieveActualWorkFromMsProject = chkGetActualWork.Checked
             };
 
-            var config = manager.LoadConfiguration();
+            var config = manager.CurrentConfig;
             config.AddConfigurationSection(section);
-            manager.SaveConfiguration();
+            manager.SaveConfig();
+
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Web.UI.WebControls;
 using CSVParser;
 using EbalitWebForms.BusinessLogicLayer.CsvFileImport;
 using EbalitWebForms.BusinessLogicLayer.WorkingReport;
+using Microsoft.VisualBasic.FileIO;
 
 namespace EbalitWebForms.GUI.WorkingReport
 {
@@ -11,7 +12,7 @@ namespace EbalitWebForms.GUI.WorkingReport
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         /// <summary>
@@ -25,7 +26,8 @@ namespace EbalitWebForms.GUI.WorkingReport
             {
                 try
                 {
-                    var parser = new StreamCsvParser<WorkingReportCsvFile>(fulCsvFileUpload.FileContent, ";", false);
+
+                    var parser = new VbStreamCsvReader<WorkingReportCsvFile>(fulCsvFileUpload.FileContent, ";", false);
 
                     parser.ValidationErrorOccurred += parser_ValidationErrorOccurred;
 
@@ -41,7 +43,7 @@ namespace EbalitWebForms.GUI.WorkingReport
 
                     lvwErroneousRecords.DataBind();
 
-                    if (ViewState["notImportedLinesMessage"]!=null)
+                    if (ViewState["notImportedLinesMessage"] != null)
                     {
                         StatusBar.StatusText = ViewState["notImportedLinesMessage"].ToString();
                         ViewState.Remove("notImportedLinesMessage");
@@ -87,11 +89,11 @@ namespace EbalitWebForms.GUI.WorkingReport
             {
                 //the data bound item is the edit item, so update the drop down lists
 
-                var ddlProjects = (DropDownList) GUIHelper.RecursiveFindControl(lvwErroneousRecords, "ddlProjects");
-                
+                var ddlProjects = (DropDownList)GUIHelper.RecursiveFindControl(lvwErroneousRecords, "ddlProjects");
+
                 var ddlResources = (DropDownList)GUIHelper.RecursiveFindControl(lvwErroneousRecords, "ddlResources");
-                
-                var erroneousEntity = (DataLayer.ErroneousWorkingReport) e.Item.DataItem;
+
+                var erroneousEntity = (DataLayer.ErroneousWorkingReport)e.Item.DataItem;
 
                 if (ddlProjects.Items.FindByText(erroneousEntity.ProjectName) != null)
                 {
@@ -147,7 +149,7 @@ namespace EbalitWebForms.GUI.WorkingReport
                 ViewState.Add("projectId", projectEntity.Id);
 
                 AdjustDdlResources();
-               
+
 
             }
             var trvTask = (TreeView)GUIHelper.RecursiveFindControl(lvwErroneousRecords, "trvTask");
@@ -178,7 +180,7 @@ namespace EbalitWebForms.GUI.WorkingReport
             if (ddlResources != null)
             {
                 ddlResources.Items.Clear();
-                ddlResources.Items.Add(new ListItem("---Select a value---",string.Empty));
+                ddlResources.Items.Add(new ListItem("---Select a value---", string.Empty));
                 ddlResources.DataBind();
             }
         }
@@ -192,7 +194,7 @@ namespace EbalitWebForms.GUI.WorkingReport
 
         protected void trvTask_OnSelectedNodeChanged(object sender, EventArgs e)
         {
-            var tfsTaskIdTextBox = (TextBox)GUIHelper.RecursiveFindControl(lvwErroneousRecords,("TfsTaskIdTextBox"));
+            var tfsTaskIdTextBox = (TextBox)GUIHelper.RecursiveFindControl(lvwErroneousRecords, ("TfsTaskIdTextBox"));
             tfsTaskIdTextBox.Text = ((TreeView)sender).SelectedNode.DataPath;
         }
 
@@ -216,7 +218,7 @@ namespace EbalitWebForms.GUI.WorkingReport
             }
             catch (InvalidOperationException ex)
             {
-                
+
                 StatusBar.StatusText = string.Format("Transfer not successful:{0}", ex.Message);
             }
         }

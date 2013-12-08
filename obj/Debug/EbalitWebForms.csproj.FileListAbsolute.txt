@@ -27,3 +27,5 @@ C:\Users\elias\Source\Repos\ebalit\bin\CSVParser.dll
 D:\Users\Elias\Source\Repos\ebalit\obj\Debug\EbalitWebForms.csprojResolveAssemblyReference.cache
 D:\Users\Elias\Source\Repos\ebalit\bin\Configuration.dll
 D:\Users\Elias\Source\Repos\ebalit\bin\Configuration.pdb
+D:\Users\Elias\Source\Repos\ebalit\bin\CSVParser.dll
+D:\Users\Elias\Source\Repos\ebalit\bin\CSVParser.pdb

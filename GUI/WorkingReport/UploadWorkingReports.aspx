@@ -21,7 +21,10 @@
         <div id="LeftColumn">
         </div>
         <div id="MainColumn">
-            <asp:FileUpload ID="fulCsvFileUpload" runat="server" Width="300" />&nbsp;
+            <h2>Upload Working Reports</h2>
+            <p>
+            Select the csv file to upload. The file must have 6 columns in the following order: <br/> Project Name, Resource Name, Date, Working Time, Tfs Task Id, Description.</p>
+            <asp:FileUpload ID="fulCsvFileUpload" runat="server" Width="400" />&nbsp;
             <asp:LinkButton ID="lnkUpload" runat="server" CausesValidation="false" CssClass="CommandButton" OnCommand="lnkUpload_OnCommand">Import</asp:LinkButton>&nbsp;
             <h2>Pending Items</h2>
             <asp:ListView ID="lvwErroneousRecords" runat="server" DataSourceID="odsErroneousWorkingReports" DataKeyNames="Id"
@@ -30,7 +33,7 @@
                 <AlternatingItemTemplate>
                     <tr style="background-color: #FFF8DC;">
                         <td>
-                            <asp:LinkButton runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" CssClass="CommandButton" />&nbsp;
+                            <asp:LinkButton runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" CssClass="CommandButton" OnClientClick="return confirm('Do you really want to delete this record?')"/>&nbsp;
                             <asp:LinkButton runat="server" CommandName="Edit" Text="Edit" ID="EditButton" CssClass="CommandButton" />&nbsp;
                             <asp:LinkButton ID="lnkTransfer" runat="server" CssClass="CommandButton" OnCommand="lnkTransfer_OnCommand" CommandArgument='<%#Eval("Id") %>'>Transfer</asp:LinkButton>
 
@@ -112,7 +115,7 @@
                 <ItemTemplate>
                     <tr style="background-color: #DCDCDC; color: #000000;">
                         <td>
-                            <asp:LinkButton runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" CssClass="CommandButton" />&nbsp;
+                            <asp:LinkButton runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" CssClass="CommandButton" OnClientClick="return confirm('Do you really want to delete this record?')"/>&nbsp;
                             <asp:LinkButton runat="server" CommandName="Edit" Text="Edit" ID="EditButton" CssClass="CommandButton" />&nbsp;
                             <asp:LinkButton ID="lnkTransfer" runat="server" CssClass="CommandButton" OnCommand="lnkTransfer_OnCommand" CommandArgument='<%#Eval("Id") %>'>Transfer</asp:LinkButton>
 

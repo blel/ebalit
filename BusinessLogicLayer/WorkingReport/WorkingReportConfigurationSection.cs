@@ -11,5 +11,7 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
         public bool DeleteResourcesIfRemovedFromProject { get; set; }
 
         public bool DeleteTasksIfRemovedFromProject { get; set; }
+
+        public bool RetrieveActualWorkFromMsProject { get; set; }
     }
 }

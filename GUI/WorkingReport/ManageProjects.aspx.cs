@@ -32,5 +32,10 @@ namespace EbalitWebForms.GUI.WorkingReport
                 e.ExceptionHandled = true;
             }
         }
+
+        protected void lnkCreate_OnCommand(object sender, CommandEventArgs e)
+        {
+            Response.Redirect(string.Format("/GUI/WorkingReport/CreateProject.aspx"));
+        }
     }
 }

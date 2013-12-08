@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
-using System.ServiceModel;
-using System.Transactions;
 using EbalitWebForms.BusinessLogicLayer.WorkingReport;
 using EbalitWebForms.Common;
 using EbalitWebForms.DataLayer;
@@ -110,11 +108,11 @@ namespace EbalitWebForms.WebService
             //using (var transaction = new TransactionScope())
             //{
 
-                SyncResources(project);
+            SyncResources(project);
 
-                SyncTasks(project);
+            SyncTasks(project);
 
-                //transaction.Complete();
+            //transaction.Complete();
             //}
             return project;
         }
@@ -124,7 +122,7 @@ namespace EbalitWebForms.WebService
             //get the project entity corresponding to the project dto
             var projectEntity = _ebalitContext.ProjectProjects.Single(cc => cc.Guid == project.UniqueIdentifier);
             var manager = Configuration.ConfigurationManager.GetManager();
-            var config = manager.LoadConfiguration();
+            var config = manager.CurrentConfig;
 
             var section = config.GetConfigurationSection<WorkingReportConfigurationSection>();
             if (section.DeleteResourcesIfRemovedFromProject)
@@ -211,7 +209,7 @@ namespace EbalitWebForms.WebService
             //get the project entity corresponding to the project dto
             var projectEntity = _ebalitContext.ProjectProjects.Single(cc => cc.Guid == project.UniqueIdentifier);
             var manager = Configuration.ConfigurationManager.GetManager();
-            var config = manager.LoadConfiguration();
+            var config = manager.CurrentConfig;
 
             var section = config.GetConfigurationSection<WorkingReportConfigurationSection>();
             //get tasks which exist on server but not in ms project
@@ -246,7 +244,7 @@ namespace EbalitWebForms.WebService
                 //create the task Entity
                 var taskEntity = new ProjectTask
                 {
-                    ActualWork = newTask.ActualWork,
+                    ActualWork = section.RetrieveActualWorkFromMsProject ? newTask.ActualWork : 0,
                     Name = newTask.Name,
                     TfsTaskId = newTask.TfsTaskId,
                     ParentTfsTaskId = newTask.ParentTfsTaskId

@@ -42,6 +42,7 @@
                 <asp:LinkButton ID="lnkClose" runat="server" CssClass="CommandButton" CausesValidation="false">Close</asp:LinkButton>
             </div>
         </div>
+        <h2>Working Reports</h2>
         <div id="Filter">
             <asp:Table ID="tblFilter" runat="server" Width="769px">
                 <asp:TableRow runat="server">

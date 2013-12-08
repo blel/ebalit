@@ -13,8 +13,9 @@
         </div>
         <div id="MainColumn">
             <h2>Manage Projects</h2>
-
-            <asp:ListView ID="lvwProjects" runat="server" DataSourceID="odsProjects" DataKeyNames="Id">
+            <br/>
+            <asp:LinkButton ID="lnkCreate" CssClass="CommandButton" runat="server" OnCommand="lnkCreate_OnCommand">Create</asp:LinkButton>
+            <asp:ListView ID="lvwProjects" runat="server" DataSourceID="odsProjects" DataKeyNames="Id" style="margin-right: 150px">
                 <AlternatingItemTemplate>
                     <tr style="background-color: #FFF8DC;">
                         <td>

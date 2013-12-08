@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using EbalitWebForms.BusinessLogicLayer.WorkingReport;
 using EbalitWebForms.DataLayer;
 
 namespace EbalitWebForms.GUI.WorkingReport
@@ -82,6 +83,16 @@ namespace EbalitWebForms.GUI.WorkingReport
                 e.Cancel = true;
                 Response.Redirect("/GUI/WorkingReport/ManageProjects.aspx");
             }
+        }
+
+        protected void CustomValidator1_OnServerValidate(object source, ServerValidateEventArgs args)
+        {
+            
+            var txtProject = (TextBox) GUIHelper.RecursiveFindControl(dtvProject, "txtName");
+
+            var id = dtvProject.DataKey.Value ?? 0;
+
+            args.IsValid = new ProjectBll().IsUnique(txtProject.Text, Convert.ToInt32(id));
         }
     }
 }
