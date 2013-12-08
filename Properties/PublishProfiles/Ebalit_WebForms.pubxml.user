@@ -19,19 +19,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/Configuration.dll">
-      <publishTime>12/03/2013 18:42:22</publishTime>
+      <publishTime>12/08/2013 11:06:44</publishTime>
     </File>
     <File Include="bin/cs/AjaxControlToolkit.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/CSVParser.dll">
-      <publishTime>11/26/2013 21:13:21</publishTime>
+      <publishTime>12/06/2013 22:53:29</publishTime>
     </File>
     <File Include="bin/de/AjaxControlToolkit.resources.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/EbalitWebForms.dll">
-      <publishTime>12/03/2013 18:42:22</publishTime>
+      <publishTime>12/08/2013 11:06:44</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>11/20/2013 17:56:26</publishTime>
@@ -91,7 +91,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="DataLayer/Ebalit_WebFormsModel.edmx.diagram">
-      <publishTime>12/02/2013 10:26:50</publishTime>
+      <publishTime>12/08/2013 11:06:05</publishTime>
     </File>
     <File Include="DataLayer/Ebalit_WebFormsModel.edmx.sql">
       <publishTime>11/20/2013 17:56:41</publishTime>
@@ -99,8 +99,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="DataLayer/Ebalit_WebFormsModel.tt">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="DataLayer/ErroneousWorkingReports.sql">
+      <publishTime>12/08/2013 11:06:05</publishTime>
+    </File>
     <File Include="DataLayer/Flush Project DB.sql">
-      <publishTime>02/12/2013 23:21:11</publishTime>
+      <publishTime>12/08/2013 11:06:05</publishTime>
     </File>
     <File Include="GUI/Admin.aspx">
       <publishTime>11/20/2013 17:56:41</publishTime>
@@ -109,7 +112,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/20/2013 17:56:26</publishTime>
     </File>
     <File Include="GUI/Index.aspx">
-      <publishTime>12/03/2013 18:42:14</publishTime>
+      <publishTime>12/08/2013 11:06:05</publishTime>
     </File>
     <File Include="GUI/IT.aspx">
       <publishTime>11/20/2013 17:56:26</publishTime>
@@ -148,7 +151,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/20/2013 17:56:26</publishTime>
     </File>
     <File Include="GUI/ProtectedSites/ToolsMaster.master">
-      <publishTime>12/02/2013 18:53:36</publishTime>
+      <publishTime>02/12/2013 18:53:36</publishTime>
     </File>
     <File Include="GUI/TaskCategories.aspx">
       <publishTime>04/05/2013 16:55:12</publishTime>
@@ -160,7 +163,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/20/2013 17:56:26</publishTime>
     </File>
     <File Include="GUI/TaskManager/TaskList.aspx">
-      <publishTime>03/12/2013 16:20:50</publishTime>
+      <publishTime>12/03/2013 16:20:50</publishTime>
     </File>
     <File Include="GUI/Tools.aspx">
       <publishTime>04/05/2013 22:28:41</publishTime>
@@ -208,25 +211,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/20/2013 17:56:27</publishTime>
     </File>
     <File Include="GUI/WorkingReport/AdminWorkingReport.aspx">
-      <publishTime>03/12/2013 16:05:34</publishTime>
+      <publishTime>12/08/2013 11:06:05</publishTime>
     </File>
     <File Include="GUI/WorkingReport/CreateProject.aspx">
-      <publishTime>11/24/2013 11:40:27</publishTime>
+      <publishTime>12/08/2013 11:06:05</publishTime>
     </File>
     <File Include="GUI/WorkingReport/CreateWorkingReport.aspx">
-      <publishTime>12/02/2013 22:17:31</publishTime>
+      <publishTime>02/12/2013 22:17:31</publishTime>
     </File>
     <File Include="GUI/WorkingReport/CreateWorkingReport.aspx.cs">
       <publishTime>11/18/2013 21:57:49</publishTime>
     </File>
     <File Include="GUI/WorkingReport/ManageProjects.aspx">
-      <publishTime>11/24/2013 11:57:32</publishTime>
+      <publishTime>12/08/2013 11:06:05</publishTime>
     </File>
     <File Include="GUI/WorkingReport/ManageWorkingReports.aspx">
-      <publishTime>12/02/2013 18:51:33</publishTime>
+      <publishTime>12/08/2013 11:06:05</publishTime>
     </File>
     <File Include="GUI/WorkingReport/UploadWorkingReports.aspx">
-      <publishTime>12/02/2013 19:23:36</publishTime>
+      <publishTime>12/08/2013 11:06:05</publishTime>
     </File>
     <File Include="Index.html">
       <publishTime>11/20/2013 17:56:27</publishTime>
@@ -250,7 +253,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/20/2013 17:56:41</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/02/2013 22:59:54</publishTime>
+      <publishTime>02/12/2013 22:59:54</publishTime>
     </File>
     <File Include="WebService/EbalitWebService.svc">
       <publishTime>11/20/2013 17:56:41</publishTime>

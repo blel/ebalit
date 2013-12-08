@@ -43,10 +43,11 @@ namespace ConfigurationTest
         {
             var newSection = new AnotherSection
             {
-                Property1 = "Elias",
+                Property1 = "adkjdkfajs",
                 Property2 = "Balmer"
 
             };
+            var curr = ConfigurationManager.GetManager().CurrentConfig.GetConfigurationSection<AnotherSection>();
             ConfigurationManager.GetManager().CurrentConfig.AddConfigurationSection(newSection);
             ConfigurationManager.GetManager().SaveConfig();
         }

@@ -50,6 +50,18 @@
     <Property Name="Topic" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="PageName" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="ErroneousWorkingReports">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectName" Type="nvarchar(max)" />
+    <Property Name="ResourceName" Type="nvarchar(max)" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="WorkingTime" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="TfsTaskId" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="ProjectProjects">
     <Key>
       <PropertyRef Name="Id" />
@@ -397,6 +409,7 @@
     <EntitySet Name="BlogComments" EntityType="Self.BlogComments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BlogEntries" EntityType="Self.BlogEntries" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BlogTopics" EntityType="Self.BlogTopics" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ErroneousWorkingReports" EntityType="Self.ErroneousWorkingReports" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProjectProjects" EntityType="Self.ProjectProjects" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProjectResources" EntityType="Self.ProjectResources" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProjectResourceTaskAssignments" EntityType="Self.ProjectResourceTaskAssignments" Schema="dbo" store:Type="Tables" />

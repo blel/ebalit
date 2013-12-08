@@ -216,5 +216,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ErroneousWorkingReports">
+      <EntityTypeMapping TypeName="Ebalit_WebFormsModel.ErroneousWorkingReport">
+        <MappingFragment StoreEntitySet="ErroneousWorkingReports">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="TfsTaskId" ColumnName="TfsTaskId" />
+          <ScalarProperty Name="WorkingTime" ColumnName="WorkingTime" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ResourceName" ColumnName="ResourceName" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
