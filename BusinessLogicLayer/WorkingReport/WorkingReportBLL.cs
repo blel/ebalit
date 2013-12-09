@@ -419,10 +419,15 @@ namespace EbalitWebForms.BusinessLogicLayer.WorkingReport
                         To = workingReport.Date
                     };
                     EbalitDbContext.ProjectWorkingReports.Add(workingReportEntity);
-                }
+                    EbalitDbContext.SaveChanges();
+                    //TODO: no good practise...
+                    UpdateActualWork(workingReportEntity.ProjectTask.Id);
 
+                }
+                
             }
-            EbalitDbContext.SaveChanges();
+            
+           
             return erroneousRecords;
         }
 
