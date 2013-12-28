@@ -20,6 +20,9 @@ namespace EbalitWebForms.GUI.WorkingReport
 
                 //retrieve filter parameters from session and update fields with
                 //appropriate values
+                //TODO: This throws an error if something in the data is changing (e.g. a project is deleted,
+                //which is still referenced in the findDto...
+
                 var findDto = (WorkingReportFindDto)Session["findDto"];
                 if (findDto != null)
                 {
